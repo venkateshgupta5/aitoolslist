@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-export function NewsletterForm() {
+export function NewsletterForm({ cta = "Subscribe" }: { cta?: string }) {
   const [email, setEmail] = useState("");
   const [done, setDone] = useState(false);
 
@@ -34,7 +34,7 @@ export function NewsletterForm() {
         type="submit"
         className="shrink-0 rounded-lg bg-ink-900 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-ink-800"
       >
-        Subscribe
+        {cta}
       </button>
     </form>
   );

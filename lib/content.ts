@@ -856,3 +856,116 @@ export const verificationLabel: Record<VerificationStatus, string> = {
   needs_review: "Needs review",
   no_pick: "No verified pick this week",
 };
+
+// ── Homepage: weekly edition summary ────────────────────────────────────────
+// Honest coverage messaging (spec §6.5): 13 evaluated, N verified, rest flagged.
+export function weeklySummary() {
+  const evaluated = categories.length;
+  const verified = products.filter((p) => p.verification === "verified").length;
+  const published = products.length;
+  return { evaluated, verified, insufficient: evaluated - published };
+}
+
+// Deterministic category accent colour for icons (no fabricated logos; spec §6.3).
+const accentPalette = [
+  "bg-indigo-600", "bg-sky-600", "bg-teal-600", "bg-violet-600", "bg-rose-600",
+  "bg-amber-600", "bg-emerald-600", "bg-blue-600", "bg-fuchsia-600", "bg-cyan-600",
+  "bg-orange-600", "bg-green-600", "bg-purple-600",
+];
+export function categoryAccent(categorySlug: string): string {
+  const idx = categories.findIndex((c) => c.slug === categorySlug);
+  return accentPalette[(idx + accentPalette.length) % accentPalette.length];
+}
+
+// ── Homepage: "The AI landscape this week" (spec §7) ─────────────────────────
+// Industry developments kept separate from product rankings — funding/launch
+// activity is context, not proof of product quality. Every item is evidence-linked.
+export interface LandscapeItem {
+  topic: string;
+  headline: string;
+  summary: string;
+  whyItMatters: string;
+  source: Source;
+  href?: string; // internal deep-link to a related product profile, where relevant
+}
+
+export const landscape: LandscapeItem[] = [
+  {
+    topic: "Compute",
+    headline: "NVIDIA's Vera Rubin reaches the cloud",
+    summary:
+      "At NVIDIA GTC Berlin, Google Cloud made A5X instances on the Vera Rubin NVL72 platform generally available — putting the newest accelerator generation into a hyperscaler as a shipping product.",
+    whyItMatters:
+      "Frontier-scale training compute is becoming a routine cloud purchase, not a bespoke build-out.",
+    source: {
+      title: "Google Cloud infrastructure at NVIDIA GTC Berlin 2026",
+      url: "https://cloud.google.com/blog/topics/ai-infrastructure/google-cloud-infrastructure-at-nvidia-gtc-berlin-2026",
+      type: "official",
+    },
+    href: "/tools/google-cloud-a5x-vera-rubin",
+  },
+  {
+    topic: "Agents",
+    headline: "Perplexity ships coordinated multi-agent runs",
+    summary:
+      "On Nov 17 Perplexity launched Multiagent: a lead agent splits a task across up to 16 model-diverse sub-agents and composes the results, inside its Comet platform.",
+    whyItMatters:
+      "Coordinated multi-agent execution moved from research demos into a consumer product.",
+    source: {
+      title: "Perplexity launches Multiagent (up to 16 agents)",
+      url: "https://pasqualepillitteri.it/en/news/35232/perplexity-launches-multiagent-up-to-16-ai-agents-working",
+      type: "news",
+    },
+    href: "/tools/perplexity-multiagent",
+  },
+  {
+    topic: "Funding",
+    headline: "Isomorphic Labs raises $5B for AI drug design",
+    summary:
+      "The DeepMind spin-out closed an oversubscribed $5B Series C (Nov 17) to push AI-designed drug candidates toward clinical trials.",
+    whyItMatters:
+      "Capital keeps concentrating in AI-for-science — but funding is a signal, not proof of clinical success.",
+    source: {
+      title: "Isomorphic Labs raises $5B (TechCrunch, Nov 17)",
+      url: "https://techcrunch.com/2026/11/17/isomorphic-labs-raises-5b-as-it-looks-to-take-drug-candidates-to-clinical-trials/",
+      type: "news",
+    },
+    href: "/tools/isomorphic-labs",
+  },
+  {
+    topic: "Models",
+    headline: "Gemini 4 Neon tops the coding-agent index",
+    summary:
+      "Google launched Gemini 4 Neon on Nov 18; running in its Antigravity CLI it took the top of the independent Artificial Analysis Coding Agent Index.",
+    whyItMatters:
+      "The frontier of agentic coding keeps moving fast — benchmark leadership now changes week to week.",
+    source: {
+      title: "AI models released in November 2026 (release tracker)",
+      url: "https://www.nocode.mba/ai-release-tracker/2026/11",
+      type: "analysis",
+    },
+    href: "/tools/google-antigravity",
+  },
+  {
+    topic: "Open source",
+    headline: "Production vector databases harden",
+    summary:
+      "Weaviate shipped Enterprise and Platform editions (v1.40) on Nov 18, adding shard self-recovery, deduplicated backups and namespaces for multi-tenant RAG.",
+    whyItMatters:
+      "Open-source AI data infrastructure is maturing from libraries into production-grade managed platforms.",
+    source: {
+      title: "Weaviate advances vector database technology (Nov 18)",
+      url: "https://stockhouse.com/news/press-releases/2026/11/18/weaviate-advances-vector-database-technology-to-power-fast-growing-ai",
+      type: "press-release",
+    },
+    href: "/tools/weaviate",
+  },
+];
+
+// Concise editorial observations (spec §14 "weekly takeaways").
+export const takeaways: string[] = [
+  "Frontier-scale GPU compute is becoming a routine cloud purchase.",
+  "Multi-agent coordination moved from research demos into consumer products.",
+  "Capital keeps concentrating in AI-for-science — funding is context, not proof.",
+  "Open-source infra (vector DBs, LLMOps) is hardening for production.",
+];

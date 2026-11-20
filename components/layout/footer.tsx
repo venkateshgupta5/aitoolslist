@@ -72,6 +72,16 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/methodology" className="text-sm text-ink-600 hover:text-ink-900">
+                  Research methodology
+                </Link>
+              </li>
+              <li>
+                <Link href="/methodology" className="text-sm text-ink-600 hover:text-ink-900">
+                  Editorial independence
+                </Link>
+              </li>
+              <li>
                 <Link href="/submit-tool" className="text-sm text-ink-600 hover:text-ink-900">
                   List your app · {siteConfig.listingPrice}
                 </Link>
