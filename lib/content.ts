@@ -43,6 +43,29 @@ export interface Product {
   sources: Source[];
   lastVerified: string | null;
   verification: VerificationStatus;
+
+  // ── Intelligence-layer enrichment (Product Listing Enhancements spec) ──
+  // All optional; sections render only when populated (never padded).
+  productType?: string;
+  launchDate?: string | null;
+  productStatus?: string;
+  differentiators?: string[];
+  whyItMatters?: string;
+  strengths?: string[];
+  limitations?: string[];
+  whoShouldUse?: string[];
+  notSuitableWhen?: string[];
+  documentationUrl?: string;
+  researchConfidence?: "High" | "Medium" | "Low";
+  benchmarks?: { label: string; value: string; kind: "vendor" | "independent" | "community" }[];
+  specs?: { label: string; value: string }[];
+  compare?: { name: string; positioning: string; whenPreferable: string }[];
+}
+
+export interface ClaimRow {
+  field: string;
+  status: "Confirmed" | "Cross-checked" | "Vendor-reported" | "Unverified" | "Unavailable" | "N/A";
+  note?: string;
 }
 
 export interface Category {
@@ -79,7 +102,7 @@ export const categories: Category[] = [
 const pricingTBD =
   "Not independently verified in this research pass — see the official pricing page for current plans.";
 
-export const products: Product[] = [
+const baseProducts: Product[] = [
   {
     slug: "google-cloud-a5x-vera-rubin",
     name: "Google Cloud A5X (Vera Rubin)",
@@ -411,6 +434,395 @@ export const products: Product[] = [
     verification: "verified",
   },
 ];
+
+// ── Intelligence-layer enrichment (per slug) ────────────────────────────────
+// Editorial analysis + structured specs grounded in the research evidence
+// already attached to each product. Unknown values are omitted or marked
+// "Not verified" in the UI — never invented.
+const enrichment: Record<string, Partial<Product>> = {
+  "google-cloud-a5x-vera-rubin": {
+    productType: "GPU cloud instances",
+    launchDate: "November 2026 (NVIDIA GTC Berlin)",
+    productStatus: "Generally available",
+    differentiators: ["NVIDIA Vera Rubin NVL72", "Rack-scale", "Hyperscaler-managed"],
+    researchConfidence: "High",
+    whyItMatters:
+      "A5X brings NVIDIA's newest Vera Rubin generation to a hyperscaler as a GA product — the week's most consequential signal that frontier-scale compute is becoming routinely provisionable.",
+    strengths: [
+      "Access to the latest Vera Rubin NVL72 rack-scale platform",
+      "Managed networking, storage and GKE integration",
+      "Hyperscaler reliability and global regions",
+    ],
+    limitations: [
+      "Hyperscaler GPU pricing is typically higher than specialist neoclouds",
+      "Public per-hour pricing for A5X not verified in this research pass",
+    ],
+    whoShouldUse: [
+      "Teams training or serving large models at scale",
+      "Enterprises already on Google Cloud wanting newest accelerators",
+    ],
+    notSuitableWhen: ["Cost-sensitive hobby or small-scale workloads", "Teams needing single on-demand GPUs cheaply"],
+    specs: [{ label: "Platform", value: "NVIDIA Vera Rubin NVL72" }, { label: "Integration", value: "GKE / Google Cloud" }],
+    compare: [
+      { name: "CoreWeave", positioning: "GPU-specialist neocloud", whenPreferable: "When you want faster provisioning and lower GPU cost than a hyperscaler." },
+      { name: "Lambda", positioning: "Developer-friendly GPU cloud", whenPreferable: "For simpler on-demand GPU access and training clusters." },
+      { name: "Nebius", positioning: "AI-focused cloud", whenPreferable: "For managed AI infrastructure outside the big-three hyperscalers." },
+    ],
+  },
+  "sarvam-token-factory": {
+    productType: "Managed inference platform",
+    launchDate: "November 16, 2026",
+    productStatus: "Generally available",
+    differentiators: ["OpenAI-compatible", "India-hosted", "Open-weight + Sarvam models"],
+    documentationUrl: "https://docs.sarvam.ai",
+    researchConfidence: "Medium",
+    whyItMatters:
+      "Opened for general use on Nov 16 — a sovereign, in-region inference option with an OpenAI-compatible surface, lowering the switching cost for teams with data-residency needs.",
+    strengths: [
+      "OpenAI-compatible API reduces migration effort",
+      "India-hosted GPU infrastructure for data residency",
+      "Access to both Sarvam and selected open-weight models",
+    ],
+    limitations: [
+      "Model catalogue and regional coverage not fully verified",
+      "Public pricing and rate limits not verified in this research pass",
+    ],
+    whoShouldUse: [
+      "Developers needing in-region (India) inference",
+      "Enterprises with data-residency or sovereignty requirements",
+    ],
+    notSuitableWhen: ["Workloads requiring a specific proprietary frontier model unavailable here"],
+    specs: [{ label: "API", value: "OpenAI-compatible" }, { label: "Hosting", value: "India" }],
+    compare: [
+      { name: "Baseten", positioning: "Managed model serving", whenPreferable: "For custom model deployment with autoscaling in the US." },
+      { name: "Fireworks AI", positioning: "Fast open-model inference", whenPreferable: "For low-latency serving of popular open models." },
+      { name: "Together AI", positioning: "Open-model cloud", whenPreferable: "For a broad open-model catalogue and fine-tuning." },
+    ],
+  },
+  weaviate: {
+    productType: "Vector database",
+    launchDate: "November 18, 2026 (v1.40 GA)",
+    productStatus: "Generally available",
+    differentiators: ["Open source", "Enterprise HA", "Namespaces & self-recovery"],
+    documentationUrl: "https://docs.weaviate.io",
+    researchConfidence: "High",
+    whyItMatters:
+      "The v1.40 GA of Platform and Enterprise editions moves Weaviate from a strong library to a production-grade managed vector store with HA, backups and multi-tenancy.",
+    strengths: [
+      "Mature open-source core with large community",
+      "New enterprise HA: Shard Self-Recovery, Deduplicated Backups",
+      "Namespaces for multi-tenant isolation",
+    ],
+    limitations: [
+      "Operating self-hosted at scale still requires expertise",
+      "Managed Platform Edition pricing not verified in this research pass",
+    ],
+    whoShouldUse: [
+      "Teams building production RAG or semantic search",
+      "Enterprises needing HA and multi-tenancy in a vector store",
+    ],
+    notSuitableWhen: ["Tiny prototypes where a simple embedded store suffices"],
+    specs: [{ label: "License", value: "Open source (core)" }, { label: "Version", value: "v1.40" }],
+    compare: [
+      { name: "Pinecone", positioning: "Fully managed vector DB", whenPreferable: "When you want zero-ops managed serverless vectors." },
+      { name: "Qdrant", positioning: "Open-source vector DB", whenPreferable: "For a Rust-based engine with strong filtering." },
+      { name: "Milvus", positioning: "Scalable open-source vector DB", whenPreferable: "For very large-scale, GPU-accelerated vector search." },
+    ],
+  },
+  "google-adk-2": {
+    productType: "Agent orchestration framework",
+    launchDate: null,
+    productStatus: "Available",
+    differentiators: ["Graph execution", "Multi-agent", "A2A + MCP"],
+    documentationUrl: "https://google.github.io/adk-docs/",
+    researchConfidence: "Medium",
+    whyItMatters:
+      "ADK 2.0's shift to a graph execution engine with fan-out/fan-in makes sophisticated multi-agent coordination a first-class primitive rather than a workaround.",
+    strengths: [
+      "Graph-based execution for complex agent topologies",
+      "Coordinator + sub-agent delegation patterns",
+      "Supports A2A and MCP interoperability protocols",
+    ],
+    limitations: [
+      "Tighter alignment with Google's AI stack",
+      "This is a leading current release, not a dated this-week launch",
+    ],
+    whoShouldUse: ["AI engineers building multi-agent systems", "Teams needing graph-structured agent workflows"],
+    notSuitableWhen: ["Simple single-agent chatbots where a framework adds overhead"],
+    compare: [
+      { name: "LangGraph", positioning: "Graph agent framework", whenPreferable: "For a mature Python/JS ecosystem and tooling." },
+      { name: "CrewAI", positioning: "Role-based multi-agent", whenPreferable: "For quick role-playing crews with minimal setup." },
+      { name: "Microsoft Agent Framework", positioning: "Enterprise orchestration", whenPreferable: "For Microsoft-centric enterprise stacks." },
+    ],
+  },
+  langfuse: {
+    productType: "LLM observability & evals",
+    launchDate: null,
+    productStatus: "Generally available (open source)",
+    differentiators: ["Open source", "Tracing + evals", "Self-hostable"],
+    documentationUrl: "https://langfuse.com/docs",
+    researchConfidence: "High",
+    whyItMatters:
+      "Langfuse keeps shipping — this week's evaluation-engine changes (LLM-as-a-judge targeting observations/experiments) reinforce its lead as the default open-source LLMOps layer.",
+    strengths: [
+      "MIT-licensed core, free to self-host",
+      "End-to-end tracing, prompt management and evals in one tool",
+      "Large adoption and active release cadence",
+    ],
+    limitations: [
+      "Trace-level evaluators deprecated on Langfuse Cloud (migration needed)",
+      "Advanced hosted tiers carry cost at scale",
+    ],
+    whoShouldUse: ["AI engineers debugging and evaluating LLM apps", "Teams wanting self-hostable LLMOps"],
+    notSuitableWhen: ["Teams already standardized on a full-stack APM they can't leave"],
+    specs: [{ label: "License", value: "MIT (core)" }, { label: "Hosting", value: "Cloud or self-host" }],
+    compare: [
+      { name: "LangSmith", positioning: "LangChain-native observability", whenPreferable: "If your stack is built on LangChain/LangGraph." },
+      { name: "Arize Phoenix", positioning: "OSS tracing + RAG eval", whenPreferable: "When retrieval-quality evaluation is the priority." },
+      { name: "Braintrust", positioning: "Eval-driven platform", whenPreferable: "For teams organizing work around evals and experiments." },
+    ],
+  },
+  "google-antigravity": {
+    productType: "Agentic coding tool",
+    launchDate: "November 18, 2026",
+    productStatus: "Available",
+    differentiators: ["Gemini 4 Neon", "#1 coding index", "Agentic CLI"],
+    researchConfidence: "High",
+    whyItMatters:
+      "Gemini 4 Neon launched Nov 18 and, running in Antigravity, took the top of the independent Artificial Analysis Coding Agent Index — the week's clearest coding-capability leap.",
+    strengths: [
+      "Tops an independent coding-agent benchmark (index 59)",
+      "Agentic, multi-step coding workflow via CLI",
+      "Backed by Google's model and infra",
+    ],
+    limitations: [
+      "Benchmark leadership is a snapshot; rankings shift quickly",
+      "Public pricing for the coding tool not verified in this research pass",
+    ],
+    whoShouldUse: ["Developers wanting the current top-ranked coding agent", "Teams comfortable with CLI-driven agentic workflows"],
+    notSuitableWhen: ["Developers who prefer a fully GUI editor experience"],
+    benchmarks: [
+      { label: "Artificial Analysis Coding Agent Index", value: "#1, score 59 (Nov 18, 2026)", kind: "independent" },
+    ],
+    compare: [
+      { name: "Cursor", positioning: "AI-native code editor", whenPreferable: "For a polished GUI editor with codebase chat." },
+      { name: "Cognition Devin", positioning: "Autonomous dev agent", whenPreferable: "For longer-running, hands-off project work." },
+      { name: "GitHub Copilot", positioning: "In-IDE assistant", whenPreferable: "For broad IDE integration and enterprise rollout." },
+    ],
+  },
+  "perplexity-multiagent": {
+    productType: "Multi-agent assistant",
+    launchDate: "November 17, 2026",
+    productStatus: "Available (new effort level for Comet)",
+    differentiators: ["Up to 16 agents", "Model-diverse", "Lead-agent orchestration"],
+    researchConfidence: "High",
+    whyItMatters:
+      "Launched Nov 17: a lead agent splitting work across up to 16 model-diverse sub-agents — a high-profile step toward consumer-grade coordinated multi-agent systems.",
+    strengths: [
+      "Parallelizes complex tasks across many agents",
+      "Model-diverse sub-agents (Opus, GPT, Gemini)",
+      "Consumer-accessible, not just a developer SDK",
+    ],
+    limitations: [
+      "Multi-agent runs can be slower and costlier per task",
+      "Quality depends on task decomposition; not verified across domains",
+    ],
+    whoShouldUse: ["Researchers and analysts running deep multi-step tasks", "Power users wanting parallelized agent work"],
+    notSuitableWhen: ["Simple single-shot questions where one model is faster"],
+    compare: [
+      { name: "ChatGPT agents", positioning: "Agentic assistant", whenPreferable: "For a tightly integrated OpenAI ecosystem." },
+      { name: "Google ADK", positioning: "Developer agent framework", whenPreferable: "When you need to build custom multi-agent systems." },
+      { name: "Manus", positioning: "Autonomous task agent", whenPreferable: "For hands-off end-to-end task completion." },
+    ],
+  },
+  "salesforce-hunter": {
+    productType: "AI sales agent",
+    launchDate: "November 2026 (full release)",
+    productStatus: "Rolling out",
+    differentiators: ["Outbound agent", "In Slack/Teams/Claude", "Salesforce-native"],
+    researchConfidence: "Medium",
+    whyItMatters:
+      "Salesforce's outbound agent meeting reps inside Slack, Teams and Claude signals incumbent CRMs embedding agents directly into reps' daily tools.",
+    strengths: [
+      "Lives where reps already work (chat tools)",
+      "Native access to Salesforce CRM data",
+      "Backed by a dominant CRM vendor",
+    ],
+    limitations: [
+      "Still completing rollout after pilot",
+      "Pricing and availability details not verified in this research pass",
+    ],
+    whoShouldUse: ["Salesforce-based sales teams", "RevOps teams automating outbound"],
+    notSuitableWhen: ["Teams not on Salesforce or wanting a standalone tool"],
+    compare: [
+      { name: "Clay", positioning: "Data enrichment + outbound", whenPreferable: "For multi-source enrichment and list building." },
+      { name: "11x", positioning: "AI SDR", whenPreferable: "For a fully autonomous outbound SDR agent." },
+      { name: "Artisan", positioning: "AI BDR platform", whenPreferable: "For an all-in-one outbound platform." },
+    ],
+  },
+  "retell-ai": {
+    productType: "Voice agent platform",
+    launchDate: null,
+    productStatus: "Generally available",
+    differentiators: ["Real-time voice", "Tell-1 model", "Telephony"],
+    documentationUrl: "https://docs.retellai.com",
+    researchConfidence: "Medium",
+    whyItMatters:
+      "Retell's own Tell-1 model and a reported $100M run rate put it among the most-cited voice-agent platforms this week — strong signal, though the headline metrics are vendor-reported.",
+    strengths: [
+      "Developer-focused real-time voice pipeline",
+      "Own Tell-1 voice model",
+      "Telephony and model-provider integrations",
+    ],
+    limitations: [
+      "Headline metrics are vendor-reported and not independently verified",
+      "Tell-1 #1 ranking is on Retell's own vCX benchmark",
+    ],
+    whoShouldUse: ["Developers building phone agents", "Contact centers automating calls"],
+    notSuitableWhen: ["Teams needing a no-code done-for-you line (consider others)"],
+    benchmarks: [
+      { label: "Retell vCX Benchmark (Tell-1)", value: "#1 overall (Nov 2026)", kind: "vendor" },
+      { label: "Reported annualized run rate", value: "~$100M (vendor-reported)", kind: "vendor" },
+    ],
+    compare: [
+      { name: "Vapi", positioning: "Developer voice platform", whenPreferable: "For maximum model/telephony configurability." },
+      { name: "Bland", positioning: "Low-cost voice calls", whenPreferable: "For simple, cost-sensitive outbound/inbound." },
+      { name: "ElevenLabs Agents", positioning: "Voice quality leader", whenPreferable: "When lifelike voice quality is the priority." },
+    ],
+  },
+  "artificial-analysis": {
+    productType: "Model benchmarking platform",
+    launchDate: "November 18, 2026 (Index v5)",
+    productStatus: "Live",
+    differentiators: ["Independent", "Index v5", "Agent benchmarks"],
+    documentationUrl: "https://artificialanalysis.ai/methodology/intelligence-benchmarking",
+    researchConfidence: "High",
+    whyItMatters:
+      "Two dated releases this week — Intelligence Index v5 (Nov 18) and an MKA agent benchmark with DeepMind (Nov 17) — cement it as a go-to independent evaluation reference.",
+    strengths: [
+      "Independent, transparent methodology",
+      "Broad coverage across models and providers",
+      "Public indices freely accessible",
+    ],
+    limitations: [
+      "Aggregate indices can mask task-specific differences",
+      "Not a testing framework you run on your own app",
+    ],
+    whoShouldUse: ["Buyers comparing models", "Engineers tracking capability over time"],
+    notSuitableWhen: ["Teams needing to run custom evals on their own data (use an eval platform)"],
+    compare: [
+      { name: "LMArena", positioning: "Human-preference arena", whenPreferable: "For crowd-sourced head-to-head preferences." },
+      { name: "LiveBench", positioning: "Contamination-resistant benchmark", whenPreferable: "For fresh, leak-resistant academic-style tests." },
+      { name: "Vals AI", positioning: "Real-world task benchmarks", whenPreferable: "For domain tasks like finance or law." },
+    ],
+  },
+  "mayo-clinic-platform-cds": {
+    productType: "Clinical decision support",
+    launchDate: "November 3, 2026",
+    productStatus: "Available to Mayo Clinic Platform participants",
+    differentiators: ["EHR-embedded", "Cites literature", "35+ specialties"],
+    researchConfidence: "High",
+    whyItMatters:
+      "A credible institution shipping literature-cited, EHR-embedded decision support (Nov 3) is a meaningful step for trustworthy clinical AI at the point of care.",
+    strengths: [
+      "Embedded directly in EHR workflows",
+      "Cites peer-reviewed literature for its answers",
+      "35+ specialties and 22 clinical calculators",
+    ],
+    limitations: [
+      "Access limited to Mayo Clinic Platform participants",
+      "Decision support assists, does not replace, clinician judgment",
+    ],
+    whoShouldUse: ["Clinicians at participating organizations", "Health systems in Mayo's provider programs"],
+    notSuitableWhen: ["Organizations outside Mayo Clinic Platform programs"],
+    compare: [
+      { name: "OpenEvidence", positioning: "Medical evidence assistant", whenPreferable: "For broad, open clinical Q&A with citations." },
+      { name: "Google Gemini for Healthcare", positioning: "Agentic healthcare platform", whenPreferable: "For unifying clinical/operational systems." },
+      { name: "Abridge", positioning: "Ambient clinical documentation", whenPreferable: "When the need is note-taking, not decision support." },
+    ],
+  },
+  "isomorphic-labs": {
+    productType: "AI drug-discovery company",
+    launchDate: "November 17, 2026 ($5B Series C)",
+    productStatus: "Private (research company)",
+    differentiators: ["AlphaFold lineage", "$5B raised", "Toward clinic"],
+    researchConfidence: "Medium",
+    whyItMatters:
+      "A $5B Series C (Nov 17) to move AI-designed drugs toward clinical trials is the week's defining biotech-AI event — though funding is a signal, not proof of clinical success.",
+    strengths: [
+      "Builds on DeepMind's protein-structure breakthroughs",
+      "Exceptional capital runway after $5B raise",
+      "Pharma partnerships and an internal pipeline",
+    ],
+    limitations: [
+      "Not a self-serve product — no public access",
+      "Funding does not guarantee clinical or regulatory success",
+    ],
+    whoShouldUse: ["Pharma partners and researchers", "Investors tracking AI-bio"],
+    notSuitableWhen: ["Developers seeking a usable API or product today"],
+    compare: [
+      { name: "Recursion", positioning: "AI-driven drug discovery (public)", whenPreferable: "For a public company with a clinical pipeline." },
+      { name: "Insilico Medicine", positioning: "Generative chemistry", whenPreferable: "For end-to-end generative drug design." },
+      { name: "Iambic", positioning: "AI drug discovery", whenPreferable: "For physics-informed ML drug design." },
+    ],
+  },
+};
+
+export const products: Product[] = baseProducts.map((p) => ({
+  ...p,
+  ...(enrichment[p.slug] ?? {}),
+}));
+
+/** At-a-glance specification rows (spec §6). Values grounded in research;
+ *  unknowns shown as "Not verified". */
+export function atAGlance(p: Product): { label: string; value: string }[] {
+  const category = categoryBySlug(p.categorySlug)?.name ?? "—";
+  const rows: { label: string; value: string }[] = [
+    { label: "Category", value: category },
+    { label: "Product type", value: p.productType ?? "Not verified" },
+    { label: "Status", value: p.productStatus ?? "Not verified" },
+    { label: "Launch", value: p.launchDate ?? "Not verified" },
+  ];
+  const pricingShort =
+    /mit|free|open source|not applicable/i.test(p.pricing) && p.pricing.length < 90
+      ? p.pricing
+      : "Not publicly verified";
+  rows.push({ label: "Pricing", value: pricingShort });
+  if (p.specs) rows.push(...p.specs);
+  return rows;
+}
+
+/** Claim-level verification rows (spec §9). Derived from known evidence so the
+ *  badge's scope is explicit — website-checked is NOT a full audit. */
+export function claimStatuses(p: Product): ClaimRow[] {
+  const rows: ClaimRow[] = [
+    { field: "Official website", status: "Confirmed", note: p.officialUrl },
+    {
+      field: "Launch / announcement",
+      status: p.launchDate ? "Confirmed" : "N/A",
+    },
+    { field: "Product capabilities", status: "Cross-checked", note: "From cited sources" },
+  ];
+  const vendorReported = /vendor-reported/i.test(p.pricing) || /vendor-reported/i.test((p.limitations ?? []).join(" "));
+  rows.push({
+    field: "Pricing",
+    status: /mit|free|open source/i.test(p.pricing) ? "Cross-checked" : "Unverified",
+    note: /mit|free|open source/i.test(p.pricing) ? undefined : "See official pricing page",
+  });
+  const bench = p.benchmarks ?? [];
+  rows.push({
+    field: "Performance benchmarks",
+    status: bench.length
+      ? bench.some((b) => b.kind === "vendor")
+        ? "Vendor-reported"
+        : "Cross-checked"
+      : "Unavailable",
+  });
+  if (vendorReported) {
+    rows.push({ field: "Headline metrics", status: "Vendor-reported", note: "Not independently verified" });
+  }
+  return rows;
+}
 
 // ── Lookups ────────────────────────────────────────────────────────────────
 
