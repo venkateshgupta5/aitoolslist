@@ -1,48 +1,134 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import type { Category } from "@/lib/content";
-import { siteConfig } from "@/lib/site";
+import { listingSchema } from "@/lib/validation";
+import { track, LISTING_EVENTS } from "@/lib/analytics";
 
-const inputClass =
-  "w-full rounded-lg border border-ink-300 bg-white px-3.5 py-2.5 text-sm text-ink-900 outline-none placeholder:text-ink-400 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20";
-const labelClass = "block text-sm font-medium text-ink-700 mb-1.5";
+const inputBase =
+  "w-full rounded-lg border bg-white px-3.5 py-2.5 text-sm text-ink-900 outline-none placeholder:text-ink-400 focus:ring-2 focus:ring-brand-500/20";
+const labelClass = "block text-sm font-medium text-ink-800";
+
+type Errors = Partial<Record<string, string>>;
+
+function Field({
+  id,
+  label,
+  required,
+  helper,
+  error,
+  children,
+}: {
+  id: string;
+  label: string;
+  required?: boolean;
+  helper?: string;
+  error?: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div>
+      <label htmlFor={id} className={labelClass}>
+        {label}{" "}
+        {required ? (
+          <span className="text-brand-600">*</span>
+        ) : (
+          <span className="text-xs font-normal text-ink-400">(optional)</span>
+        )}
+      </label>
+      {helper && <p className="mb-1.5 mt-0.5 text-xs text-ink-500">{helper}</p>}
+      {!helper && <div className="mb-1.5" />}
+      {children}
+      {error && (
+        <p id={`${id}-error`} className="mt-1 text-xs font-medium text-red-600">
+          {error}
+        </p>
+      )}
+    </div>
+  );
+}
 
 export function ListingForm({ categories }: { categories: Category[] }) {
   const [state, setState] = useState<"idle" | "submitting" | "done" | "error">(
     "idle",
   );
-  const [error, setError] = useState<string | null>(null);
+  const [errors, setErrors] = useState<Errors>({});
+  const [serverError, setServerError] = useState<string | null>(null);
+  const startedRef = useRef(false);
+
+  function onFirstInteraction() {
+    if (!startedRef.current) {
+      startedRef.current = true;
+      track(LISTING_EVENTS.formStart);
+    }
+  }
 
   if (state === "done") {
     return (
-      <div className="rounded-xl bg-emerald-50 p-6 ring-1 ring-inset ring-emerald-600/20">
+      <div
+        className="rounded-xl bg-emerald-50 p-6 ring-1 ring-inset ring-emerald-600/20"
+        role="status"
+        aria-live="polite"
+      >
         <h3 className="text-base font-semibold text-emerald-800">
-          Listing request received
+          Application received ✓
         </h3>
         <p className="mt-1.5 text-sm text-emerald-700">
-          Thanks! We&apos;ve recorded your submission. Our team will review it
-          and follow up with payment and next steps. Payment is only taken after
-          review, and a paid listing never influences our weekly rankings.
+          Thanks — your product is in the review queue. Here&apos;s what happens
+          next:
+        </p>
+        <ol className="mt-3 space-y-1.5 text-sm text-emerald-700">
+          <li>1. We review for relevance, accuracy and completeness — within 3 business days.</li>
+          <li>2. If approved, we email you a secure payment link for the one-time $299.</li>
+          <li>3. After payment, we publish your listing and send you the live URL.</li>
+        </ol>
+        <p className="mt-3 text-xs text-emerald-700/80">
+          You&apos;re not charged anything now. If we can&apos;t approve your
+          product, you pay nothing.
         </p>
       </div>
     );
   }
 
+  const inputClass = (field: string) =>
+    `${inputBase} ${errors[field] ? "border-red-400" : "border-ink-300 focus:border-brand-500"}`;
+
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setState("submitting");
-    setError(null);
-    const data = new FormData(e.currentTarget);
+    setServerError(null);
+    const form = e.currentTarget;
+    const data = new FormData(form);
     const payload = {
-      companyName: data.get("companyName"),
-      productName: data.get("productName"),
-      websiteUrl: data.get("websiteUrl"),
-      contactName: data.get("contactName"),
-      email: data.get("email"),
-      categorySlug: data.get("categorySlug"),
-      description: data.get("description") || "",
+      companyName: String(data.get("companyName") ?? ""),
+      productName: String(data.get("productName") ?? ""),
+      websiteUrl: String(data.get("websiteUrl") ?? ""),
+      categorySlug: String(data.get("categorySlug") ?? ""),
+      contactName: String(data.get("contactName") ?? ""),
+      email: String(data.get("email") ?? ""),
+      description: String(data.get("description") ?? ""),
     };
+
+    // Client-side validation → field-level errors (preserves entered data).
+    const parsed = listingSchema.safeParse(payload);
+    if (!parsed.success) {
+      const fieldErrors: Errors = {};
+      for (const issue of parsed.error.issues) {
+        const key = String(issue.path[0] ?? "");
+        if (key && !fieldErrors[key]) fieldErrors[key] = issue.message;
+      }
+      setErrors(fieldErrors);
+      setState("error");
+      track(LISTING_EVENTS.formError, { fields: Object.keys(fieldErrors).join(",") });
+      // focus the first invalid field
+      const firstKey = Object.keys(fieldErrors)[0];
+      if (firstKey) form.querySelector<HTMLElement>(`[name="${firstKey}"]`)?.focus();
+      return;
+    }
+
+    setErrors({});
+    setState("submitting");
+    track(LISTING_EVENTS.formSubmit, { category: payload.categorySlug });
+
     try {
       const res = await fetch("/api/listings", {
         method: "POST",
@@ -51,88 +137,67 @@ export function ListingForm({ categories }: { categories: Category[] }) {
       });
       const json = await res.json();
       if (!res.ok) {
-        setError(json?.error ?? "Something went wrong. Please try again.");
+        setServerError(json?.error ?? "Something went wrong. Please try again.");
         setState("error");
+        track(LISTING_EVENTS.formError, { reason: "server" });
         return;
       }
       setState("done");
     } catch {
-      setError("Network error. Please try again.");
+      setServerError("Network error. Please try again.");
       setState("error");
+      track(LISTING_EVENTS.formError, { reason: "network" });
     }
   }
 
   return (
-    <form onSubmit={onSubmit} className="space-y-4">
+    <form onSubmit={onSubmit} onFocusCapture={onFirstInteraction} noValidate className="space-y-4">
       <div className="grid gap-4 sm:grid-cols-2">
-        <div>
-          <label className={labelClass} htmlFor="companyName">
-            Company name <span className="text-brand-600">*</span>
-          </label>
-          <input id="companyName" name="companyName" required className={inputClass} placeholder="Acme Inc." />
-        </div>
-        <div>
-          <label className={labelClass} htmlFor="productName">
-            Product name <span className="text-brand-600">*</span>
-          </label>
-          <input id="productName" name="productName" required className={inputClass} placeholder="Acme AI" />
-        </div>
-        <div>
-          <label className={labelClass} htmlFor="websiteUrl">
-            Website URL <span className="text-brand-600">*</span>
-          </label>
-          <input id="websiteUrl" name="websiteUrl" type="url" required className={inputClass} placeholder="https://acme.ai" />
-        </div>
-        <div>
-          <label className={labelClass} htmlFor="categorySlug">
-            Category <span className="text-brand-600">*</span>
-          </label>
-          <select id="categorySlug" name="categorySlug" required defaultValue="" className={inputClass}>
-            <option value="" disabled>
-              Choose a category
-            </option>
+        <Field id="companyName" label="Company name" required error={errors.companyName}>
+          <input id="companyName" name="companyName" required className={inputClass("companyName")} placeholder="Acme Inc." aria-invalid={!!errors.companyName} />
+        </Field>
+        <Field id="productName" label="Product name" required error={errors.productName}>
+          <input id="productName" name="productName" required className={inputClass("productName")} placeholder="Acme AI" aria-invalid={!!errors.productName} />
+        </Field>
+        <Field id="websiteUrl" label="Official website URL" required helper="Include https:// — e.g. https://acme.ai" error={errors.websiteUrl}>
+          <input id="websiteUrl" name="websiteUrl" type="url" inputMode="url" required className={inputClass("websiteUrl")} placeholder="https://acme.ai" aria-invalid={!!errors.websiteUrl} />
+        </Field>
+        <Field id="categorySlug" label="Category" required helper="Pick the closest fit — we may adjust during review." error={errors.categorySlug}>
+          <select id="categorySlug" name="categorySlug" required defaultValue="" className={inputClass("categorySlug")} aria-invalid={!!errors.categorySlug}>
+            <option value="" disabled>Choose a category…</option>
             {categories.map((c) => (
-              <option key={c.slug} value={c.slug}>
-                {c.name}
-              </option>
+              <option key={c.slug} value={c.slug}>{c.name}</option>
             ))}
           </select>
-        </div>
-        <div>
-          <label className={labelClass} htmlFor="contactName">
-            Contact name <span className="text-brand-600">*</span>
-          </label>
-          <input id="contactName" name="contactName" required className={inputClass} placeholder="Jane Doe" />
-        </div>
-        <div>
-          <label className={labelClass} htmlFor="email">
-            Email <span className="text-brand-600">*</span>
-          </label>
-          <input id="email" name="email" type="email" required className={inputClass} placeholder="jane@acme.ai" />
-        </div>
+        </Field>
+        <Field id="contactName" label="Contact name" required error={errors.contactName}>
+          <input id="contactName" name="contactName" required className={inputClass("contactName")} placeholder="Jane Doe" aria-invalid={!!errors.contactName} />
+        </Field>
+        <Field id="email" label="Work email" required helper="We'll send review updates and the payment link here." error={errors.email}>
+          <input id="email" name="email" type="email" inputMode="email" required className={inputClass("email")} placeholder="jane@acme.ai" aria-invalid={!!errors.email} />
+        </Field>
       </div>
-      <div>
-        <label className={labelClass} htmlFor="description">
-          Short description <span className="text-ink-400">(optional)</span>
-        </label>
-        <textarea id="description" name="description" rows={3} className={inputClass} placeholder="What does your product do?" />
-      </div>
+      <Field id="description" label="Short product description" required helper="One or two sentences on what it does and who it's for. e.g. “An AI agent that drafts and sends personalized sales outreach for B2B teams.”" error={errors.description}>
+        <textarea id="description" name="description" rows={3} required className={inputClass("description")} placeholder="What does your product do, and for whom?" aria-invalid={!!errors.description} />
+      </Field>
 
-      {state === "error" && error && (
-        <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700 ring-1 ring-inset ring-red-600/20">
-          {error}
+      {state === "error" && serverError && (
+        <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700 ring-1 ring-inset ring-red-600/20" role="alert">
+          {serverError}
         </p>
       )}
 
       <button
         type="submit"
         disabled={state === "submitting"}
-        className="w-full rounded-lg bg-ink-900 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-ink-800 disabled:opacity-60"
+        className="w-full rounded-lg bg-ink-900 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-ink-800 focus:outline-none focus:ring-2 focus:ring-ink-900/30 focus:ring-offset-2 disabled:opacity-60"
       >
-        {state === "submitting"
-          ? "Submitting…"
-          : `Submit listing · ${siteConfig.listingPrice}`}
+        {state === "submitting" ? "Submitting…" : "Submit your product · $299"}
       </button>
+      <p className="text-center text-xs text-ink-500">
+        No charge now. You only pay the one-time $299 after your product is
+        approved. Payment does not guarantee rankings, traffic or leads.
+      </p>
     </form>
   );
 }

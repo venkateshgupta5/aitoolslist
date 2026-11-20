@@ -29,11 +29,11 @@ const pillars = [
 ];
 
 const listingIncludes = [
-  "One-time $49 — no subscription",
-  "A dedicated, indexable product profile",
-  "Lead-capture form routed to your inbox",
-  "Editorial review before it's published",
-  "Permanently labelled “Sponsored” — never shown as an editorial winner",
+  "One-time $299 — no subscription, no renewals",
+  "A dedicated, permanent product profile",
+  "Editorial review within 3 business days",
+  "You only pay after your product is approved",
+  "Clearly labelled “Sponsored” — never an editorial winner",
 ];
 
 function initials(name: string) {

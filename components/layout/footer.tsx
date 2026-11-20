@@ -100,7 +100,23 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-10 flex flex-col items-start justify-between gap-3 border-t border-ink-200/70 pt-6 text-xs text-ink-400 sm:flex-row sm:items-center">
+        <div className="mt-10 flex flex-wrap gap-x-5 gap-y-2 border-t border-ink-200/70 pt-6 text-xs">
+          {[
+            ["/about", "About"],
+            ["/contact", "Contact"],
+            ["/listing-guidelines", "Listing guidelines"],
+            ["/terms", "Terms of service"],
+            ["/privacy", "Privacy policy"],
+            ["/refund-policy", "Refund policy"],
+            ["/editorial-policy", "Editorial policy"],
+          ].map(([href, label]) => (
+            <Link key={href} href={href} className="text-ink-500 hover:text-ink-900">
+              {label}
+            </Link>
+          ))}
+        </div>
+
+        <div className="mt-6 flex flex-col items-start justify-between gap-3 border-t border-ink-200/70 pt-6 text-xs text-ink-400 sm:flex-row sm:items-center">
           <p>© {year} {siteConfig.name}. All rights reserved.</p>
           <p>Research-driven AI discovery. Not another unfiltered directory.</p>
         </div>

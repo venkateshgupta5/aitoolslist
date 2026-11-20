@@ -22,7 +22,10 @@ export const listingSchema = z.object({
   contactName: z.string().min(2, "Contact name is required").max(150),
   email: z.string().email("Enter a valid email").max(255),
   categorySlug: z.string().min(1, "Choose a category"),
-  description: z.string().max(2000).optional().or(z.literal("")),
+  description: z
+    .string()
+    .min(20, "Please add at least a sentence (20+ characters)")
+    .max(2000, "Please keep this under 2000 characters"),
 });
 
 export type ListingInput = z.infer<typeof listingSchema>;

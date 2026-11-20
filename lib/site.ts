@@ -5,7 +5,7 @@ export const siteConfig = {
     "An independent fortnightly intelligence platform tracking emerging AI products across 13 categories — researched, evaluated and curated. Discover. Evaluate. Decide.",
   tagline: "Discover the AI tools shaping what's next. Researched. Evaluated. Curated.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://aitoolslist.ai",
-  listingPrice: "$49",
+  listingPrice: "$299",
 };
 
 export function absoluteUrl(path = "/") {
