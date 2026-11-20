@@ -1,16 +1,17 @@
 /**
- * Phase 1 editorial content — the directory's source of truth.
+ * Weekly edition content — the directory's display source of truth.
  *
- * Editorial honesty (per PRD §4 buying-decision principle):
- * these picks are a *curated preview* and have NOT yet been run through the
- * Phase 2 multi-agent research + independent fact-check pipeline. We therefore
- * do not assert exact pricing or adoption metrics as verified facts — pricing
- * is directional and points to the official page, and every pick carries a
- * "preview" verification status rather than "verified".
+ * Edition 2026-W47 (Nov 16–22, 2026) winners were produced by the Weekly
+ * Discovery Agent's research pass and are presented as "researched · pending
+ * editorial approval". Per both PRDs' anti-fabrication rule, every winner
+ * carries dated evidence URLs, pricing is directional (never invented), and
+ * vendor-reported metrics are flagged. Categories without a credible fresh
+ * candidate are shown as "No verified pick this week" rather than forced.
  */
 
 export type VerificationStatus =
   | "verified"
+  | "researched"
   | "preview"
   | "needs_review"
   | "no_pick";
@@ -52,523 +53,361 @@ export interface Category {
 
 export const EDITION = {
   slug: "2026-11-20",
-  name: "Weekly Edition — November 20, 2026",
+  name: "Weekly Edition — November 16–22, 2026",
   weekStart: "2026-11-16",
   weekEnd: "2026-11-22",
-  label: "Nov 16–22, 2026",
+  label: "2026-W47 · Nov 16–22",
 };
 
 export const categories: Category[] = [
-  {
-    slug: "ai-compute-gpu-cloud",
-    name: "AI Compute & GPU Cloud",
-    order: 1,
-    coverage: "GPU clusters, cloud compute and specialized AI chips.",
-  },
-  {
-    slug: "ai-model-serving-inference",
-    name: "AI Model Serving & Inference",
-    order: 2,
-    coverage: "Model hosting, inference engines, optimization and deployment.",
-  },
-  {
-    slug: "ai-data-infrastructure",
-    name: "AI Data Infrastructure",
-    order: 3,
-    coverage: "Vector databases, data pipelines, embeddings and processing.",
-  },
-  {
-    slug: "ai-development-orchestration",
-    name: "AI Development & Orchestration",
-    order: 4,
-    coverage: "LLM frameworks, agent orchestration and workflow infrastructure.",
-  },
-  {
-    slug: "ai-observability-evaluation",
-    name: "AI Observability & Evaluation",
-    order: 5,
-    coverage: "LLM monitoring, tracing, testing, evaluations and guardrails.",
-  },
-  {
-    slug: "ai-coding-developer-tools",
-    name: "AI Coding & Developer Tools",
-    order: 6,
-    coverage: "AI IDEs, coding assistants and developer productivity.",
-  },
-  {
-    slug: "ai-agents",
-    name: "AI Agents",
-    order: 7,
-    coverage: "Autonomous agents and agent-building platforms.",
-  },
-  {
-    slug: "ai-sales",
-    name: "AI Sales",
-    order: 8,
-    coverage: "Sales intelligence and go-to-market automation.",
-  },
-  {
-    slug: "ai-voice-agents",
-    name: "AI Voice Agents",
-    order: 9,
-    coverage: "Voice AI and conversational phone agents.",
-  },
-  {
-    slug: "ai-evals",
-    name: "AI Evals",
-    order: 10,
-    coverage: "Model testing, benchmarking and evaluation platforms.",
-  },
-  {
-    slug: "ai-observability",
-    name: "AI Observability",
-    order: 11,
-    coverage: "Production monitoring, analytics and reliability.",
-  },
-  {
-    slug: "ai-healthcare",
-    name: "AI Healthcare",
-    order: 12,
-    coverage: "Clinical AI and healthcare workflow automation.",
-  },
-  {
-    slug: "ai-biotech-drug-discovery",
-    name: "AI Biotech & Drug Discovery",
-    order: 13,
-    coverage: "Computational biology and drug discovery.",
-  },
+  { slug: "ai-compute-gpu-cloud", name: "AI Compute & GPU Cloud", order: 1, coverage: "GPU clusters, cloud compute and specialized AI chips." },
+  { slug: "ai-model-serving-inference", name: "AI Model Serving & Inference", order: 2, coverage: "Model hosting, inference engines, optimization and deployment." },
+  { slug: "ai-data-infrastructure", name: "AI Data Infrastructure", order: 3, coverage: "Vector databases, data pipelines, embeddings and processing." },
+  { slug: "ai-development-orchestration", name: "AI Development & Orchestration", order: 4, coverage: "LLM frameworks, agent orchestration and workflow infrastructure." },
+  { slug: "ai-observability-evaluation", name: "AI Observability & Evaluation", order: 5, coverage: "LLM monitoring, tracing, testing, evaluations and guardrails." },
+  { slug: "ai-coding-developer-tools", name: "AI Coding & Developer Tools", order: 6, coverage: "AI IDEs, coding assistants and developer productivity." },
+  { slug: "ai-agents", name: "AI Agents", order: 7, coverage: "Autonomous agents and agent-building platforms." },
+  { slug: "ai-sales", name: "AI Sales", order: 8, coverage: "Sales intelligence and go-to-market automation." },
+  { slug: "ai-voice-agents", name: "AI Voice Agents", order: 9, coverage: "Voice AI and conversational phone agents." },
+  { slug: "ai-evals", name: "AI Evals", order: 10, coverage: "Model testing, benchmarking and evaluation platforms." },
+  { slug: "ai-observability", name: "AI Observability", order: 11, coverage: "Production monitoring, analytics and reliability." },
+  { slug: "ai-healthcare", name: "AI Healthcare", order: 12, coverage: "Clinical AI and healthcare workflow automation." },
+  { slug: "ai-biotech-drug-discovery", name: "AI Biotech & Drug Discovery", order: 13, coverage: "Computational biology and drug discovery." },
 ];
 
-const notVerifiedPricing =
-  "Pricing is not independently verified in this preview — see the official pricing page for current plans.";
+const pricingTBD =
+  "Not independently verified in this research pass — see the official pricing page for current plans.";
 
 export const products: Product[] = [
   {
-    slug: "coreweave",
-    name: "CoreWeave",
+    slug: "google-cloud-a5x-vera-rubin",
+    name: "Google Cloud A5X (Vera Rubin)",
     categorySlug: "ai-compute-gpu-cloud",
-    officialUrl: "https://www.coreweave.com",
-    tagline: "GPU cloud purpose-built for AI workloads",
-    shortDescription: "Specialized GPU cloud for large-scale AI training.",
+    officialUrl: "https://cloud.google.com/blog/topics/ai-infrastructure/google-cloud-infrastructure-at-nvidia-gtc-berlin-2026",
+    tagline: "A5X instances on NVIDIA Vera Rubin NVL72",
+    shortDescription: "GA GPU instances on NVIDIA's Vera Rubin platform.",
     overview:
-      "CoreWeave is a cloud provider focused specifically on GPU-accelerated and AI workloads, offering access to high-performance NVIDIA GPUs for training and inference at scale.",
+      "Google Cloud announced general availability of A5X instances built on the NVIDIA Vera Rubin NVL72 platform, a new tier of accelerated compute for large-scale AI training and inference.",
     problemSolved:
-      "General-purpose clouds can be expensive and hard to provision for large GPU jobs. Teams need fast access to modern accelerators sized for AI training and inference.",
+      "Frontier AI workloads need access to the newest accelerators at scale; A5X brings the Vera Rubin generation to a hyperscaler with managed networking and storage.",
     howItWorks:
-      "Customers provision GPU instances and clusters through CoreWeave's platform and orchestrate workloads using Kubernetes-based tooling.",
-    features: [
-      "Access to modern NVIDIA GPU fleets",
-      "Kubernetes-native orchestration",
-      "High-performance networking and storage",
-      "Scales from single GPUs to large clusters",
-    ],
-    useCases: [
-      "Large language model training",
-      "High-throughput inference serving",
-      "Rendering and simulation workloads",
-    ],
-    targetAudience: ["AI labs", "Infrastructure teams", "Enterprises training models"],
-    pricing: notVerifiedPricing,
-    integrations: ["Kubernetes", "NVIDIA GPU stack"],
-    alternatives: ["Lambda", "Crusoe", "Together AI"],
+      "Teams provision A5X instances on Google Cloud and run training/inference on the NVL72 rack-scale configuration through Google's AI infrastructure stack.",
+    features: ["NVIDIA Vera Rubin NVL72 platform", "Rack-scale accelerated compute", "Managed networking & storage", "Generally available"],
+    useCases: ["Large model training", "High-throughput inference", "AI infrastructure at scale"],
+    targetAudience: ["AI labs", "Enterprises", "Infrastructure teams"],
+    pricing: pricingTBD,
+    integrations: ["Google Cloud", "NVIDIA GPU stack", "Kubernetes (GKE)"],
+    alternatives: ["CoreWeave", "Lambda", "Nebius", "Crusoe"],
     selectionRationale:
-      "A recognized specialist in GPU cloud for AI, frequently cited as infrastructure for large-scale model training.",
+      "The week's most significant GPU-cloud event: GA of the Vera Rubin generation on a hyperscaler, announced at NVIDIA GTC Berlin 2026.",
     sources: [
-      { title: "CoreWeave — official website", url: "https://www.coreweave.com", type: "official" },
+      { title: "Google Cloud infrastructure at NVIDIA GTC Berlin 2026", url: "https://cloud.google.com/blog/topics/ai-infrastructure/google-cloud-infrastructure-at-nvidia-gtc-berlin-2026", type: "official" },
     ],
     lastVerified: null,
-    verification: "preview",
+    verification: "researched",
   },
   {
-    slug: "fireworks-ai",
-    name: "Fireworks AI",
+    slug: "sarvam-token-factory",
+    name: "Sarvam Token Factory",
     categorySlug: "ai-model-serving-inference",
-    officialUrl: "https://fireworks.ai",
-    tagline: "Fast, affordable inference for open models",
-    shortDescription: "Fast inference platform for open-source models.",
+    officialUrl: "https://www.sarvam.ai",
+    tagline: "India-hosted inference via an OpenAI-compatible API",
+    shortDescription: "India-hosted model inference, OpenAI-compatible API.",
     overview:
-      "Fireworks AI provides a hosted inference platform optimized for serving open-source and fine-tuned models with low latency through a simple API.",
+      "Sarvam AI opened its Token Factory inference platform for general use on November 16, 2026, giving developers access to Sarvam's own models and selected open-weight models on GPU infrastructure in India.",
     problemSolved:
-      "Running open models in production requires inference optimization and infrastructure most teams don't want to build and maintain themselves.",
+      "Teams needing sovereign, low-latency inference in-region previously lacked a locally hosted, OpenAI-compatible option.",
     howItWorks:
-      "Developers call Fireworks' API to run supported models, or deploy fine-tuned variants, with the platform handling serving and scaling.",
-    features: [
-      "Optimized serving for popular open models",
-      "Fine-tuning and custom model deployment",
-      "OpenAI-compatible API surface",
-      "Usage-based access",
-    ],
-    useCases: [
-      "Production LLM inference",
-      "Serving fine-tuned open models",
-      "Cost-sensitive high-volume workloads",
-    ],
-    targetAudience: ["Developers", "AI product teams", "Startups"],
-    pricing: notVerifiedPricing,
-    integrations: ["OpenAI-compatible SDKs", "Common LLM frameworks"],
-    alternatives: ["Together AI", "Baseten", "Replicate"],
+      "Developers call models through an OpenAI-compatible API; workloads run on India-based GPU infrastructure.",
+    features: ["OpenAI-compatible API", "Sarvam + open-weight models", "India-hosted GPU infrastructure", "General availability (Nov 16)"],
+    useCases: ["Sovereign/in-region inference", "Production LLM serving", "Open-model hosting"],
+    targetAudience: ["Developers", "Enterprises in India", "AI product teams"],
+    pricing: pricingTBD,
+    integrations: ["OpenAI-compatible SDKs"],
+    alternatives: ["Baseten", "Fireworks AI", "Together AI", "E2E Blaze"],
     selectionRationale:
-      "Widely referenced among developers as a fast, cost-effective inference option for open models.",
+      "A clean, dated this-week launch (Nov 16) opening a sovereign inference platform with an OpenAI-compatible surface.",
     sources: [
-      { title: "Fireworks AI — official website", url: "https://fireworks.ai", type: "official" },
+      { title: "Sarvam Opens Token Factory for India-Hosted AI Model Inference", url: "https://www.cxodigitalpulse.com/sarvam-opens-token-factory-for-india-hosted-ai-model-inference/", type: "news" },
+      { title: "Explained: Sarvam AI's Token Factory (Business Standard)", url: "https://www.business-standard.com/technology/artificial-intelligence/explained-sarvam-ai-s-token-factory-and-debate-over-ai-sovereignty-goals-126112000685_1.html", type: "news" },
     ],
     lastVerified: null,
-    verification: "preview",
+    verification: "researched",
   },
   {
-    slug: "pinecone",
-    name: "Pinecone",
+    slug: "weaviate",
+    name: "Weaviate",
     categorySlug: "ai-data-infrastructure",
-    officialUrl: "https://www.pinecone.io",
-    tagline: "Managed vector database for AI applications",
-    shortDescription: "Managed vector database for semantic search and RAG.",
+    officialUrl: "https://weaviate.io",
+    tagline: "Open-source vector database, now Platform & Enterprise",
+    shortDescription: "Vector database with new Platform & Enterprise editions.",
     overview:
-      "Pinecone is a managed vector database that stores and searches embeddings, commonly used to power retrieval-augmented generation and semantic search.",
+      "On November 18, 2026 Weaviate announced general availability of its Enterprise and Platform Editions (with v1.40), adding security, scaling and high-availability capabilities such as Shard Self-Recovery, Deduplicated Backups and Namespaces.",
     problemSolved:
-      "Storing and querying high-dimensional embeddings at scale is operationally complex; teams need a reliable managed vector store.",
+      "Production RAG and semantic search need a vector store with enterprise-grade HA, scaling and backup — not just a library.",
     howItWorks:
-      "Developers upsert embeddings into indexes and query by vector similarity through Pinecone's API and SDKs.",
-    features: [
-      "Managed, scalable vector indexes",
-      "Low-latency similarity search",
-      "Metadata filtering",
-      "Serverless and pod-based options",
-    ],
-    useCases: ["Retrieval-augmented generation", "Semantic search", "Recommendation systems"],
-    targetAudience: ["AI developers", "Platform teams", "Enterprises building RAG"],
-    pricing: notVerifiedPricing,
-    integrations: ["LangChain", "LlamaIndex", "OpenAI embeddings"],
-    alternatives: ["Weaviate", "Qdrant", "Milvus"],
+      "Teams store embeddings in Weaviate and query by vector similarity; the new editions add managed platform and enterprise controls.",
+    features: ["Shard Self-Recovery", "Deduplicated Backups", "Namespaces", "Enterprise HA & scaling (v1.40)"],
+    useCases: ["Retrieval-augmented generation", "Semantic search", "AI-agent memory"],
+    targetAudience: ["AI developers", "Platform teams", "Enterprises"],
+    pricing: pricingTBD,
+    integrations: ["LangChain", "LlamaIndex", "Common embedding providers"],
+    alternatives: ["Pinecone", "Qdrant", "Milvus", "Oracle AI Vector DB"],
     selectionRationale:
-      "A category-defining managed vector database frequently used as the default store in RAG stacks.",
+      "A recognizable vector DB shipping a dated this-week GA (Nov 18) of enterprise/platform editions with concrete HA features.",
     sources: [
-      { title: "Pinecone — official website", url: "https://www.pinecone.io", type: "official" },
+      { title: "Weaviate Advances Vector Database Technology (Nov 18)", url: "https://stockhouse.com/news/press-releases/2026/11/18/weaviate-advances-vector-database-technology-to-power-fast-growing-ai", type: "press-release" },
     ],
     lastVerified: null,
-    verification: "preview",
+    verification: "researched",
   },
   {
-    slug: "langchain",
-    name: "LangChain",
+    slug: "google-adk-2",
+    name: "Google ADK 2.0",
     categorySlug: "ai-development-orchestration",
-    officialUrl: "https://www.langchain.com",
-    tagline: "Framework for building LLM applications",
-    shortDescription: "Framework for building LLM apps and agents.",
+    officialUrl: "https://google.github.io/adk-docs/",
+    tagline: "Graph-based multi-agent orchestration framework",
+    shortDescription: "Agent Development Kit with graph-based orchestration.",
     overview:
-      "LangChain is an open-source framework for developing applications powered by language models, providing abstractions for chains, tools, memory and agents.",
+      "Google's Agent Development Kit 2.0 moves from hierarchical execution to a graph-based engine supporting coordinator agents, sub-agent delegation and fan-out/fan-in multi-agent patterns.",
     problemSolved:
-      "Wiring LLMs together with tools, data sources and control flow from scratch is repetitive; developers need reusable building blocks.",
+      "Complex agent workflows outgrow linear chains; developers need a graph execution model with first-class multi-agent coordination.",
     howItWorks:
-      "Developers compose components — prompts, models, retrievers, tools — into chains and agents using LangChain's Python or JavaScript libraries.",
-    features: [
-      "Composable chains and agents",
-      "Tool and retriever integrations",
-      "Memory and state primitives",
-      "Python and JavaScript SDKs",
-    ],
-    useCases: ["RAG applications", "Agentic workflows", "Chatbots and assistants"],
-    targetAudience: ["Developers", "AI engineers", "Prototyping teams"],
-    pricing: notVerifiedPricing,
-    integrations: ["OpenAI", "Pinecone", "Many model and data providers"],
-    alternatives: ["LlamaIndex", "Haystack", "Semantic Kernel"],
+      "Developers define agents and a graph of delegation/coordination, which the ADK runtime executes with fan-out/fan-in.",
+    features: ["Graph-based execution engine", "Coordinator & sub-agent delegation", "Fan-out/fan-in patterns", "A2A & MCP protocol support"],
+    useCases: ["Multi-agent orchestration", "Complex LLM workflows", "Enterprise agent apps"],
+    targetAudience: ["AI engineers", "Developers", "Platform teams"],
+    pricing: pricingTBD,
+    integrations: ["A2A protocol", "MCP", "Google AI stack"],
+    alternatives: ["LangGraph", "CrewAI", "Microsoft Agent Framework", "smolagents"],
     selectionRationale:
-      "One of the most widely adopted open-source frameworks for building LLM applications.",
+      "The most significant orchestration advancement in current coverage; note this is a leading current release rather than a dated this-week launch — flagged for editorial verification.",
     sources: [
-      { title: "LangChain — official website", url: "https://www.langchain.com", type: "official" },
+      { title: "Top 9 AI Agent Frameworks as of November 2026 (Shakudo)", url: "https://www.shakudo.io/blog/top-9-ai-agent-frameworks", type: "analysis" },
     ],
     lastVerified: null,
-    verification: "preview",
+    verification: "researched",
   },
   {
     slug: "langfuse",
     name: "Langfuse",
     categorySlug: "ai-observability-evaluation",
     officialUrl: "https://langfuse.com",
-    tagline: "Open-source LLM engineering platform",
+    tagline: "Open-source LLM observability & evaluation",
     shortDescription: "Open-source tracing and evals for LLM apps.",
     overview:
-      "Langfuse is an open-source observability and evaluation platform for LLM applications, offering tracing, prompt management and evaluation tooling.",
+      "Langfuse is the most widely adopted open-source LLM observability and evaluation platform, covering tracing, prompt management, evaluations and datasets. This week it shipped changes to its evaluation engine, with LLM-as-a-judge evaluators now targeting observations/experiments.",
     problemSolved:
-      "LLM applications are hard to debug and improve without visibility into traces, prompts and quality over time.",
+      "LLM apps are hard to debug and improve without tracing, prompt versioning and quality evals over time.",
     howItWorks:
-      "Developers instrument their application with Langfuse SDKs to capture traces and metrics, then review and evaluate them in a dashboard.",
-    features: [
-      "Tracing for LLM calls and chains",
-      "Prompt management",
-      "Evaluation and scoring",
-      "Self-hostable, open source",
-    ],
-    useCases: ["Debugging LLM apps", "Prompt iteration", "Quality monitoring"],
+      "Developers instrument apps with Langfuse SDKs to capture traces, then evaluate and monitor quality in a dashboard; self-hostable (MIT core).",
+    features: ["End-to-end tracing", "Prompt management", "LLM-as-a-judge evaluators (updated Nov 16)", "Open source, self-hostable"],
+    useCases: ["Debugging LLM apps", "Prompt iteration", "Quality monitoring & evals"],
     targetAudience: ["AI engineers", "Platform teams"],
-    pricing: notVerifiedPricing,
-    integrations: ["LangChain", "OpenAI", "LlamaIndex"],
-    alternatives: ["LangSmith", "Arize Phoenix", "Helicone"],
+    pricing: "MIT-licensed core, free to self-host; hosted tiers available — see official pricing.",
+    integrations: ["LangChain", "LlamaIndex", "OpenAI", "MCP"],
+    alternatives: ["LangSmith", "Arize Phoenix", "Opik", "Braintrust"],
     selectionRationale:
-      "A popular open-source choice for LLM observability and evaluation with strong developer adoption.",
+      "Category leader actively shipping this week (evaluation-engine changes effective Nov 16), with dominant open-source adoption.",
     sources: [
-      { title: "Langfuse — official website", url: "https://langfuse.com", type: "official" },
+      { title: "Top LLM Observability & Evaluation Platforms in 2026 (MarkTechPost)", url: "https://www.marktechpost.com/2026/08/09/top-llm-observability-and-evaluation-platforms-in-2026-langfuse-langsmith-braintrust-arize-and-more-compared/", type: "analysis" },
     ],
     lastVerified: null,
-    verification: "preview",
+    verification: "researched",
   },
   {
-    slug: "cursor",
-    name: "Cursor",
+    slug: "google-antigravity",
+    name: "Google Antigravity (Gemini 4 Neon)",
     categorySlug: "ai-coding-developer-tools",
-    officialUrl: "https://www.cursor.com",
-    tagline: "The AI code editor",
-    shortDescription: "AI-native code editor for faster development.",
+    officialUrl: "https://antigravity.google",
+    tagline: "Agentic coding in Google's Antigravity CLI",
+    shortDescription: "Agentic coding tool topping the coding-agent index.",
     overview:
-      "Cursor is an AI-powered code editor built to help developers write, edit and understand code with integrated AI assistance across the codebase.",
+      "Google launched Gemini 4 Neon on November 18, 2026; running in Google's Antigravity CLI it tops the Artificial Analysis Coding Agent Index at 59, making Antigravity the week's standout AI coding environment.",
     problemSolved:
-      "Context-switching to separate AI tools slows developers down; they want AI assistance directly in the editor with codebase awareness.",
+      "Developers want agentic, codebase-aware assistance that leads on independent coding benchmarks, directly in their workflow.",
     howItWorks:
-      "Cursor extends a familiar editor experience with AI features for completion, chat, and multi-file edits grounded in the open project.",
-    features: [
-      "AI code completion and chat",
-      "Codebase-aware edits",
-      "Multi-file refactoring",
-      "Familiar editor experience",
-    ],
-    useCases: ["Writing new features", "Refactoring", "Understanding unfamiliar code"],
+      "Antigravity runs Gemini 4 Neon as an agentic coding assistant via a CLI, executing multi-step coding tasks across a project.",
+    features: ["Gemini 4 Neon model", "#1 on Artificial Analysis Coding Agent Index (59)", "Agentic CLI workflow", "Launched Nov 18"],
+    useCases: ["Feature development", "Agentic refactoring", "Codebase reasoning"],
     targetAudience: ["Software developers", "Engineering teams"],
-    pricing: notVerifiedPricing,
-    integrations: ["Popular language ecosystems", "Model providers"],
-    alternatives: ["GitHub Copilot", "Windsurf", "Zed"],
+    pricing: pricingTBD,
+    integrations: ["Google AI stack", "Command line / CLI"],
+    alternatives: ["Cursor", "Cognition Devin", "GitHub Copilot", "Windsurf"],
     selectionRationale:
-      "Among the most talked-about AI coding environments, with rapid adoption in the developer community.",
+      "A dated this-week launch (Nov 18) that took the top of an independent coding-agent benchmark.",
     sources: [
-      { title: "Cursor — official website", url: "https://www.cursor.com", type: "official" },
+      { title: "AI Models Released in November 2026 (release tracker)", url: "https://www.nocode.mba/ai-release-tracker/2026/11", type: "analysis" },
     ],
     lastVerified: null,
-    verification: "preview",
+    verification: "researched",
   },
   {
-    slug: "crewai",
-    name: "CrewAI",
+    slug: "perplexity-multiagent",
+    name: "Perplexity Multiagent",
     categorySlug: "ai-agents",
-    officialUrl: "https://www.crewai.com",
-    tagline: "Framework for orchestrating role-playing AI agents",
-    shortDescription: "Framework for multi-agent AI automation.",
+    officialUrl: "https://www.perplexity.ai",
+    tagline: "Up to 16 AI agents working as one team",
+    shortDescription: "Lead agent coordinates up to 16 sub-agents.",
     overview:
-      "CrewAI is a framework for building multi-agent systems where specialized agents collaborate on tasks with defined roles and workflows.",
+      "On November 17, 2026 Perplexity launched Multiagent, a new effort level for its Comet agent platform: a lead agent (Claude Fable 5.2) splits work across as many as 16 agents running on different models.",
     problemSolved:
-      "Single-prompt automations break on complex tasks; teams need structured ways to coordinate multiple agents and tools.",
+      "Single agents stall on complex, multi-part tasks; coordinated multi-agent teams can decompose and parallelize work.",
     howItWorks:
-      "Developers define agents, their roles and tools, and orchestrate them into crews that execute tasks collaboratively.",
-    features: [
-      "Role-based multi-agent orchestration",
-      "Tool integration",
-      "Sequential and parallel workflows",
-      "Open-source core",
-    ],
-    useCases: ["Research automation", "Content pipelines", "Business process automation"],
-    targetAudience: ["Developers", "Automation engineers"],
-    pricing: notVerifiedPricing,
-    integrations: ["LangChain tools", "Common LLM providers"],
-    alternatives: ["LangGraph", "AutoGen", "OpenAI Agents"],
+      "A lead agent plans and delegates subtasks to up to 16 model-diverse sub-agents, then composes the results.",
+    features: ["Lead agent orchestration", "Up to 16 parallel agents", "Model-diverse sub-agents", "Launched Nov 17"],
+    useCases: ["Deep research", "Complex multi-step tasks", "Parallelized agent workflows"],
+    targetAudience: ["Knowledge workers", "Researchers", "Power users"],
+    pricing: pricingTBD,
+    integrations: ["Multiple frontier models", "Perplexity Comet"],
+    alternatives: ["ChatGPT agents", "Google ADK", "CrewAI", "Manus"],
     selectionRationale:
-      "A fast-growing open-source framework for multi-agent orchestration with strong community momentum.",
+      "The week's highest-profile AI-agent launch (Nov 17), notable for coordinated model-diverse multi-agent execution.",
     sources: [
-      { title: "CrewAI — official website", url: "https://www.crewai.com", type: "official" },
+      { title: "Perplexity launches Multiagent (up to 16 agents)", url: "https://pasqualepillitteri.it/en/news/35232/perplexity-launches-multiagent-up-to-16-ai-agents-working", type: "news" },
+      { title: "AI Agents News Brief: November 17, 2026", url: "https://aiagentsdirectory.com/news/ai-agents-news-brief-november-17-2026", type: "news" },
     ],
     lastVerified: null,
-    verification: "preview",
+    verification: "researched",
   },
   {
-    slug: "clay",
-    name: "Clay",
+    slug: "salesforce-hunter",
+    name: "Hunter by Salesforce",
     categorySlug: "ai-sales",
-    officialUrl: "https://www.clay.com",
-    tagline: "Automated data enrichment and outbound for GTM teams",
-    shortDescription: "AI data enrichment for sales prospecting.",
+    officialUrl: "https://www.salesforce.com",
+    tagline: "Outbound AI sales agent in Slack, Teams & Claude",
+    shortDescription: "Outbound AI sales agent that meets reps in chat.",
     overview:
-      "Clay is a go-to-market platform that combines data enrichment from many sources with AI to help sales teams build and act on prospect lists.",
+      "Hunter is Salesforce's outbound AI sales agent that meets reps where they work — Slack, Teams and Claude — with a full release planned for November 2026 after a pilot.",
     problemSolved:
-      "Sales teams waste time stitching together data providers and manual research to find and qualify prospects.",
+      "Outbound prospecting is repetitive; an agent embedded in reps' chat tools can draft and drive outreach in context.",
     howItWorks:
-      "Users build tables that pull from multiple enrichment providers and use AI to research and personalize outreach at scale.",
-    features: [
-      "Multi-provider data enrichment",
-      "AI research and personalization",
-      "Workflow automation",
-      "CRM integrations",
-    ],
-    useCases: ["Prospect list building", "Lead enrichment", "Personalized outbound"],
-    targetAudience: ["Sales teams", "Growth and RevOps teams"],
-    pricing: notVerifiedPricing,
-    integrations: ["CRMs", "Many data providers"],
-    alternatives: ["Apollo", "Instantly", "11x"],
+      "Hunter operates as an agent inside messaging/collaboration tools, assisting reps with outbound workflows tied to Salesforce data.",
+    features: ["Outbound agent", "Works in Slack, Teams & Claude", "Salesforce-native data", "Full release Nov 2026"],
+    useCases: ["Outbound prospecting", "Rep assistance", "Pipeline generation"],
+    targetAudience: ["Sales teams", "RevOps", "SDRs"],
+    pricing: pricingTBD,
+    integrations: ["Salesforce", "Slack", "Microsoft Teams", "Claude"],
+    alternatives: ["Clay", "ZoomInfo", "11x", "Artisan"],
     selectionRationale:
-      "A widely adopted AI-assisted GTM data platform frequently cited by modern sales teams.",
+      "A notable AI-sales product release this month; rollout is still completing, so flagged for editorial verification.",
     sources: [
-      { title: "Clay — official website", url: "https://www.clay.com", type: "official" },
+      { title: "AI employee for sales — best options in 2026 (Nov 19)", url: "https://resident.com/technology-and-digital-resources/2026/11/19/ai-employee-for-sales-the-7-best-options-in-2026", type: "analysis" },
     ],
     lastVerified: null,
-    verification: "preview",
+    verification: "researched",
   },
   {
-    slug: "vapi",
-    name: "Vapi",
+    slug: "retell-ai",
+    name: "Retell AI",
     categorySlug: "ai-voice-agents",
-    officialUrl: "https://vapi.ai",
-    tagline: "Developer platform for voice AI agents",
-    shortDescription: "Developer platform to build voice AI agents.",
+    officialUrl: "https://www.retellai.com",
+    tagline: "AI voice agents for contact centers",
+    shortDescription: "Developer platform for AI phone agents.",
     overview:
-      "Vapi is a developer platform for building, testing and deploying voice AI agents that can handle phone calls using speech-to-text, LLMs and text-to-speech.",
+      "Retell AI is a voice-agent platform for building AI phone agents. As of November 2026 it reports a $100M annualized revenue run rate and its Tell-1 model ranking #1 on the Retell vCX Benchmark.",
     problemSolved:
-      "Building real-time voice agents requires orchestrating transcription, reasoning and speech with low latency — hard to assemble from scratch.",
+      "Building low-latency, reliable voice agents for calls is hard to assemble from speech + LLM + telephony parts.",
     howItWorks:
-      "Developers configure voice agents via API, wiring together models and telephony, and deploy them to handle inbound or outbound calls.",
-    features: [
-      "Real-time voice pipeline",
-      "Model-agnostic configuration",
-      "Telephony integration",
-      "APIs and SDKs",
-    ],
-    useCases: ["Customer support lines", "Appointment scheduling", "Outbound voice workflows"],
-    targetAudience: ["Developers", "Product teams building voice"],
-    pricing: notVerifiedPricing,
-    integrations: ["Telephony providers", "LLM and speech providers"],
-    alternatives: ["Retell AI", "Bland", "ElevenLabs Agents"],
+      "Developers configure voice agents via API, wiring models and telephony; Retell handles the real-time voice pipeline.",
+    features: ["Real-time voice pipeline", "Tell-1 voice model", "Telephony integration", "APIs & SDKs"],
+    useCases: ["Customer support lines", "Appointment scheduling", "Outbound voice"],
+    targetAudience: ["Developers", "Contact centers", "Product teams"],
+    pricing: "Reported ~$0.07–$0.31/min with $10 free credits (vendor-reported, Nov 2026) — verify on official pricing.",
+    integrations: ["Telephony providers", "LLM & speech providers"],
+    alternatives: ["Vapi", "Bland", "ElevenLabs Agents", "Pipecat (OSS)"],
     selectionRationale:
-      "A developer-favored platform for voice agents, frequently referenced for rapid voice-app development.",
+      "Leading voice-agent platform with strong current traction; note the run-rate and benchmark (Tell-1 #1 on Retell's own vCX) are vendor-reported and need independent verification.",
     sources: [
-      { title: "Vapi — official website", url: "https://vapi.ai", type: "official" },
+      { title: "Best AI Voice Agents: Retell, Bland, Vapi, ElevenLabs scored", url: "https://wetheflywheel.com/en/guides/best-ai-voice-agents/", type: "analysis" },
+      { title: "Retell AI — official", url: "https://www.retellai.com/", type: "official" },
     ],
     lastVerified: null,
-    verification: "preview",
+    verification: "researched",
   },
   {
-    slug: "braintrust",
-    name: "Braintrust",
+    slug: "artificial-analysis",
+    name: "Artificial Analysis",
     categorySlug: "ai-evals",
-    officialUrl: "https://www.braintrust.dev",
-    tagline: "Evaluation platform for AI products",
-    shortDescription: "Evaluation and experimentation platform for AI.",
+    officialUrl: "https://artificialanalysis.ai",
+    tagline: "Independent AI model benchmarking",
+    shortDescription: "Independent model benchmarking & intelligence index.",
     overview:
-      "Braintrust is a platform for evaluating and iterating on AI applications, providing tooling for evals, datasets and experiment tracking.",
+      "Artificial Analysis is an independent benchmarking platform. On November 18, 2026 it announced Intelligence Index v5 (spanning knowledge work, coding, science and general knowledge) and, with Google DeepMind, a Multimodal Knowledge Agent (MKA) benchmark on Nov 17.",
     problemSolved:
-      "Shipping LLM features without systematic evaluation makes regressions invisible; teams need repeatable eval workflows.",
+      "Teams need consistent, independent evaluation to compare rapidly changing models and agents.",
     howItWorks:
-      "Teams define datasets and scoring functions, run experiments, and compare model and prompt changes over time.",
-    features: [
-      "Eval datasets and scoring",
-      "Experiment comparison",
-      "Logging and tracing",
-      "Collaboration tooling",
-    ],
-    useCases: ["Prompt and model regression testing", "Benchmarking", "Quality gating in CI"],
-    targetAudience: ["AI engineers", "ML teams"],
-    pricing: notVerifiedPricing,
-    integrations: ["Common model providers", "CI pipelines"],
-    alternatives: ["Patronus AI", "LangSmith", "Arize"],
+      "Artificial Analysis runs standardized evaluation suites across models and publishes comparative indices and leaderboards.",
+    features: ["Intelligence Index v5 (Nov 18)", "Multimodal Knowledge Agent benchmark (Nov 17)", "Progress Index v1", "Independent methodology"],
+    useCases: ["Model selection", "Benchmark tracking", "Capability comparison"],
+    targetAudience: ["AI engineers", "Researchers", "Buyers"],
+    pricing: "Public indices are freely accessible — see site for any paid offerings.",
+    integrations: ["Covers major model providers"],
+    alternatives: ["LMArena", "LiveBench", "Vals AI", "Braintrust"],
     selectionRationale:
-      "A focused evaluation platform increasingly adopted by teams putting LLM features into production.",
+      "Shipped two dated this-week evaluation releases (Index v5 on Nov 18; MKA benchmark with DeepMind on Nov 17).",
     sources: [
-      { title: "Braintrust — official website", url: "https://www.braintrust.dev", type: "official" },
+      { title: "Announcing Artificial Analysis Intelligence Index v5", url: "https://artificialanalysis.ai/articles/artificial-analysis-intelligence-index-v5", type: "official" },
     ],
     lastVerified: null,
-    verification: "preview",
+    verification: "researched",
   },
+  // ai-observability (category 11): no distinct this-week production-monitoring
+  // launch separable from the Observability & Evaluation pick (Langfuse).
+  // Intentionally omitted → shown as "No verified pick this week".
   {
-    slug: "helicone",
-    name: "Helicone",
-    categorySlug: "ai-observability",
-    officialUrl: "https://www.helicone.ai",
-    tagline: "Open-source observability for LLM applications",
-    shortDescription: "Open-source monitoring and analytics for LLMs.",
-    overview:
-      "Helicone is an open-source observability platform for LLM applications, providing logging, analytics and monitoring of production model usage.",
-    problemSolved:
-      "Teams running LLMs in production lack visibility into cost, latency and usage patterns across requests.",
-    howItWorks:
-      "Developers route LLM traffic through Helicone or use its SDK to capture requests, then analyze usage, cost and latency in a dashboard.",
-    features: [
-      "Request logging and analytics",
-      "Cost and latency monitoring",
-      "Caching and rate-limit insights",
-      "Open-source and self-hostable",
-    ],
-    useCases: ["Production LLM monitoring", "Cost tracking", "Usage analytics"],
-    targetAudience: ["Developers", "Platform and ops teams"],
-    pricing: notVerifiedPricing,
-    integrations: ["OpenAI", "Anthropic", "Proxy and SDK based"],
-    alternatives: ["Langfuse", "Datadog LLM Observability", "Arize Phoenix"],
-    selectionRationale:
-      "A popular open-source LLM observability tool valued for quick setup and production monitoring.",
-    sources: [
-      { title: "Helicone — official website", url: "https://www.helicone.ai", type: "official" },
-    ],
-    lastVerified: null,
-    verification: "preview",
-  },
-  {
-    slug: "abridge",
-    name: "Abridge",
+    slug: "mayo-clinic-platform-cds",
+    name: "Mayo Clinic Platform CDS",
     categorySlug: "ai-healthcare",
-    officialUrl: "https://www.abridge.com",
-    tagline: "AI clinical documentation for clinicians",
-    shortDescription: "AI that drafts clinical notes from conversations.",
+    officialUrl: "https://www.mayoclinicplatform.org",
+    tagline: "AI clinical decision support in the EHR",
+    shortDescription: "AI clinical decision support embedded in EHRs.",
     overview:
-      "Abridge uses AI to generate clinical documentation from patient–clinician conversations, aiming to reduce the administrative burden on clinicians.",
+      "Mayo Clinic Platform launched (Nov 3, 2026) an AI-enabled Clinical Decision Support solution embedded in EHR workflows — a specialty-specific chat across 35+ specialties plus 22 clinical calculators via chat or voice, citing peer-reviewed literature.",
     problemSolved:
-      "Clinicians spend significant time on documentation, contributing to burnout and less time with patients.",
+      "Clinicians need literature-grounded decision support inside their existing EHR workflow, not a separate tool.",
     howItWorks:
-      "The platform captures the clinical conversation and generates structured draft notes for the clinician to review within their workflow.",
-    features: [
-      "Ambient clinical note generation",
-      "Structured documentation drafts",
-      "Clinician review workflow",
-      "Enterprise healthcare focus",
-    ],
-    useCases: ["Ambient clinical documentation", "Reducing administrative load"],
-    targetAudience: ["Clinicians", "Health systems"],
-    pricing: notVerifiedPricing,
+      "A large language model surfaces specialty-specific guidance and calculators within the EHR, citing peer-reviewed sources for clinician review.",
+    features: ["Specialty-specific chat (35+ specialties)", "22 clinical calculators", "Cites peer-reviewed literature", "Embedded in EHR workflows"],
+    useCases: ["Clinical decision support", "Complex case reasoning", "Point-of-care calculations"],
+    targetAudience: ["Clinicians", "Health systems", "Mayo Clinic Platform participants"],
+    pricing: pricingTBD,
     integrations: ["Electronic health record systems"],
-    alternatives: ["Nuance DAX", "Suki", "Nabla"],
+    alternatives: ["OpenEvidence", "Google Gemini for Healthcare", "Abridge", "Nabla"],
     selectionRationale:
-      "A prominent clinical AI documentation product frequently cited in healthcare AI coverage.",
+      "A concrete, dated clinical AI launch this month (Nov 3) from a credible institution, embedded directly in EHR workflows.",
     sources: [
-      { title: "Abridge — official website", url: "https://www.abridge.com", type: "official" },
+      { title: "Mayo Clinic Platform launches AI-driven clinical decision support tool", url: "https://www.fiercehealthcare.com/ai-and-machine-learning/mayo-clinic-launches-ai-driven-clinical-decision-support-tool", type: "news" },
     ],
     lastVerified: null,
-    verification: "preview",
+    verification: "researched",
   },
   {
     slug: "isomorphic-labs",
     name: "Isomorphic Labs",
     categorySlug: "ai-biotech-drug-discovery",
     officialUrl: "https://www.isomorphiclabs.com",
-    tagline: "AI-first drug discovery",
-    shortDescription: "AI-first approach to drug discovery.",
+    tagline: "AI-first drug discovery heading to the clinic",
+    shortDescription: "AI drug discovery; $5B raised to reach clinic.",
     overview:
-      "Isomorphic Labs applies AI methods, building on advances in protein structure prediction, to accelerate the process of discovering new medicines.",
+      "Isomorphic Labs (spun out of Google DeepMind) closed an oversubscribed $5 billion Series C on November 17, 2026 to advance its AI drug-design engine and take candidates toward clinical trials.",
     problemSolved:
-      "Traditional drug discovery is slow and costly; AI promises to speed up understanding of biology and candidate design.",
+      "Drug discovery is slow and costly; AI methods aim to accelerate target and molecule design toward the clinic.",
     howItWorks:
-      "The company develops and applies AI models for biological and chemical problems, partnering with pharmaceutical organizations on drug programs.",
-    features: [
-      "AI models for drug discovery",
-      "Protein structure–informed methods",
-      "Pharma research partnerships",
-    ],
-    useCases: ["Early-stage drug discovery", "Target and molecule research"],
-    targetAudience: ["Pharmaceutical companies", "Biotech researchers"],
-    pricing: notVerifiedPricing,
+      "Isomorphic develops and applies AI models for biology and chemistry, partnering with pharma and advancing an internal pipeline.",
+    features: ["AI drug-design engine", "Protein-structure-informed methods", "Pharma partnerships", "$5B Series C (Nov 17)"],
+    useCases: ["Early-stage drug discovery", "Target & molecule design", "Pipeline development"],
+    targetAudience: ["Pharmaceutical companies", "Biotech researchers", "Investors"],
+    pricing: "Not applicable — research company, not a self-serve product.",
     integrations: ["Not publicly disclosed"],
-    alternatives: ["Recursion", "Insilico Medicine", "Iambic"],
+    alternatives: ["Recursion", "Insilico Medicine", "Iambic", "Genesis Therapeutics"],
     selectionRationale:
-      "A high-profile AI-first drug discovery company advancing computational approaches to medicine.",
+      "The week's defining biotech-AI story (Nov 17). Note: funding is a supporting signal, not proof of product/clinical success — flagged for editorial verification.",
     sources: [
-      {
-        title: "Isomorphic Labs — official website",
-        url: "https://www.isomorphiclabs.com",
-        type: "official",
-      },
+      { title: "Isomorphic Labs raises $5B to take candidates to clinical trials (TechCrunch, Nov 17)", url: "https://techcrunch.com/2026/11/17/isomorphic-labs-raises-5b-as-it-looks-to-take-drug-candidates-to-clinical-trials/", type: "news" },
     ],
     lastVerified: null,
-    verification: "preview",
+    verification: "researched",
   },
 ];
 
@@ -599,6 +438,7 @@ export const weeklyPicks = (): Pick[] =>
 
 export const verificationLabel: Record<VerificationStatus, string> = {
   verified: "Verified",
+  researched: "Researched · pending approval",
   preview: "Curated preview · pending fact-check",
   needs_review: "Needs review",
   no_pick: "No verified pick this week",
