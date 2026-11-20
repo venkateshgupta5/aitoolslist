@@ -1,9 +1,9 @@
 export const siteConfig = {
   name: "aitoolslist.ai",
-  title: "aitoolslist.ai — Find your next AI advantage",
+  title: "aitoolslist.ai — AI product intelligence, every week",
   description:
-    "An AI intelligence and discovery publication. 13 categories, 13 standout tools, one curated weekly edition — independently researched and fact-checked.",
-  tagline: "13 categories. 13 standout tools. One curated weekly edition.",
+    "An independent weekly intelligence platform tracking emerging AI products across 13 categories — researched, evaluated and curated. Discover. Evaluate. Decide.",
+  tagline: "Discover the AI tools shaping what's next. Researched. Evaluated. Curated.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://aitoolslist.ai",
   listingPrice: "$49",
 };
