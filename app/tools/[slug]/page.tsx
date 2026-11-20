@@ -118,7 +118,7 @@ export default async function ProductPage({
     { id: "usecases", label: "Use cases" },
     ...(hasAnalysis ? [{ id: "analysis", label: "Analysis" }] : []),
     ...(hasCompare ? [{ id: "alternatives", label: "Alternatives" }] : []),
-    { id: "weekly", label: "This week" },
+    { id: "weekly", label: "This edition" },
     { id: "research", label: "Research" },
   ];
 
@@ -373,7 +373,7 @@ export default async function ProductPage({
                     <tr className="border-b border-ink-100 bg-brand-50/40">
                       <td className="py-2.5 pr-4 font-semibold text-ink-900">{product.name}</td>
                       <td className="py-2.5 pr-4 text-ink-700">{product.tagline}</td>
-                      <td className="py-2.5 text-ink-700">Featured pick this week</td>
+                      <td className="py-2.5 text-ink-700">Featured pick this edition</td>
                     </tr>
                     {product.compare!.map((c) => (
                       <tr key={c.name} className="border-b border-ink-100">
@@ -389,11 +389,11 @@ export default async function ProductPage({
             </Section>
           )}
 
-          {/* Why selected this week */}
-          <Section id="weekly" title="Why it was selected this week" eyebrow={`Weekly intelligence · ${category?.name ?? ""}`}>
+          {/* Why selected this edition */}
+          <Section id="weekly" title="Why it was selected this edition" eyebrow={`Edition intelligence · ${category?.name ?? ""}`}>
             <p>{product.selectionRationale}</p>
             <div className="mt-3 flex flex-wrap gap-x-6 gap-y-1 text-sm text-ink-500">
-              <span>Category rank: <span className="text-ink-700">#1 this week</span></span>
+              <span>Category rank: <span className="text-ink-700">#1 this edition</span></span>
               {product.researchConfidence && <span>Research confidence: <span className="text-ink-700">{product.researchConfidence}</span></span>}
               {product.launchDate && <span>Launch relevance: <span className="text-ink-700">{product.launchDate}</span></span>}
             </div>

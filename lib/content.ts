@@ -1,13 +1,13 @@
 /**
- * Weekly edition content — the directory's display source of truth.
+ * Fortnightly edition content — the directory's display source of truth.
  *
- * Edition 2026-W47 (Nov 16–22, 2026) winners were produced by the Weekly
+ * Edition 2026-11-H2 (Nov 16–30, 2026) winners were produced by the fortnightly
  * Discovery Agent's research pass and auto-signed-off (all cleared the evidence
  * gate: dated evidence + score ≥ 70), so they display as "Verified". Per both
  * PRDs' anti-fabrication rule, every winner still carries dated evidence URLs,
  * pricing is directional (never invented), and vendor-reported metrics remain
  * flagged in the copy. Categories without a credible fresh candidate are shown
- * as "No verified pick this week" rather than forced.
+ * as "No verified pick this edition" rather than forced.
  */
 
 export type VerificationStatus =
@@ -75,12 +75,15 @@ export interface Category {
   coverage: string;
 }
 
+// Editions are fortnightly: two per month (1st–15th and 16th–end of month).
+// The current edition (as of Nov 20, 2026) is the second-half period.
 export const EDITION = {
-  slug: "2026-11-20",
-  name: "Weekly Edition — November 16–22, 2026",
-  weekStart: "2026-11-16",
-  weekEnd: "2026-11-22",
-  label: "2026-W47 · Nov 16–22",
+  slug: "2026-11-16", // canonical edition id = period start date
+  periodKey: "2026-11-H2",
+  name: "Edition — November 16–30, 2026",
+  periodStart: "2026-11-16",
+  periodEnd: "2026-11-30",
+  label: "Nov 16–30, 2026",
 };
 
 export const categories: Category[] = [
@@ -123,7 +126,7 @@ const baseProducts: Product[] = [
     integrations: ["Google Cloud", "NVIDIA GPU stack", "Kubernetes (GKE)"],
     alternatives: ["CoreWeave", "Lambda", "Nebius", "Crusoe"],
     selectionRationale:
-      "The week's most significant GPU-cloud event: GA of the Vera Rubin generation on a hyperscaler, announced at NVIDIA GTC Berlin 2026.",
+      "The edition's most significant GPU-cloud event: GA of the Vera Rubin generation on a hyperscaler, announced at NVIDIA GTC Berlin 2026.",
     sources: [
       { title: "Google Cloud infrastructure at NVIDIA GTC Berlin 2026", url: "https://cloud.google.com/blog/topics/ai-infrastructure/google-cloud-infrastructure-at-nvidia-gtc-berlin-2026", type: "official" },
     ],
@@ -150,7 +153,7 @@ const baseProducts: Product[] = [
     integrations: ["OpenAI-compatible SDKs"],
     alternatives: ["Baseten", "Fireworks AI", "Together AI", "E2E Blaze"],
     selectionRationale:
-      "A clean, dated this-week launch (Nov 16) opening a sovereign inference platform with an OpenAI-compatible surface.",
+      "A clean, dated this-period launch (Nov 16) opening a sovereign inference platform with an OpenAI-compatible surface.",
     sources: [
       { title: "Sarvam Opens Token Factory for India-Hosted AI Model Inference", url: "https://www.cxodigitalpulse.com/sarvam-opens-token-factory-for-india-hosted-ai-model-inference/", type: "news" },
       { title: "Explained: Sarvam AI's Token Factory (Business Standard)", url: "https://www.business-standard.com/technology/artificial-intelligence/explained-sarvam-ai-s-token-factory-and-debate-over-ai-sovereignty-goals-126112000685_1.html", type: "news" },
@@ -178,7 +181,7 @@ const baseProducts: Product[] = [
     integrations: ["LangChain", "LlamaIndex", "Common embedding providers"],
     alternatives: ["Pinecone", "Qdrant", "Milvus", "Oracle AI Vector DB"],
     selectionRationale:
-      "A recognizable vector DB shipping a dated this-week GA (Nov 18) of enterprise/platform editions with concrete HA features.",
+      "A recognizable vector DB shipping a dated this-period GA (Nov 18) of enterprise/platform editions with concrete HA features.",
     sources: [
       { title: "Weaviate Advances Vector Database Technology (Nov 18)", url: "https://stockhouse.com/news/press-releases/2026/11/18/weaviate-advances-vector-database-technology-to-power-fast-growing-ai", type: "press-release" },
     ],
@@ -205,7 +208,7 @@ const baseProducts: Product[] = [
     integrations: ["A2A protocol", "MCP", "Google AI stack"],
     alternatives: ["LangGraph", "CrewAI", "Microsoft Agent Framework", "smolagents"],
     selectionRationale:
-      "The most significant orchestration advancement in current coverage; note this is a leading current release rather than a dated this-week launch — flagged for editorial verification.",
+      "The most significant orchestration advancement in current coverage; note this is a leading current release rather than a dated this-period launch — flagged for editorial verification.",
     sources: [
       { title: "Top 9 AI Agent Frameworks as of November 2026 (Shakudo)", url: "https://www.shakudo.io/blog/top-9-ai-agent-frameworks", type: "analysis" },
     ],
@@ -232,7 +235,7 @@ const baseProducts: Product[] = [
     integrations: ["LangChain", "LlamaIndex", "OpenAI", "MCP"],
     alternatives: ["LangSmith", "Arize Phoenix", "Opik", "Braintrust"],
     selectionRationale:
-      "Category leader actively shipping this week (evaluation-engine changes effective Nov 16), with dominant open-source adoption.",
+      "Category leader actively shipping this edition (evaluation-engine changes effective Nov 16), with dominant open-source adoption.",
     sources: [
       { title: "Top LLM Observability & Evaluation Platforms in 2026 (MarkTechPost)", url: "https://www.marktechpost.com/2026/08/09/top-llm-observability-and-evaluation-platforms-in-2026-langfuse-langsmith-braintrust-arize-and-more-compared/", type: "analysis" },
     ],
@@ -247,7 +250,7 @@ const baseProducts: Product[] = [
     tagline: "Agentic coding in Google's Antigravity CLI",
     shortDescription: "Agentic coding tool topping the coding-agent index.",
     overview:
-      "Google launched Gemini 4 Neon on November 18, 2026; running in Google's Antigravity CLI it tops the Artificial Analysis Coding Agent Index at 59, making Antigravity the week's standout AI coding environment.",
+      "Google launched Gemini 4 Neon on November 18, 2026; running in Google's Antigravity CLI it tops the Artificial Analysis Coding Agent Index at 59, making Antigravity the edition's standout AI coding environment.",
     problemSolved:
       "Developers want agentic, codebase-aware assistance that leads on independent coding benchmarks, directly in their workflow.",
     howItWorks:
@@ -259,7 +262,7 @@ const baseProducts: Product[] = [
     integrations: ["Google AI stack", "Command line / CLI"],
     alternatives: ["Cursor", "Cognition Devin", "GitHub Copilot", "Windsurf"],
     selectionRationale:
-      "A dated this-week launch (Nov 18) that took the top of an independent coding-agent benchmark.",
+      "A dated this-period launch (Nov 18) that took the top of an independent coding-agent benchmark.",
     sources: [
       { title: "AI Models Released in November 2026 (release tracker)", url: "https://www.nocode.mba/ai-release-tracker/2026/11", type: "analysis" },
     ],
@@ -286,7 +289,7 @@ const baseProducts: Product[] = [
     integrations: ["Multiple frontier models", "Perplexity Comet"],
     alternatives: ["ChatGPT agents", "Google ADK", "CrewAI", "Manus"],
     selectionRationale:
-      "The week's highest-profile AI-agent launch (Nov 17), notable for coordinated model-diverse multi-agent execution.",
+      "The edition's highest-profile AI-agent launch (Nov 17), notable for coordinated model-diverse multi-agent execution.",
     sources: [
       { title: "Perplexity launches Multiagent (up to 16 agents)", url: "https://pasqualepillitteri.it/en/news/35232/perplexity-launches-multiagent-up-to-16-ai-agents-working", type: "news" },
       { title: "AI Agents News Brief: November 17, 2026", url: "https://aiagentsdirectory.com/news/ai-agents-news-brief-november-17-2026", type: "news" },
@@ -369,16 +372,16 @@ const baseProducts: Product[] = [
     integrations: ["Covers major model providers"],
     alternatives: ["LMArena", "LiveBench", "Vals AI", "Braintrust"],
     selectionRationale:
-      "Shipped two dated this-week evaluation releases (Index v5 on Nov 18; MKA benchmark with DeepMind on Nov 17).",
+      "Shipped two dated this-period evaluation releases (Index v5 on Nov 18; MKA benchmark with DeepMind on Nov 17).",
     sources: [
       { title: "Announcing Artificial Analysis Intelligence Index v5", url: "https://artificialanalysis.ai/articles/artificial-analysis-intelligence-index-v5", type: "official" },
     ],
     lastVerified: "November 20, 2026",
     verification: "verified",
   },
-  // ai-observability (category 11): no distinct this-week production-monitoring
+  // ai-observability (category 11): no distinct this-period production-monitoring
   // launch separable from the Observability & Evaluation pick (Langfuse).
-  // Intentionally omitted → shown as "No verified pick this week".
+  // Intentionally omitted → shown as "No verified pick this edition".
   {
     slug: "mayo-clinic-platform-cds",
     name: "Mayo Clinic Platform CDS",
@@ -426,7 +429,7 @@ const baseProducts: Product[] = [
     integrations: ["Not publicly disclosed"],
     alternatives: ["Recursion", "Insilico Medicine", "Iambic", "Genesis Therapeutics"],
     selectionRationale:
-      "The week's defining biotech-AI story (Nov 17). Note: funding is a supporting signal, not proof of product/clinical success — flagged for editorial verification.",
+      "The edition's defining biotech-AI story (Nov 17). Note: funding is a supporting signal, not proof of product/clinical success — flagged for editorial verification.",
     sources: [
       { title: "Isomorphic Labs raises $5B to take candidates to clinical trials (TechCrunch, Nov 17)", url: "https://techcrunch.com/2026/11/17/isomorphic-labs-raises-5b-as-it-looks-to-take-drug-candidates-to-clinical-trials/", type: "news" },
     ],
@@ -447,7 +450,7 @@ const enrichment: Record<string, Partial<Product>> = {
     differentiators: ["NVIDIA Vera Rubin NVL72", "Rack-scale", "Hyperscaler-managed"],
     researchConfidence: "High",
     whyItMatters:
-      "A5X brings NVIDIA's newest Vera Rubin generation to a hyperscaler as a GA product — the week's most consequential signal that frontier-scale compute is becoming routinely provisionable.",
+      "A5X brings NVIDIA's newest Vera Rubin generation to a hyperscaler as a GA product — the edition's most consequential signal that frontier-scale compute is becoming routinely provisionable.",
     strengths: [
       "Access to the latest Vera Rubin NVL72 rack-scale platform",
       "Managed networking, storage and GKE integration",
@@ -545,7 +548,7 @@ const enrichment: Record<string, Partial<Product>> = {
     ],
     limitations: [
       "Tighter alignment with Google's AI stack",
-      "This is a leading current release, not a dated this-week launch",
+      "This is a leading current release, not a dated this-period launch",
     ],
     whoShouldUse: ["AI engineers building multi-agent systems", "Teams needing graph-structured agent workflows"],
     notSuitableWhen: ["Simple single-agent chatbots where a framework adds overhead"],
@@ -563,7 +566,7 @@ const enrichment: Record<string, Partial<Product>> = {
     documentationUrl: "https://langfuse.com/docs",
     researchConfidence: "High",
     whyItMatters:
-      "Langfuse keeps shipping — this week's evaluation-engine changes (LLM-as-a-judge targeting observations/experiments) reinforce its lead as the default open-source LLMOps layer.",
+      "Langfuse keeps shipping — this edition's evaluation-engine changes (LLM-as-a-judge targeting observations/experiments) reinforce its lead as the default open-source LLMOps layer.",
     strengths: [
       "MIT-licensed core, free to self-host",
       "End-to-end tracing, prompt management and evals in one tool",
@@ -589,7 +592,7 @@ const enrichment: Record<string, Partial<Product>> = {
     differentiators: ["Gemini 4 Neon", "#1 coding index", "Agentic CLI"],
     researchConfidence: "High",
     whyItMatters:
-      "Gemini 4 Neon launched Nov 18 and, running in Antigravity, took the top of the independent Artificial Analysis Coding Agent Index — the week's clearest coding-capability leap.",
+      "Gemini 4 Neon launched Nov 18 and, running in Antigravity, took the top of the independent Artificial Analysis Coding Agent Index — the edition's clearest coding-capability leap.",
     strengths: [
       "Tops an independent coding-agent benchmark (index 59)",
       "Agentic, multi-step coding workflow via CLI",
@@ -668,7 +671,7 @@ const enrichment: Record<string, Partial<Product>> = {
     documentationUrl: "https://docs.retellai.com",
     researchConfidence: "Medium",
     whyItMatters:
-      "Retell's own Tell-1 model and a reported $100M run rate put it among the most-cited voice-agent platforms this week — strong signal, though the headline metrics are vendor-reported.",
+      "Retell's own Tell-1 model and a reported $100M run rate put it among the most-cited voice-agent platforms this edition — strong signal, though the headline metrics are vendor-reported.",
     strengths: [
       "Developer-focused real-time voice pipeline",
       "Own Tell-1 voice model",
@@ -698,7 +701,7 @@ const enrichment: Record<string, Partial<Product>> = {
     documentationUrl: "https://artificialanalysis.ai/methodology/intelligence-benchmarking",
     researchConfidence: "High",
     whyItMatters:
-      "Two dated releases this week — Intelligence Index v5 (Nov 18) and an MKA agent benchmark with DeepMind (Nov 17) — cement it as a go-to independent evaluation reference.",
+      "Two dated releases this edition — Intelligence Index v5 (Nov 18) and an MKA agent benchmark with DeepMind (Nov 17) — cement it as a go-to independent evaluation reference.",
     strengths: [
       "Independent, transparent methodology",
       "Broad coverage across models and providers",
@@ -748,7 +751,7 @@ const enrichment: Record<string, Partial<Product>> = {
     differentiators: ["AlphaFold lineage", "$5B raised", "Toward clinic"],
     researchConfidence: "Medium",
     whyItMatters:
-      "A $5B Series C (Nov 17) to move AI-designed drugs toward clinical trials is the week's defining biotech-AI event — though funding is a signal, not proof of clinical success.",
+      "A $5B Series C (Nov 17) to move AI-designed drugs toward clinical trials is the edition's defining biotech-AI event — though funding is a signal, not proof of clinical success.",
     strengths: [
       "Builds on DeepMind's protein-structure breakthroughs",
       "Exceptional capital runway after $5B raise",
@@ -843,7 +846,7 @@ export interface Pick {
   product: Product | undefined;
 }
 
-export const weeklyPicks = (): Pick[] =>
+export const editionPicks = (): Pick[] =>
   sortedCategories().map((category) => ({
     category,
     product: productForCategory(category.slug),
@@ -854,12 +857,12 @@ export const verificationLabel: Record<VerificationStatus, string> = {
   researched: "Researched · pending approval",
   preview: "Curated preview · pending fact-check",
   needs_review: "Needs review",
-  no_pick: "No verified pick this week",
+  no_pick: "No verified pick this edition",
 };
 
-// ── Homepage: weekly edition summary ────────────────────────────────────────
+// ── Homepage: edition summary ────────────────────────────────────────
 // Honest coverage messaging (spec §6.5): 13 evaluated, N verified, rest flagged.
-export function weeklySummary() {
+export function editionSummary() {
   const evaluated = categories.length;
   const verified = products.filter((p) => p.verification === "verified").length;
   const published = products.length;
@@ -877,7 +880,7 @@ export function categoryAccent(categorySlug: string): string {
   return accentPalette[(idx + accentPalette.length) % accentPalette.length];
 }
 
-// ── Homepage: "The AI landscape this week" (spec §7) ─────────────────────────
+// ── Homepage: "The AI landscape this fortnight" (spec §7) ─────────────────────────
 // Industry developments kept separate from product rankings — funding/launch
 // activity is context, not proof of product quality. Every item is evidence-linked.
 export interface LandscapeItem {
@@ -938,7 +941,7 @@ export const landscape: LandscapeItem[] = [
     summary:
       "Google launched Gemini 4 Neon on Nov 18; running in its Antigravity CLI it took the top of the independent Artificial Analysis Coding Agent Index.",
     whyItMatters:
-      "The frontier of agentic coding keeps moving fast — benchmark leadership now changes week to week.",
+      "The frontier of agentic coding keeps moving fast — benchmark leadership now changes edition to edition.",
     source: {
       title: "AI models released in November 2026 (release tracker)",
       url: "https://www.nocode.mba/ai-release-tracker/2026/11",
@@ -962,7 +965,7 @@ export const landscape: LandscapeItem[] = [
   },
 ];
 
-// Concise editorial observations (spec §14 "weekly takeaways").
+// Concise editorial observations (spec §14 "edition takeaways").
 export const takeaways: string[] = [
   "Frontier-scale GPU compute is becoming a routine cloud purchase.",
   "Multi-agent coordination moved from research demos into consumer products.",

@@ -34,3 +34,4 @@ apikeys.txt
 # typescript
 *.tsbuildinfo
 .env*
+agent/data/

@@ -87,8 +87,8 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/weekly/2026-11-20" className="text-sm text-ink-600 hover:text-ink-900">
-                  Weekly editions
+                <Link href="/editions/2026-11-16" className="text-sm text-ink-600 hover:text-ink-900">
+                  Editions
                 </Link>
               </li>
               <li>

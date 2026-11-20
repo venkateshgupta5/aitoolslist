@@ -24,7 +24,7 @@ export async function generateMetadata({
   if (!category) return {};
   return {
     title: `${category.name} — standout AI tools`,
-    description: `${category.coverage} Discover this week's researched, fact-checked pick in ${category.name} on aitoolslist.ai.`,
+    description: `${category.coverage} Discover this edition's researched, fact-checked pick in ${category.name} on aitoolslist.ai.`,
     alternates: { canonical: `/categories/${slug}` },
     openGraph: {
       title: `${category.name} | aitoolslist.ai`,
@@ -93,7 +93,7 @@ export default async function CategoryPage({
 
       <div className="mt-10">
         <h2 className="text-sm font-semibold uppercase tracking-wide text-ink-400">
-          This week&apos;s pick · {EDITION.label}
+          This edition&apos;s pick · {EDITION.label}
         </h2>
         <div className="mt-4 max-w-md">
           {product ? (

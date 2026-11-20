@@ -1,7 +1,7 @@
 /**
- * Weekly Discovery Agent trigger (PRD §10).
+ * Fortnightly Discovery Agent trigger (PRD §10).
  *
- * - GET  : used by Vercel Cron (Mon 00:00 UTC). Auth via Vercel's
+ * - GET  : used by Vercel Cron (1st & 16th, 00:00 UTC). Auth via Vercel’s
  *          `Authorization: Bearer $CRON_SECRET` header.
  * - POST : manual/on-demand run. Auth via `x-agent-secret: $AGENT_SECRET`.
  *          Body/query: dryRun, publish, category.
@@ -37,12 +37,12 @@ async function handle(
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
   try {
-    const edition = await runAgent({ ...opts, command: "get this week's tool" });
+    const edition = await runAgent({ ...opts, command: "get this edition's tool" });
     return NextResponse.json({
       ok: true,
-      isoWeek: edition.isoWeek,
-      weekStart: edition.weekStart,
-      weekEnd: edition.weekEnd,
+      periodKey: edition.periodKey,
+      periodStart: edition.periodStart,
+      periodEnd: edition.periodEnd,
       sourceStatus: edition.sourceStatus,
       stats: edition.stats,
       winners: edition.winners.map((w) => ({

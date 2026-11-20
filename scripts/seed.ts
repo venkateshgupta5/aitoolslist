@@ -92,13 +92,13 @@ async function main() {
     }
   }
 
-  console.log("Seeding weekly edition…");
+  console.log("Seeding edition…");
   await db
     .insert(schema.weeklyEditions)
     .values({
       editionName: EDITION.name,
-      weekStart: EDITION.weekStart,
-      weekEnd: EDITION.weekEnd,
+      weekStart: EDITION.periodStart,
+      weekEnd: EDITION.periodEnd,
       status: "published",
       publishedAt: new Date(),
     })
@@ -107,11 +107,11 @@ async function main() {
   const [edition] = await db
     .select()
     .from(schema.weeklyEditions)
-    .where(eq(schema.weeklyEditions.weekStart, EDITION.weekStart))
+    .where(eq(schema.weeklyEditions.weekStart, EDITION.periodStart))
     .limit(1);
 
   if (edition) {
-    console.log("Seeding weekly picks…");
+    console.log("Seeding edition picks…");
     const prodRows = await db.select().from(schema.products);
     const prodByCat = new Map(prodRows.map((r) => [r.categoryId, r]));
 

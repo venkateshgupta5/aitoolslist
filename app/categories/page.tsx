@@ -5,7 +5,7 @@ import { sortedCategories, productForCategory } from "@/lib/content";
 export const metadata: Metadata = {
   title: "All categories",
   description:
-    "Browse all 13 AI categories — from GPU cloud and inference to AI agents, sales, voice and healthcare. One standout tool per category, every week.",
+    "Browse all 13 AI categories — from GPU cloud and inference to AI agents, sales, voice and healthcare. One standout tool per category, every edition.",
   alternates: { canonical: "/categories" },
 };
 
@@ -27,7 +27,7 @@ export default function CategoriesPage() {
       </h1>
       <p className="mt-3 max-w-2xl text-ink-600">
         Each category features exactly one researched, fact-checked standout
-        tool per weekly edition.
+        tool per edition.
       </p>
 
       <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -51,13 +51,13 @@ export default function CategoriesPage() {
               <span className="mt-4 text-sm font-medium text-ink-500">
                 {product ? (
                   <>
-                    This week:{" "}
+                    This edition:{" "}
                     <span className="font-semibold text-ink-800">
                       {product.name}
                     </span>
                   </>
                 ) : (
-                  "No verified pick this week"
+                  "No verified pick this edition"
                 )}
               </span>
             </Link>

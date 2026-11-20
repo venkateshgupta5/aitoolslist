@@ -9,12 +9,12 @@ export const metadata: Metadata = {
 };
 
 const steps = [
-  { day: "Monday", activity: "Discover new tools across credible sources" },
-  { day: "Tuesday", activity: "Extract candidates and classify by category" },
-  { day: "Wednesday", activity: "Research and score against a consistent methodology" },
-  { day: "Thursday", activity: "Independently fact-check and shortlist" },
-  { day: "Friday", activity: "Editorial approval by a human reviewer" },
-  { day: "Saturday", activity: "Publish the weekly edition" },
+  { day: "Discover", activity: "Find new tools across credible sources" },
+  { day: "Classify", activity: "Extract candidates and map them to categories" },
+  { day: "Research & score", activity: "Enrich and score against a consistent methodology" },
+  { day: "Fact-check", activity: "Independently verify shortlisted products" },
+  { day: "Approve", activity: "Editorial sign-off by a human reviewer" },
+  { day: "Publish", activity: "Release the edition — preserved permanently" },
 ];
 
 export default function AboutPage() {
@@ -39,10 +39,11 @@ export default function AboutPage() {
 
       <div className="mt-10 space-y-6 text-[15px] leading-relaxed text-ink-700">
         <p>
-          Every week we feature exactly one standout tool in each of 13
-          categories. Each selection is researched against credible sources,
-          independently fact-checked, and approved by a human editor before it
-          is published.
+          Every fortnight we feature exactly one standout tool in each of 13
+          categories — two editions a month, covering the 1st–15th and the
+          16th–end of month. Each selection is researched against credible
+          sources, independently fact-checked, and approved by a human editor
+          before it is published.
         </p>
         <p>
           We never invent pricing, capabilities, integrations or adoption
@@ -61,7 +62,7 @@ export default function AboutPage() {
       </div>
 
       <h2 className="mt-12 text-xl font-bold tracking-tight text-ink-900">
-        How the weekly edition comes together
+        How each edition comes together
       </h2>
       <ol className="mt-5 space-y-3">
         {steps.map((s) => (

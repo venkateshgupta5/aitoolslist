@@ -7,7 +7,7 @@
  *   DATABASE_URL="…" npx tsx scripts/publish-week.ts --approve   # mark published
  */
 import { products, categories, EDITION } from "../lib/content";
-import { weekWindow } from "../agent/lib/date-window";
+import { periodWindowFromStart } from "../agent/lib/date-window";
 import { dedupKey } from "../agent/lib/dedup";
 import { weightedTotal } from "../agent/config/scoring";
 import { publishEdition } from "../agent/publisher";
@@ -47,7 +47,7 @@ function buildWinners(approved: boolean): Winner[] {
           categoryName: cat.name,
           tool: null,
           selectionReason:
-            "No distinct, credible this-week candidate met the evidence threshold for this category (flagged rather than forced).",
+            "No distinct, credible this-edition candidate met the evidence threshold for this category (flagged rather than forced).",
           verificationStatus: "insufficient_evidence",
           confidence: 0,
         } satisfies Winner;
@@ -90,13 +90,13 @@ function buildWinners(approved: boolean): Winner[] {
 
 async function main() {
   const approve = process.argv.includes("--approve");
-  const win = weekWindow(new Date(EDITION.weekStart + "T12:00:00Z"));
+  const win = periodWindowFromStart(EDITION.periodStart);
   const edition: Edition = {
-    isoWeek: win.isoWeek,
-    weekStart: EDITION.weekStart,
-    weekEnd: EDITION.weekEnd,
+    periodKey: win.periodKey,
+    periodStart: EDITION.periodStart,
+    periodEnd: EDITION.periodEnd,
     generatedAt: new Date().toISOString(),
-    command: "get this week's tool (research-assisted)",
+    command: "get this edition's tool (research-assisted)",
     winners: buildWinners(approve),
     sourceStatus: {
       github: "ok", hackernews: "ok", techcrunch: "ok", reddit: "error",
@@ -111,7 +111,7 @@ async function main() {
   };
 
   const result = await publishEdition(edition, { approved: approve });
-  console.log(JSON.stringify({ isoWeek: edition.isoWeek, approve, ...result }, null, 2));
+  console.log(JSON.stringify({ periodKey: edition.periodKey, approve, ...result }, null, 2));
   console.log(
     `\nWinners written: ${result.winnersWritten} (${products.length} tools, ${13 - products.length} insufficient)`,
   );

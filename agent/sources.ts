@@ -1,10 +1,10 @@
 /**
- * Source connectors. Each returns raw candidates for the week plus a status.
+ * Source connectors. Each returns raw candidates for the period plus a status.
  * Keyless connectors (GitHub, Hacker News, Reddit, TechCrunch) do real network
  * calls. Keyed connectors degrade to "skipped" with a logged reason when their
  * key is absent (PRD §11: all sources attempted, failures logged).
  */
-import type { WeekWindow } from "./lib/date-window";
+import type { PeriodWindow } from "./lib/date-window";
 import { dedupKey, canonicalHost } from "./lib/dedup";
 import { sources, sourceIsAvailable, type SourceDef } from "./config/sources";
 import type { Candidate } from "./schemas";
@@ -39,7 +39,7 @@ function mk(
 }
 
 // ── GitHub ───────────────────────────────────────────────────────────────
-async function github(win: WeekWindow): Promise<SourceResult> {
+async function github(win: PeriodWindow): Promise<SourceResult> {
   const headers: Record<string, string> = {
     Accept: "application/vnd.github+json",
     "User-Agent": UA,
@@ -47,7 +47,7 @@ async function github(win: WeekWindow): Promise<SourceResult> {
   if (process.env.GITHUB_TOKEN)
     headers.Authorization = `Bearer ${process.env.GITHUB_TOKEN}`;
   const q = encodeURIComponent(
-    `created:>=${win.weekStart} topic:ai stars:>20`,
+    `created:>=${win.periodStart} topic:ai stars:>20`,
   );
   const url = `https://api.github.com/search/repositories?q=${q}&sort=stars&order=desc&per_page=40`;
   const res = await fetch(url, { headers });
@@ -77,7 +77,7 @@ async function github(win: WeekWindow): Promise<SourceResult> {
 }
 
 // ── Hacker News (Algolia) ──────────────────────────────────────────────────
-async function hackernews(win: WeekWindow): Promise<SourceResult> {
+async function hackernews(win: PeriodWindow): Promise<SourceResult> {
   const url = `https://hn.algolia.com/api/v1/search?tags=(story,show_hn)&numericFilters=created_at_i>${win.startUnix},created_at_i<${win.endUnix}&query=AI&hitsPerPage=50`;
   const res = await fetch(url, { headers: { "User-Agent": UA } });
   if (!res.ok) throw new Error(`hn ${res.status}`);
@@ -104,13 +104,13 @@ async function hackernews(win: WeekWindow): Promise<SourceResult> {
 }
 
 // ── Reddit (public JSON) ───────────────────────────────────────────────────
-async function reddit(_win: WeekWindow): Promise<SourceResult> {
+async function reddit(_win: PeriodWindow): Promise<SourceResult> {
   const subs = ["artificial", "LocalLLaMA", "machinelearningnews"];
   const candidates: Candidate[] = [];
   for (const sub of subs) {
     try {
       const res = await fetch(
-        `https://www.reddit.com/r/${sub}/top.json?t=week&limit=25`,
+        `https://www.reddit.com/r/${sub}/top.json?t=month&limit=50`,
         { headers: { "User-Agent": UA } },
       );
       if (!res.ok) continue;
@@ -148,7 +148,7 @@ async function reddit(_win: WeekWindow): Promise<SourceResult> {
 }
 
 // ── TechCrunch (RSS) ───────────────────────────────────────────────────────
-async function techcrunch(_win: WeekWindow): Promise<SourceResult> {
+async function techcrunch(_win: PeriodWindow): Promise<SourceResult> {
   const res = await fetch(
     "https://techcrunch.com/tag/artificial-intelligence/feed/",
     { headers: { "User-Agent": UA } },
@@ -172,10 +172,10 @@ async function techcrunch(_win: WeekWindow): Promise<SourceResult> {
 
 const connectors: Record<
   string,
-  (win: WeekWindow) => Promise<SourceResult>
+  (win: PeriodWindow) => Promise<SourceResult>
 > = { github, hackernews, reddit, techcrunch };
 
-export async function runDiscovery(win: WeekWindow): Promise<{
+export async function runDiscovery(win: PeriodWindow): Promise<{
   candidates: Candidate[];
   status: Record<string, SourceStatus>;
 }> {

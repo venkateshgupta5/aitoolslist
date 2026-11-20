@@ -1,6 +1,7 @@
 /**
  * Publishing Agent (PRD §4). Upserts an edition's winners into Neon with full
  * audit trail (tools, tool_sources, tool_scores, fact_checks, weekly_winners).
+ * Editions are fortnightly (1-15, 16-EOM); DB identifiers keep the weekly_ prefix.
  * Idempotent per edition via unique (edition_id, category_id). Never overwrites
  * a different historical edition.
  */
@@ -22,13 +23,13 @@ export async function publishEdition(
 ): Promise<PublishResult> {
   if (!db) return { persisted: false, winnersWritten: 0, note: "no DATABASE_URL" };
 
-  // 1. Ensure the weekly edition row (status reflects approval state)
+  // 1. Ensure the edition row (fortnightly) (status reflects approval state)
   await db
     .insert(schema.weeklyEditions)
     .values({
-      editionName: `Weekly Edition — ${edition.weekStart}`,
-      weekStart: edition.weekStart,
-      weekEnd: edition.weekEnd,
+      editionName: `Edition — ${edition.periodStart} to ${edition.periodEnd}`,
+      weekStart: edition.periodStart,
+      weekEnd: edition.periodEnd,
       status: opts.approved ? "published" : "needs_review",
       publishedAt: opts.approved ? new Date() : null,
     })
@@ -37,7 +38,7 @@ export async function publishEdition(
   const [ed] = await db
     .select()
     .from(schema.weeklyEditions)
-    .where(eq(schema.weeklyEditions.weekStart, edition.weekStart))
+    .where(eq(schema.weeklyEditions.weekStart, edition.periodStart))
     .limit(1);
   if (!ed) return { persisted: false, winnersWritten: 0, note: "edition upsert failed" };
 
@@ -96,7 +97,7 @@ export async function publishEdition(
               toolId,
               sourceId: ev.sourceId,
               sourceUrl: ev.url,
-              observationPeriod: edition.isoWeek,
+              observationPeriod: edition.periodKey,
               signals: t.signals,
             })
             .onConflictDoNothing();
@@ -117,7 +118,7 @@ export async function publishEdition(
         await db.insert(schema.researchSnapshots).values({
           toolId,
           editionId: ed.id,
-          week: edition.isoWeek,
+          week: edition.periodKey,
           raw: { signals: t.signals, discoveredFrom: t.discoveredFrom } as object,
           enriched: { evidence: t.evidence } as object,
         });

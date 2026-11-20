@@ -7,7 +7,7 @@ import { siteConfig } from "@/lib/site";
 export const metadata: Metadata = {
   title: `List your app — ${siteConfig.listingPrice}`,
   description:
-    "Submit your AI product for a dedicated, SEO-friendly listing on aitoolslist.ai. Paid listings are clearly labelled Sponsored and never influence weekly rankings.",
+    "Submit your AI product for a dedicated, SEO-friendly listing on aitoolslist.ai. Paid listings are clearly labelled Sponsored and never influence editorial rankings.",
   alternates: { canonical: "/submit-tool" },
 };
 
@@ -57,8 +57,8 @@ export default function SubmitToolPage() {
           </ul>
 
           <div className="mt-6 rounded-xl bg-ink-100 p-4 text-sm text-ink-600">
-            Payment buys a listing opportunity, not a guaranteed weekly
-            editorial selection. Paid listings never influence our independent
+            Payment buys a listing opportunity, not a guaranteed editorial
+            selection. Paid listings never influence our independent editorial
             rankings.
           </div>
         </div>

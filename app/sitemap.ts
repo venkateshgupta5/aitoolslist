@@ -10,7 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: absoluteUrl("/categories"), lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: absoluteUrl("/about"), lastModified: now, changeFrequency: "monthly", priority: 0.5 },
     { url: absoluteUrl("/submit-tool"), lastModified: now, changeFrequency: "monthly", priority: 0.6 },
-    { url: absoluteUrl(`/weekly/${EDITION.slug}`), lastModified: now, changeFrequency: "weekly", priority: 0.7 },
+    { url: absoluteUrl(`/editions/${EDITION.slug}`), lastModified: now, changeFrequency: "weekly", priority: 0.7 },
   ];
 
   const categoryRoutes: MetadataRoute.Sitemap = categories.map((c) => ({

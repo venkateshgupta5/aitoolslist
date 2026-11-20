@@ -8,7 +8,7 @@
 import { randomUUID } from "node:crypto";
 import { eq } from "drizzle-orm";
 import { db, schema } from "@/lib/db";
-import { weekWindow } from "./lib/date-window";
+import { periodWindow } from "./lib/date-window";
 import { saveJson } from "./lib/storage";
 import { runDiscovery } from "./sources";
 import { classify, scoreCandidates, filterSpam, llmEnabled } from "./pipeline";
@@ -40,8 +40,8 @@ export function autoSignoffEnabled(opts: RunOptions): boolean {
 }
 
 export async function runAgent(opts: RunOptions = {}): Promise<Edition> {
-  const win = weekWindow(opts.ref);
-  const runKey = `${win.isoWeek}:${opts.command ?? "get-this-weeks-tool"}:${randomUUID().slice(0, 8)}`;
+  const win = periodWindow(opts.ref);
+  const runKey = `${win.periodKey}:${opts.command ?? "get-this-editions-tool"}:${randomUUID().slice(0, 8)}`;
   const startedAt = new Date();
 
   // agent_runs: started
@@ -52,7 +52,7 @@ export async function runAgent(opts: RunOptions = {}): Promise<Edition> {
         .insert(schema.agentRuns)
         .values({
           runKey,
-          command: opts.command ?? "get this week's tool",
+          command: opts.command ?? "get this edition's tool",
           status: "running",
           params: { ...opts, ref: undefined } as object,
           startedAt,
@@ -66,7 +66,7 @@ export async function runAgent(opts: RunOptions = {}): Promise<Edition> {
 
   // 1–7: discovery + dedup
   const { candidates, status } = await runDiscovery(win);
-  saveJson("raw", win.isoWeek, "discovery", { win, status, candidates });
+  saveJson("raw", win.periodKey, "discovery", { win, status, candidates });
 
   // spam filter + classification
   const cleaned = filterSpam(candidates);
@@ -78,7 +78,7 @@ export async function runAgent(opts: RunOptions = {}): Promise<Edition> {
 
   // 9–10: score + shortlist
   const scored = scoreCandidates(cleaned);
-  saveJson("enriched", win.isoWeek, "enriched", scored);
+  saveJson("enriched", win.periodKey, "enriched", scored);
 
   // group by category, pick best per category
   const cats = opts.category
@@ -100,7 +100,7 @@ export async function runAgent(opts: RunOptions = {}): Promise<Edition> {
         categoryName: cat.name,
         tool: null,
         selectionReason:
-          "No candidate from this week's discovery met the evidence threshold for this category.",
+          "No candidate from this edition's discovery met the evidence threshold for this category.",
         verificationStatus: "insufficient_evidence",
         confidence: 0,
       } satisfies Winner;
@@ -130,11 +130,11 @@ export async function runAgent(opts: RunOptions = {}): Promise<Edition> {
   });
 
   const edition: Edition = {
-    isoWeek: win.isoWeek,
-    weekStart: win.weekStart,
-    weekEnd: win.weekEnd,
+    periodKey: win.periodKey,
+    periodStart: win.periodStart,
+    periodEnd: win.periodEnd,
     generatedAt: new Date().toISOString(),
-    command: opts.command ?? "get this week's tool",
+    command: opts.command ?? "get this edition's tool",
     winners,
     sourceStatus: status,
     stats: {
@@ -146,7 +146,7 @@ export async function runAgent(opts: RunOptions = {}): Promise<Edition> {
       llmAssisted: llmEnabled() ? 1 : 0,
     },
   };
-  saveJson("winners", win.isoWeek, "winners", edition);
+  saveJson("winners", win.periodKey, "winners", edition);
 
   // persist — auto-sign-off marks the edition approved/published
   let persistNote = "dry-run (no DB writes)";

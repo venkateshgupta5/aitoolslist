@@ -1,7 +1,7 @@
 /**
- * CLI for the weekly discovery agent (PRD §10).
+ * CLI for the fortnightly discovery agent (PRD §10).
  *
- *   npm run agent                      → get this week's tool (writes needs_review)
+ *   npm run agent                      → get this edition's tool (writes needs_review)
  *   npm run agent -- --dry-run         → research + rank, no DB writes
  *   npm run agent -- --category "AI Agents"
  *   npm run agent -- --publish         → mark edition approved/published
@@ -18,7 +18,7 @@ function parseArgs(argv: string[]) {
     autoSignoff?: boolean;
     category?: string;
     command: string;
-  } = { command: "get this week's tool" };
+  } = { command: "get this edition's tool" };
 
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i];
@@ -26,7 +26,7 @@ function parseArgs(argv: string[]) {
     else if (a === "--publish") opts.publish = true;
     else if (a === "--auto-signoff") opts.autoSignoff = true;
     else if (a === "--no-auto-signoff") opts.autoSignoff = false;
-    else if (a === "--reverify") opts.command = "get this week's tool --reverify";
+    else if (a === "--reverify") opts.command = "get this edition's tool --reverify";
     else if (a === "--category") {
       const name = argv[++i] ?? "";
       const match = agentCategories.find(
@@ -49,7 +49,7 @@ async function main() {
   console.log(`▶ Running agent: ${opts.command}${opts.dryRun ? " (dry-run)" : ""}`);
   const edition = await runAgent(opts);
 
-  console.log(`\n── ${edition.isoWeek} (${edition.weekStart} → ${edition.weekEnd}) ──`);
+  console.log(`\n── ${edition.periodKey} (${edition.periodStart} → ${edition.periodEnd}) ──`);
   console.log("Sources:", JSON.stringify(edition.sourceStatus));
   console.log("Stats:", JSON.stringify(edition.stats));
   console.log("\nWinners:");

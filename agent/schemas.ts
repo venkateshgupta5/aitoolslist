@@ -62,9 +62,9 @@ export const winnerSchema = z.object({
 export type Winner = z.infer<typeof winnerSchema>;
 
 export const editionSchema = z.object({
-  isoWeek: z.string(),
-  weekStart: z.string(),
-  weekEnd: z.string(),
+  periodKey: z.string(),
+  periodStart: z.string(),
+  periodEnd: z.string(),
   generatedAt: z.string(),
   command: z.string(),
   winners: z.array(winnerSchema),

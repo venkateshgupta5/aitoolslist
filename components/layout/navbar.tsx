@@ -7,7 +7,7 @@ import { siteConfig } from "@/lib/site";
 const navLinks = [
   { href: "/#this-week", label: "Discover" },
   { href: "/categories", label: "Categories" },
-  { href: "/weekly/2026-11-20", label: "Weekly Edition" },
+  { href: "/editions/2026-11-16", label: "Editions" },
   { href: "/about", label: "About" },
 ];
 

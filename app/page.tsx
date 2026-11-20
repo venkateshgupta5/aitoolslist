@@ -1,10 +1,10 @@
 import Link from "next/link";
 import {
-  weeklyPicks,
+  editionPicks,
   EDITION,
   landscape,
   takeaways,
-  weeklySummary,
+  editionSummary,
   sortedCategories,
   productForCategory,
   categoryAccent,
@@ -33,7 +33,7 @@ const listingIncludes = [
   "A dedicated, indexable product profile",
   "Lead-capture form routed to your inbox",
   "Editorial review before it's published",
-  "Permanently labelled “Sponsored” — never shown as a weekly editorial winner",
+  "Permanently labelled “Sponsored” — never shown as an editorial winner",
 ];
 
 function initials(name: string) {
@@ -41,8 +41,8 @@ function initials(name: string) {
 }
 
 export default function HomePage() {
-  const picks = weeklyPicks();
-  const summary = weeklySummary();
+  const picks = editionPicks();
+  const summary = editionSummary();
   const cats = sortedCategories();
 
   return (
@@ -52,7 +52,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-20">
           <div className="mx-auto max-w-3xl text-center">
             <Link
-              href={`/weekly/${EDITION.slug}`}
+              href={`/editions/${EDITION.slug}`}
               className="inline-flex items-center gap-2 rounded-full border border-ink-200 bg-white px-3 py-1 text-xs font-medium text-ink-600 transition-colors hover:border-brand-300 hover:text-ink-900"
             >
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
@@ -67,7 +67,7 @@ export default function HomePage() {
               Researched. Evaluated. Curated.
             </p>
             <p className="mx-auto mt-3 max-w-2xl text-[15px] leading-relaxed text-ink-600">
-              An independent weekly intelligence platform tracking emerging AI
+              An independent fortnightly intelligence platform tracking emerging AI
               products across 13 categories.{" "}
               <Link href="/methodology" className="font-medium text-brand-600 hover:text-brand-700">
                 See our methodology →
@@ -87,7 +87,7 @@ export default function HomePage() {
 
             <div className="mx-auto mt-8 flex max-w-md flex-col items-center gap-3 sm:flex-row sm:justify-center">
               <Link href="#this-week" className="w-full rounded-lg bg-brand-600 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-700 sm:w-auto">
-                Explore this week&apos;s picks
+                Explore this edition&apos;s picks
               </Link>
               <Link href="#categories" className="w-full rounded-lg border border-ink-300 bg-white px-6 py-3 text-sm font-semibold text-ink-800 transition-colors hover:bg-ink-50 sm:w-auto">
                 Explore categories
@@ -97,7 +97,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Weekly edition summary */}
+      {/* Edition summary */}
       <section className="border-b border-ink-200/70 bg-white">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-4 py-4 text-sm sm:flex-row sm:px-6">
           <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-1">
@@ -108,22 +108,22 @@ export default function HomePage() {
             )}
           </div>
           <div className="flex items-center gap-4">
-            <Link href={`/weekly/${EDITION.slug}`} className="font-medium text-ink-600 hover:text-ink-900">{EDITION.label}</Link>
+            <Link href={`/editions/${EDITION.slug}`} className="font-medium text-ink-600 hover:text-ink-900">{EDITION.label}</Link>
             <Link href="/methodology" className="font-medium text-brand-600 hover:text-brand-700">How we research →</Link>
           </div>
         </div>
       </section>
 
-      {/* This week's picks */}
+      {/* This edition's picks */}
       <section id="this-week" className="mx-auto max-w-6xl scroll-mt-20 px-4 py-14 sm:px-6">
         <div className="flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-end">
           <div>
-            <h2 className="text-2xl font-bold tracking-tight text-ink-900 sm:text-3xl">This week&apos;s picks</h2>
+            <h2 className="text-2xl font-bold tracking-tight text-ink-900 sm:text-3xl">This edition&apos;s picks</h2>
             <p className="mt-2 text-ink-600">
               {summary.evaluated} categories evaluated · {summary.verified} verified picks published · {EDITION.label}
             </p>
           </div>
-          <Link href={`/weekly/${EDITION.slug}`} className="text-sm font-semibold text-brand-600 hover:text-brand-700">
+          <Link href={`/editions/${EDITION.slug}`} className="text-sm font-semibold text-brand-600 hover:text-brand-700">
             View full edition & history →
           </Link>
         </div>
@@ -135,12 +135,12 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* The AI landscape this week */}
+      {/* The AI landscape this fortnight */}
       <section className="border-y border-ink-200/70 bg-white">
         <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
           <div className="max-w-2xl">
             <p className="text-[11px] font-semibold uppercase tracking-wide text-brand-600">Editorial · industry intelligence</p>
-            <h2 className="mt-1 text-2xl font-bold tracking-tight text-ink-900 sm:text-3xl">The AI landscape this week</h2>
+            <h2 className="mt-1 text-2xl font-bold tracking-tight text-ink-900 sm:text-3xl">The AI landscape this fortnight</h2>
             <p className="mt-2 text-ink-600">
               What moved in the AI market — kept separate from our product rankings. Funding and launches are context, not proof of product quality.
             </p>
@@ -167,9 +167,9 @@ export default function HomePage() {
             ))}
           </div>
 
-          {/* Weekly takeaways */}
+          {/* Edition takeaways */}
           <div className="mt-6 rounded-2xl border border-brand-200 bg-brand-50/50 p-6">
-            <p className="text-[11px] font-semibold uppercase tracking-wide text-brand-700">This week&apos;s takeaways</p>
+            <p className="text-[11px] font-semibold uppercase tracking-wide text-brand-700">This edition&apos;s takeaways</p>
             <ul className="mt-3 grid gap-2 sm:grid-cols-2">
               {takeaways.map((t) => (
                 <li key={t} className="flex gap-2 text-sm text-ink-700">
@@ -204,7 +204,7 @@ export default function HomePage() {
                   <h3 className="text-sm font-bold text-ink-900 group-hover:text-brand-700">{c.name}</h3>
                   <p className="mt-0.5 line-clamp-2 text-xs leading-relaxed text-ink-500">{c.coverage}</p>
                   <p className="mt-1.5 text-xs text-ink-500">
-                    {product ? <>This week: <span className="font-medium text-ink-700">{product.name}</span></> : "No verified pick this week"}
+                    {product ? <>This edition: <span className="font-medium text-ink-700">{product.name}</span></> : "No verified pick this edition"}
                   </p>
                 </div>
               </Link>
@@ -228,19 +228,19 @@ export default function HomePage() {
           </div>
           <div className="mt-6 flex flex-col items-start justify-between gap-3 rounded-xl bg-ink-900 px-6 py-4 sm:flex-row sm:items-center">
             <p className="text-sm text-ink-300">
-              Paid listings are labelled <span className="font-semibold text-white">Sponsored</span> and never influence our independent weekly rankings.
+              Paid listings are labelled <span className="font-semibold text-white">Sponsored</span> and never influence our independent editorial rankings.
             </p>
             <Link href="/methodology" className="shrink-0 text-sm font-semibold text-white hover:text-ink-200">Explore our research methodology →</Link>
           </div>
         </div>
       </section>
 
-      {/* Previous weekly editions */}
+      {/* Previous editions */}
       <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
-        <h2 className="text-2xl font-bold tracking-tight text-ink-900 sm:text-3xl">Previous weekly editions</h2>
+        <h2 className="text-2xl font-bold tracking-tight text-ink-900 sm:text-3xl">Previous editions</h2>
         <p className="mt-2 text-ink-600">Every edition is preserved and never overwritten.</p>
         <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          <Link href={`/weekly/${EDITION.slug}`} className="group rounded-2xl border border-ink-200/80 bg-white p-5 transition-all hover:border-brand-300 hover:shadow-sm">
+          <Link href={`/editions/${EDITION.slug}`} className="group rounded-2xl border border-ink-200/80 bg-white p-5 transition-all hover:border-brand-300 hover:shadow-sm">
             <div className="flex items-center gap-2">
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
               <span className="text-[11px] font-semibold uppercase tracking-wide text-emerald-700">Current edition</span>
@@ -274,7 +274,7 @@ export default function HomePage() {
               <Link href="/submit-tool" className="rounded-lg bg-white px-6 py-3 text-center text-sm font-semibold text-ink-900 transition-colors hover:bg-ink-100">
                 Submit your listing
               </Link>
-              <p className="text-center text-xs text-ink-400">A sponsored listing is an opportunity to be seen — not an editorial selection, and never a weekly winner.</p>
+              <p className="text-center text-xs text-ink-400">A sponsored listing is an opportunity to be seen — not an editorial selection, and never an editorial winner.</p>
             </div>
           </div>
         </div>
@@ -285,12 +285,12 @@ export default function HomePage() {
         <div className="mx-auto max-w-2xl px-4 py-16 text-center sm:px-6">
           <h2 className="text-2xl font-bold tracking-tight text-ink-900 sm:text-3xl">Stay ahead of the AI curve.</h2>
           <p className="mt-3 text-ink-600">
-            One concise weekly briefing covering the AI products, launches and developments worth your attention.
+            One concise fortnightly briefing covering the AI products, launches and developments worth your attention.
           </p>
           <div className="mt-6">
-            <NewsletterForm cta="Get the weekly intelligence" />
+            <NewsletterForm cta="Get the fortnightly briefing" />
           </div>
-          <p className="mt-3 text-xs text-ink-400">Free. One email a week. Unsubscribe anytime.</p>
+          <p className="mt-3 text-xs text-ink-400">Free. One email every two weeks. Unsubscribe anytime.</p>
 
           <div className="mx-auto mt-8 max-w-md rounded-xl border border-ink-200/80 bg-ink-50 p-4 text-left">
             <p className="text-[11px] font-semibold uppercase tracking-wide text-ink-400">Latest edition preview</p>

@@ -1,5 +1,5 @@
 /**
- * Structured local JSON storage (PRD §8). Every weekly run preserves raw
+ * Structured local JSON storage (PRD §8). Every edition run preserves raw
  * responses, enriched records, evidence and final decisions so runs are
  * reproducible. Never writes API secrets.
  *
@@ -19,19 +19,19 @@ function baseDir(): string {
 
 export function saveJson(
   bucket: "raw" | "enriched" | "verified" | "winners",
-  isoWeek: string,
+  periodKey: string,
   name: string,
   data: unknown,
 ): string | null {
   try {
     const dir =
       bucket === "raw"
-        ? join(baseDir(), "raw", isoWeek)
+        ? join(baseDir(), "raw", periodKey)
         : join(baseDir(), bucket);
     mkdirSync(dir, { recursive: true });
     const file = join(
       dir,
-      bucket === "raw" ? `${name}.json` : `${isoWeek}.json`,
+      bucket === "raw" ? `${name}.json` : `${periodKey}.json`,
     );
     writeFileSync(file, JSON.stringify(data, null, 2), "utf8");
     return file;
