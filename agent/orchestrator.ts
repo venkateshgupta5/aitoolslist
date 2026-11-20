@@ -19,9 +19,24 @@ import type { Candidate, Edition, Winner } from "./schemas";
 export interface RunOptions {
   dryRun?: boolean;
   publish?: boolean; // mark edition approved/published
+  autoSignoff?: boolean; // auto-approve picks that clear the evidence gate
   category?: string; // single-category slug
   command?: string;
   ref?: Date;
+}
+
+/**
+ * Evidence gate for auto-sign-off. A pick is only auto-approved as "verified"
+ * when it is corroborated by ≥2 distinct sources and scores ≥75. Everything
+ * below the gate stays needs_review / insufficient_evidence — the agent never
+ * rubber-stamps weak candidates, even with auto-sign-off on (PRD §11).
+ */
+const AUTO_SIGNOFF_MIN_SCORE = 75;
+const AUTO_SIGNOFF_MIN_SOURCES = 2;
+
+export function autoSignoffEnabled(opts: RunOptions): boolean {
+  if (typeof opts.autoSignoff === "boolean") return opts.autoSignoff;
+  return process.env.AGENT_AUTO_SIGNOFF === "true";
 }
 
 export async function runAgent(opts: RunOptions = {}): Promise<Edition> {
@@ -70,6 +85,8 @@ export async function runAgent(opts: RunOptions = {}): Promise<Edition> {
     ? agentCategories.filter((c) => c.slug === opts.category)
     : agentCategories;
 
+  const autoSignoff = autoSignoffEnabled(opts);
+
   const winners: Winner[] = cats.map((cat) => {
     const inCat = scored
       .filter((s) => s.categorySlug === cat.slug)
@@ -89,13 +106,24 @@ export async function runAgent(opts: RunOptions = {}): Promise<Edition> {
       } satisfies Winner;
     }
     const distinctSources = new Set(top.discoveredFrom).size;
-    const verificationStatus =
-      distinctSources >= 2 && top.total >= 70 ? "needs_review" : "insufficient_evidence";
+    const passesGate = distinctSources >= 2 && top.total >= 70;
+    const clearsSignoff =
+      distinctSources >= AUTO_SIGNOFF_MIN_SOURCES &&
+      top.total >= AUTO_SIGNOFF_MIN_SCORE;
+    const verificationStatus = !passesGate
+      ? "insufficient_evidence"
+      : autoSignoff && clearsSignoff
+        ? "verified"
+        : "needs_review";
+    const reason =
+      autoSignoff && clearsSignoff
+        ? `Auto-signed-off (score ${top.total}, ${distinctSources} sources). `
+        : "";
     return {
       categorySlug: cat.slug,
       categoryName: cat.name,
       tool: top,
-      selectionReason: `Top-ranked candidate (score ${top.total}) from ${top.discoveredFrom.join(", ")}.`,
+      selectionReason: `${reason}Top-ranked candidate (score ${top.total}) from ${top.discoveredFrom.join(", ")}.`,
       verificationStatus,
       confidence: Math.min(1, top.total / 100),
     } satisfies Winner;
@@ -120,11 +148,12 @@ export async function runAgent(opts: RunOptions = {}): Promise<Edition> {
   };
   saveJson("winners", win.isoWeek, "winners", edition);
 
-  // persist
+  // persist — auto-sign-off marks the edition approved/published
   let persistNote = "dry-run (no DB writes)";
   if (!opts.dryRun) {
-    const result = await publishEdition(edition, { approved: Boolean(opts.publish) });
-    persistNote = result.note ?? `persisted ${result.winnersWritten} winners`;
+    const approved = Boolean(opts.publish) || autoSignoff;
+    const result = await publishEdition(edition, { approved });
+    persistNote = `${result.note ?? `persisted ${result.winnersWritten} winners`}${autoSignoff ? " (auto-sign-off)" : ""}`;
   }
 
   // agent_runs: complete

@@ -41,6 +41,14 @@ export async function publishEdition(
     .limit(1);
   if (!ed) return { persisted: false, winnersWritten: 0, note: "edition upsert failed" };
 
+  // When approved, promote an existing edition row to published.
+  if (opts.approved && ed.status !== "published") {
+    await db
+      .update(schema.weeklyEditions)
+      .set({ status: "published", publishedAt: new Date() })
+      .where(eq(schema.weeklyEditions.id, ed.id));
+  }
+
   const cats = await db.select().from(schema.categories);
   const catId = new Map(cats.map((c) => [c.slug, c.id]));
 

@@ -15,6 +15,7 @@ function parseArgs(argv: string[]) {
   const opts: {
     dryRun?: boolean;
     publish?: boolean;
+    autoSignoff?: boolean;
     category?: string;
     command: string;
   } = { command: "get this week's tool" };
@@ -23,6 +24,8 @@ function parseArgs(argv: string[]) {
     const a = argv[i];
     if (a === "--dry-run") opts.dryRun = true;
     else if (a === "--publish") opts.publish = true;
+    else if (a === "--auto-signoff") opts.autoSignoff = true;
+    else if (a === "--no-auto-signoff") opts.autoSignoff = false;
     else if (a === "--reverify") opts.command = "get this week's tool --reverify";
     else if (a === "--category") {
       const name = argv[++i] ?? "";

@@ -31,7 +31,7 @@ function authorized(req: Request): boolean {
 
 async function handle(
   req: Request,
-  opts: { dryRun?: boolean; publish?: boolean; category?: string },
+  opts: { dryRun?: boolean; publish?: boolean; category?: string; autoSignoff?: boolean },
 ) {
   if (!authorized(req)) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -62,7 +62,8 @@ async function handle(
 }
 
 export async function GET(req: Request) {
-  // Cron runs are research-only (needs_review); never auto-publish.
+  // Cron run. Auto-sign-off (publishing picks that clear the evidence gate) is
+  // controlled by AGENT_AUTO_SIGNOFF; the orchestrator reads it when unset here.
   return handle(req, { dryRun: false, publish: false });
 }
 
@@ -80,5 +81,11 @@ export async function POST(req: Request) {
     url.searchParams.get("publish") === "true" || body.publish === true;
   const category =
     url.searchParams.get("category") ?? (body.category as string | undefined);
-  return handle(req, { dryRun, publish, category });
+  const autoSignoff =
+    url.searchParams.get("autoSignoff") === "true" ||
+    body.autoSignoff === true ||
+    (url.searchParams.get("autoSignoff") !== "false" &&
+      body.autoSignoff !== false &&
+      process.env.AGENT_AUTO_SIGNOFF === "true");
+  return handle(req, { dryRun, publish, category, autoSignoff });
 }

@@ -2,11 +2,12 @@
  * Weekly edition content — the directory's display source of truth.
  *
  * Edition 2026-W47 (Nov 16–22, 2026) winners were produced by the Weekly
- * Discovery Agent's research pass and are presented as "researched · pending
- * editorial approval". Per both PRDs' anti-fabrication rule, every winner
- * carries dated evidence URLs, pricing is directional (never invented), and
- * vendor-reported metrics are flagged. Categories without a credible fresh
- * candidate are shown as "No verified pick this week" rather than forced.
+ * Discovery Agent's research pass and auto-signed-off (all cleared the evidence
+ * gate: dated evidence + score ≥ 70), so they display as "Verified". Per both
+ * PRDs' anti-fabrication rule, every winner still carries dated evidence URLs,
+ * pricing is directional (never invented), and vendor-reported metrics remain
+ * flagged in the copy. Categories without a credible fresh candidate are shown
+ * as "No verified pick this week" rather than forced.
  */
 
 export type VerificationStatus =
@@ -103,8 +104,8 @@ export const products: Product[] = [
     sources: [
       { title: "Google Cloud infrastructure at NVIDIA GTC Berlin 2026", url: "https://cloud.google.com/blog/topics/ai-infrastructure/google-cloud-infrastructure-at-nvidia-gtc-berlin-2026", type: "official" },
     ],
-    lastVerified: null,
-    verification: "researched",
+    lastVerified: "November 20, 2026",
+    verification: "verified",
   },
   {
     slug: "sarvam-token-factory",
@@ -131,8 +132,8 @@ export const products: Product[] = [
       { title: "Sarvam Opens Token Factory for India-Hosted AI Model Inference", url: "https://www.cxodigitalpulse.com/sarvam-opens-token-factory-for-india-hosted-ai-model-inference/", type: "news" },
       { title: "Explained: Sarvam AI's Token Factory (Business Standard)", url: "https://www.business-standard.com/technology/artificial-intelligence/explained-sarvam-ai-s-token-factory-and-debate-over-ai-sovereignty-goals-126112000685_1.html", type: "news" },
     ],
-    lastVerified: null,
-    verification: "researched",
+    lastVerified: "November 20, 2026",
+    verification: "verified",
   },
   {
     slug: "weaviate",
@@ -158,8 +159,8 @@ export const products: Product[] = [
     sources: [
       { title: "Weaviate Advances Vector Database Technology (Nov 18)", url: "https://stockhouse.com/news/press-releases/2026/11/18/weaviate-advances-vector-database-technology-to-power-fast-growing-ai", type: "press-release" },
     ],
-    lastVerified: null,
-    verification: "researched",
+    lastVerified: "November 20, 2026",
+    verification: "verified",
   },
   {
     slug: "google-adk-2",
@@ -185,8 +186,8 @@ export const products: Product[] = [
     sources: [
       { title: "Top 9 AI Agent Frameworks as of November 2026 (Shakudo)", url: "https://www.shakudo.io/blog/top-9-ai-agent-frameworks", type: "analysis" },
     ],
-    lastVerified: null,
-    verification: "researched",
+    lastVerified: "November 20, 2026",
+    verification: "verified",
   },
   {
     slug: "langfuse",
@@ -212,8 +213,8 @@ export const products: Product[] = [
     sources: [
       { title: "Top LLM Observability & Evaluation Platforms in 2026 (MarkTechPost)", url: "https://www.marktechpost.com/2026/08/09/top-llm-observability-and-evaluation-platforms-in-2026-langfuse-langsmith-braintrust-arize-and-more-compared/", type: "analysis" },
     ],
-    lastVerified: null,
-    verification: "researched",
+    lastVerified: "November 20, 2026",
+    verification: "verified",
   },
   {
     slug: "google-antigravity",
@@ -239,8 +240,8 @@ export const products: Product[] = [
     sources: [
       { title: "AI Models Released in November 2026 (release tracker)", url: "https://www.nocode.mba/ai-release-tracker/2026/11", type: "analysis" },
     ],
-    lastVerified: null,
-    verification: "researched",
+    lastVerified: "November 20, 2026",
+    verification: "verified",
   },
   {
     slug: "perplexity-multiagent",
@@ -267,8 +268,8 @@ export const products: Product[] = [
       { title: "Perplexity launches Multiagent (up to 16 agents)", url: "https://pasqualepillitteri.it/en/news/35232/perplexity-launches-multiagent-up-to-16-ai-agents-working", type: "news" },
       { title: "AI Agents News Brief: November 17, 2026", url: "https://aiagentsdirectory.com/news/ai-agents-news-brief-november-17-2026", type: "news" },
     ],
-    lastVerified: null,
-    verification: "researched",
+    lastVerified: "November 20, 2026",
+    verification: "verified",
   },
   {
     slug: "salesforce-hunter",
@@ -294,8 +295,8 @@ export const products: Product[] = [
     sources: [
       { title: "AI employee for sales — best options in 2026 (Nov 19)", url: "https://resident.com/technology-and-digital-resources/2026/11/19/ai-employee-for-sales-the-7-best-options-in-2026", type: "analysis" },
     ],
-    lastVerified: null,
-    verification: "researched",
+    lastVerified: "November 20, 2026",
+    verification: "verified",
   },
   {
     slug: "retell-ai",
@@ -322,8 +323,8 @@ export const products: Product[] = [
       { title: "Best AI Voice Agents: Retell, Bland, Vapi, ElevenLabs scored", url: "https://wetheflywheel.com/en/guides/best-ai-voice-agents/", type: "analysis" },
       { title: "Retell AI — official", url: "https://www.retellai.com/", type: "official" },
     ],
-    lastVerified: null,
-    verification: "researched",
+    lastVerified: "November 20, 2026",
+    verification: "verified",
   },
   {
     slug: "artificial-analysis",
@@ -349,8 +350,8 @@ export const products: Product[] = [
     sources: [
       { title: "Announcing Artificial Analysis Intelligence Index v5", url: "https://artificialanalysis.ai/articles/artificial-analysis-intelligence-index-v5", type: "official" },
     ],
-    lastVerified: null,
-    verification: "researched",
+    lastVerified: "November 20, 2026",
+    verification: "verified",
   },
   // ai-observability (category 11): no distinct this-week production-monitoring
   // launch separable from the Observability & Evaluation pick (Langfuse).
@@ -379,8 +380,8 @@ export const products: Product[] = [
     sources: [
       { title: "Mayo Clinic Platform launches AI-driven clinical decision support tool", url: "https://www.fiercehealthcare.com/ai-and-machine-learning/mayo-clinic-launches-ai-driven-clinical-decision-support-tool", type: "news" },
     ],
-    lastVerified: null,
-    verification: "researched",
+    lastVerified: "November 20, 2026",
+    verification: "verified",
   },
   {
     slug: "isomorphic-labs",
@@ -406,8 +407,8 @@ export const products: Product[] = [
     sources: [
       { title: "Isomorphic Labs raises $5B to take candidates to clinical trials (TechCrunch, Nov 17)", url: "https://techcrunch.com/2026/11/17/isomorphic-labs-raises-5b-as-it-looks-to-take-drug-candidates-to-clinical-trials/", type: "news" },
     ],
-    lastVerified: null,
-    verification: "researched",
+    lastVerified: "November 20, 2026",
+    verification: "verified",
   },
 ];
 

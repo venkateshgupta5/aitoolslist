@@ -33,7 +33,10 @@ const editorialScores: Record<
   "isomorphic-labs": { traction: 88, momentum: 90, innovation: 90, community: 68, usefulness: 70, credibility: 85 },
 };
 
-function buildWinners(): Winner[] {
+// Auto-sign-off gate: approved picks scoring >= this become "verified".
+const SIGNOFF_MIN_SCORE = 70;
+
+function buildWinners(approved: boolean): Winner[] {
   return categories
     .sort((a, b) => a.order - b.order)
     .map((cat) => {
@@ -72,12 +75,14 @@ function buildWinners(): Winner[] {
         total,
         decision: total >= 85 ? "strong" : total >= 70 ? "eligible" : "needs_research",
       };
+      const verificationStatus =
+        approved && total >= SIGNOFF_MIN_SCORE ? "verified" : "needs_review";
       return {
         categorySlug: cat.slug,
         categoryName: cat.name,
         tool,
         selectionReason: p.selectionRationale,
-        verificationStatus: "needs_review",
+        verificationStatus,
         confidence: Math.min(1, total / 100),
       } satisfies Winner;
     });
@@ -92,7 +97,7 @@ async function main() {
     weekEnd: EDITION.weekEnd,
     generatedAt: new Date().toISOString(),
     command: "get this week's tool (research-assisted)",
-    winners: buildWinners(),
+    winners: buildWinners(approve),
     sourceStatus: {
       github: "ok", hackernews: "ok", techcrunch: "ok", reddit: "error",
       producthunt: "skipped", peerlist: "skipped", betalist: "skipped",
