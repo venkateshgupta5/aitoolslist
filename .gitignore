@@ -33,3 +33,4 @@ apikeys.txt
 
 # typescript
 *.tsbuildinfo
+.env*
