@@ -12,19 +12,38 @@ function initials(name: string) {
     .toUpperCase();
 }
 
-export function PickCard({ pick }: { pick: Pick }) {
+export function PickCard({
+  pick,
+  highlightLabel,
+}: {
+  pick: Pick;
+  highlightLabel?: string;
+}) {
   const { category, product } = pick;
   const whyItMatters = product?.whyItMatters ?? product?.selectionRationale;
 
   return (
-    <article className="group flex h-full flex-col rounded-2xl border border-ink-200/80 bg-white p-5 card-ring transition-all hover:border-brand-300 hover:shadow-md">
-      {/* 1. Category + identity */}
-      <Link
-        href={`/categories/${category.slug}`}
-        className="text-[11px] font-semibold uppercase tracking-wide text-brand-600 hover:text-brand-700"
-      >
-        {category.name}
-      </Link>
+    <article
+      className={`group flex h-full flex-col rounded-2xl border bg-white p-5 card-ring transition-all hover:shadow-md ${
+        highlightLabel
+          ? "border-brand-300 ring-2 ring-brand-500/15"
+          : "border-ink-200/80 hover:border-brand-300"
+      }`}
+    >
+      {/* 1. Category / highlight + identity */}
+      {highlightLabel ? (
+        <span className="mb-2 inline-flex w-fit items-center gap-1.5 rounded-full bg-brand-50 px-2.5 py-0.5 text-[11px] font-semibold text-brand-700 ring-1 ring-inset ring-brand-600/20">
+          <span className="h-1.5 w-1.5 rounded-full bg-brand-500" />
+          {highlightLabel}
+        </span>
+      ) : (
+        <Link
+          href={`/categories/${category.slug}`}
+          className="text-[11px] font-semibold uppercase tracking-wide text-brand-600 hover:text-brand-700"
+        >
+          {category.name}
+        </Link>
+      )}
 
       {product ? (
         <>
