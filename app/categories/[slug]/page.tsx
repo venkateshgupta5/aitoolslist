@@ -9,7 +9,7 @@ import {
   EDITION,
 } from "@/lib/content";
 import { PickCard } from "@/components/pick-card";
-import { VerificationBadge } from "@/components/verification-badge";
+import { ArchivePickCard } from "@/components/archive-pick-card";
 import { absoluteUrl } from "@/lib/site";
 
 export function generateStaticParams() {
@@ -114,55 +114,20 @@ export default async function CategoryPage({
         {archive.length > 0 ? (
           <>
           <p className="mt-1 text-sm text-ink-500">
-            Earlier picks in this category from our backfilled archive (sourced
-            from Hacker News and GitHub, checked against each product&apos;s
-            official site).
+            Earlier picks in this category from our backfilled archive — sourced
+            from credible outlets (Hacker News, GitHub, TechCrunch and more) and
+            checked against each product&apos;s official site.
           </p>
-          <ul className="mt-4 divide-y divide-ink-100 overflow-hidden rounded-2xl border border-ink-200/80 bg-white">
+          <div className="mt-4 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {archive.map(({ editionSlug, editionLabel, pick }) => (
-              <li key={`${editionSlug}-${pick.name}`} className="p-5">
-                <div className="flex flex-wrap items-start justify-between gap-2">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <a
-                      href={pick.officialUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-[15px] font-bold tracking-tight text-ink-900 hover:text-brand-700"
-                    >
-                      {pick.name}
-                    </a>
-                    <VerificationBadge status={pick.verification} />
-                  </div>
-                  <Link
-                    href={`/editions/${editionSlug}`}
-                    className="shrink-0 text-sm font-medium text-brand-600 hover:text-brand-700"
-                  >
-                    {editionLabel} →
-                  </Link>
-                </div>
-                <p className="mt-1 text-sm font-medium text-ink-600">
-                  {pick.tagline}
-                </p>
-                <p className="mt-2 text-sm leading-relaxed text-ink-600">
-                  {pick.overview ?? pick.shortDescription}
-                </p>
-                <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] text-ink-400">
-                  <span>Evidence dated {pick.launchDate}</span>
-                  {pick.sources.map((s) => (
-                    <a
-                      key={s.url}
-                      href={s.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="font-medium text-brand-600 hover:text-brand-700"
-                    >
-                      {s.type} ↗
-                    </a>
-                  ))}
-                </div>
-              </li>
+              <ArchivePickCard
+                key={`${editionSlug}-${pick.name}`}
+                slot={{ category, pick }}
+                editionLabel={editionLabel}
+                editionHref={`/editions/${editionSlug}`}
+              />
             ))}
-          </ul>
+          </div>
           </>
         ) : (
           <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-500">

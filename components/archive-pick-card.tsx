@@ -17,17 +17,34 @@ function initials(name: string) {
  * archive picks have no full /tools profile — they link out to the product's
  * official site/repo and show the dated source evidence they were drawn from.
  */
-export function ArchivePickCard({ slot }: { slot: ArchivePickSlot }) {
+export function ArchivePickCard({
+  slot,
+  editionLabel,
+  editionHref,
+}: {
+  slot: ArchivePickSlot;
+  editionLabel?: string;
+  editionHref?: string;
+}) {
   const { category, pick } = slot;
 
   return (
     <article className="group flex h-full flex-col rounded-2xl border border-ink-200/80 bg-white p-5 card-ring transition-all hover:border-brand-300 hover:shadow-md">
-      <Link
-        href={`/categories/${category.slug}`}
-        className="text-[11px] font-semibold uppercase tracking-wide text-brand-600 hover:text-brand-700"
-      >
-        {category.name}
-      </Link>
+      {editionHref && editionLabel ? (
+        <Link
+          href={editionHref}
+          className="text-[11px] font-semibold uppercase tracking-wide text-brand-600 hover:text-brand-700"
+        >
+          {editionLabel} edition
+        </Link>
+      ) : (
+        <Link
+          href={`/categories/${category.slug}`}
+          className="text-[11px] font-semibold uppercase tracking-wide text-brand-600 hover:text-brand-700"
+        >
+          {category.name}
+        </Link>
+      )}
 
       {pick ? (
         <>
