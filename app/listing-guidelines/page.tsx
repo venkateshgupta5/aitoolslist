@@ -13,15 +13,15 @@ export default function ListingGuidelinesPage() {
     <PolicyPage
       title="Listing guidelines"
       updated="November 20, 2026"
-      intro="Every submission is reviewed by a human within 3 business days. Here's exactly what we look for — so you know whether your product is a fit before you apply."
+      intro="Every submission is reviewed by a human within 3 business days. Here's exactly what we look for, so you know whether your product is a fit before you apply."
     >
       <PolicySection heading="What we look for">
         <ul className="list-disc space-y-1.5 pl-5">
           <li><span className="font-semibold">It&apos;s a real, working AI product</span> with a live official website.</li>
-          <li><span className="font-semibold">Clear positioning</span> — we can tell what it does and who it&apos;s for.</li>
-          <li><span className="font-semibold">Accurate information</span> — claims match what the product actually does.</li>
+          <li><span className="font-semibold">Clear positioning</span>, we can tell what it does and who it&apos;s for.</li>
+          <li><span className="font-semibold">Accurate information</span>, claims match what the product actually does.</li>
           <li><span className="font-semibold">A genuine category fit</span> among our 14 categories.</li>
-          <li><span className="font-semibold">Completeness</span> — enough detail to build a useful profile.</li>
+          <li><span className="font-semibold">Completeness</span>, enough detail to build a useful profile.</li>
         </ul>
       </PolicySection>
       <PolicySection heading="What gets declined">
@@ -36,7 +36,7 @@ export default function ListingGuidelinesPage() {
       <PolicySection heading="Edits & updates">
         <p>
           One structured edit round is included, and minor updates (description
-          tweaks, URL changes) are free anytime — just email us. We may also edit
+          tweaks, URL changes) are free anytime, just email us. We may also edit
           for accuracy, clarity and policy compliance.
         </p>
       </PolicySection>

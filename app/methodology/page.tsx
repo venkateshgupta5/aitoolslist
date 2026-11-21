@@ -4,7 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Research methodology",
   description:
-    "How aitoolslist.ai discovers, researches, scores, fact-checks and selects one standout AI product per category each edition — transparently and independently.",
+    "How aitoolslist.ai discovers, researches, scores, fact-checks and selects one standout AI product per category each edition, transparently and independently.",
   alternates: { canonical: "/methodology" },
 };
 
@@ -46,7 +46,7 @@ export default function MethodologyPage() {
         Our research methodology
       </h1>
       <p className="mt-4 text-lg leading-relaxed text-ink-600">
-        Every edition features exactly one standout tool per category —
+        Every edition features exactly one standout tool per category, 
         discovered, researched, scored, fact-checked and approved before
         publication. Here is exactly how that works, and where our confidence
         ends.
@@ -71,7 +71,7 @@ export default function MethodologyPage() {
         <h2 className="font-display text-xl font-semibold tracking-tight text-ink-900">2. Scoring</h2>
         <p className="mt-3 text-[15px] leading-relaxed text-ink-700">
           Eligible candidates are scored out of 100 on a consistent, auditable
-          methodology. The objective is <strong>trending and useful</strong> —
+          methodology. The objective is <strong>trending and useful</strong>, 
           funding is a supporting signal, never the ranking objective.
         </p>
         <div className="mt-4 overflow-hidden rounded-xl border border-ink-200/80">
@@ -99,7 +99,7 @@ export default function MethodologyPage() {
           <li className="flex gap-2"><span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-500" />At least one primary source for product capabilities.</li>
           <li className="flex gap-2"><span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-500" />Official pricing source required before showing exact pricing.</li>
           <li className="flex gap-2"><span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-500" />Vendor-reported metrics are labelled as such, not presented as independent fact.</li>
-          <li className="flex gap-2"><span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-500" />Unknown information appears as &ldquo;Not verified&rdquo; — we never invent it.</li>
+          <li className="flex gap-2"><span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-500" />Unknown information appears as &ldquo;Not verified&rdquo;, we never invent it.</li>
         </ul>
       </section>
 
@@ -109,7 +109,7 @@ export default function MethodologyPage() {
           A <span className="font-semibold text-emerald-700">Verified</span> badge
           means a pick has been editorially approved with dated supporting
           evidence attached. It does <em>not</em> mean every claim has been
-          independently audited — each product page shows a claim-level
+          independently audited, each product page shows a claim-level
           verification table (Confirmed / Cross-checked / Unverified /
           Vendor-reported) so our confidence is explicit, claim by claim.
         </p>
@@ -118,7 +118,7 @@ export default function MethodologyPage() {
       <section className="mt-10">
         <h2 className="font-display text-xl font-semibold tracking-tight text-ink-900">5. Publishing cadence</h2>
         <p className="mt-3 text-[15px] leading-relaxed text-ink-700">
-          We publish <strong>two editions a month</strong> — one on the 1st
+          We publish <strong>two editions a month</strong>, one on the 1st
           (covering the 1st–15th) and one on the 16th (covering the 16th to the
           end of the month). Each edition runs through the same pipeline:
         </p>
@@ -131,7 +131,7 @@ export default function MethodologyPage() {
           ))}
         </ol>
         <p className="mt-3 text-sm text-ink-500">
-          Each edition has a fixed date range and is never overwritten —
+          Each edition has a fixed date range and is never overwritten, 
           historical editions stay accessible.
         </p>
       </section>

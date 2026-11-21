@@ -279,7 +279,7 @@ export default async function ProductPage({
 
           {/* Benchmarks */}
           {hasBenchmarks && (
-            <Section id="benchmarks" title="Performance & benchmarks" eyebrow="Reported figures — not LLM-generated">
+            <Section id="benchmarks" title="Performance & benchmarks" eyebrow="Reported figures, not LLM-generated">
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
                   <tbody>
@@ -332,7 +332,7 @@ export default async function ProductPage({
             )}
           </Section>
 
-          {/* Strengths & limitations — editorial analysis */}
+          {/* Strengths & limitations, editorial analysis */}
           {hasAnalysis && (
             <Section id="analysis" title="Strengths & limitations" eyebrow="Independent editorial analysis">
               <div className="grid gap-4 sm:grid-cols-2">

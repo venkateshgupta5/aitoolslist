@@ -3,9 +3,9 @@ import Link from "next/link";
 import { allEditions } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "All editions — aitoolslist.ai",
+  title: "All editions, aitoolslist.ai",
   description:
-    "Every fortnightly edition of aitoolslist.ai — the current researched edition plus the backfilled archive of standout emerging AI tools, August 2026 onward.",
+    "Every fortnightly edition of aitoolslist.ai, the current researched edition plus the backfilled archive of standout emerging AI tools, August 2026 onward.",
   alternates: { canonical: "/editions" },
 };
 
@@ -26,7 +26,7 @@ export default function EditionsIndexPage() {
         All editions
       </h1>
       <p className="mt-3 max-w-2xl text-ink-600">
-        We publish two editions a month — the 1st (1st–15th) and the 16th
+        We publish two editions a month, the 1st (1st–15th) and the 16th
         (16th–end of month). The latest edition is fully researched and
         fact-checked; earlier editions are a backfilled archive, sourced from
         Hacker News and GitHub and checked against each product&apos;s official

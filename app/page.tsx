@@ -17,7 +17,7 @@ import { NewsletterForm } from "@/components/forms/newsletter-form";
 const pillars = [
   {
     title: "Research-led discovery",
-    body: "Products are identified through multiple credible sources and primary announcements — not a single feed.",
+    body: "Products are identified through multiple credible sources and primary announcements, not a single feed.",
   },
   {
     title: "Evidence-backed verification",
@@ -25,16 +25,16 @@ const pillars = [
   },
   {
     title: "Independent evaluation",
-    body: "Selections follow a transparent scoring methodology — never paid placement.",
+    body: "Selections follow a transparent scoring methodology, never paid placement.",
   },
 ];
 
 const listingIncludes = [
-  "One-time $299 — no subscription, no renewals",
+  "One-time $299, no subscription, no renewals",
   "A dedicated, permanent product profile",
   "Editorial review within 3 business days",
   "You only pay after your product is approved",
-  "Clearly labelled “Sponsored” — never an editorial winner",
+  "Clearly labelled “Sponsored”, never an editorial winner",
 ];
 
 function initials(name: string) {
@@ -63,7 +63,7 @@ export default function HomePage() {
         <div className="glow-orb pointer-events-none absolute right-[-6rem] top-24 h-80 w-80 bg-violet-500/25" aria-hidden />
 
         <div className="relative mx-auto grid max-w-6xl items-center gap-14 px-4 py-20 sm:px-6 lg:grid-cols-[1.08fr_0.92fr] lg:py-28">
-          {/* Left — message */}
+          {/* Left, message */}
           <div>
             <Link
               href={`/editions/${EDITION.slug}`}
@@ -82,7 +82,7 @@ export default function HomePage() {
             </h1>
 
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/70">
-              An independent, fortnightly intelligence publication —{" "}
+              An independent, fortnightly intelligence publication, {" "}
               <span className="text-white">researched, fact-checked and ranked</span>{" "}
               across {summary.evaluated} categories. Not another unfiltered directory.
             </p>
@@ -112,7 +112,7 @@ export default function HomePage() {
             </dl>
           </div>
 
-          {/* Right — data-driven edition card visual */}
+          {/* Right, data-driven edition card visual */}
           <div className="relative">
             <div className="glow-orb pointer-events-none absolute inset-6 bg-brand-500/20" aria-hidden />
             <div className="glass relative rounded-3xl p-5 shadow-2xl sm:p-6">
@@ -212,7 +212,7 @@ export default function HomePage() {
               The AI landscape this fortnight
             </h2>
             <p className="mt-2 text-ink-600">
-              What moved in the AI market — kept separate from our product rankings. Funding and launches are context, not proof of product quality.
+              What moved in the AI market, kept separate from our product rankings. Funding and launches are context, not proof of product quality.
             </p>
           </div>
 
@@ -341,7 +341,7 @@ export default function HomePage() {
           <div className="relative grid items-center gap-8 md:grid-cols-[1.4fr_1fr]">
             <div>
               <span className="inline-flex items-center rounded-full bg-white/10 px-2.5 py-0.5 text-xs font-semibold text-white">Sponsored listing</span>
-              <h2 className="font-display mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl">List your app here — {siteConfig.listingPrice}</h2>
+              <h2 className="font-display mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl">List your app here, {siteConfig.listingPrice}</h2>
               <p className="mt-3 max-w-lg text-ink-300">Reach founders, developers and buyers evaluating AI products. Here&apos;s exactly what you get:</p>
               <ul className="mt-5 space-y-2 text-sm text-ink-200">
                 {listingIncludes.map((i) => (
@@ -355,7 +355,7 @@ export default function HomePage() {
               <Link href="/submit-tool" className="rounded-xl bg-brand-500 px-6 py-3.5 text-center text-sm font-semibold text-white shadow-lg shadow-brand-500/25 transition-colors hover:bg-brand-400">
                 Submit your listing
               </Link>
-              <p className="text-center text-xs text-ink-400">A sponsored listing is an opportunity to be seen — not an editorial selection, and never an editorial winner.</p>
+              <p className="text-center text-xs text-ink-400">A sponsored listing is an opportunity to be seen, not an editorial selection, and never an editorial winner.</p>
             </div>
           </div>
         </div>

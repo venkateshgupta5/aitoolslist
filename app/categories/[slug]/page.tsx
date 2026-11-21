@@ -25,7 +25,7 @@ export async function generateMetadata({
   const category = categoryBySlug(slug);
   if (!category) return {};
   return {
-    title: `${category.name} — standout AI tools`,
+    title: `${category.name}, standout AI tools`,
     description: `${category.coverage} Discover this edition's researched, fact-checked pick in ${category.name} on aitoolslist.ai.`,
     alternates: { canonical: `/categories/${slug}` },
     openGraph: {
@@ -100,7 +100,7 @@ export default async function CategoryPage({
         </h2>
         <p className="mt-1 max-w-2xl text-sm text-ink-500">
           The current edition&apos;s pick, highlighted, plus earlier picks in this
-          category from our backfilled archive — sourced from credible outlets
+          category from our backfilled archive, sourced from credible outlets
           (Hacker News, GitHub, TechCrunch and more) and checked against each
           product&apos;s official site.
         </p>
@@ -131,7 +131,7 @@ export default async function CategoryPage({
         <p className="mt-2 text-sm leading-relaxed text-ink-600">
           Candidates are scored on market traction, recent momentum, product
           innovation, community interest, practical usefulness and source
-          credibility. Only researched, fact-checked products are published — if
+          credibility. Only researched, fact-checked products are published, if
           no candidate meets the evidence threshold, we show no pick rather than
           forcing a weak selection.
         </p>

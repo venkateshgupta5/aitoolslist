@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const alt =
-  "aitoolslist.ai — AI product intelligence, every fortnight";
+  "aitoolslist.ai, AI product intelligence, every fortnight";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -75,7 +75,7 @@ export default function OpengraphImage() {
               maxWidth: "960px",
             }}
           >
-            Independent, fortnightly AI product intelligence — researched,
+            Independent, fortnightly AI product intelligence, researched,
             fact-checked and ranked across 14 categories.
           </div>
         </div>

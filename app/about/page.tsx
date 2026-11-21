@@ -4,7 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "aitoolslist.ai is a research-driven AI intelligence and discovery publication — not another unfiltered directory. Learn how we select and verify tools.",
+    "aitoolslist.ai is a research-driven AI intelligence and discovery publication, not another unfiltered directory. Learn how we select and verify tools.",
   alternates: { canonical: "/about" },
 };
 
@@ -14,7 +14,7 @@ const steps = [
   { day: "Research & score", activity: "Enrich and score against a consistent methodology" },
   { day: "Fact-check", activity: "Independently verify shortlisted products" },
   { day: "Approve", activity: "Editorial sign-off by a human reviewer" },
-  { day: "Publish", activity: "Release the edition — preserved permanently" },
+  { day: "Publish", activity: "Release the edition, preserved permanently" },
 ];
 
 export default function AboutPage() {
@@ -40,14 +40,14 @@ export default function AboutPage() {
       <div className="mt-10 space-y-6 text-[15px] leading-relaxed text-ink-700">
         <p>
           Every fortnight we feature exactly one standout tool in each of 13
-          categories — two editions a month, covering the 1st–15th and the
+          categories, two editions a month, covering the 1st–15th and the
           16th–end of month. Each selection is researched against credible
           sources, independently fact-checked, and approved by a human editor
           before it is published.
         </p>
         <p>
           We never invent pricing, capabilities, integrations or adoption
-          metrics. When something can&apos;t be verified, we say so plainly —{" "}
+          metrics. When something can&apos;t be verified, we say so plainly, {" "}
           <span className="font-medium text-ink-900">
             &ldquo;Not publicly disclosed&rdquo;
           </span>{" "}
@@ -55,7 +55,7 @@ export default function AboutPage() {
           <span className="font-medium text-ink-900">
             &ldquo;Not verified&rdquo;
           </span>{" "}
-          — rather than presenting guesses as facts. If no candidate in a
+, rather than presenting guesses as facts. If no candidate in a
           category meets our evidence threshold, we publish no pick rather than
           forcing a weak selection.
         </p>

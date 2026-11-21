@@ -18,10 +18,10 @@ export default function RefundPolicyPage() {
       <PolicySection heading="You pay nothing unless approved">
         <p>
           We review every submission before any payment is taken. If we decline
-          your product, you are charged nothing — there is no payment to refund.
+          your product, you are charged nothing, there is no payment to refund.
         </p>
       </PolicySection>
-      <PolicySection heading="After payment — our delivery guarantee">
+      <PolicySection heading="After payment, our delivery guarantee">
         <p>
           Once approved, you receive a secure payment link for the one-time $299.
           After payment we publish your listing within 2 business days.
@@ -37,7 +37,7 @@ export default function RefundPolicyPage() {
         <p>
           Because the listing is a delivered service (a permanent, published
           product page), payment is non-refundable once your listing is live and
-          matches what was agreed. You can still request edits — one structured
+          matches what was agreed. You can still request edits, one structured
           edit round is included and minor updates are free anytime.
         </p>
       </PolicySection>

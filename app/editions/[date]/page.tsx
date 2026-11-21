@@ -27,11 +27,11 @@ export async function generateMetadata({
   const { date } = await params;
   const isCurrent = date === EDITION.slug;
   const archive = getArchiveEdition(date);
-  const name = isCurrent ? EDITION.name : (archive?.name ?? `Edition — ${date}`);
+  const name = isCurrent ? EDITION.name : (archive?.name ?? `Edition, ${date}`);
   return {
     title: name,
     description: isCurrent
-      ? "The curated fortnightly edition: 14 categories evaluated, one standout AI tool per category where evidence supports it — independently researched and fact-checked."
+      ? "The curated fortnightly edition: 14 categories evaluated, one standout AI tool per category where evidence supports it, independently researched and fact-checked."
       : archive
         ? `Archive edition (${archive.label}): standout emerging AI tools, sourced from Hacker News and GitHub and fact-checked against their official sites.`
         : "Edition not found.",
@@ -141,7 +141,7 @@ function CurrentEdition() {
       <p className="mt-3 max-w-2xl text-ink-600">
         {summary.evaluated} categories evaluated · {summary.verified} verified
         picks published. Every pick is researched and fact-checked before
-        publication. We publish two editions a month — the 1st (1st–15th) and the
+        publication. We publish two editions a month, the 1st (1st–15th) and the
         16th (16th–end of month). Historical editions are preserved and never
         overwritten.
       </p>

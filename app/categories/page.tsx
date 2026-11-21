@@ -5,7 +5,7 @@ import { sortedCategories, productForCategory } from "@/lib/content";
 export const metadata: Metadata = {
   title: "All categories",
   description:
-    "Browse all 13 AI categories — from GPU cloud and inference to AI agents, sales, voice and healthcare. One standout tool per category, every edition.",
+    "Browse all 13 AI categories, from GPU cloud and inference to AI agents, sales, voice and healthcare. One standout tool per category, every edition.",
   alternates: { canonical: "/categories" },
 };
 

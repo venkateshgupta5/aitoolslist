@@ -1,5 +1,5 @@
 /**
- * Fortnightly edition content — the directory's display source of truth.
+ * Fortnightly edition content, the directory's display source of truth.
  *
  * Edition 2026-11-H2 (Nov 16–30, 2026) winners were produced by the fortnightly
  * Discovery Agent's research pass and auto-signed-off (all cleared the evidence
@@ -80,7 +80,7 @@ export interface Category {
 export const EDITION = {
   slug: "2026-11-16", // canonical edition id = period start date
   periodKey: "2026-11-H2",
-  name: "Edition — November 16–30, 2026",
+  name: "Edition, November 16–30, 2026",
   periodStart: "2026-11-16",
   periodEnd: "2026-11-30",
   label: "Nov 16–30, 2026",
@@ -104,7 +104,7 @@ export const categories: Category[] = [
 ];
 
 const pricingTBD =
-  "Not independently verified in this research pass — see the official pricing page for current plans.";
+  "Not independently verified in this research pass, see the official pricing page for current plans.";
 
 const baseProducts: Product[] = [
   {
@@ -172,7 +172,7 @@ const baseProducts: Product[] = [
     overview:
       "On November 18, 2026 Weaviate announced general availability of its Enterprise and Platform Editions (with v1.40), adding security, scaling and high-availability capabilities such as Shard Self-Recovery, Deduplicated Backups and Namespaces.",
     problemSolved:
-      "Production RAG and semantic search need a vector store with enterprise-grade HA, scaling and backup — not just a library.",
+      "Production RAG and semantic search need a vector store with enterprise-grade HA, scaling and backup, not just a library.",
     howItWorks:
       "Teams store embeddings in Weaviate and query by vector similarity; the new editions add managed platform and enterprise controls.",
     features: ["Shard Self-Recovery", "Deduplicated Backups", "Namespaces", "Enterprise HA & scaling (v1.40)"],
@@ -209,7 +209,7 @@ const baseProducts: Product[] = [
     integrations: ["A2A protocol", "MCP", "Google AI stack"],
     alternatives: ["LangGraph", "CrewAI", "Microsoft Agent Framework", "smolagents"],
     selectionRationale:
-      "The most significant orchestration advancement in current coverage; note this is a leading current release rather than a dated this-period launch — flagged for editorial verification.",
+      "The most significant orchestration advancement in current coverage; note this is a leading current release rather than a dated this-period launch, flagged for editorial verification.",
     sources: [
       { title: "Top 9 AI Agent Frameworks as of November 2026 (Shakudo)", url: "https://www.shakudo.io/blog/top-9-ai-agent-frameworks", type: "analysis" },
     ],
@@ -232,7 +232,7 @@ const baseProducts: Product[] = [
     features: ["End-to-end tracing", "Prompt management", "LLM-as-a-judge evaluators (updated Nov 16)", "Open source, self-hostable"],
     useCases: ["Debugging LLM apps", "Prompt iteration", "Quality monitoring & evals"],
     targetAudience: ["AI engineers", "Platform teams"],
-    pricing: "MIT-licensed core, free to self-host; hosted tiers available — see official pricing.",
+    pricing: "MIT-licensed core, free to self-host; hosted tiers available, see official pricing.",
     integrations: ["LangChain", "LlamaIndex", "OpenAI", "MCP"],
     alternatives: ["LangSmith", "Arize Phoenix", "Opik", "Braintrust"],
     selectionRationale:
@@ -306,7 +306,7 @@ const baseProducts: Product[] = [
     tagline: "Outbound AI sales agent in Slack, Teams & Claude",
     shortDescription: "Outbound AI sales agent that meets reps in chat.",
     overview:
-      "Hunter is Salesforce's outbound AI sales agent that meets reps where they work — Slack, Teams and Claude — with a full release planned for November 2026 after a pilot.",
+      "Hunter is Salesforce's outbound AI sales agent that meets reps where they work, Slack, Teams and Claude, with a full release planned for November 2026 after a pilot.",
     problemSolved:
       "Outbound prospecting is repetitive; an agent embedded in reps' chat tools can draft and drive outreach in context.",
     howItWorks:
@@ -320,7 +320,7 @@ const baseProducts: Product[] = [
     selectionRationale:
       "A notable AI-sales product release this month; rollout is still completing, so flagged for editorial verification.",
     sources: [
-      { title: "AI employee for sales — best options in 2026 (Nov 19)", url: "https://resident.com/technology-and-digital-resources/2026/11/19/ai-employee-for-sales-the-7-best-options-in-2026", type: "analysis" },
+      { title: "AI employee for sales, best options in 2026 (Nov 19)", url: "https://resident.com/technology-and-digital-resources/2026/11/19/ai-employee-for-sales-the-7-best-options-in-2026", type: "analysis" },
     ],
     lastVerified: "November 20, 2026",
     verification: "verified",
@@ -341,14 +341,14 @@ const baseProducts: Product[] = [
     features: ["Real-time voice pipeline", "Tell-1 voice model", "Telephony integration", "APIs & SDKs"],
     useCases: ["Customer support lines", "Appointment scheduling", "Outbound voice"],
     targetAudience: ["Developers", "Contact centers", "Product teams"],
-    pricing: "Reported ~$0.07–$0.31/min with $10 free credits (vendor-reported, Nov 2026) — verify on official pricing.",
+    pricing: "Reported ~$0.07–$0.31/min with $10 free credits (vendor-reported, Nov 2026), verify on official pricing.",
     integrations: ["Telephony providers", "LLM & speech providers"],
     alternatives: ["Vapi", "Bland", "ElevenLabs Agents", "Pipecat (OSS)"],
     selectionRationale:
       "Leading voice-agent platform with strong current traction; note the run-rate and benchmark (Tell-1 #1 on Retell's own vCX) are vendor-reported and need independent verification.",
     sources: [
       { title: "Best AI Voice Agents: Retell, Bland, Vapi, ElevenLabs scored", url: "https://wetheflywheel.com/en/guides/best-ai-voice-agents/", type: "analysis" },
-      { title: "Retell AI — official", url: "https://www.retellai.com/", type: "official" },
+      { title: "Retell AI, official", url: "https://www.retellai.com/", type: "official" },
     ],
     lastVerified: "November 20, 2026",
     verification: "verified",
@@ -369,7 +369,7 @@ const baseProducts: Product[] = [
     features: ["Intelligence Index v5 (Nov 18)", "Multimodal Knowledge Agent benchmark (Nov 17)", "Progress Index v1", "Independent methodology"],
     useCases: ["Model selection", "Benchmark tracking", "Capability comparison"],
     targetAudience: ["AI engineers", "Researchers", "Buyers"],
-    pricing: "Public indices are freely accessible — see site for any paid offerings.",
+    pricing: "Public indices are freely accessible, see site for any paid offerings.",
     integrations: ["Covers major model providers"],
     alternatives: ["LMArena", "LiveBench", "Vals AI", "Braintrust"],
     selectionRationale:
@@ -391,7 +391,7 @@ const baseProducts: Product[] = [
     tagline: "AI clinical decision support in the EHR",
     shortDescription: "AI clinical decision support embedded in EHRs.",
     overview:
-      "Mayo Clinic Platform launched (Nov 3, 2026) an AI-enabled Clinical Decision Support solution embedded in EHR workflows — a specialty-specific chat across 35+ specialties plus 22 clinical calculators via chat or voice, citing peer-reviewed literature.",
+      "Mayo Clinic Platform launched (Nov 3, 2026) an AI-enabled Clinical Decision Support solution embedded in EHR workflows, a specialty-specific chat across 35+ specialties plus 22 clinical calculators via chat or voice, citing peer-reviewed literature.",
     problemSolved:
       "Clinicians need literature-grounded decision support inside their existing EHR workflow, not a separate tool.",
     howItWorks:
@@ -426,11 +426,11 @@ const baseProducts: Product[] = [
     features: ["AI drug-design engine", "Protein-structure-informed methods", "Pharma partnerships", "$5B Series C (Nov 17)"],
     useCases: ["Early-stage drug discovery", "Target & molecule design", "Pipeline development"],
     targetAudience: ["Pharmaceutical companies", "Biotech researchers", "Investors"],
-    pricing: "Not applicable — research company, not a self-serve product.",
+    pricing: "Not applicable, research company, not a self-serve product.",
     integrations: ["Not publicly disclosed"],
     alternatives: ["Recursion", "Insilico Medicine", "Iambic", "Genesis Therapeutics"],
     selectionRationale:
-      "The edition's defining biotech-AI story (Nov 17). Note: funding is a supporting signal, not proof of product/clinical success — flagged for editorial verification.",
+      "The edition's defining biotech-AI story (Nov 17). Note: funding is a supporting signal, not proof of product/clinical success, flagged for editorial verification.",
     sources: [
       { title: "Isomorphic Labs raises $5B to take candidates to clinical trials (TechCrunch, Nov 17)", url: "https://techcrunch.com/2026/11/17/isomorphic-labs-raises-5b-as-it-looks-to-take-drug-candidates-to-clinical-trials/", type: "news" },
     ],
@@ -447,21 +447,21 @@ const baseProducts: Product[] = [
     overview:
       "Flexprice is an open-source monetization and billing platform positioned as \"infrastructure built for AI-native companies.\" It handles real-time usage metering, flexible pricing (usage-based, tiered, credit-based and hybrid), credit wallets, feature entitlements and automated invoicing so teams can bill for tokens, API calls or other consumption without building billing infrastructure in-house.",
     problemSolved:
-      "AI products increasingly bill on consumption (tokens, requests, compute), but off-the-shelf subscription tools model seats and flat plans poorly — teams end up building fragile in-house metering and invoicing.",
+      "AI products increasingly bill on consumption (tokens, requests, compute), but off-the-shelf subscription tools model seats and flat plans poorly, teams end up building fragile in-house metering and invoicing.",
     howItWorks:
       "Developers instrument their app to send usage events (via SDKs, API or CLI), define pricing and credit rules in a no-code dashboard, and Flexprice meters consumption in real time, enforces feature entitlements, tracks wallet balances and generates invoices; it runs as a managed cloud or self-hosted under AGPL-3.0, and ships an MCP server so coding agents can call billing operations.",
     features: ["Real-time usage metering", "Usage-based, tiered, credit-based & hybrid pricing", "Credit wallets & top-ups", "Feature entitlements / access control", "Subscriptions & automated invoicing", "No-code UI, SDKs, CLI & MCP server", "Open source (AGPL-3.0), self-hostable"],
     useCases: ["Billing LLM/AI apps per token or request", "Usage-based & hybrid SaaS pricing", "Prepaid credit / wallet systems", "Feature gating by plan or customer"],
     targetAudience: ["AI product teams", "SaaS developers", "Billing & monetization engineers"],
-    pricing: "Open-source core (AGPL-3.0) is free to self-host; managed cloud and enterprise tiers available — see official pricing.",
+    pricing: "Open-source core (AGPL-3.0) is free to self-host; managed cloud and enterprise tiers available, see official pricing.",
     integrations: ["Stripe", "Razorpay", "Paddle", "HubSpot", "Snowflake", "QuickBooks / Zoho", "REST API, SDKs & webhooks"],
     alternatives: ["Metronome", "Orb", "Lago", "Stripe Billing"],
     selectionRationale:
       "The standout pick for the new AI Monetization & Billing Infrastructure category: an open-source (AGPL-3.0), developer-first metering and billing engine purpose-built for usage-based and agentic AI pricing. Fact-checked against its official site, GitHub repository and dated public launch (Show HN, Jun 30 2025); core claims confirmed, while vendor-reported scale and cloud-pricing figures remain flagged.",
     sources: [
-      { title: "Flexprice — official site", url: "https://flexprice.io", type: "official" },
+      { title: "Flexprice, official site", url: "https://flexprice.io", type: "official" },
       { title: "Flexprice on GitHub (AGPL-3.0)", url: "https://github.com/flexprice/flexprice", type: "official" },
-      { title: "Show HN: Flexprice — Open-Source Usage-Based Billing Toolkit (Jun 30, 2025)", url: "https://news.ycombinator.com/item?id=44422663", type: "news" },
+      { title: "Show HN: Flexprice, Open-Source Usage-Based Billing Toolkit (Jun 30, 2025)", url: "https://news.ycombinator.com/item?id=44422663", type: "news" },
     ],
     lastVerified: "November 21, 2026",
     verification: "verified",
@@ -471,7 +471,7 @@ const baseProducts: Product[] = [
 // ── Intelligence-layer enrichment (per slug) ────────────────────────────────
 // Editorial analysis + structured specs grounded in the research evidence
 // already attached to each product. Unknown values are omitted or marked
-// "Not verified" in the UI — never invented.
+// "Not verified" in the UI, never invented.
 const enrichment: Record<string, Partial<Product>> = {
   "google-cloud-a5x-vera-rubin": {
     productType: "GPU cloud instances",
@@ -480,7 +480,7 @@ const enrichment: Record<string, Partial<Product>> = {
     differentiators: ["NVIDIA Vera Rubin NVL72", "Rack-scale", "Hyperscaler-managed"],
     researchConfidence: "High",
     whyItMatters:
-      "A5X brings NVIDIA's newest Vera Rubin generation to a hyperscaler as a GA product — the edition's most consequential signal that frontier-scale compute is becoming routinely provisionable.",
+      "A5X brings NVIDIA's newest Vera Rubin generation to a hyperscaler as a GA product, the edition's most consequential signal that frontier-scale compute is becoming routinely provisionable.",
     strengths: [
       "Access to the latest Vera Rubin NVL72 rack-scale platform",
       "Managed networking, storage and GKE integration",
@@ -510,7 +510,7 @@ const enrichment: Record<string, Partial<Product>> = {
     documentationUrl: "https://docs.sarvam.ai",
     researchConfidence: "Medium",
     whyItMatters:
-      "Opened for general use on Nov 16 — a sovereign, in-region inference option with an OpenAI-compatible surface, lowering the switching cost for teams with data-residency needs.",
+      "Opened for general use on Nov 16, a sovereign, in-region inference option with an OpenAI-compatible surface, lowering the switching cost for teams with data-residency needs.",
     strengths: [
       "OpenAI-compatible API reduces migration effort",
       "India-hosted GPU infrastructure for data residency",
@@ -596,7 +596,7 @@ const enrichment: Record<string, Partial<Product>> = {
     documentationUrl: "https://langfuse.com/docs",
     researchConfidence: "High",
     whyItMatters:
-      "Langfuse keeps shipping — this edition's evaluation-engine changes (LLM-as-a-judge targeting observations/experiments) reinforce its lead as the default open-source LLMOps layer.",
+      "Langfuse keeps shipping, this edition's evaluation-engine changes (LLM-as-a-judge targeting observations/experiments) reinforce its lead as the default open-source LLMOps layer.",
     strengths: [
       "MIT-licensed core, free to self-host",
       "End-to-end tracing, prompt management and evals in one tool",
@@ -622,7 +622,7 @@ const enrichment: Record<string, Partial<Product>> = {
     differentiators: ["Gemini 4 Neon", "#1 coding index", "Agentic CLI"],
     researchConfidence: "High",
     whyItMatters:
-      "Gemini 4 Neon launched Nov 18 and, running in Antigravity, took the top of the independent Artificial Analysis Coding Agent Index — the edition's clearest coding-capability leap.",
+      "Gemini 4 Neon launched Nov 18 and, running in Antigravity, took the top of the independent Artificial Analysis Coding Agent Index, the edition's clearest coding-capability leap.",
     strengths: [
       "Tops an independent coding-agent benchmark (index 59)",
       "Agentic, multi-step coding workflow via CLI",
@@ -650,7 +650,7 @@ const enrichment: Record<string, Partial<Product>> = {
     differentiators: ["Up to 16 agents", "Model-diverse", "Lead-agent orchestration"],
     researchConfidence: "High",
     whyItMatters:
-      "Launched Nov 17: a lead agent splitting work across up to 16 model-diverse sub-agents — a high-profile step toward consumer-grade coordinated multi-agent systems.",
+      "Launched Nov 17: a lead agent splitting work across up to 16 model-diverse sub-agents, a high-profile step toward consumer-grade coordinated multi-agent systems.",
     strengths: [
       "Parallelizes complex tasks across many agents",
       "Model-diverse sub-agents (Opus, GPT, Gemini)",
@@ -701,7 +701,7 @@ const enrichment: Record<string, Partial<Product>> = {
     documentationUrl: "https://docs.retellai.com",
     researchConfidence: "Medium",
     whyItMatters:
-      "Retell's own Tell-1 model and a reported $100M run rate put it among the most-cited voice-agent platforms this edition — strong signal, though the headline metrics are vendor-reported.",
+      "Retell's own Tell-1 model and a reported $100M run rate put it among the most-cited voice-agent platforms this edition, strong signal, though the headline metrics are vendor-reported.",
     strengths: [
       "Developer-focused real-time voice pipeline",
       "Own Tell-1 voice model",
@@ -731,7 +731,7 @@ const enrichment: Record<string, Partial<Product>> = {
     documentationUrl: "https://artificialanalysis.ai/methodology/intelligence-benchmarking",
     researchConfidence: "High",
     whyItMatters:
-      "Two dated releases this edition — Intelligence Index v5 (Nov 18) and an MKA agent benchmark with DeepMind (Nov 17) — cement it as a go-to independent evaluation reference.",
+      "Two dated releases this edition, Intelligence Index v5 (Nov 18) and an MKA agent benchmark with DeepMind (Nov 17), cement it as a go-to independent evaluation reference.",
     strengths: [
       "Independent, transparent methodology",
       "Broad coverage across models and providers",
@@ -781,14 +781,14 @@ const enrichment: Record<string, Partial<Product>> = {
     differentiators: ["AlphaFold lineage", "$5B raised", "Toward clinic"],
     researchConfidence: "Medium",
     whyItMatters:
-      "A $5B Series C (Nov 17) to move AI-designed drugs toward clinical trials is the edition's defining biotech-AI event — though funding is a signal, not proof of clinical success.",
+      "A $5B Series C (Nov 17) to move AI-designed drugs toward clinical trials is the edition's defining biotech-AI event, though funding is a signal, not proof of clinical success.",
     strengths: [
       "Builds on DeepMind's protein-structure breakthroughs",
       "Exceptional capital runway after $5B raise",
       "Pharma partnerships and an internal pipeline",
     ],
     limitations: [
-      "Not a self-serve product — no public access",
+      "Not a self-serve product, no public access",
       "Funding does not guarantee clinical or regulatory success",
     ],
     whoShouldUse: ["Pharma partners and researchers", "Investors tracking AI-bio"],
@@ -807,9 +807,9 @@ const enrichment: Record<string, Partial<Product>> = {
     documentationUrl: "https://docs.flexprice.io",
     researchConfidence: "High",
     whyItMatters:
-      "As AI products shift to consumption pricing, a purpose-built open-source metering and billing layer lets teams ship usage-based, credit-based and agentic pricing — including per-token and GPU usage — without constructing billing infrastructure themselves.",
+      "As AI products shift to consumption pricing, a purpose-built open-source metering and billing layer lets teams ship usage-based, credit-based and agentic pricing, including per-token and GPU usage, without constructing billing infrastructure themselves.",
     strengths: [
-      "Open-source (AGPL-3.0) and self-hostable — avoids billing-vendor lock-in",
+      "Open-source (AGPL-3.0) and self-hostable, avoids billing-vendor lock-in",
       "Real-time metering with credit wallets and feature entitlements in one platform",
       "AI-native focus: meters inference tokens, GPU and agentic workloads; ships an MCP server",
     ],
@@ -842,7 +842,7 @@ export const products: Product[] = baseProducts.map((p) => ({
 /** At-a-glance specification rows (spec §6). Values grounded in research;
  *  unknowns shown as "Not verified". */
 export function atAGlance(p: Product): { label: string; value: string }[] {
-  const category = categoryBySlug(p.categorySlug)?.name ?? "—";
+  const category = categoryBySlug(p.categorySlug)?.name ?? ", ";
   const rows: { label: string; value: string }[] = [
     { label: "Category", value: category },
     { label: "Product type", value: p.productType ?? "Not verified" },
@@ -859,7 +859,7 @@ export function atAGlance(p: Product): { label: string; value: string }[] {
 }
 
 /** Claim-level verification rows (spec §9). Derived from known evidence so the
- *  badge's scope is explicit — website-checked is NOT a full audit. */
+ *  badge's scope is explicit, website-checked is NOT a full audit. */
 export function claimStatuses(p: Product): ClaimRow[] {
   const rows: ClaimRow[] = [
     { field: "Official website", status: "Confirmed", note: p.officialUrl },
@@ -944,7 +944,7 @@ export function categoryAccent(categorySlug: string): string {
 }
 
 // ── Homepage: "The AI landscape this fortnight" (spec §7) ─────────────────────────
-// Industry developments kept separate from product rankings — funding/launch
+// Industry developments kept separate from product rankings, funding/launch
 // activity is context, not proof of product quality. Every item is evidence-linked.
 export interface LandscapeItem {
   topic: string;
@@ -960,7 +960,7 @@ export const landscape: LandscapeItem[] = [
     topic: "Compute",
     headline: "NVIDIA's Vera Rubin reaches the cloud",
     summary:
-      "At NVIDIA GTC Berlin, Google Cloud made A5X instances on the Vera Rubin NVL72 platform generally available — putting the newest accelerator generation into a hyperscaler as a shipping product.",
+      "At NVIDIA GTC Berlin, Google Cloud made A5X instances on the Vera Rubin NVL72 platform generally available, putting the newest accelerator generation into a hyperscaler as a shipping product.",
     whyItMatters:
       "Frontier-scale training compute is becoming a routine cloud purchase, not a bespoke build-out.",
     source: {
@@ -990,7 +990,7 @@ export const landscape: LandscapeItem[] = [
     summary:
       "The DeepMind spin-out closed an oversubscribed $5B Series C (Nov 17) to push AI-designed drug candidates toward clinical trials.",
     whyItMatters:
-      "Capital keeps concentrating in AI-for-science — but funding is a signal, not proof of clinical success.",
+      "Capital keeps concentrating in AI-for-science, but funding is a signal, not proof of clinical success.",
     source: {
       title: "Isomorphic Labs raises $5B (TechCrunch, Nov 17)",
       url: "https://techcrunch.com/2026/11/17/isomorphic-labs-raises-5b-as-it-looks-to-take-drug-candidates-to-clinical-trials/",
@@ -1004,7 +1004,7 @@ export const landscape: LandscapeItem[] = [
     summary:
       "Google launched Gemini 4 Neon on Nov 18; running in its Antigravity CLI it took the top of the independent Artificial Analysis Coding Agent Index.",
     whyItMatters:
-      "The frontier of agentic coding keeps moving fast — benchmark leadership now changes edition to edition.",
+      "The frontier of agentic coding keeps moving fast, benchmark leadership now changes edition to edition.",
     source: {
       title: "AI models released in November 2026 (release tracker)",
       url: "https://www.nocode.mba/ai-release-tracker/2026/11",
@@ -1032,7 +1032,7 @@ export const landscape: LandscapeItem[] = [
 export const takeaways: string[] = [
   "Frontier-scale GPU compute is becoming a routine cloud purchase.",
   "Multi-agent coordination moved from research demos into consumer products.",
-  "Capital keeps concentrating in AI-for-science — funding is context, not proof.",
+  "Capital keeps concentrating in AI-for-science, funding is context, not proof.",
   "Open-source infra (vector DBs, LLMOps) is hardening for production.",
 ];
 
@@ -1043,7 +1043,7 @@ export const takeaways: string[] = [
 // own site/repo (source #10, official websites). Every pick carries a dated
 // evidence URL. Picks confirmed against the official site are "verified"; those
 // resting on the dated HN/GitHub record alone are "researched · pending approval"
-// — honest about scope, never over-claimed. Categories without a credible
+//, honest about scope, never over-claimed. Categories without a credible
 // in-window candidate are simply omitted (shown as "no pick"), never invented
 // (§11: report insufficient evidence rather than fabricate winners).
 
@@ -1074,7 +1074,7 @@ export const archiveEditions: ArchiveEdition[] = [
   {
     slug: "2026-08-01",
     periodKey: "2026-08-H1",
-    name: "Edition — August 1–15, 2026",
+    name: "Edition, August 1–15, 2026",
     label: "Aug 1–15, 2026",
     periodStart: "2026-08-01",
     periodEnd: "2026-08-15",
@@ -1085,15 +1085,15 @@ export const archiveEditions: ArchiveEdition[] = [
         tagline: "Terminal AI coding agent, multi-provider",
         shortDescription: "Single-binary terminal coding agent with multi-provider routing.",
         overview:
-          "Fuxi is a single-binary terminal coding agent that routes across 10+ LLM providers (DeepSeek, OpenAI, Claude, Qwen and more) with automatic failover and provider racing for reliability. It ships a deep tool suite — 50+ capabilities spanning file editing, shell commands and code search — plus persistent sessions with long-term memory and MCP client support. Permission-gated autonomous execution and extensibility through hooks, skills, plugins and slash commands let even non-developers build by conversation, and it installs as a single static binary with no runtime dependencies.",
+          "Fuxi is a single-binary terminal coding agent that routes across 10+ LLM providers (DeepSeek, OpenAI, Claude, Qwen and more) with automatic failover and provider racing for reliability. It ships a deep tool suite, 50+ capabilities spanning file editing, shell commands and code search, plus persistent sessions with long-term memory and MCP client support. Permission-gated autonomous execution and extensibility through hooks, skills, plugins and slash commands let even non-developers build by conversation, and it installs as a single static binary with no runtime dependencies.",
         officialUrl: "https://www.fuxicode.com",
         whyItMatters:
-          "A single static binary that routes across 10+ LLM providers with automatic failover and MCP support — part of August 2026's wave of local, provider-agnostic terminal coding agents.",
+          "A single static binary that routes across 10+ LLM providers with automatic failover and MCP support, part of August 2026's wave of local, provider-agnostic terminal coding agents.",
         verification: "verified",
         launchDate: "2026-08-04",
         sources: [
           { title: "fuxicodex/Fuxi on GitHub", url: "https://github.com/fuxicodex/Fuxi", type: "github" },
-          { title: "Fuxi — official site", url: "https://www.fuxicode.com", type: "official" },
+          { title: "Fuxi, official site", url: "https://www.fuxicode.com", type: "official" },
         ],
       },
       {
@@ -1102,15 +1102,15 @@ export const archiveEditions: ArchiveEdition[] = [
         tagline: "Let your AI agent control your phone",
         shortDescription: "Agents tap, type and scroll real iOS/Android apps.",
         overview:
-          "Phone Harness lets AI agents operate real iPhones and Android devices — tapping, typing and scrolling through apps exactly as a person would, using visual input and on-screen controls with no jailbreaking or special APIs. Teams can use hosted cloud phones or connect their own device, giving agents genuine mobile-app reach instead of brittle per-app integrations. It targets developers building agents that need to act inside everyday consumer mobile apps.",
+          "Phone Harness lets AI agents operate real iPhones and Android devices, tapping, typing and scrolling through apps exactly as a person would, using visual input and on-screen controls with no jailbreaking or special APIs. Teams can use hosted cloud phones or connect their own device, giving agents genuine mobile-app reach instead of brittle per-app integrations. It targets developers building agents that need to act inside everyday consumer mobile apps.",
         officialUrl: "https://phone-harness.com",
         whyItMatters:
-          "Gives agents real tap/type/scroll control of iOS and Android without jailbreaking or special APIs — a concrete step toward agents operating everyday mobile apps.",
+          "Gives agents real tap/type/scroll control of iOS and Android without jailbreaking or special APIs, a concrete step toward agents operating everyday mobile apps.",
         verification: "verified",
         launchDate: "2026-08-07",
         sources: [
           { title: "phone-harness/phone-harness on GitHub", url: "https://github.com/phone-harness/phone-harness", type: "github" },
-          { title: "Phone Harness — official site", url: "https://phone-harness.com", type: "official" },
+          { title: "Phone Harness, official site", url: "https://phone-harness.com", type: "official" },
         ],
       },
       {
@@ -1133,15 +1133,15 @@ export const archiveEditions: ArchiveEdition[] = [
         tagline: "Live AI API pricing & cost calculators",
         shortDescription: "Real-time pricing and workload cost calculators for AI APIs.",
         overview:
-          "CostPerPrompt tracks live pricing for hundreds of AI models across major providers, refreshed automatically from public provider listings. Beyond a raw price table, it offers purpose-built calculators that model real workloads — chatbots with growing context, RAG pipelines split into indexing/retrieval/generation, and voice AI billed across STT + LLM + TTS — plus GPU-rental and image-API pricing and a token counter. It's a reference tool for teams estimating and controlling usage-based AI spend before it lands on the bill.",
+          "CostPerPrompt tracks live pricing for hundreds of AI models across major providers, refreshed automatically from public provider listings. Beyond a raw price table, it offers purpose-built calculators that model real workloads, chatbots with growing context, RAG pipelines split into indexing/retrieval/generation, and voice AI billed across STT + LLM + TTS, plus GPU-rental and image-API pricing and a token counter. It's a reference tool for teams estimating and controlling usage-based AI spend before it lands on the bill.",
         officialUrl: "https://costperprompt.com",
         whyItMatters:
-          "Tracks live pricing across hundreds of models with workload calculators (chatbot, RAG, voice) — the cost tooling that matters as teams move to usage-based AI spend.",
+          "Tracks live pricing across hundreds of models with workload calculators (chatbot, RAG, voice), the cost tooling that matters as teams move to usage-based AI spend.",
         verification: "verified",
         launchDate: "2026-08-02",
         sources: [
           { title: "Show HN: CostPerPrompt (Aug 2, 2026)", url: "https://news.ycombinator.com/item?id=49140340", type: "hackernews" },
-          { title: "CostPerPrompt — official site", url: "https://costperprompt.com", type: "official" },
+          { title: "CostPerPrompt, official site", url: "https://costperprompt.com", type: "official" },
         ],
       },
       {
@@ -1151,7 +1151,7 @@ export const archiveEditions: ArchiveEdition[] = [
         shortDescription: "Collaborative org workspace for humans and AI agents.",
         officialUrl: "https://xyne.ai",
         whyItMatters:
-          "An open 'AI Org-OS' positioning humans and agents as collaborators in one workspace — from the Juspay team, part of the agent-orchestration surface wave.",
+          "An open 'AI Org-OS' positioning humans and agents as collaborators in one workspace, from the Juspay team, part of the agent-orchestration surface wave.",
         verification: "researched",
         launchDate: "2026-08-02",
         sources: [
@@ -1167,7 +1167,7 @@ export const archiveEditions: ArchiveEdition[] = [
           "Perimeter Compute launched as a distributed AI cloud provider that deploys GPU compute inside commercial office buildings in major US cities, tapping their excess energy capacity instead of building new data centers. The distributed-edge approach aims to add GPU supply closer to demand while using power that would otherwise go unused, targeting AI teams that need additional capacity. (Reported by DataCenterDynamics; company scale not independently deep-verified here.)",
         officialUrl: "https://www.datacenterdynamics.com/en/news/distributed-ai-cloud-provider-perimeter-compute-launches/",
         whyItMatters:
-          "A novel answer to the GPU-supply crunch — compute placed in office buildings on otherwise-wasted energy — reported as an Aug 2026 launch by an industry outlet.",
+          "A novel answer to the GPU-supply crunch, compute placed in office buildings on otherwise-wasted energy, reported as an Aug 2026 launch by an industry outlet.",
         verification: "researched",
         launchDate: "2026-08-04",
         sources: [
@@ -1179,7 +1179,7 @@ export const archiveEditions: ArchiveEdition[] = [
   {
     slug: "2026-08-16",
     periodKey: "2026-08-H2",
-    name: "Edition — August 16–31, 2026",
+    name: "Edition, August 16–31, 2026",
     label: "Aug 16–31, 2026",
     periodStart: "2026-08-16",
     periodEnd: "2026-08-31",
@@ -1191,7 +1191,7 @@ export const archiveEditions: ArchiveEdition[] = [
         shortDescription: "Agents propose; deterministic tools decide, every claim checked.",
         officialUrl: "https://github.com/2akouwu/reverify",
         whyItMatters:
-          "An MCP server + CLI that makes agents propose while deterministic tools decide, checking every claim against ground truth — a direct answer to hallucination in agent workflows.",
+          "An MCP server + CLI that makes agents propose while deterministic tools decide, checking every claim against ground truth, a direct answer to hallucination in agent workflows.",
         verification: "researched",
         launchDate: "2026-08-31",
         sources: [
@@ -1205,7 +1205,7 @@ export const archiveEditions: ArchiveEdition[] = [
         shortDescription: "Self-hostable AI phone assistant, open source.",
         officialUrl: "https://github.com/Dpro-at/Tel-Agent",
         whyItMatters:
-          "An open-source AI phone assistant — part of the fortnight's crop of self-hostable voice and telephony agents.",
+          "An open-source AI phone assistant, part of the fortnight's crop of self-hostable voice and telephony agents.",
         verification: "researched",
         launchDate: "2026-08-16",
         sources: [
@@ -1235,7 +1235,7 @@ export const archiveEditions: ArchiveEdition[] = [
         shortDescription: "Workspace where people and multiple AI agents collaborate.",
         officialUrl: "https://www.tabtin.com",
         whyItMatters:
-          "A shared workspace where people and multiple AI agents work together — an early take on multi-agent collaboration surfaces.",
+          "A shared workspace where people and multiple AI agents work together, an early take on multi-agent collaboration surfaces.",
         verification: "researched",
         launchDate: "2026-08-19",
         sources: [
@@ -1249,7 +1249,7 @@ export const archiveEditions: ArchiveEdition[] = [
         shortDescription: "Self-improving context engine for coding agents.",
         officialUrl: "https://github.com/aerovato/operator-memory",
         whyItMatters:
-          "A self-improving context engine for coding agents — part of the fortnight's run of memory/context layers aimed at making coding agents learn across sessions.",
+          "A self-improving context engine for coding agents, part of the fortnight's run of memory/context layers aimed at making coding agents learn across sessions.",
         verification: "researched",
         launchDate: "2026-08-16",
         sources: [
@@ -1262,15 +1262,15 @@ export const archiveEditions: ArchiveEdition[] = [
         tagline: "AI agent that builds and grows a business",
         shortDescription: "Go-to-market agent: ads, social, SEO, customer acquisition.",
         overview:
-          "Runable is an AI agent platform that lets non-technical founders build a website or app from natural-language prompts, then extends into go-to-market work — running ad campaigns, managing social media, handling SEO and optimizing presence in AI-chatbot results. It manages the underlying infrastructure (deployment, analytics) so users can turn AI-generated products into working businesses without stitching services together. In August 2026 it raised a $21M Series A (co-led by Susquehanna Venture Capital and Nexus Venture Partners) at a $65M post-money valuation.",
+          "Runable is an AI agent platform that lets non-technical founders build a website or app from natural-language prompts, then extends into go-to-market work, running ad campaigns, managing social media, handling SEO and optimizing presence in AI-chatbot results. It manages the underlying infrastructure (deployment, analytics) so users can turn AI-generated products into working businesses without stitching services together. In August 2026 it raised a $21M Series A (co-led by Susquehanna Venture Capital and Nexus Venture Partners) at a $65M post-money valuation.",
         officialUrl: "https://runable.com",
         whyItMatters:
-          "Pushes AI agents past building software into customer acquisition and growth — the go-to-market automation frontier — with a dated, reputably-reported Series A.",
+          "Pushes AI agents past building software into customer acquisition and growth, the go-to-market automation frontier, with a dated, reputably-reported Series A.",
         verification: "verified",
         launchDate: "2026-08-26",
         sources: [
           { title: "Runable hits $21M Series A (TechCrunch, Aug 26 2026)", url: "https://techcrunch.com/2026/08/26/runable-hits-21m-to-bet-ai-agents-can-go-from-building-businesses-to-growing-them/", type: "techcrunch" },
-          { title: "Runable — official site", url: "https://runable.com", type: "official" },
+          { title: "Runable, official site", url: "https://runable.com", type: "official" },
         ],
       },
     ],
@@ -1278,7 +1278,7 @@ export const archiveEditions: ArchiveEdition[] = [
   {
     slug: "2026-09-01",
     periodKey: "2026-09-H1",
-    name: "Edition — September 1–15, 2026",
+    name: "Edition, September 1–15, 2026",
     label: "Sep 1–15, 2026",
     periodStart: "2026-09-01",
     periodEnd: "2026-09-15",
@@ -1292,7 +1292,7 @@ export const archiveEditions: ArchiveEdition[] = [
           "shadcn/lint is an agent-first linter that lets you write design-system rules AI agents can verify, without rewriting components. When an agent breaks a rule, it returns contextual errors with fix suggestions drawn from the project's available components, variants and theme values. It works with React, Vue or Svelte on Tailwind CSS v4+, runs under both ESLint and Oxlint, and is MIT-licensed.",
         officialUrl: "https://github.com/shadcn-ui/lint",
         whyItMatters:
-          "An agent-first linter letting you write design-system rules agents can verify — from the shadcn/ui author, signaling tooling built explicitly for AI-written code.",
+          "An agent-first linter letting you write design-system rules agents can verify, from the shadcn/ui author, signaling tooling built explicitly for AI-written code.",
         verification: "verified",
         launchDate: "2026-09-02",
         sources: [
@@ -1306,7 +1306,7 @@ export const archiveEditions: ArchiveEdition[] = [
         shortDescription: "Universal local-first SQLite memory engine for AI CLIs.",
         officialUrl: "https://github.com/timgordontg/engrim",
         whyItMatters:
-          "A universal, local-first SQLite memory engine for AI CLIs — part of the surge in portable agent-memory layers.",
+          "A universal, local-first SQLite memory engine for AI CLIs, part of the surge in portable agent-memory layers.",
         verification: "researched",
         launchDate: "2026-09-07",
         sources: [
@@ -1321,7 +1321,7 @@ export const archiveEditions: ArchiveEdition[] = [
         shortDescription: "Local alignment and interpretability workbench for Apple Silicon.",
         officialUrl: "https://dynolab.dev",
         whyItMatters:
-          "A local AI safety, alignment and interpretability workbench for Apple Silicon — activations, probes and SAEs with a Python SDK and MCP.",
+          "A local AI safety, alignment and interpretability workbench for Apple Silicon, activations, probes and SAEs with a Python SDK and MCP.",
         verification: "researched",
         launchDate: "2026-09-04",
         sources: [
@@ -1335,7 +1335,7 @@ export const archiveEditions: ArchiveEdition[] = [
         shortDescription: "Inbox for AI agents that work in the background.",
         officialUrl: "https://github.com/pizza-bot-app/pizza-bot",
         whyItMatters:
-          "An inbox for AI agents that work in the background — reframing agents as asynchronous workers you triage like email.",
+          "An inbox for AI agents that work in the background, reframing agents as asynchronous workers you triage like email.",
         verification: "researched",
         launchDate: "2026-09-15",
         sources: [
@@ -1350,7 +1350,7 @@ export const archiveEditions: ArchiveEdition[] = [
         shortDescription: "Open coding agent with swarm mode, built in Rust.",
         officialUrl: "https://alphacli.github.io/",
         whyItMatters:
-          "A free, MIT-licensed coding agent with a built-in model (or bring your own), swarm mode and 40+ tools — lowering the barrier to multi-agent coding workflows.",
+          "A free, MIT-licensed coding agent with a built-in model (or bring your own), swarm mode and 40+ tools, lowering the barrier to multi-agent coding workflows.",
         verification: "researched",
         launchDate: "2026-09-01",
         sources: [
@@ -1362,7 +1362,7 @@ export const archiveEditions: ArchiveEdition[] = [
   {
     slug: "2026-09-16",
     periodKey: "2026-09-H2",
-    name: "Edition — September 16–30, 2026",
+    name: "Edition, September 16–30, 2026",
     label: "Sep 16–30, 2026",
     periodStart: "2026-09-16",
     periodEnd: "2026-09-30",
@@ -1373,10 +1373,10 @@ export const archiveEditions: ArchiveEdition[] = [
         tagline: "On-device Android agent for any app",
         shortDescription: "On-device Android agent that drives any app.",
         overview:
-          "Andee is an Android agent that runs directly on your phone and automates tasks across any app with no integrations — reading the screen, reasoning about the next action, and tapping, typing and swiping like you would. It's powered by any OpenAI-compatible model you configure (DeepSeek by default), and keeps its notebook, habits and vault strictly on-device; only conversation data goes to your chosen model endpoint, never to Andee's maintainers. It runs on Android 11+ and targets users who want a private, model-agnostic phone agent.",
+          "Andee is an Android agent that runs directly on your phone and automates tasks across any app with no integrations, reading the screen, reasoning about the next action, and tapping, typing and swiping like you would. It's powered by any OpenAI-compatible model you configure (DeepSeek by default), and keeps its notebook, habits and vault strictly on-device; only conversation data goes to your chosen model endpoint, never to Andee's maintainers. It runs on Android 11+ and targets users who want a private, model-agnostic phone agent.",
         officialUrl: "https://heyandee.com",
         whyItMatters:
-          "An on-device Android agent that operates any app like you do — no integrations or root — keeping memory, habits and vault on the phone.",
+          "An on-device Android agent that operates any app like you do, no integrations or root, keeping memory, habits and vault on the phone.",
         verification: "verified",
         launchDate: "2026-09-17",
         sources: [
@@ -1397,7 +1397,7 @@ export const archiveEditions: ArchiveEdition[] = [
         launchDate: "2026-09-17",
         sources: [
           { title: "TypeLLM/TypeLLM on GitHub", url: "https://github.com/TypeLLM/TypeLLM", type: "github" },
-          { title: "TypeLLM — official site", url: "https://typellm.ai", type: "official" },
+          { title: "TypeLLM, official site", url: "https://typellm.ai", type: "official" },
         ],
       },
       {
@@ -1407,7 +1407,7 @@ export const archiveEditions: ArchiveEdition[] = [
         shortDescription: "Small, fast decision model with calibrated confidence.",
         officialUrl: "https://github.com/strands-labs/strands-decider",
         whyItMatters:
-          "A small, fast 'system-one' decision model with calibrated confidence for agentic workflows — picking or rating options faster than an LLM.",
+          "A small, fast 'system-one' decision model with calibrated confidence for agentic workflows, picking or rating options faster than an LLM.",
         verification: "researched",
         launchDate: "2026-09-29",
         sources: [
@@ -1421,7 +1421,7 @@ export const archiveEditions: ArchiveEdition[] = [
         shortDescription: "Realtime generated avatar for your voice AI, locally.",
         officialUrl: "https://www.openspline.dev",
         whyItMatters:
-          "Adds a realtime generated avatar to any voice AI in a few lines of code, running locally — bringing a face to voice agents.",
+          "Adds a realtime generated avatar to any voice AI in a few lines of code, running locally, bringing a face to voice agents.",
         verification: "researched",
         launchDate: "2026-09-29",
         sources: [
@@ -1435,7 +1435,7 @@ export const archiveEditions: ArchiveEdition[] = [
         shortDescription: "Head-to-head arena pitting AI agents against each other.",
         officialUrl: "https://tinyaiarena.com/",
         whyItMatters:
-          "A public arena where small AI agents compete head-to-head — a lightweight, watchable take on agent evaluation and comparison.",
+          "A public arena where small AI agents compete head-to-head, a lightweight, watchable take on agent evaluation and comparison.",
         verification: "researched",
         launchDate: "2026-09-27",
         sources: [
@@ -1451,12 +1451,12 @@ export const archiveEditions: ArchiveEdition[] = [
           "OpenObserve is an open-source, Rust-built observability platform for logs, metrics, traces and real-user monitoring, positioned as a high-performance alternative to Datadog and Splunk. Its v1.0 release folded AI observability into the same platform: token cost and usage tracking across 80+ providers attributed per agent, full-session tracing of agent conversations with tool calls and latency, Agent Graph and Agent Behavior views, and built-in evaluation with custom scorers, LLM-as-judge and annotation queues. It's open source, with self-hosted and cloud options.",
         officialUrl: "https://openobserve.ai",
         whyItMatters:
-          "Brings production AI/agent monitoring into one open-source stack alongside classic logs, metrics and traces — a dated v1.0 GA (Sep 22) for teams running agents in production.",
+          "Brings production AI/agent monitoring into one open-source stack alongside classic logs, metrics and traces, a dated v1.0 GA (Sep 22) for teams running agents in production.",
         verification: "verified",
         launchDate: "2026-09-22",
         sources: [
           { title: "OpenObserve reaches v1.0 (VentureBeat, Sep 22 2026)", url: "https://venturebeat.com/business/openobserve-reaches-v10-bringing-ai-observability-into-the-same-platform-as-logs-metrics-traces-and-rum", type: "news" },
-          { title: "OpenObserve — official site", url: "https://openobserve.ai", type: "official" },
+          { title: "OpenObserve, official site", url: "https://openobserve.ai", type: "official" },
         ],
       },
     ],
@@ -1464,7 +1464,7 @@ export const archiveEditions: ArchiveEdition[] = [
   {
     slug: "2026-10-01",
     periodKey: "2026-10-H1",
-    name: "Edition — October 1–15, 2026",
+    name: "Edition, October 1–15, 2026",
     label: "Oct 1–15, 2026",
     periodStart: "2026-10-01",
     periodEnd: "2026-10-15",
@@ -1475,7 +1475,7 @@ export const archiveEditions: ArchiveEdition[] = [
         tagline: "Autonomous AI penetration-testing system",
         shortDescription: "Autonomous AI system for penetration testing.",
         overview:
-          "ARTEX is a self-hosted, LLM-driven penetration-testing platform where multiple AI agents work together to test targets for vulnerabilities — decomposing goals into executable tasks, running real security tools, and recording evidence that links each finding to captured network traffic. A dual-graph architecture separates what's known about a target (asset graph) from testing progress (exploration graph); a planner agent dispatches work to concurrent worker agents through a recording proxy, producing an auditable chain of reasoning and proof. It's open source under AGPL-3.0 and explicitly restricted to authorized testing — aimed at security professionals doing sanctioned pentests, bug bounties and red-team work.",
+          "ARTEX is a self-hosted, LLM-driven penetration-testing platform where multiple AI agents work together to test targets for vulnerabilities, decomposing goals into executable tasks, running real security tools, and recording evidence that links each finding to captured network traffic. A dual-graph architecture separates what's known about a target (asset graph) from testing progress (exploration graph); a planner agent dispatches work to concurrent worker agents through a recording proxy, producing an auditable chain of reasoning and proof. It's open source under AGPL-3.0 and explicitly restricted to authorized testing, aimed at security professionals doing sanctioned pentests, bug bounties and red-team work.",
         officialUrl: "https://github.com/BaaRai/ARTEX",
         whyItMatters:
           "An autonomous AI penetration-testing system that drew the fortnight's strongest GitHub momentum for offensive-security agents.",
@@ -1491,15 +1491,15 @@ export const archiveEditions: ArchiveEdition[] = [
         tagline: "1M-param OCR model, runs on CPU",
         shortDescription: "1M-param OCR model, CPU-fast, near billion-param accuracy.",
         overview:
-          "Indra, from Datalab, is an OCR model that turns PDFs and images into markdown, text or JSON with bounding boxes. At roughly 1 million parameters it runs entirely on CPU — no GPU or PyTorch — yet reaches about 15× Tesseract's speed and scores 66.7 on OmniParseBench versus PaddleOCR's 58.4. The code is Apache-2.0, with a modified OpenRAIL-M license on the model weights for research and personal use.",
+          "Indra, from Datalab, is an OCR model that turns PDFs and images into markdown, text or JSON with bounding boxes. At roughly 1 million parameters it runs entirely on CPU, no GPU or PyTorch, yet reaches about 15× Tesseract's speed and scores 66.7 on OmniParseBench versus PaddleOCR's 58.4. The code is Apache-2.0, with a modified OpenRAIL-M license on the model weights for research and personal use.",
         officialUrl: "https://www.datalab.to",
         whyItMatters:
-          "A 1M-parameter OCR model that runs on CPU ~15× faster than Tesseract while approaching billion-parameter accuracy — efficient inference from Datalab.",
+          "A 1M-parameter OCR model that runs on CPU ~15× faster than Tesseract while approaching billion-parameter accuracy, efficient inference from Datalab.",
         verification: "verified",
         launchDate: "2026-10-13",
         sources: [
           { title: "datalab-to/indra on GitHub (1.9k★)", url: "https://github.com/datalab-to/indra", type: "github" },
-          { title: "Datalab — official site", url: "https://www.datalab.to", type: "official" },
+          { title: "Datalab, official site", url: "https://www.datalab.to", type: "official" },
         ],
       },
       {
@@ -1511,12 +1511,12 @@ export const archiveEditions: ArchiveEdition[] = [
           "Grandet compares LLM API prices across official providers, inference hosts and relays to surface the cheapest option for any given model. It maintains a large database of provider sites, organizes costs by input/output tokens, and separates relay-credit pricing from cash pricing. It exposes an MCP server and a price API, plus a downloadable Skill for Claude, Cursor and similar tools, so an agent can route each call to the lowest-cost provider programmatically.",
         officialUrl: "https://grandet.ai",
         whyItMatters:
-          "Finds the cheapest API/provider for any model across thousands of sources, with an MCP server — cost routing as monetization infrastructure.",
+          "Finds the cheapest API/provider for any model across thousands of sources, with an MCP server, cost routing as monetization infrastructure.",
         verification: "verified",
         launchDate: "2026-10-05",
         sources: [
           { title: "hanzohanzhe/Grandet on GitHub", url: "https://github.com/hanzohanzhe/Grandet", type: "github" },
-          { title: "Grandet — official site", url: "https://grandet.ai", type: "official" },
+          { title: "Grandet, official site", url: "https://grandet.ai", type: "official" },
         ],
       },
       {
@@ -1526,7 +1526,7 @@ export const archiveEditions: ArchiveEdition[] = [
         shortDescription: "OS-isolated, default-deny sandbox for running AI agents.",
         officialUrl: "https://github.com/strands-agents/box",
         whyItMatters:
-          "Runs AI agents in an OS-isolated, default-deny sandbox with credential injection that keeps secrets out of the agent — guardrails for autonomous execution.",
+          "Runs AI agents in an OS-isolated, default-deny sandbox with credential injection that keeps secrets out of the agent, guardrails for autonomous execution.",
         verification: "researched",
         launchDate: "2026-10-02",
         sources: [
@@ -1539,15 +1539,15 @@ export const archiveEditions: ArchiveEdition[] = [
         tagline: "AI that flags at-risk hospital patients",
         shortDescription: "Nightly AI screening of inpatient records for missed conditions.",
         overview:
-          "Healthleap is an AI platform that analyzes hospital inpatient records each night — labs, weights, vital signs and clinician notes — to flag patients at risk of under-diagnosed conditions like malnutrition, delirium, aspiration pneumonia and pressure ulcers, delivering morning risk scores to care teams via a dashboard. It integrates with EHR systems and uses language models to extract clinical indicators from notes, surfacing risk rather than making diagnoses itself. Reported customers include Penn Medicine, Cedars-Sinai, Intermountain, Houston Methodist and Emory Healthcare; in October 2026 it raised $38M ($8M seed co-led by Sequoia and First Round, $30M Series A led by Hummingbird).",
+          "Healthleap is an AI platform that analyzes hospital inpatient records each night, labs, weights, vital signs and clinician notes, to flag patients at risk of under-diagnosed conditions like malnutrition, delirium, aspiration pneumonia and pressure ulcers, delivering morning risk scores to care teams via a dashboard. It integrates with EHR systems and uses language models to extract clinical indicators from notes, surfacing risk rather than making diagnoses itself. Reported customers include Penn Medicine, Cedars-Sinai, Intermountain, Houston Methodist and Emory Healthcare; in October 2026 it raised $38M ($8M seed co-led by Sequoia and First Round, $30M Series A led by Hummingbird).",
         officialUrl: "https://healthleap.ai",
         whyItMatters:
-          "Targets preventable inpatient harm by catching conditions clinicians miss — a concrete, EHR-integrated clinical-AI use case with a dated, TechCrunch-reported raise.",
+          "Targets preventable inpatient harm by catching conditions clinicians miss, a concrete, EHR-integrated clinical-AI use case with a dated, TechCrunch-reported raise.",
         verification: "verified",
         launchDate: "2026-10-07",
         sources: [
           { title: "Healthleap raises $38M (TechCrunch, Oct 7 2026)", url: "https://techcrunch.com/2026/10/07/healthleap-raises-38m-for-its-ai-that-flags-hospital-patients-who-may-need-a-closer-look/", type: "techcrunch" },
-          { title: "Healthleap — official site", url: "https://healthleap.ai", type: "official" },
+          { title: "Healthleap, official site", url: "https://healthleap.ai", type: "official" },
         ],
       },
     ],
@@ -1555,7 +1555,7 @@ export const archiveEditions: ArchiveEdition[] = [
   {
     slug: "2026-10-16",
     periodKey: "2026-10-H2",
-    name: "Edition — October 16–31, 2026",
+    name: "Edition, October 16–31, 2026",
     label: "Oct 16–31, 2026",
     periodStart: "2026-10-16",
     periodEnd: "2026-10-31",
@@ -1566,10 +1566,10 @@ export const archiveEditions: ArchiveEdition[] = [
         tagline: "UI behaviors for agents",
         shortDescription: "Library of UI behaviors for agents to build interfaces.",
         overview:
-          "Vercel Labs' UI SDK is a library of reusable behavioral primitives — like createPopup, createSelection and createTypeahead — that AI agents combine to build custom interfaces instead of generating whole components from scratch, cutting errors. It supports React, Vue, Svelte, Solid and Web Components and ships a starter component library. The source is open on GitHub, aimed at teams building agent-generated UI.",
+          "Vercel Labs' UI SDK is a library of reusable behavioral primitives, like createPopup, createSelection and createTypeahead, that AI agents combine to build custom interfaces instead of generating whole components from scratch, cutting errors. It supports React, Vue, Svelte, Solid and Web Components and ships a starter component library. The source is open on GitHub, aimed at teams building agent-generated UI.",
         officialUrl: "https://ui-sdk.dev",
         whyItMatters:
-          "A library of UI behaviors for agents to build next-generation interfaces — from Vercel Labs, part of the move to agent-generated UI.",
+          "A library of UI behaviors for agents to build next-generation interfaces, from Vercel Labs, part of the move to agent-generated UI.",
         verification: "verified",
         launchDate: "2026-10-26",
         sources: [
@@ -1597,7 +1597,7 @@ export const archiveEditions: ArchiveEdition[] = [
         shortDescription: "Collect, organize and reuse context across AI chats.",
         officialUrl: "https://stashdock.app",
         whyItMatters:
-          "An AI-native personal context library to collect, organize and reuse context across AI conversations — treating context as a managed asset.",
+          "An AI-native personal context library to collect, organize and reuse context across AI conversations, treating context as a managed asset.",
         verification: "researched",
         launchDate: "2026-10-19",
         sources: [
@@ -1611,7 +1611,7 @@ export const archiveEditions: ArchiveEdition[] = [
         shortDescription: "Oxlint rules catching fake implementations in AI code.",
         officialUrl: "https://www.npmjs.com/package/@interfere/landmines",
         whyItMatters:
-          "Oxlint rules that keep AI-written code honest — real implementations, real signals, no flake masking — tooling for the AI-authored-code era.",
+          "Oxlint rules that keep AI-written code honest, real implementations, real signals, no flake masking, tooling for the AI-authored-code era.",
         verification: "researched",
         launchDate: "2026-10-28",
         sources: [
@@ -1625,7 +1625,7 @@ export const archiveEditions: ArchiveEdition[] = [
         shortDescription: "Git hook that quizzes you on AI-written code.",
         officialUrl: "https://sphinx-six-theta.vercel.app/",
         whyItMatters:
-          "A hook that quizzes you on your AI's code before you ship it — a human-in-the-loop guardrail against merging code you don't understand.",
+          "A hook that quizzes you on your AI's code before you ship it, a human-in-the-loop guardrail against merging code you don't understand.",
         verification: "researched",
         launchDate: "2026-10-18",
         sources: [
@@ -1638,7 +1638,7 @@ export const archiveEditions: ArchiveEdition[] = [
         tagline: "Serverless cloud for AI and data workloads",
         shortDescription: "Serverless GPU/CPU cloud for AI, ML and data.",
         overview:
-          "Modal is a serverless cloud that lets developers run AI, ML and data workloads — training, batch inference, fine-tuning and more — by writing Python and having Modal provision GPUs and CPUs on demand, without managing infrastructure. In October 2026 it raised a $750M Series D at a $15.75B post-money valuation, reported by DataCenterDynamics, underscoring how much capital is flowing to developer-first AI compute. (Funding is a dated signal of momentum, not proof of product quality.)",
+          "Modal is a serverless cloud that lets developers run AI, ML and data workloads, training, batch inference, fine-tuning and more, by writing Python and having Modal provision GPUs and CPUs on demand, without managing infrastructure. In October 2026 it raised a $750M Series D at a $15.75B post-money valuation, reported by DataCenterDynamics, underscoring how much capital is flowing to developer-first AI compute. (Funding is a dated signal of momentum, not proof of product quality.)",
         officialUrl: "https://modal.com",
         whyItMatters:
           "One of the fortnight's largest AI-infrastructure raises ($750M Series D), signaling strong demand for serverless, developer-first GPU compute.",
@@ -1646,7 +1646,7 @@ export const archiveEditions: ArchiveEdition[] = [
         launchDate: "2026-10-16",
         sources: [
           { title: "AI cloud Modal raises $750M Series D (DataCenterDynamics, Oct 16 2026)", url: "https://www.datacenterdynamics.com/en/news/ai-cloud-modal-raises-750m-in-series-d-funding-round/", type: "news" },
-          { title: "Modal — official site", url: "https://modal.com", type: "official" },
+          { title: "Modal, official site", url: "https://modal.com", type: "official" },
         ],
       },
       {
@@ -1655,15 +1655,15 @@ export const archiveEditions: ArchiveEdition[] = [
         tagline: "AI drug developer with a $600M stalled-drug fund",
         shortDescription: "AI-driven drug developer; $600M fund to revive stalled drugs.",
         overview:
-          "Formation Bio is an AI-driven drug development company that, in October 2026, launched a $600M fund to buy or license drug candidates that have stalled — betting it can use AI and a tech-enabled development model to revive and advance them. The move pairs capital with its AI development engine to prove out that thesis. (Reported by Forbes; details not independently deep-verified here, and funding is a supporting signal, not proof of clinical success.)",
+          "Formation Bio is an AI-driven drug development company that, in October 2026, launched a $600M fund to buy or license drug candidates that have stalled, betting it can use AI and a tech-enabled development model to revive and advance them. The move pairs capital with its AI development engine to prove out that thesis. (Reported by Forbes; details not independently deep-verified here, and funding is a supporting signal, not proof of clinical success.)",
         officialUrl: "https://www.formation.bio",
         whyItMatters:
-          "A novel AI-biotech strategy — a $600M fund to rescue stalled drugs — reported by Forbes as an Oct 2026 move, distinct from the usual discovery-stage raises.",
+          "A novel AI-biotech strategy, a $600M fund to rescue stalled drugs, reported by Forbes as an Oct 2026 move, distinct from the usual discovery-stage raises.",
         verification: "researched",
         launchDate: "2026-10-28",
         sources: [
           { title: "Why an AI biotech startup launched a $600M fund to buy stalled drugs (Forbes, Oct 28 2026)", url: "https://www.forbes.com/sites/innovationrx/2026/10/28/why-an-ai-biotech-startup-launched-a-600-million-fund-to-buy-stalled-drugs/", type: "news" },
-          { title: "Formation Bio — official site", url: "https://www.formation.bio", type: "official" },
+          { title: "Formation Bio, official site", url: "https://www.formation.bio", type: "official" },
         ],
       },
     ],
@@ -1671,7 +1671,7 @@ export const archiveEditions: ArchiveEdition[] = [
   {
     slug: "2026-11-01",
     periodKey: "2026-11-H1",
-    name: "Edition — November 1–15, 2026",
+    name: "Edition, November 1–15, 2026",
     label: "Nov 1–15, 2026",
     periodStart: "2026-11-01",
     periodEnd: "2026-11-15",
@@ -1685,12 +1685,12 @@ export const archiveEditions: ArchiveEdition[] = [
           "WebsiteBench, from TIGER-AI-Lab, is a benchmark that tests whether AI agents can reverse-engineer a full-stack version of a website by exploring it through a browser. It spans 70 tasks and measures pass rate, compute cost, token usage and interaction turns, with a public leaderboard comparing frontier and open models. It gives buyers and researchers an independent read on how well agents can actually replicate real production web apps.",
         officialUrl: "https://website-bench.com",
         whyItMatters:
-          "A TIGER-AI-Lab benchmark testing whether agents can reverse-engineer full-stack versions of websites through browser exploration — 70 tasks with a public leaderboard.",
+          "A TIGER-AI-Lab benchmark testing whether agents can reverse-engineer full-stack versions of websites through browser exploration, 70 tasks with a public leaderboard.",
         verification: "verified",
         launchDate: "2026-11-04",
         sources: [
           { title: "TIGER-AI-Lab/WebsiteBench on GitHub", url: "https://github.com/TIGER-AI-Lab/WebsiteBench", type: "github" },
-          { title: "WebsiteBench — official site & leaderboard", url: "https://website-bench.com", type: "official" },
+          { title: "WebsiteBench, official site & leaderboard", url: "https://website-bench.com", type: "official" },
         ],
       },
       {
@@ -1700,7 +1700,7 @@ export const archiveEditions: ArchiveEdition[] = [
         shortDescription: "ZFS-backed database branches in seconds for agents/CI.",
         officialUrl: "https://github.com/db-branch/db-branch",
         whyItMatters:
-          "Database branches in seconds for AI agents and CI via ZFS — infrastructure for safe, disposable agent and testing environments.",
+          "Database branches in seconds for AI agents and CI via ZFS, infrastructure for safe, disposable agent and testing environments.",
         verification: "researched",
         launchDate: "2026-11-15",
         sources: [
@@ -1715,7 +1715,7 @@ export const archiveEditions: ArchiveEdition[] = [
         shortDescription: "OAuth delegation so agents get scoped, delegated access.",
         officialUrl: "https://github.com/zalando-incubator/agentic-identity-broker",
         whyItMatters:
-          "OAuth delegation for AI agents, from Zalando's incubator — tackling how agents obtain scoped, delegated access to services on a user's behalf.",
+          "OAuth delegation for AI agents, from Zalando's incubator, tackling how agents obtain scoped, delegated access to services on a user's behalf.",
         verification: "researched",
         launchDate: "2026-11-06",
         sources: [
@@ -1741,7 +1741,7 @@ export interface EditionRef {
   pickCount: number;
 }
 
-/** All editions (current + archive), newest first — for the editions index. */
+/** All editions (current + archive), newest first, for the editions index. */
 export function allEditions(): EditionRef[] {
   const current: EditionRef = {
     slug: EDITION.slug,

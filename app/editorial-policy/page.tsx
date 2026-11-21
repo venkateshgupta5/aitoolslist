@@ -18,7 +18,7 @@ export default function EditorialPolicyPage() {
       <PolicySection heading="Paid listings never buy editorial coverage">
         <p>
           Editorial picks (our fortnightly category winners) are selected on a
-          transparent scoring methodology — never on payment. A{" "}
+          transparent scoring methodology, never on payment. A{" "}
           <span className="font-semibold">$299 Sponsored listing</span> gives you a
           quality product page; it <span className="font-semibold">never</span> makes
           you a category winner, never influences rankings, and is always clearly
@@ -30,7 +30,7 @@ export default function EditorialPolicyPage() {
           Every editorial claim carries dated evidence. We prefer primary sources,
           require an official source before showing exact pricing, and label
           vendor-reported metrics as such rather than presenting them as
-          independent fact. Unknowns are shown as &ldquo;Not verified&rdquo; — we don&apos;t
+          independent fact. Unknowns are shown as &ldquo;Not verified&rdquo;, we don&apos;t
           invent data. See our <Link href="/methodology" className="font-medium text-brand-600 hover:text-brand-700">research methodology</Link>.
         </p>
       </PolicySection>

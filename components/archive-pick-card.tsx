@@ -14,7 +14,7 @@ function initials(name: string) {
 
 /**
  * Card for a historical (archive) edition pick. Unlike the current edition,
- * archive picks have no full /tools profile — they link out to the product's
+ * archive picks have no full /tools profile, they link out to the product's
  * official site/repo and show the dated source evidence they were drawn from.
  */
 export function ArchivePickCard({
@@ -113,7 +113,7 @@ export function ArchivePickCard({
           <VerificationBadge status="no_pick" />
           <p className="mt-3 text-sm text-ink-500">
             No credible in-window candidate met the evidence bar for this
-            category this edition — we flag it rather than force a weak pick.
+            category this edition, we flag it rather than force a weak pick.
           </p>
         </div>
       )}

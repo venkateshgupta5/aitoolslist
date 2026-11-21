@@ -74,11 +74,11 @@ export function ListingForm({ categories }: { categories: Category[] }) {
           Application received ✓
         </h3>
         <p className="mt-1.5 text-sm text-emerald-700">
-          Thanks — your product is in the review queue. Here&apos;s what happens
+          Thanks, your product is in the review queue. Here&apos;s what happens
           next:
         </p>
         <ol className="mt-3 space-y-1.5 text-sm text-emerald-700">
-          <li>1. We review for relevance, accuracy and completeness — within 3 business days.</li>
+          <li>1. We review for relevance, accuracy and completeness, within 3 business days.</li>
           <li>2. If approved, we email you a secure payment link for the one-time $299.</li>
           <li>3. After payment, we publish your listing and send you the live URL.</li>
         </ol>
@@ -159,10 +159,10 @@ export function ListingForm({ categories }: { categories: Category[] }) {
         <Field id="productName" label="Product name" required error={errors.productName}>
           <input id="productName" name="productName" required className={inputClass("productName")} placeholder="Acme AI" aria-invalid={!!errors.productName} />
         </Field>
-        <Field id="websiteUrl" label="Official website URL" required helper="Include https:// — e.g. https://acme.ai" error={errors.websiteUrl}>
+        <Field id="websiteUrl" label="Official website URL" required helper="Include https://, e.g. https://acme.ai" error={errors.websiteUrl}>
           <input id="websiteUrl" name="websiteUrl" type="url" inputMode="url" required className={inputClass("websiteUrl")} placeholder="https://acme.ai" aria-invalid={!!errors.websiteUrl} />
         </Field>
-        <Field id="categorySlug" label="Category" required helper="Pick the closest fit — we may adjust during review." error={errors.categorySlug}>
+        <Field id="categorySlug" label="Category" required helper="Pick the closest fit, we may adjust during review." error={errors.categorySlug}>
           <select id="categorySlug" name="categorySlug" required defaultValue="" className={inputClass("categorySlug")} aria-invalid={!!errors.categorySlug}>
             <option value="" disabled>Choose a category…</option>
             {categories.map((c) => (

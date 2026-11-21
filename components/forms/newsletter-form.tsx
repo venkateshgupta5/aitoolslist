@@ -9,7 +9,7 @@ export function NewsletterForm({ cta = "Subscribe" }: { cta?: string }) {
   if (done) {
     return (
       <p className="rounded-lg bg-emerald-50 px-4 py-3 text-sm font-medium text-emerald-700 ring-1 ring-inset ring-emerald-600/20">
-        Thanks — you&apos;re on the list for the next edition.
+        Thanks, you&apos;re on the list for the next edition.
       </p>
     );
   }

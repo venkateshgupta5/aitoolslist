@@ -11,21 +11,21 @@ import { ListingPageView } from "@/components/listing/page-view";
 import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: `List your app — ${siteConfig.listingPrice} premium listing`,
+  title: `List your app, ${siteConfig.listingPrice} premium listing`,
   description:
-    "Get your AI product a permanent, editorially reviewed listing on aitoolslist.ai for a one-time $299. Submit for review — you only pay after approval. Payment never guarantees rankings, traffic or leads.",
+    "Get your AI product a permanent, editorially reviewed listing on aitoolslist.ai for a one-time $299. Submit for review, you only pay after approval. Payment never guarantees rankings, traffic or leads.",
   alternates: { canonical: "/submit-tool" },
 };
 
 const PRICE = "$299";
 
 // Operational deliverables only (spec §3: A–E). We do NOT sell homepage,
-// newsletter or social promotion — that would compromise editorial independence.
+// newsletter or social promotion, that would compromise editorial independence.
 const deliverables = [
   {
     key: "A",
     title: "Dedicated product profile",
-    body: "A structured product page with your name, description, website, category, features, use cases and any pricing you supply — on the same rich template as our editorial picks.",
+    body: "A structured product page with your name, description, website, category, features, use cases and any pricing you supply, on the same rich template as our editorial picks.",
   },
   {
     key: "B",
@@ -40,7 +40,7 @@ const deliverables = [
   {
     key: "D",
     title: "Editorial review",
-    body: "A human review for relevance, accuracy, completeness and quality — within 3 business days. Clear criteria, no black box.",
+    body: "A human review for relevance, accuracy, completeness and quality, within 3 business days. Clear criteria, no black box.",
   },
   {
     key: "E",
@@ -49,14 +49,14 @@ const deliverables = [
   },
   {
     key: "F",
-    title: "Sponsored — honestly labelled",
-    body: "Your listing is clearly marked “Sponsored.” It never appears as an editorial pick and never influences our independent rankings — which is exactly what keeps the platform worth being listed on.",
+    title: "Sponsored, honestly labelled",
+    body: "Your listing is clearly marked “Sponsored.” It never appears as an editorial pick and never influences our independent rankings, which is exactly what keeps the platform worth being listed on.",
   },
 ];
 
 const terms = [
   ["Price", "One-time $299 (USD). No subscription, no renewal fees."],
-  ["Listing duration", "Permanent — stays live for as long as aitoolslist.ai operates and your product is active."],
+  ["Listing duration", "Permanent, stays live for as long as aitoolslist.ai operates and your product is active."],
   ["Payment timing", "Collected only after editorial approval, via a secure payment link. Nothing is charged upfront."],
   ["Editorial review", "Required. Within 3 business days of submission."],
   ["Publication", "Within 2 business days of payment."],
@@ -66,17 +66,17 @@ const terms = [
 ];
 
 const faqs = [
-  ["Why does listing my product cost $299?", "It pays for a human editorial review and a permanent, structured, SEO-ready profile on a curated platform — not an auto-published row in an unfiltered directory. You're buying credibility and a real product page, not just a link."],
+  ["Why does listing my product cost $299?", "It pays for a human editorial review and a permanent, structured, SEO-ready profile on a curated platform, not an auto-published row in an unfiltered directory. You're buying credibility and a real product page, not just a link."],
   ["Is the $299 payment one-time or recurring?", "One-time. There is no subscription and no renewal fee."],
-  ["How long will my product remain listed?", "Permanently — your listing stays live for as long as aitoolslist.ai operates and your product remains active. We don't call it “lifetime,” but there's no expiry or renewal charge."],
+  ["How long will my product remain listed?", "Permanently, your listing stays live for as long as aitoolslist.ai operates and your product remains active. We don't call it “lifetime,” but there's no expiry or renewal charge."],
   ["What is included in the listing?", "A dedicated product profile, category placement, a search-friendly (crawlable, indexable) page, a prominent link to your website, one structured edit round, and a human editorial review. It's clearly labelled Sponsored."],
   ["How long does editorial review take?", "Within 3 business days of your submission. If approved, we email you a payment link; after payment we publish within 2 business days."],
-  ["Is every submission guaranteed approval?", "No. Every submission is reviewed for relevance, accuracy and quality. Payment does not guarantee approval — and we only collect payment after approval."],
+  ["Is every submission guaranteed approval?", "No. Every submission is reviewed for relevance, accuracy and quality. Payment does not guarantee approval, and we only collect payment after approval."],
   ["What happens if my product is rejected?", "You pay nothing, since payment is collected only after approval. Where we can, we'll tell you why so you can reapply."],
-  ["Can I update my product information after publication?", "Yes. One structured edit round is included, and minor updates (description tweaks, URL changes) are free anytime — just email us."],
+  ["Can I update my product information after publication?", "Yes. One structured edit round is included, and minor updates (description tweaks, URL changes) are free anytime, just email us."],
   ["Will my listing be indexed by search engines?", "Your page is built to be crawlable and indexable, with a descriptive title, meta description, canonical URL and structured data. We cannot and do not guarantee search rankings."],
-  ["Do you guarantee traffic, leads or sales?", "No. We never promise traffic, leads, conversions or rankings. We provide a quality, discoverable product page on a curated platform — outcomes depend on your product and market."],
-  ["Can I receive an invoice?", "Yes — an invoice is available on request, issued when you complete payment after approval."],
+  ["Do you guarantee traffic, leads or sales?", "No. We never promise traffic, leads, conversions or rankings. We provide a quality, discoverable product page on a curated platform, outcomes depend on your product and market."],
+  ["Can I receive an invoice?", "Yes, an invoice is available on request, issued when you complete payment after approval."],
 ];
 
 const flow = [
@@ -158,7 +158,7 @@ export default function SubmitToolPage() {
       {/* 3. WHAT YOU GET */}
       <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
         <h2 className="font-display text-2xl font-semibold tracking-tight text-ink-900 sm:text-3xl">Everything your product needs to stand out.</h2>
-        <p className="mt-2 max-w-2xl text-ink-600">Concrete deliverables — every one is operational today. We don&apos;t sell homepage features, newsletter slots or social promotion, because paid placement must never masquerade as editorial.</p>
+        <p className="mt-2 max-w-2xl text-ink-600">Concrete deliverables, every one is operational today. We don&apos;t sell homepage features, newsletter slots or social promotion, because paid placement must never masquerade as editorial.</p>
         <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {deliverables.map((d) => (
             <div key={d.key} className="rounded-2xl border border-ink-200/80 bg-white p-5">
@@ -174,7 +174,7 @@ export default function SubmitToolPage() {
       <section className="border-y border-ink-200/70 bg-white">
         <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
           <h2 className="font-display text-2xl font-semibold tracking-tight text-ink-900 sm:text-3xl">See what your product listing will look like.</h2>
-          <p className="mt-2 max-w-2xl text-ink-600">An illustrative example of the real listing template. This sample is not a paid placement — it shows the fields a published profile supports.</p>
+          <p className="mt-2 max-w-2xl text-ink-600">An illustrative example of the real listing template. This sample is not a paid placement, it shows the fields a published profile supports.</p>
 
           <div className="mt-8 overflow-hidden rounded-2xl border border-ink-200/80 bg-ink-50">
             <div className="flex items-center gap-2 border-b border-ink-200/80 bg-white px-4 py-2 text-xs text-ink-400">
@@ -241,7 +241,7 @@ export default function SubmitToolPage() {
           </div>
         </div>
         <div className="mt-6 grid gap-5 md:grid-cols-3 text-sm leading-relaxed text-ink-600">
-          <p><span className="font-semibold text-ink-900">Curation over volume.</span> One standout tool per category each edition — we publish research, not an unfiltered list.</p>
+          <p><span className="font-semibold text-ink-900">Curation over volume.</span> One standout tool per category each edition, we publish research, not an unfiltered list.</p>
           <p><span className="font-semibold text-ink-900">A real taxonomy.</span> 13 well-defined categories so buyers browse by genuine use case and capability.</p>
           <p><span className="font-semibold text-ink-900">Editorial standards.</span> Evidence-backed, dated, with vendor claims clearly labelled. <Link href="/methodology" className="font-medium text-brand-600 hover:text-brand-700">See our methodology →</Link></p>
         </div>
@@ -298,7 +298,7 @@ export default function SubmitToolPage() {
       <section id="apply" className="scroll-mt-20 border-t border-ink-200/70 bg-white">
         <div className="mx-auto max-w-3xl px-4 py-14 sm:px-6">
           <h2 className="font-display text-2xl font-semibold tracking-tight text-ink-900 sm:text-3xl">Submit your product</h2>
-          <p className="mt-2 text-ink-600">Tell us about your product. Our team will review your submission and contact you with the next steps — usually within 3 business days.</p>
+          <p className="mt-2 text-ink-600">Tell us about your product. Our team will review your submission and contact you with the next steps, usually within 3 business days.</p>
           <div className="mt-8 rounded-2xl border border-ink-200/80 bg-ink-50 p-6 sm:p-8">
             <ListingForm categories={categories} />
           </div>

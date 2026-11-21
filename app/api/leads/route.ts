@@ -21,7 +21,7 @@ export async function POST(req: Request) {
   const data = parsed.data;
 
   if (!db) {
-    console.warn("[leads] DATABASE_URL not configured — lead not persisted", {
+    console.warn("[leads] DATABASE_URL not configured, lead not persisted", {
       email: data.email,
       product: data.productSlug,
     });

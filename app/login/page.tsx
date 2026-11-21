@@ -44,7 +44,7 @@ export default async function LoginPage() {
             Sign in to aitoolslist.ai
           </h1>
           <p className="mt-2 text-ink-600">
-            Sign-in is optional — you can browse and submit enquiries without an
+            Sign-in is optional, you can browse and submit enquiries without an
             account. It&apos;s a convenience for managing your profile and
             enquiries.
           </p>

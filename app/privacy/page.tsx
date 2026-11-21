@@ -12,7 +12,7 @@ export default function PrivacyPage() {
     <PolicyPage
       title="Privacy policy"
       updated="November 20, 2026"
-      intro="We keep this simple: we collect only what we need to review your submission, contact you, and run the site — and we don't sell your data."
+      intro="We keep this simple: we collect only what we need to review your submission, contact you, and run the site, and we don't sell your data."
     >
       <PolicySection heading="What we collect">
         <ul className="list-disc space-y-1.5 pl-5">
