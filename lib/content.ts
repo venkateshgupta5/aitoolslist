@@ -924,7 +924,7 @@ export const verificationLabel: Record<VerificationStatus, string> = {
 };
 
 // ── Homepage: edition summary ────────────────────────────────────────
-// Honest coverage messaging (spec §6.5): 13 evaluated, N verified, rest flagged.
+// Honest coverage messaging (spec §6.5): 14 evaluated, N verified, rest flagged.
 export function editionSummary() {
   const evaluated = categories.length;
   const verified = products.filter((p) => p.verification === "verified").length;

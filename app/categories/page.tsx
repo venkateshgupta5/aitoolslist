@@ -23,7 +23,7 @@ export default function CategoriesPage() {
       </nav>
 
       <h1 className="mt-4 font-display text-3xl font-semibold tracking-tight text-ink-900 sm:text-4xl">
-        13 categories of AI intelligence
+        14 categories of AI intelligence
       </h1>
       <p className="mt-3 max-w-2xl text-ink-600">
         Each category features exactly one researched, fact-checked standout
