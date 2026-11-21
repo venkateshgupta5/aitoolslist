@@ -119,11 +119,8 @@ export default async function CategoryPage({
           </p>
           <ul className="mt-4 divide-y divide-ink-100 overflow-hidden rounded-2xl border border-ink-200/80 bg-white">
             {archive.map(({ editionSlug, editionLabel, pick }) => (
-              <li
-                key={`${editionSlug}-${pick.name}`}
-                className="flex flex-col gap-2 p-4 sm:flex-row sm:items-center sm:justify-between"
-              >
-                <div className="min-w-0">
+              <li key={`${editionSlug}-${pick.name}`} className="p-5">
+                <div className="flex flex-wrap items-start justify-between gap-2">
                   <div className="flex flex-wrap items-center gap-2">
                     <a
                       href={pick.officialUrl}
@@ -135,14 +132,33 @@ export default async function CategoryPage({
                     </a>
                     <VerificationBadge status={pick.verification} />
                   </div>
-                  <p className="mt-0.5 text-sm text-ink-500">{pick.tagline}</p>
+                  <Link
+                    href={`/editions/${editionSlug}`}
+                    className="shrink-0 text-sm font-medium text-brand-600 hover:text-brand-700"
+                  >
+                    {editionLabel} →
+                  </Link>
                 </div>
-                <Link
-                  href={`/editions/${editionSlug}`}
-                  className="shrink-0 text-sm font-medium text-brand-600 hover:text-brand-700"
-                >
-                  {editionLabel} →
-                </Link>
+                <p className="mt-1 text-sm font-medium text-ink-600">
+                  {pick.tagline}
+                </p>
+                <p className="mt-2 text-sm leading-relaxed text-ink-600">
+                  {pick.overview ?? pick.shortDescription}
+                </p>
+                <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] text-ink-400">
+                  <span>Evidence dated {pick.launchDate}</span>
+                  {pick.sources.map((s) => (
+                    <a
+                      key={s.url}
+                      href={s.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-medium text-brand-600 hover:text-brand-700"
+                    >
+                      {s.type} ↗
+                    </a>
+                  ))}
+                </div>
               </li>
             ))}
           </ul>
