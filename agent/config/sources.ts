@@ -12,7 +12,7 @@ export interface SourceDef {
 }
 
 export const sources: SourceDef[] = [
-  { id: "producthunt", name: "Product Hunt", auth: "PRODUCTHUNT_TOKEN", note: "Commercial API requires permission (PRD §3)." },
+  { id: "producthunt", name: "Product Hunt", auth: "PRODUCTHUNT_API_KEY", note: "GraphQL v2, OAuth client-credentials (PRODUCTHUNT_API_KEY/SECRET)." },
   { id: "hackernews", name: "Hacker News", auth: "none", note: "Algolia HN Search API — keyless." },
   { id: "github", name: "GitHub", auth: "none", note: "Public Search API (GITHUB_TOKEN lifts rate limits)." },
   { id: "reddit", name: "Reddit", auth: "none", note: "Public .json listing endpoints — keyless, rate-limited." },

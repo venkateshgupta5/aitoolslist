@@ -170,10 +170,92 @@ async function techcrunch(_win: PeriodWindow): Promise<SourceResult> {
   return { sourceId: "techcrunch", status: "ok", candidates };
 }
 
+// ── Product Hunt (GraphQL v2, OAuth client-credentials) ─────────────────────
+let phToken: string | null = null;
+async function productHuntToken(): Promise<string | null> {
+  if (phToken) return phToken;
+  const id = process.env.PRODUCTHUNT_API_KEY;
+  const secret = process.env.PRODUCTHUNT_API_SECRET;
+  if (!id || !secret) return null;
+  const res = await fetch("https://api.producthunt.com/v2/oauth/token", {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Accept: "application/json", "User-Agent": UA },
+    body: JSON.stringify({
+      client_id: id,
+      client_secret: secret,
+      grant_type: "client_credentials",
+    }),
+  });
+  if (!res.ok) throw new Error(`producthunt token ${res.status}`);
+  const j = (await res.json()) as { access_token?: string };
+  phToken = j.access_token ?? null;
+  return phToken;
+}
+
+async function producthunt(win: PeriodWindow): Promise<SourceResult> {
+  const token = await productHuntToken();
+  if (!token)
+    return {
+      sourceId: "producthunt",
+      status: "skipped",
+      reason: "no PRODUCTHUNT_API_KEY/SECRET configured",
+      candidates: [],
+    };
+  const query =
+    "query($after:DateTime,$before:DateTime){posts(order:VOTES,postedAfter:$after,postedBefore:$before,first:50){edges{node{name tagline url website votesCount commentsCount createdAt topics(first:5){edges{node{name}}}}}}}";
+  const res = await fetch("https://api.producthunt.com/v2/api/graphql", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      "User-Agent": UA,
+    },
+    body: JSON.stringify({
+      query,
+      variables: {
+        after: `${win.periodStart}T00:00:00Z`,
+        before: `${win.periodEnd}T23:59:59Z`,
+      },
+    }),
+  });
+  if (!res.ok) throw new Error(`producthunt ${res.status}`);
+  const data = (await res.json()) as {
+    data?: {
+      posts?: {
+        edges?: Array<{
+          node: {
+            name: string;
+            tagline?: string;
+            url?: string;
+            website?: string;
+            votesCount?: number;
+            commentsCount?: number;
+            topics?: { edges: Array<{ node: { name: string } }> };
+          };
+        }>;
+      };
+    };
+  };
+  const edges = data.data?.posts?.edges ?? [];
+  const candidates = edges.map((e) => {
+    const n = e.node;
+    const phUrl = n.url ?? "https://www.producthunt.com";
+    const topics = (n.topics?.edges ?? []).map((t) => t.node.name).join(", ");
+    return mk(n.name, n.website || n.url || null, "producthunt", phUrl, {
+      tagline: n.tagline,
+      description: topics || undefined,
+      signals: { votes: n.votesCount ?? 0, comments: n.commentsCount ?? 0 },
+      evidence: [{ sourceId: "producthunt", url: phUrl, title: n.name }],
+    });
+  });
+  return { sourceId: "producthunt", status: "ok", candidates };
+}
+
 const connectors: Record<
   string,
   (win: PeriodWindow) => Promise<SourceResult>
-> = { github, hackernews, reddit, techcrunch };
+> = { github, hackernews, reddit, techcrunch, producthunt };
 
 export async function runDiscovery(win: PeriodWindow): Promise<{
   candidates: Candidate[];
