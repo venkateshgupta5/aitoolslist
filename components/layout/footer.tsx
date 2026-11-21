@@ -21,7 +21,7 @@ export function Footer() {
             </div>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-ink-500">
               An AI intelligence and discovery publication. Independently
-              researched. Fact-checked. Updated every week.
+              researched. Fact-checked. Updated every fortnight.
             </p>
           </div>
 

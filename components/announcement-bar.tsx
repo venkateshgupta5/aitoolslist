@@ -22,8 +22,8 @@ export function AnnouncementBar() {
     <div className="relative bg-ink-950 text-white">
       <div className="mx-auto max-w-6xl px-10 py-2.5 text-center text-sm">
         <p className="text-white/80">
-          Get your AI product in front of the founders, developers and buyers who
-          read every edition.{" "}
+          Get your product a permanent, human-reviewed profile that buyers and AI
+          assistants can cite.{" "}
           <Link
             href="/submit-tool"
             className="font-semibold text-white underline underline-offset-4 decoration-brand-400 hover:text-brand-300"

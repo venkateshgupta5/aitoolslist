@@ -385,7 +385,8 @@ export default function HomePage() {
           <p className="text-[11px] font-semibold uppercase tracking-wide text-brand-600">For product makers</p>
           <h2 className="font-display mt-1 text-3xl font-semibold tracking-tight text-ink-900 sm:text-4xl">What a listing gets you</h2>
           <p className="mt-2 max-w-2xl text-ink-600">
-            One researched profile, surfaced everywhere buyers and AI assistants look.
+            One human-reviewed profile, structured so buyers and AI assistants can
+            find and cite it.
           </p>
 
           <div className="mt-10 grid gap-5 lg:grid-cols-[1.35fr_1fr]">
