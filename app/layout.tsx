@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { Inter, Fraunces } from "next/font/google";
-import Script from "next/script";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { AuthProvider } from "@/components/session-provider";
+import { ConsentAnalytics } from "@/components/consent-analytics";
 import { siteConfig, absoluteUrl } from "@/lib/site";
 
 const inter = Inter({
@@ -80,7 +80,6 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const gaId = process.env.NEXT_PUBLIC_GA_ID;
-  const gtmId = process.env.NEXT_PUBLIC_GTM_ID;
   return (
     <html lang="en" className={`${inter.variable} ${fraunces.variable}`}>
       <head>
@@ -94,47 +93,13 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen flex flex-col antialiased">
-        {gtmId && (
-          <noscript>
-            <iframe
-              src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`}
-              height="0"
-              width="0"
-              style={{ display: "none", visibility: "hidden" }}
-              title="gtm"
-            />
-          </noscript>
-        )}
         <AuthProvider>
           <Navbar />
           <main className="flex-1">{children}</main>
           <Footer />
         </AuthProvider>
         <Analytics />
-        {gtmId && (
-          <Script
-            id="google-tag-manager"
-            strategy="afterInteractive"
-            dangerouslySetInnerHTML={{
-              __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${gtmId}');`,
-            }}
-          />
-        )}
-        {gaId && (
-          <>
-            <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
-              strategy="afterInteractive"
-            />
-            <Script
-              id="google-analytics"
-              strategy="afterInteractive"
-              dangerouslySetInnerHTML={{
-                __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${gaId}');`,
-              }}
-            />
-          </>
-        )}
+        <ConsentAnalytics gaId={gaId} />
       </body>
     </html>
   );
