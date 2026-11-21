@@ -3,29 +3,36 @@
 @theme {
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system,
     "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-display: var(--font-fraunces), ui-serif, Georgia, "Times New Roman",
+    serif;
 
-  --color-ink-50: #f6f7f9;
-  --color-ink-100: #eceef2;
-  --color-ink-200: #d4d8e0;
-  --color-ink-300: #aeb6c4;
-  --color-ink-400: #808ba0;
-  --color-ink-500: #5f6b82;
-  --color-ink-600: #4a5468;
-  --color-ink-700: #3d4556;
-  --color-ink-800: #262b38;
-  --color-ink-900: #141821;
-  --color-ink-950: #0b0e14;
+  /* Warm "paper" canvas for an editorial publication feel */
+  --color-paper: #faf7f2;
 
-  --color-brand-50: #eef4ff;
-  --color-brand-100: #d9e6ff;
-  --color-brand-200: #bcd3ff;
-  --color-brand-300: #8eb6ff;
-  --color-brand-400: #598eff;
-  --color-brand-500: #3366ff;
-  --color-brand-600: #1f48f5;
-  --color-brand-700: #1836e1;
-  --color-brand-800: #1a2fb6;
-  --color-brand-900: #1b2e8f;
+  /* Warm-neutral ink ramp (stone), harmonizes with the ember accent */
+  --color-ink-50: #f7f5f1;
+  --color-ink-100: #ece9e2;
+  --color-ink-200: #dcd7cd;
+  --color-ink-300: #b9b2a5;
+  --color-ink-400: #8c8577;
+  --color-ink-500: #6a6456;
+  --color-ink-600: #514b40;
+  --color-ink-700: #3e3a31;
+  --color-ink-800: #2a2721;
+  --color-ink-900: #1a1713;
+  --color-ink-950: #0e0c0a;
+
+  /* "Ember" accent — warm coral/tangerine, confident and un-generic */
+  --color-brand-50: #fff4ee;
+  --color-brand-100: #ffe4d6;
+  --color-brand-200: #ffc5ad;
+  --color-brand-300: #ff9e78;
+  --color-brand-400: #ff6f3d;
+  --color-brand-500: #f8541f;
+  --color-brand-600: #dc3f10;
+  --color-brand-700: #b4330d;
+  --color-brand-800: #8f2b11;
+  --color-brand-900: #742611;
 }
 
 :root {
@@ -38,22 +45,70 @@ html {
 }
 
 body {
-  background-color: var(--color-ink-50);
+  background-color: var(--color-paper);
   color: var(--color-ink-900);
   font-feature-settings: "cv11", "ss01";
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }
 
-/* Subtle grid backdrop for the hero */
-.hero-grid {
+.font-display {
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+/* ── Cinematic dark hero ──────────────────────────────────────────────── */
+.hero-dark {
+  position: relative;
+  color: #f5f1ea;
+  background:
+    radial-gradient(55% 45% at 12% 8%, rgba(248, 84, 31, 0.26), transparent 60%),
+    radial-gradient(45% 55% at 88% 14%, rgba(139, 92, 246, 0.20), transparent 62%),
+    radial-gradient(60% 60% at 72% 96%, rgba(56, 132, 255, 0.14), transparent 60%),
+    #0d0b0a;
+}
+
+/* Fine grid, faded toward the edges */
+.hero-grid-lines {
   background-image:
-    radial-gradient(60% 60% at 50% 0%, rgba(51, 102, 255, 0.10), transparent 70%),
-    linear-gradient(to bottom, rgba(11, 14, 20, 0.02), transparent);
+    linear-gradient(rgba(255, 255, 255, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.055) 1px, transparent 1px);
+  background-size: 54px 54px;
+  -webkit-mask-image: radial-gradient(72% 72% at 50% 35%, #000 50%, transparent 100%);
+  mask-image: radial-gradient(72% 72% at 50% 35%, #000 50%, transparent 100%);
+}
+
+.glow-orb {
+  filter: blur(64px);
+  border-radius: 9999px;
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.055);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .card-ring {
   box-shadow:
-    0 1px 2px rgba(11, 14, 20, 0.04),
-    0 1px 3px rgba(11, 14, 20, 0.06);
+    0 1px 2px rgba(20, 19, 15, 0.04),
+    0 10px 30px -16px rgba(20, 19, 15, 0.16);
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.35; transform: scale(0.82); }
+}
+.animate-pulse-dot {
+  animation: pulse-dot 2.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .animate-pulse-dot { animation: none; }
 }
