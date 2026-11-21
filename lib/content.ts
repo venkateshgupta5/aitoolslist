@@ -1442,6 +1442,23 @@ export const archiveEditions: ArchiveEdition[] = [
           { title: "Show HN: TinyAIArena (Sep 27, 2026)", url: "https://news.ycombinator.com/item?id=49867775", type: "hackernews" },
         ],
       },
+      {
+        categorySlug: "ai-observability",
+        name: "OpenObserve",
+        tagline: "Open-source observability with AI monitoring",
+        shortDescription: "Rust observability platform adding agent/LLM monitoring in v1.0.",
+        overview:
+          "OpenObserve is an open-source, Rust-built observability platform for logs, metrics, traces and real-user monitoring, positioned as a high-performance alternative to Datadog and Splunk. Its v1.0 release folded AI observability into the same platform: token cost and usage tracking across 80+ providers attributed per agent, full-session tracing of agent conversations with tool calls and latency, Agent Graph and Agent Behavior views, and built-in evaluation with custom scorers, LLM-as-judge and annotation queues. It's open source, with self-hosted and cloud options.",
+        officialUrl: "https://openobserve.ai",
+        whyItMatters:
+          "Brings production AI/agent monitoring into one open-source stack alongside classic logs, metrics and traces — a dated v1.0 GA (Sep 22) for teams running agents in production.",
+        verification: "verified",
+        launchDate: "2026-09-22",
+        sources: [
+          { title: "OpenObserve reaches v1.0 (VentureBeat, Sep 22 2026)", url: "https://venturebeat.com/business/openobserve-reaches-v10-bringing-ai-observability-into-the-same-platform-as-logs-metrics-traces-and-rum", type: "news" },
+          { title: "OpenObserve — official site", url: "https://openobserve.ai", type: "official" },
+        ],
+      },
     ],
   },
   {
@@ -1514,6 +1531,23 @@ export const archiveEditions: ArchiveEdition[] = [
         launchDate: "2026-10-02",
         sources: [
           { title: "strands-agents/box on GitHub", url: "https://github.com/strands-agents/box", type: "github" },
+        ],
+      },
+      {
+        categorySlug: "ai-healthcare",
+        name: "Healthleap",
+        tagline: "AI that flags at-risk hospital patients",
+        shortDescription: "Nightly AI screening of inpatient records for missed conditions.",
+        overview:
+          "Healthleap is an AI platform that analyzes hospital inpatient records each night — labs, weights, vital signs and clinician notes — to flag patients at risk of under-diagnosed conditions like malnutrition, delirium, aspiration pneumonia and pressure ulcers, delivering morning risk scores to care teams via a dashboard. It integrates with EHR systems and uses language models to extract clinical indicators from notes, surfacing risk rather than making diagnoses itself. Reported customers include Penn Medicine, Cedars-Sinai, Intermountain, Houston Methodist and Emory Healthcare; in October 2026 it raised $38M ($8M seed co-led by Sequoia and First Round, $30M Series A led by Hummingbird).",
+        officialUrl: "https://healthleap.ai",
+        whyItMatters:
+          "Targets preventable inpatient harm by catching conditions clinicians miss — a concrete, EHR-integrated clinical-AI use case with a dated, TechCrunch-reported raise.",
+        verification: "verified",
+        launchDate: "2026-10-07",
+        sources: [
+          { title: "Healthleap raises $38M (TechCrunch, Oct 7 2026)", url: "https://techcrunch.com/2026/10/07/healthleap-raises-38m-for-its-ai-that-flags-hospital-patients-who-may-need-a-closer-look/", type: "techcrunch" },
+          { title: "Healthleap — official site", url: "https://healthleap.ai", type: "official" },
         ],
       },
     ],
@@ -1613,6 +1647,23 @@ export const archiveEditions: ArchiveEdition[] = [
         sources: [
           { title: "AI cloud Modal raises $750M Series D (DataCenterDynamics, Oct 16 2026)", url: "https://www.datacenterdynamics.com/en/news/ai-cloud-modal-raises-750m-in-series-d-funding-round/", type: "news" },
           { title: "Modal — official site", url: "https://modal.com", type: "official" },
+        ],
+      },
+      {
+        categorySlug: "ai-biotech-drug-discovery",
+        name: "Formation Bio",
+        tagline: "AI drug developer with a $600M stalled-drug fund",
+        shortDescription: "AI-driven drug developer; $600M fund to revive stalled drugs.",
+        overview:
+          "Formation Bio is an AI-driven drug development company that, in October 2026, launched a $600M fund to buy or license drug candidates that have stalled — betting it can use AI and a tech-enabled development model to revive and advance them. The move pairs capital with its AI development engine to prove out that thesis. (Reported by Forbes; details not independently deep-verified here, and funding is a supporting signal, not proof of clinical success.)",
+        officialUrl: "https://www.formation.bio",
+        whyItMatters:
+          "A novel AI-biotech strategy — a $600M fund to rescue stalled drugs — reported by Forbes as an Oct 2026 move, distinct from the usual discovery-stage raises.",
+        verification: "researched",
+        launchDate: "2026-10-28",
+        sources: [
+          { title: "Why an AI biotech startup launched a $600M fund to buy stalled drugs (Forbes, Oct 28 2026)", url: "https://www.forbes.com/sites/innovationrx/2026/10/28/why-an-ai-biotech-startup-launched-a-600-million-fund-to-buy-stalled-drugs/", type: "news" },
+          { title: "Formation Bio — official site", url: "https://www.formation.bio", type: "official" },
         ],
       },
     ],
