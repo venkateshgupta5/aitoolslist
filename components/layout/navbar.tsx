@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { useSession } from "next-auth/react";
 import { siteConfig } from "@/lib/site";
 
 const navLinks = [
@@ -11,8 +12,43 @@ const navLinks = [
   { href: "/about", label: "About" },
 ];
 
+function Avatar({
+  user,
+  className = "h-8 w-8",
+}: {
+  user: { name?: string | null; image?: string | null };
+  className?: string;
+}) {
+  if (user.image) {
+    // eslint-disable-next-line @next/next/no-img-element
+    return (
+      <img
+        src={user.image}
+        alt={user.name ?? "Your profile"}
+        referrerPolicy="no-referrer"
+        className={`${className} rounded-full object-cover ring-1 ring-ink-200`}
+      />
+    );
+  }
+  const initials = (user.name ?? "U")
+    .split(/\s+/)
+    .slice(0, 2)
+    .map((w) => w[0])
+    .join("")
+    .toUpperCase();
+  return (
+    <span
+      className={`${className} flex items-center justify-center rounded-full bg-brand-600 text-xs font-bold text-white`}
+    >
+      {initials}
+    </span>
+  );
+}
+
 export function Navbar() {
   const [open, setOpen] = useState(false);
+  const { data: session } = useSession();
+  const user = session?.user;
 
   return (
     <header className="sticky top-0 z-50 border-b border-ink-200/70 bg-ink-50/80 backdrop-blur supports-[backdrop-filter]:bg-ink-50/70">
@@ -39,19 +75,29 @@ export function Navbar() {
           ))}
         </div>
 
-        <div className="hidden items-center gap-2 md:flex">
-          <Link
-            href="/login"
-            className="rounded-md px-3 py-2 text-sm font-medium text-ink-600 transition-colors hover:text-ink-900"
-          >
-            Sign in
-          </Link>
+        <div className="hidden items-center gap-3 md:flex">
           <Link
             href="/submit-tool"
             className="rounded-lg bg-ink-900 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-ink-800"
           >
             List your app · {siteConfig.listingPrice}
           </Link>
+          {user ? (
+            <Link
+              href="/profile"
+              title={user.name ?? "Your profile"}
+              className="rounded-full ring-offset-2 transition-shadow hover:ring-2 hover:ring-brand-300"
+            >
+              <Avatar user={user} />
+            </Link>
+          ) : (
+            <Link
+              href="/login"
+              className="rounded-md px-3 py-2 text-sm font-medium text-ink-600 transition-colors hover:text-ink-900"
+            >
+              Sign in
+            </Link>
+          )}
         </div>
 
         {/* Mobile toggle */}
@@ -93,13 +139,24 @@ export function Navbar() {
                 {l.label}
               </Link>
             ))}
-            <Link
-              href="/login"
-              onClick={() => setOpen(false)}
-              className="rounded-md px-3 py-2.5 text-[15px] font-medium text-ink-700 hover:bg-ink-100"
-            >
-              Sign in
-            </Link>
+            {user ? (
+              <Link
+                href="/profile"
+                onClick={() => setOpen(false)}
+                className="flex items-center gap-2.5 rounded-md px-3 py-2.5 text-[15px] font-medium text-ink-700 hover:bg-ink-100"
+              >
+                <Avatar user={user} className="h-6 w-6" />
+                {user.name ?? "Your profile"}
+              </Link>
+            ) : (
+              <Link
+                href="/login"
+                onClick={() => setOpen(false)}
+                className="rounded-md px-3 py-2.5 text-[15px] font-medium text-ink-700 hover:bg-ink-100"
+              >
+                Sign in
+              </Link>
+            )}
             <Link
               href="/submit-tool"
               onClick={() => setOpen(false)}
