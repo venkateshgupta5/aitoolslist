@@ -11,7 +11,7 @@ import { ListingPageView } from "@/components/listing/page-view";
 import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: `List your app, ${siteConfig.listingPrice} premium listing`,
+  title: `List your product, ${siteConfig.listingPrice} premium listing`,
   description:
     "Get your AI product a permanent, editorially reviewed listing on aitoolslist.ai for a one-time $199. Submit for review, you only pay after approval. Payment never guarantees rankings, traffic or leads.",
   alternates: { canonical: "/submit-tool" },
@@ -105,7 +105,7 @@ export default function SubmitToolPage() {
           <nav className="text-sm text-ink-500">
             <Link href="/" className="hover:text-ink-900">Home</Link>{" "}
             <span className="text-ink-300">/</span>{" "}
-            <span className="text-ink-700">List your app</span>
+            <span className="text-ink-700">List your product</span>
           </nav>
 
           <div className="mt-6 grid gap-10 lg:grid-cols-[1.25fr_1fr] lg:items-start">

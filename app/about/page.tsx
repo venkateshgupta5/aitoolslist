@@ -84,7 +84,7 @@ export default function AboutPage() {
           href="/submit-tool"
           className="mt-4 inline-block rounded-lg bg-white px-5 py-2.5 text-sm font-semibold text-ink-900 hover:bg-ink-100"
         >
-          List your app
+          List your product
         </Link>
       </div>
     </div>

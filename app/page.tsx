@@ -437,7 +437,7 @@ export default function HomePage() {
                 ))}
               </ul>
               <div className="mt-6 flex flex-wrap gap-2">
-                <Link href="/submit-tool" className="rounded-lg bg-brand-600 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-700">List your app</Link>
+                <Link href="/submit-tool" className="rounded-lg bg-brand-600 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-700">List your product</Link>
                 <Link href="/tools/flexprice" className="rounded-lg border border-ink-300 bg-white px-5 py-2.5 text-sm font-semibold text-ink-800 transition-colors hover:bg-ink-50">View example listing</Link>
               </div>
               <p className="mt-5 border-t border-ink-100 pt-4 text-xs text-ink-400">
@@ -499,14 +499,14 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── List your app ─────────────────────────────────────────────── */}
+      {/* ── List your product ─────────────────────────────────────────────── */}
       <section className="mx-auto max-w-6xl px-4 pb-20 sm:px-6">
         <div className="relative overflow-hidden rounded-3xl bg-ink-950 px-6 py-12 sm:px-12">
           <div className="glow-orb pointer-events-none absolute -right-20 -top-16 h-72 w-72 bg-brand-500/25" aria-hidden />
           <div className="relative grid items-center gap-8 md:grid-cols-[1.4fr_1fr]">
             <div>
               <span className="inline-flex items-center rounded-full bg-white/10 px-2.5 py-0.5 text-xs font-semibold text-white">Sponsored listing</span>
-              <h2 className="font-display mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl">List your app here, {siteConfig.listingPrice}</h2>
+              <h2 className="font-display mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl">List your product here, {siteConfig.listingPrice}</h2>
               <p className="mt-3 max-w-lg text-ink-300">Reach founders, developers and buyers evaluating AI products. Here&apos;s exactly what you get:</p>
               <ul className="mt-5 space-y-2 text-sm text-ink-200">
                 {listingIncludes.map((i) => (

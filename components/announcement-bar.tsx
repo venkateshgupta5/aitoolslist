@@ -28,7 +28,7 @@ export function AnnouncementBar() {
             href="/submit-tool"
             className="font-semibold text-white underline underline-offset-4 decoration-brand-400 hover:text-brand-300"
           >
-            List your app →
+            List your product →
           </Link>
         </p>
       </div>

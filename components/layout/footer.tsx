@@ -83,7 +83,7 @@ export function Footer() {
               </li>
               <li>
                 <Link href="/submit-tool" className="text-sm text-ink-600 hover:text-ink-900">
-                  List your app · {siteConfig.listingPrice}
+                  List your product · {siteConfig.listingPrice}
                 </Link>
               </li>
               <li>

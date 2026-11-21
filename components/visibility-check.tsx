@@ -61,7 +61,7 @@ export function VisibilityCheck({ items }: { items: Item[] }) {
               href="/submit-tool"
               className="font-semibold text-amber-900 underline underline-offset-2 hover:text-amber-950"
             >
-              List your app →
+              List your product →
             </Link>
           </div>
         ))}

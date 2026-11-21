@@ -102,7 +102,7 @@ export default async function ProfilePage() {
           className="rounded-2xl border border-ink-200/70 bg-white p-5 card-ring transition-colors hover:border-brand-300"
         >
           <p className="font-display text-base font-semibold text-ink-900">
-            List your app →
+            List your product →
           </p>
           <p className="mt-1 text-sm text-ink-500">
             Submit your product for a sponsored listing.
