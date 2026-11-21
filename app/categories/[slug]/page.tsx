@@ -107,11 +107,12 @@ export default async function CategoryPage({
         </div>
       </div>
 
-      {archive.length > 0 && (
-        <div className="mt-12">
-          <h2 className="text-sm font-semibold uppercase tracking-wide text-ink-400">
-            Previous editions
-          </h2>
+      <div className="mt-12">
+        <h2 className="text-sm font-semibold uppercase tracking-wide text-ink-400">
+          Previous editions
+        </h2>
+        {archive.length > 0 ? (
+          <>
           <p className="mt-1 text-sm text-ink-500">
             Earlier picks in this category from our backfilled archive (sourced
             from Hacker News and GitHub, checked against each product&apos;s
@@ -162,8 +163,18 @@ export default async function CategoryPage({
               </li>
             ))}
           </ul>
-        </div>
-      )}
+          </>
+        ) : (
+          <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-500">
+            No archive pick has surfaced in this category yet. Our backfill draws
+            on Hacker News and GitHub — the sources reachable without additional
+            API keys — which have not surfaced a credible, dated {category.name}{" "}
+            launch across the Aug–Nov 2026 editions. We flag the gap rather than
+            list an unverified tool; richer trade sources (e.g. Crunchbase,
+            Product Hunt, G2) would fill this category.
+          </p>
+        )}
+      </div>
 
       <div className="mt-12 rounded-2xl border border-ink-200/80 bg-white p-6">
         <h3 className="text-base font-semibold text-ink-900">
