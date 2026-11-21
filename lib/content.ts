@@ -1035,3 +1035,550 @@ export const takeaways: string[] = [
   "Capital keeps concentrating in AI-for-science — funding is context, not proof.",
   "Open-source infra (vector DBs, LLMOps) is hardening for production.",
 ];
+
+// ── Historical archive editions (Aug 1 – Nov 15, 2026) ───────────────────────
+// Backfilled per the Discovery Agent methodology (weekly_discovery_agent_prd §3):
+// candidates sourced from Hacker News (source #2) and GitHub (source #3) within
+// each fortnight's exact date window, then fact-checked against the product's
+// own site/repo (source #10, official websites). Every pick carries a dated
+// evidence URL. Picks confirmed against the official site are "verified"; those
+// resting on the dated HN/GitHub record alone are "researched · pending approval"
+// — honest about scope, never over-claimed. Categories without a credible
+// in-window candidate are simply omitted (shown as "no pick"), never invented
+// (§11: report insufficient evidence rather than fabricate winners).
+
+export interface ArchivePick {
+  categorySlug: string;
+  name: string;
+  tagline: string;
+  shortDescription: string;
+  officialUrl: string;
+  whyItMatters: string;
+  verification: VerificationStatus; // "verified" | "researched"
+  launchDate: string; // in-window evidence date (YYYY-MM-DD)
+  sources: Source[];
+}
+
+export interface ArchiveEdition {
+  slug: string; // period-start date (1st or 16th), the canonical edition id
+  periodKey: string;
+  name: string;
+  label: string;
+  periodStart: string;
+  periodEnd: string;
+  picks: ArchivePick[];
+}
+
+export const archiveEditions: ArchiveEdition[] = [
+  {
+    slug: "2026-08-01",
+    periodKey: "2026-08-H1",
+    name: "Edition — August 1–15, 2026",
+    label: "Aug 1–15, 2026",
+    periodStart: "2026-08-01",
+    periodEnd: "2026-08-15",
+    picks: [
+      {
+        categorySlug: "ai-coding-developer-tools",
+        name: "Fuxi",
+        tagline: "Terminal AI coding agent, multi-provider",
+        shortDescription: "Single-binary terminal coding agent with multi-provider routing.",
+        officialUrl: "https://www.fuxicode.com",
+        whyItMatters:
+          "A single static binary that routes across 10+ LLM providers with automatic failover and MCP support — part of August 2026's wave of local, provider-agnostic terminal coding agents.",
+        verification: "verified",
+        launchDate: "2026-08-04",
+        sources: [
+          { title: "fuxicodex/Fuxi on GitHub", url: "https://github.com/fuxicodex/Fuxi", type: "github" },
+          { title: "Fuxi — official site", url: "https://www.fuxicode.com", type: "official" },
+        ],
+      },
+      {
+        categorySlug: "ai-agents",
+        name: "Phone Harness",
+        tagline: "Let your AI agent control your phone",
+        shortDescription: "Agents tap, type and scroll real iOS/Android apps.",
+        officialUrl: "https://phone-harness.com",
+        whyItMatters:
+          "Gives agents real tap/type/scroll control of iOS and Android without jailbreaking or special APIs — a concrete step toward agents operating everyday mobile apps.",
+        verification: "verified",
+        launchDate: "2026-08-07",
+        sources: [
+          { title: "phone-harness/phone-harness on GitHub", url: "https://github.com/phone-harness/phone-harness", type: "github" },
+          { title: "Phone Harness — official site", url: "https://phone-harness.com", type: "official" },
+        ],
+      },
+      {
+        categorySlug: "ai-data-infrastructure",
+        name: "pgbot",
+        tagline: "Postgres intelligence for AI agents",
+        shortDescription: "Natural-language Postgres intelligence layer for AI agents.",
+        officialUrl: "https://pgbot.dev",
+        whyItMatters:
+          "Brings natural-language Postgres intelligence to AI agents, reflecting the push to make production databases first-class agent tools.",
+        verification: "researched",
+        launchDate: "2026-08-11",
+        sources: [
+          { title: "pgrundev/pgbot on GitHub (1.5k★)", url: "https://github.com/pgrundev/pgbot", type: "github" },
+        ],
+      },
+      {
+        categorySlug: "ai-monetization-billing",
+        name: "CostPerPrompt",
+        tagline: "Live AI API pricing & cost calculators",
+        shortDescription: "Real-time pricing and workload cost calculators for AI APIs.",
+        officialUrl: "https://costperprompt.com",
+        whyItMatters:
+          "Tracks live pricing across hundreds of models with workload calculators (chatbot, RAG, voice) — the cost tooling that matters as teams move to usage-based AI spend.",
+        verification: "verified",
+        launchDate: "2026-08-02",
+        sources: [
+          { title: "Show HN: CostPerPrompt (Aug 2, 2026)", url: "https://news.ycombinator.com/item?id=49140340", type: "hackernews" },
+          { title: "CostPerPrompt — official site", url: "https://costperprompt.com", type: "official" },
+        ],
+      },
+    ],
+  },
+  {
+    slug: "2026-08-16",
+    periodKey: "2026-08-H2",
+    name: "Edition — August 16–31, 2026",
+    label: "Aug 16–31, 2026",
+    periodStart: "2026-08-16",
+    periodEnd: "2026-08-31",
+    picks: [
+      {
+        categorySlug: "ai-observability-evaluation",
+        name: "Reverify",
+        tagline: "Grounded, hallucination-checked agent toolkit",
+        shortDescription: "Agents propose; deterministic tools decide, every claim checked.",
+        officialUrl: "https://github.com/2akouwu/reverify",
+        whyItMatters:
+          "An MCP server + CLI that makes agents propose while deterministic tools decide, checking every claim against ground truth — a direct answer to hallucination in agent workflows.",
+        verification: "researched",
+        launchDate: "2026-08-31",
+        sources: [
+          { title: "2akouwu/reverify on GitHub (1.3k★)", url: "https://github.com/2akouwu/reverify", type: "github" },
+        ],
+      },
+      {
+        categorySlug: "ai-voice-agents",
+        name: "Tel-Agent",
+        tagline: "Open-source AI phone assistant",
+        shortDescription: "Self-hostable AI phone assistant, open source.",
+        officialUrl: "https://github.com/Dpro-at/Tel-Agent",
+        whyItMatters:
+          "An open-source AI phone assistant — part of the fortnight's crop of self-hostable voice and telephony agents.",
+        verification: "researched",
+        launchDate: "2026-08-16",
+        sources: [
+          { title: "Dpro-at/Tel-Agent on GitHub", url: "https://github.com/Dpro-at/Tel-Agent", type: "github" },
+        ],
+      },
+      {
+        categorySlug: "ai-data-infrastructure",
+        name: "VoiceMem",
+        tagline: "Universal memory for voice agents",
+        shortDescription: "Fully streaming universal memory layer for voice agents.",
+        officialUrl: "https://github.com/xzf-thu/VoiceMem",
+        whyItMatters:
+          "Universal, fully-streaming memory infrastructure built specifically for voice agents, targeting latency at the architecture level.",
+        verification: "researched",
+        launchDate: "2026-08-17",
+        sources: [
+          { title: "xzf-thu/VoiceMem on GitHub (2.9k★)", url: "https://github.com/xzf-thu/VoiceMem", type: "github" },
+        ],
+      },
+      {
+        categorySlug: "ai-agents",
+        name: "TabTin",
+        tagline: "Humans + multiple AI agents, one workspace",
+        shortDescription: "Workspace where people and multiple AI agents collaborate.",
+        officialUrl: "https://www.tabtin.com",
+        whyItMatters:
+          "A shared workspace where people and multiple AI agents work together — an early take on multi-agent collaboration surfaces.",
+        verification: "researched",
+        launchDate: "2026-08-19",
+        sources: [
+          { title: "tabtin-ai/TabTin on GitHub", url: "https://github.com/tabtin-ai/TabTin", type: "github" },
+        ],
+      },
+    ],
+  },
+  {
+    slug: "2026-09-01",
+    periodKey: "2026-09-H1",
+    name: "Edition — September 1–15, 2026",
+    label: "Sep 1–15, 2026",
+    periodStart: "2026-09-01",
+    periodEnd: "2026-09-15",
+    picks: [
+      {
+        categorySlug: "ai-coding-developer-tools",
+        name: "shadcn lint",
+        tagline: "Agent-first linter for design systems",
+        shortDescription: "Design-system rules that AI agents can verify.",
+        officialUrl: "https://github.com/shadcn-ui/lint",
+        whyItMatters:
+          "An agent-first linter letting you write design-system rules agents can verify — from the shadcn/ui author, signaling tooling built explicitly for AI-written code.",
+        verification: "researched",
+        launchDate: "2026-09-02",
+        sources: [
+          { title: "shadcn-ui/lint on GitHub (3.4k★)", url: "https://github.com/shadcn-ui/lint", type: "github" },
+        ],
+      },
+      {
+        categorySlug: "ai-data-infrastructure",
+        name: "Engrim",
+        tagline: "Local-first memory engine for AI CLIs",
+        shortDescription: "Universal local-first SQLite memory engine for AI CLIs.",
+        officialUrl: "https://github.com/timgordontg/engrim",
+        whyItMatters:
+          "A universal, local-first SQLite memory engine for AI CLIs — part of the surge in portable agent-memory layers.",
+        verification: "researched",
+        launchDate: "2026-09-07",
+        sources: [
+          { title: "Show HN: Engrim (Sep 7, 2026)", url: "https://news.ycombinator.com/item?id=49594008", type: "hackernews" },
+          { title: "timgordontg/engrim on GitHub", url: "https://github.com/timgordontg/engrim", type: "github" },
+        ],
+      },
+      {
+        categorySlug: "ai-evals",
+        name: "Dyno Lab",
+        tagline: "AI safety & interpretability workbench",
+        shortDescription: "Local alignment and interpretability workbench for Apple Silicon.",
+        officialUrl: "https://dynolab.dev",
+        whyItMatters:
+          "A local AI safety, alignment and interpretability workbench for Apple Silicon — activations, probes and SAEs with a Python SDK and MCP.",
+        verification: "researched",
+        launchDate: "2026-09-04",
+        sources: [
+          { title: "canivel/dynolab on GitHub", url: "https://github.com/canivel/dynolab", type: "github" },
+        ],
+      },
+      {
+        categorySlug: "ai-agents",
+        name: "Pizza Bot",
+        tagline: "An inbox for background AI agents",
+        shortDescription: "Inbox for AI agents that work in the background.",
+        officialUrl: "https://github.com/pizza-bot-app/pizza-bot",
+        whyItMatters:
+          "An inbox for AI agents that work in the background — reframing agents as asynchronous workers you triage like email.",
+        verification: "researched",
+        launchDate: "2026-09-15",
+        sources: [
+          { title: "Show HN: Pizza Bot (Sep 15, 2026)", url: "https://news.ycombinator.com/item?id=49713894", type: "hackernews" },
+          { title: "pizza-bot-app/pizza-bot on GitHub", url: "https://github.com/pizza-bot-app/pizza-bot", type: "github" },
+        ],
+      },
+    ],
+  },
+  {
+    slug: "2026-09-16",
+    periodKey: "2026-09-H2",
+    name: "Edition — September 16–30, 2026",
+    label: "Sep 16–30, 2026",
+    periodStart: "2026-09-16",
+    periodEnd: "2026-09-30",
+    picks: [
+      {
+        categorySlug: "ai-agents",
+        name: "Andee",
+        tagline: "On-device phone & Mac agent",
+        shortDescription: "Phone/Mac agent that uses any app, on-device.",
+        officialUrl: "https://heyandee.com",
+        whyItMatters:
+          "A phone/Mac agent that operates any app like you do — no integrations or root — with memory and passwords kept on-device.",
+        verification: "researched",
+        launchDate: "2026-09-17",
+        sources: [
+          { title: "kuafuai/andee on GitHub (6.2k★)", url: "https://github.com/kuafuai/andee", type: "github" },
+        ],
+      },
+      {
+        categorySlug: "ai-development-orchestration",
+        name: "TypeLLM",
+        tagline: "Type-safe generation with LLMs",
+        shortDescription: "Type-safe LLM generation; no out-of-schema hallucinations.",
+        officialUrl: "https://typellm.ai",
+        whyItMatters:
+          "Type-safe LLM generation that treats a multi-step workflow as a single inference unit, aiming to eliminate out-of-schema hallucinations.",
+        verification: "verified",
+        launchDate: "2026-09-17",
+        sources: [
+          { title: "TypeLLM/TypeLLM on GitHub", url: "https://github.com/TypeLLM/TypeLLM", type: "github" },
+          { title: "TypeLLM — official site", url: "https://typellm.ai", type: "official" },
+        ],
+      },
+      {
+        categorySlug: "ai-model-serving-inference",
+        name: "Strands Decider",
+        tagline: "Fast decision model for agents",
+        shortDescription: "Small, fast decision model with calibrated confidence.",
+        officialUrl: "https://github.com/strands-labs/strands-decider",
+        whyItMatters:
+          "A small, fast 'system-one' decision model with calibrated confidence for agentic workflows — picking or rating options faster than an LLM.",
+        verification: "researched",
+        launchDate: "2026-09-29",
+        sources: [
+          { title: "strands-labs/strands-decider on GitHub", url: "https://github.com/strands-labs/strands-decider", type: "github" },
+        ],
+      },
+      {
+        categorySlug: "ai-voice-agents",
+        name: "OpenSpline",
+        tagline: "Realtime avatars for voice AI",
+        shortDescription: "Realtime generated avatar for your voice AI, locally.",
+        officialUrl: "https://www.openspline.dev",
+        whyItMatters:
+          "Adds a realtime generated avatar to any voice AI in a few lines of code, running locally — bringing a face to voice agents.",
+        verification: "researched",
+        launchDate: "2026-09-29",
+        sources: [
+          { title: "openspline/openspline on GitHub", url: "https://github.com/openspline/openspline", type: "github" },
+        ],
+      },
+    ],
+  },
+  {
+    slug: "2026-10-01",
+    periodKey: "2026-10-H1",
+    name: "Edition — October 1–15, 2026",
+    label: "Oct 1–15, 2026",
+    periodStart: "2026-10-01",
+    periodEnd: "2026-10-15",
+    picks: [
+      {
+        categorySlug: "ai-agents",
+        name: "ARTEX",
+        tagline: "Autonomous AI penetration-testing system",
+        shortDescription: "Autonomous AI system for penetration testing.",
+        officialUrl: "https://github.com/BaaRai/ARTEX",
+        whyItMatters:
+          "An autonomous AI penetration-testing system that drew the fortnight's strongest GitHub momentum for offensive-security agents.",
+        verification: "researched",
+        launchDate: "2026-10-08",
+        sources: [
+          { title: "BaaRai/ARTEX on GitHub (13.9k★)", url: "https://github.com/BaaRai/ARTEX", type: "github" },
+        ],
+      },
+      {
+        categorySlug: "ai-model-serving-inference",
+        name: "Indra",
+        tagline: "1M-param OCR model, runs on CPU",
+        shortDescription: "1M-param OCR model, CPU-fast, near billion-param accuracy.",
+        officialUrl: "https://www.datalab.to",
+        whyItMatters:
+          "A 1M-parameter OCR model that runs on CPU ~15× faster than Tesseract while approaching billion-parameter accuracy — efficient inference from Datalab.",
+        verification: "researched",
+        launchDate: "2026-10-13",
+        sources: [
+          { title: "datalab-to/indra on GitHub (1.9k★)", url: "https://github.com/datalab-to/indra", type: "github" },
+          { title: "Datalab — official site", url: "https://www.datalab.to", type: "official" },
+        ],
+      },
+      {
+        categorySlug: "ai-monetization-billing",
+        name: "Grandet",
+        tagline: "Cheapest API for any model",
+        shortDescription: "Finds the cheapest API/provider per model, via MCP.",
+        officialUrl: "https://grandet.ai",
+        whyItMatters:
+          "Finds the cheapest API/provider for any model across thousands of sources, with an MCP server — cost routing as monetization infrastructure.",
+        verification: "verified",
+        launchDate: "2026-10-05",
+        sources: [
+          { title: "hanzohanzhe/Grandet on GitHub", url: "https://github.com/hanzohanzhe/Grandet", type: "github" },
+          { title: "Grandet — official site", url: "https://grandet.ai", type: "official" },
+        ],
+      },
+      {
+        categorySlug: "ai-observability-evaluation",
+        name: "Agent Box",
+        tagline: "Sandbox that restricts AI agents",
+        shortDescription: "OS-isolated, default-deny sandbox for running AI agents.",
+        officialUrl: "https://github.com/strands-agents/box",
+        whyItMatters:
+          "Runs AI agents in an OS-isolated, default-deny sandbox with credential injection that keeps secrets out of the agent — guardrails for autonomous execution.",
+        verification: "researched",
+        launchDate: "2026-10-02",
+        sources: [
+          { title: "strands-agents/box on GitHub", url: "https://github.com/strands-agents/box", type: "github" },
+        ],
+      },
+    ],
+  },
+  {
+    slug: "2026-10-16",
+    periodKey: "2026-10-H2",
+    name: "Edition — October 16–31, 2026",
+    label: "Oct 16–31, 2026",
+    periodStart: "2026-10-16",
+    periodEnd: "2026-10-31",
+    picks: [
+      {
+        categorySlug: "ai-development-orchestration",
+        name: "Agent UI (Vercel Labs)",
+        tagline: "UI behaviors for agents",
+        shortDescription: "Library of UI behaviors for agents to build interfaces.",
+        officialUrl: "https://ui-sdk.dev",
+        whyItMatters:
+          "A library of UI behaviors for agents to build next-generation interfaces — from Vercel Labs, part of the move to agent-generated UI.",
+        verification: "researched",
+        launchDate: "2026-10-26",
+        sources: [
+          { title: "vercel-labs/ui on GitHub (6.3k★)", url: "https://github.com/vercel-labs/ui", type: "github" },
+        ],
+      },
+      {
+        categorySlug: "ai-agents",
+        name: "CVEngine",
+        tagline: "AI-first attack-surface assessment",
+        shortDescription: "AI-first external attack-surface assessment with MCP integration.",
+        officialUrl: "https://github.com/hevnsnt/CVEngine",
+        whyItMatters:
+          "AI-first external attack-surface assessment with continuous discovery and evidence-based vulnerability validation, integrated with developer agents via MCP.",
+        verification: "researched",
+        launchDate: "2026-10-24",
+        sources: [
+          { title: "hevnsnt/CVEngine on GitHub", url: "https://github.com/hevnsnt/CVEngine", type: "github" },
+        ],
+      },
+      {
+        categorySlug: "ai-data-infrastructure",
+        name: "StashDock",
+        tagline: "AI-native personal context library",
+        shortDescription: "Collect, organize and reuse context across AI chats.",
+        officialUrl: "https://stashdock.app",
+        whyItMatters:
+          "An AI-native personal context library to collect, organize and reuse context across AI conversations — treating context as a managed asset.",
+        verification: "researched",
+        launchDate: "2026-10-19",
+        sources: [
+          { title: "StashDock/StashDock on GitHub", url: "https://github.com/StashDock/StashDock", type: "github" },
+        ],
+      },
+      {
+        categorySlug: "ai-coding-developer-tools",
+        name: "Landmines",
+        tagline: "Lint rules that keep AI code honest",
+        shortDescription: "Oxlint rules catching fake implementations in AI code.",
+        officialUrl: "https://www.npmjs.com/package/@interfere/landmines",
+        whyItMatters:
+          "Oxlint rules that keep AI-written code honest — real implementations, real signals, no flake masking — tooling for the AI-authored-code era.",
+        verification: "researched",
+        launchDate: "2026-10-28",
+        sources: [
+          { title: "interfere-inc/landmines on GitHub", url: "https://github.com/interfere-inc/landmines", type: "github" },
+        ],
+      },
+    ],
+  },
+  {
+    slug: "2026-11-01",
+    periodKey: "2026-11-H1",
+    name: "Edition — November 1–15, 2026",
+    label: "Nov 1–15, 2026",
+    periodStart: "2026-11-01",
+    periodEnd: "2026-11-15",
+    picks: [
+      {
+        categorySlug: "ai-evals",
+        name: "WebsiteBench",
+        tagline: "Can agents rebuild full-stack sites?",
+        shortDescription: "Benchmark: agents reverse-engineer websites via browser exploration.",
+        officialUrl: "https://website-bench.com",
+        whyItMatters:
+          "A TIGER-AI-Lab benchmark testing whether agents can reverse-engineer full-stack versions of websites through browser exploration — 70 tasks with a public leaderboard.",
+        verification: "verified",
+        launchDate: "2026-11-04",
+        sources: [
+          { title: "TIGER-AI-Lab/WebsiteBench on GitHub", url: "https://github.com/TIGER-AI-Lab/WebsiteBench", type: "github" },
+          { title: "WebsiteBench — official site & leaderboard", url: "https://website-bench.com", type: "official" },
+        ],
+      },
+      {
+        categorySlug: "ai-data-infrastructure",
+        name: "db-branch",
+        tagline: "Instant DB branches for AI agents & CI",
+        shortDescription: "ZFS-backed database branches in seconds for agents/CI.",
+        officialUrl: "https://github.com/db-branch/db-branch",
+        whyItMatters:
+          "Database branches in seconds for AI agents and CI via ZFS — infrastructure for safe, disposable agent and testing environments.",
+        verification: "researched",
+        launchDate: "2026-11-15",
+        sources: [
+          { title: "Show HN: db-branch (Nov 15, 2026)", url: "https://news.ycombinator.com/item?id=50506940", type: "hackernews" },
+          { title: "db-branch/db-branch on GitHub", url: "https://github.com/db-branch/db-branch", type: "github" },
+        ],
+      },
+      {
+        categorySlug: "ai-agents",
+        name: "Agentic Identity Broker",
+        tagline: "OAuth delegation for AI agents",
+        shortDescription: "OAuth delegation so agents get scoped, delegated access.",
+        officialUrl: "https://github.com/zalando-incubator/agentic-identity-broker",
+        whyItMatters:
+          "OAuth delegation for AI agents, from Zalando's incubator — tackling how agents obtain scoped, delegated access to services on a user's behalf.",
+        verification: "researched",
+        launchDate: "2026-11-06",
+        sources: [
+          { title: "Show HN: Agentic Identity Broker (Nov 6, 2026)", url: "https://news.ycombinator.com/item?id=50393235", type: "hackernews" },
+          { title: "zalando-incubator/agentic-identity-broker on GitHub", url: "https://github.com/zalando-incubator/agentic-identity-broker", type: "github" },
+        ],
+      },
+    ],
+  },
+];
+
+// ── Archive lookups ──────────────────────────────────────────────────────────
+export const getArchiveEdition = (slug: string) =>
+  archiveEditions.find((e) => e.slug === slug);
+
+export interface EditionRef {
+  slug: string;
+  name: string;
+  label: string;
+  periodStart: string;
+  periodEnd: string;
+  isCurrent: boolean;
+  pickCount: number;
+}
+
+/** All editions (current + archive), newest first — for the editions index. */
+export function allEditions(): EditionRef[] {
+  const current: EditionRef = {
+    slug: EDITION.slug,
+    name: EDITION.name,
+    label: EDITION.label,
+    periodStart: EDITION.periodStart,
+    periodEnd: EDITION.periodEnd,
+    isCurrent: true,
+    pickCount: products.filter((p) => p.verification === "verified").length,
+  };
+  const past: EditionRef[] = archiveEditions.map((e) => ({
+    slug: e.slug,
+    name: e.name,
+    label: e.label,
+    periodStart: e.periodStart,
+    periodEnd: e.periodEnd,
+    isCurrent: false,
+    pickCount: e.picks.length,
+  }));
+  return [current, ...past].sort((a, b) =>
+    b.periodStart.localeCompare(a.periodStart),
+  );
+}
+
+export interface ArchivePickSlot {
+  category: Category;
+  pick: ArchivePick | undefined;
+}
+
+/** All 14 categories paired with this archive edition's pick (or none). */
+export function archiveEditionPicks(edition: ArchiveEdition): ArchivePickSlot[] {
+  return sortedCategories().map((category) => ({
+    category,
+    pick: edition.picks.find((p) => p.categorySlug === category.slug),
+  }));
+}
