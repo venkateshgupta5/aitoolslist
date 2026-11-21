@@ -445,25 +445,26 @@ const baseProducts: Product[] = [
     tagline: "Open-source usage-based billing for AI products",
     shortDescription: "Developer-first metering and usage-based billing engine.",
     overview:
-      "Flexprice is an open-source, developer-first billing and metering platform built for usage-based and AI products. It handles event metering, flexible pricing models, credits/wallets and invoicing so teams can bill for tokens, API calls or other consumption without building billing infrastructure in-house.",
+      "Flexprice is an open-source monetization and billing platform positioned as \"infrastructure built for AI-native companies.\" It handles real-time usage metering, flexible pricing (usage-based, tiered, credit-based and hybrid), credit wallets, feature entitlements and automated invoicing so teams can bill for tokens, API calls or other consumption without building billing infrastructure in-house.",
     problemSolved:
       "AI products increasingly bill on consumption (tokens, requests, compute), but off-the-shelf subscription tools model seats and flat plans poorly — teams end up building fragile in-house metering and invoicing.",
     howItWorks:
-      "Developers send usage events to Flexprice, define pricing (usage-based, tiered, prepaid credits/wallets or hybrid), and Flexprice meters consumption, tracks balances and generates invoices; it is self-hostable or available as a managed cloud.",
-    features: ["Event-based usage metering", "Usage-based, tiered & hybrid pricing", "Credits / prepaid wallets", "Invoicing & billing automation", "Open source, self-hostable"],
-    useCases: ["Billing LLM/AI apps per token or request", "Usage-based SaaS pricing", "Prepaid credit / wallet systems"],
+      "Developers instrument their app to send usage events (via SDKs, API or CLI), define pricing and credit rules in a no-code dashboard, and Flexprice meters consumption in real time, enforces feature entitlements, tracks wallet balances and generates invoices; it runs as a managed cloud or self-hosted under AGPL-3.0, and ships an MCP server so coding agents can call billing operations.",
+    features: ["Real-time usage metering", "Usage-based, tiered, credit-based & hybrid pricing", "Credit wallets & top-ups", "Feature entitlements / access control", "Subscriptions & automated invoicing", "No-code UI, SDKs, CLI & MCP server", "Open source (AGPL-3.0), self-hostable"],
+    useCases: ["Billing LLM/AI apps per token or request", "Usage-based & hybrid SaaS pricing", "Prepaid credit / wallet systems", "Feature gating by plan or customer"],
     targetAudience: ["AI product teams", "SaaS developers", "Billing & monetization engineers"],
-    pricing: "Open-source core is free to self-host; managed cloud tiers available — see official pricing.",
-    integrations: ["Payment processors (e.g. Stripe)", "REST API & SDKs", "Webhooks / event sources"],
+    pricing: "Open-source core (AGPL-3.0) is free to self-host; managed cloud and enterprise tiers available — see official pricing.",
+    integrations: ["Stripe", "Razorpay", "Paddle", "HubSpot", "Snowflake", "QuickBooks / Zoho", "REST API, SDKs & webhooks"],
     alternatives: ["Metronome", "Orb", "Lago", "Stripe Billing"],
     selectionRationale:
-      "Represents the new AI Monetization & Billing Infrastructure category: an open-source, developer-first metering/billing engine purpose-built for usage-based AI pricing. Added outside the fortnightly research pass — shown as a curated preview pending independent fact-check.",
+      "The standout pick for the new AI Monetization & Billing Infrastructure category: an open-source (AGPL-3.0), developer-first metering and billing engine purpose-built for usage-based and agentic AI pricing. Fact-checked against its official site, GitHub repository and dated public launch (Show HN, Jun 30 2025); core claims confirmed, while vendor-reported scale and cloud-pricing figures remain flagged.",
     sources: [
       { title: "Flexprice — official site", url: "https://flexprice.io", type: "official" },
-      { title: "Flexprice on GitHub", url: "https://github.com/flexprice/flexprice", type: "official" },
+      { title: "Flexprice on GitHub (AGPL-3.0)", url: "https://github.com/flexprice/flexprice", type: "official" },
+      { title: "Show HN: Flexprice — Open-Source Usage-Based Billing Toolkit (Jun 30, 2025)", url: "https://news.ycombinator.com/item?id=44422663", type: "news" },
     ],
-    lastVerified: null,
-    verification: "preview",
+    lastVerified: "November 21, 2026",
+    verification: "verified",
   },
 ];
 
@@ -800,27 +801,31 @@ const enrichment: Record<string, Partial<Product>> = {
   },
   flexprice: {
     productType: "Usage-based billing & metering platform",
-    launchDate: null,
-    productStatus: "Available (open source + cloud)",
-    differentiators: ["Open source", "AI/usage-first", "Credits & wallets"],
-    researchConfidence: "Low",
+    launchDate: "June 30, 2025 (public launch / Show HN)",
+    productStatus: "Generally available (open source + cloud)",
+    differentiators: ["Open source (AGPL-3.0)", "AI/usage-first", "Credits, wallets & entitlements"],
+    documentationUrl: "https://docs.flexprice.io",
+    researchConfidence: "High",
     whyItMatters:
-      "As AI products shift to consumption pricing, a purpose-built open-source metering and billing layer lets teams ship usage-based and credit-based models without constructing billing infrastructure themselves.",
+      "As AI products shift to consumption pricing, a purpose-built open-source metering and billing layer lets teams ship usage-based, credit-based and agentic pricing — including per-token and GPU usage — without constructing billing infrastructure themselves.",
     strengths: [
-      "Open-source and self-hostable — avoids billing-vendor lock-in",
-      "Designed for usage-based and hybrid AI pricing from the start",
-      "Built-in credits/wallet model suited to prepaid AI usage",
+      "Open-source (AGPL-3.0) and self-hostable — avoids billing-vendor lock-in",
+      "Real-time metering with credit wallets and feature entitlements in one platform",
+      "AI-native focus: meters inference tokens, GPU and agentic workloads; ships an MCP server",
     ],
     limitations: [
       "Younger and less proven at scale than incumbent billing platforms",
-      "Specific pricing, limits and integration coverage not verified in this research pass",
+      "Headline throughput and cloud-pricing figures are vendor-reported, not independently verified",
     ],
     whoShouldUse: [
       "AI product teams billing per token, request or compute",
       "Developers wanting an open, self-hostable billing engine",
     ],
     notSuitableWhen: ["Teams needing only simple flat-rate subscriptions (a basic subscription tool suffices)"],
-    specs: [{ label: "License", value: "Open source (core)" }, { label: "Hosting", value: "Cloud or self-host" }],
+    specs: [{ label: "License", value: "AGPL-3.0 (core)" }, { label: "Hosting", value: "Cloud or self-host" }],
+    benchmarks: [
+      { label: "Real-time metering throughput", value: "40k+ events/sec, sub-60ms P99 (vendor-reported)", kind: "vendor" },
+    ],
     compare: [
       { name: "Metronome", positioning: "Enterprise usage-based billing", whenPreferable: "For large-scale, high-volume metering with enterprise support." },
       { name: "Orb", positioning: "Developer-first usage billing", whenPreferable: "For a polished managed usage-based billing product." },
