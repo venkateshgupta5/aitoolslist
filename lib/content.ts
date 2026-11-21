@@ -100,6 +100,7 @@ export const categories: Category[] = [
   { slug: "ai-observability", name: "AI Observability", order: 11, coverage: "Production monitoring, analytics and reliability." },
   { slug: "ai-healthcare", name: "AI Healthcare", order: 12, coverage: "Clinical AI and healthcare workflow automation." },
   { slug: "ai-biotech-drug-discovery", name: "AI Biotech & Drug Discovery", order: 13, coverage: "Computational biology and drug discovery." },
+  { slug: "ai-monetization-billing", name: "AI Monetization & Billing Infrastructure", order: 14, coverage: "Usage-based billing, metering, pricing and payments infrastructure for AI products." },
 ];
 
 const pricingTBD =
@@ -436,6 +437,34 @@ const baseProducts: Product[] = [
     lastVerified: "November 20, 2026",
     verification: "verified",
   },
+  {
+    slug: "flexprice",
+    name: "Flexprice",
+    categorySlug: "ai-monetization-billing",
+    officialUrl: "https://flexprice.io",
+    tagline: "Open-source usage-based billing for AI products",
+    shortDescription: "Developer-first metering and usage-based billing engine.",
+    overview:
+      "Flexprice is an open-source, developer-first billing and metering platform built for usage-based and AI products. It handles event metering, flexible pricing models, credits/wallets and invoicing so teams can bill for tokens, API calls or other consumption without building billing infrastructure in-house.",
+    problemSolved:
+      "AI products increasingly bill on consumption (tokens, requests, compute), but off-the-shelf subscription tools model seats and flat plans poorly — teams end up building fragile in-house metering and invoicing.",
+    howItWorks:
+      "Developers send usage events to Flexprice, define pricing (usage-based, tiered, prepaid credits/wallets or hybrid), and Flexprice meters consumption, tracks balances and generates invoices; it is self-hostable or available as a managed cloud.",
+    features: ["Event-based usage metering", "Usage-based, tiered & hybrid pricing", "Credits / prepaid wallets", "Invoicing & billing automation", "Open source, self-hostable"],
+    useCases: ["Billing LLM/AI apps per token or request", "Usage-based SaaS pricing", "Prepaid credit / wallet systems"],
+    targetAudience: ["AI product teams", "SaaS developers", "Billing & monetization engineers"],
+    pricing: "Open-source core is free to self-host; managed cloud tiers available — see official pricing.",
+    integrations: ["Payment processors (e.g. Stripe)", "REST API & SDKs", "Webhooks / event sources"],
+    alternatives: ["Metronome", "Orb", "Lago", "Stripe Billing"],
+    selectionRationale:
+      "Represents the new AI Monetization & Billing Infrastructure category: an open-source, developer-first metering/billing engine purpose-built for usage-based AI pricing. Added outside the fortnightly research pass — shown as a curated preview pending independent fact-check.",
+    sources: [
+      { title: "Flexprice — official site", url: "https://flexprice.io", type: "official" },
+      { title: "Flexprice on GitHub", url: "https://github.com/flexprice/flexprice", type: "official" },
+    ],
+    lastVerified: null,
+    verification: "preview",
+  },
 ];
 
 // ── Intelligence-layer enrichment (per slug) ────────────────────────────────
@@ -767,6 +796,35 @@ const enrichment: Record<string, Partial<Product>> = {
       { name: "Recursion", positioning: "AI-driven drug discovery (public)", whenPreferable: "For a public company with a clinical pipeline." },
       { name: "Insilico Medicine", positioning: "Generative chemistry", whenPreferable: "For end-to-end generative drug design." },
       { name: "Iambic", positioning: "AI drug discovery", whenPreferable: "For physics-informed ML drug design." },
+    ],
+  },
+  flexprice: {
+    productType: "Usage-based billing & metering platform",
+    launchDate: null,
+    productStatus: "Available (open source + cloud)",
+    differentiators: ["Open source", "AI/usage-first", "Credits & wallets"],
+    researchConfidence: "Low",
+    whyItMatters:
+      "As AI products shift to consumption pricing, a purpose-built open-source metering and billing layer lets teams ship usage-based and credit-based models without constructing billing infrastructure themselves.",
+    strengths: [
+      "Open-source and self-hostable — avoids billing-vendor lock-in",
+      "Designed for usage-based and hybrid AI pricing from the start",
+      "Built-in credits/wallet model suited to prepaid AI usage",
+    ],
+    limitations: [
+      "Younger and less proven at scale than incumbent billing platforms",
+      "Specific pricing, limits and integration coverage not verified in this research pass",
+    ],
+    whoShouldUse: [
+      "AI product teams billing per token, request or compute",
+      "Developers wanting an open, self-hostable billing engine",
+    ],
+    notSuitableWhen: ["Teams needing only simple flat-rate subscriptions (a basic subscription tool suffices)"],
+    specs: [{ label: "License", value: "Open source (core)" }, { label: "Hosting", value: "Cloud or self-host" }],
+    compare: [
+      { name: "Metronome", positioning: "Enterprise usage-based billing", whenPreferable: "For large-scale, high-volume metering with enterprise support." },
+      { name: "Orb", positioning: "Developer-first usage billing", whenPreferable: "For a polished managed usage-based billing product." },
+      { name: "Lago", positioning: "Open-source billing", whenPreferable: "For another open-source metering/billing option to compare." },
     ],
   },
 };
