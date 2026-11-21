@@ -113,7 +113,7 @@ export default function SubmitToolPage() {
               <span className="text-[11px] font-semibold uppercase tracking-wide text-brand-600">
                 Premium AI product listing
               </span>
-              <h1 className="mt-3 text-3xl font-extrabold leading-[1.1] tracking-tight text-ink-900 sm:text-5xl">
+              <h1 className="mt-3 font-display text-3xl font-semibold leading-[1.1] tracking-tight text-ink-900 sm:text-5xl">
                 Your AI product deserves more than another directory listing.
               </h1>
               <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-ink-600">
@@ -124,7 +124,7 @@ export default function SubmitToolPage() {
               </p>
 
               <div className="mt-6 flex items-baseline gap-2">
-                <span className="text-4xl font-extrabold tracking-tight text-ink-900">{PRICE}</span>
+                <span className="font-display text-4xl font-semibold tracking-tight text-ink-900">{PRICE}</span>
                 <span className="text-sm text-ink-500">· one-time · premium product listing</span>
               </div>
 
@@ -157,7 +157,7 @@ export default function SubmitToolPage() {
 
       {/* 3. WHAT YOU GET */}
       <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
-        <h2 className="text-2xl font-bold tracking-tight text-ink-900 sm:text-3xl">Everything your product needs to stand out.</h2>
+        <h2 className="font-display text-2xl font-semibold tracking-tight text-ink-900 sm:text-3xl">Everything your product needs to stand out.</h2>
         <p className="mt-2 max-w-2xl text-ink-600">Concrete deliverables — every one is operational today. We don&apos;t sell homepage features, newsletter slots or social promotion, because paid placement must never masquerade as editorial.</p>
         <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {deliverables.map((d) => (
@@ -173,7 +173,7 @@ export default function SubmitToolPage() {
       {/* 4. LISTING PREVIEW */}
       <section className="border-y border-ink-200/70 bg-white">
         <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
-          <h2 className="text-2xl font-bold tracking-tight text-ink-900 sm:text-3xl">See what your product listing will look like.</h2>
+          <h2 className="font-display text-2xl font-semibold tracking-tight text-ink-900 sm:text-3xl">See what your product listing will look like.</h2>
           <p className="mt-2 max-w-2xl text-ink-600">An illustrative example of the real listing template. This sample is not a paid placement — it shows the fields a published profile supports.</p>
 
           <div className="mt-8 overflow-hidden rounded-2xl border border-ink-200/80 bg-ink-50">
@@ -190,7 +190,7 @@ export default function SubmitToolPage() {
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-ink-900 text-base font-bold text-white">YP</div>
                 <div>
                   <div className="flex items-center gap-2">
-                    <h3 className="text-xl font-bold tracking-tight text-ink-900">Your Product</h3>
+                    <h3 className="font-display text-xl font-semibold tracking-tight text-ink-900">Your Product</h3>
                     <span className="rounded-full bg-ink-100 px-2 py-0.5 text-[10px] font-semibold text-ink-600">Sponsored</span>
                   </div>
                   <p className="text-sm text-ink-500">Your one-line positioning statement</p>
@@ -220,7 +220,7 @@ export default function SubmitToolPage() {
 
       {/* 5. CREDIBILITY & AUDIENCE */}
       <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
-        <h2 className="text-2xl font-bold tracking-tight text-ink-900 sm:text-3xl">Built for people discovering and evaluating AI products.</h2>
+        <h2 className="font-display text-2xl font-semibold tracking-tight text-ink-900 sm:text-3xl">Built for people discovering and evaluating AI products.</h2>
         <p className="mt-2 max-w-2xl text-ink-600">
           We&apos;re a new platform (launched November 2026), so we won&apos;t quote
           traffic or audience numbers we can&apos;t yet verify. Instead, here&apos;s
@@ -228,15 +228,15 @@ export default function SubmitToolPage() {
         </p>
         <div className="mt-8 grid gap-5 sm:grid-cols-3">
           <div className="rounded-2xl border border-ink-200/80 bg-white p-5">
-            <p className="text-3xl font-extrabold tracking-tight text-ink-900">{allCategories.length}</p>
+            <p className="font-display text-3xl font-semibold tracking-tight text-ink-900">{allCategories.length}</p>
             <p className="mt-1 text-sm text-ink-600">curated AI categories</p>
           </div>
           <div className="rounded-2xl border border-ink-200/80 bg-white p-5">
-            <p className="text-3xl font-extrabold tracking-tight text-ink-900">{verifiedCount}</p>
+            <p className="font-display text-3xl font-semibold tracking-tight text-ink-900">{verifiedCount}</p>
             <p className="mt-1 text-sm text-ink-600">editorially verified listings (as of Nov 2026)</p>
           </div>
           <div className="rounded-2xl border border-ink-200/80 bg-white p-5">
-            <p className="text-3xl font-extrabold tracking-tight text-ink-900">100%</p>
+            <p className="font-display text-3xl font-semibold tracking-tight text-ink-900">100%</p>
             <p className="mt-1 text-sm text-ink-600">of listings human-reviewed before publishing</p>
           </div>
         </div>
@@ -250,9 +250,9 @@ export default function SubmitToolPage() {
       {/* 6. PRICING & TERMS */}
       <section className="border-y border-ink-200/70 bg-white">
         <div className="mx-auto max-w-4xl px-4 py-14 sm:px-6">
-          <h2 className="text-2xl font-bold tracking-tight text-ink-900 sm:text-3xl">One clear price. No surprises.</h2>
+          <h2 className="font-display text-2xl font-semibold tracking-tight text-ink-900 sm:text-3xl">One clear price. No surprises.</h2>
           <div className="mt-2 flex items-baseline gap-2">
-            <span className="text-3xl font-extrabold tracking-tight text-ink-900">{PRICE}</span>
+            <span className="font-display text-3xl font-semibold tracking-tight text-ink-900">{PRICE}</span>
             <span className="text-sm text-ink-500">· premium AI product listing · one-time</span>
           </div>
 
@@ -281,7 +281,7 @@ export default function SubmitToolPage() {
 
       {/* 8. FLOW */}
       <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
-        <h2 className="text-2xl font-bold tracking-tight text-ink-900 sm:text-3xl">How it works</h2>
+        <h2 className="font-display text-2xl font-semibold tracking-tight text-ink-900 sm:text-3xl">How it works</h2>
         <p className="mt-2 text-ink-600">Submit first, pay only if approved. Five simple steps.</p>
         <ol className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
           {flow.map(([title, body], i) => (
@@ -297,7 +297,7 @@ export default function SubmitToolPage() {
       {/* 7. SUBMISSION FORM */}
       <section id="apply" className="scroll-mt-20 border-t border-ink-200/70 bg-white">
         <div className="mx-auto max-w-3xl px-4 py-14 sm:px-6">
-          <h2 className="text-2xl font-bold tracking-tight text-ink-900 sm:text-3xl">Submit your product</h2>
+          <h2 className="font-display text-2xl font-semibold tracking-tight text-ink-900 sm:text-3xl">Submit your product</h2>
           <p className="mt-2 text-ink-600">Tell us about your product. Our team will review your submission and contact you with the next steps — usually within 3 business days.</p>
           <div className="mt-8 rounded-2xl border border-ink-200/80 bg-ink-50 p-6 sm:p-8">
             <ListingForm categories={categories} />
@@ -307,7 +307,7 @@ export default function SubmitToolPage() {
 
       {/* 9. FAQ */}
       <section className="mx-auto max-w-3xl px-4 py-14 sm:px-6">
-        <h2 className="text-2xl font-bold tracking-tight text-ink-900 sm:text-3xl">Frequently asked questions</h2>
+        <h2 className="font-display text-2xl font-semibold tracking-tight text-ink-900 sm:text-3xl">Frequently asked questions</h2>
         <div className="mt-8 divide-y divide-ink-200/70">
           {faqs.map(([q, a]) => (
             <details key={q} className="group py-4">

@@ -28,7 +28,7 @@ export default function AboutPage() {
         <span className="text-ink-700">About</span>
       </nav>
 
-      <h1 className="mt-4 text-3xl font-extrabold tracking-tight text-ink-900 sm:text-4xl">
+      <h1 className="mt-4 font-display text-3xl font-semibold tracking-tight text-ink-900 sm:text-4xl">
         An AI intelligence and discovery publication
       </h1>
       <p className="mt-4 text-lg leading-relaxed text-ink-600">
@@ -61,7 +61,7 @@ export default function AboutPage() {
         </p>
       </div>
 
-      <h2 className="mt-12 text-xl font-bold tracking-tight text-ink-900">
+      <h2 className="mt-12 font-display text-xl font-semibold tracking-tight text-ink-900">
         How each edition comes together
       </h2>
       <ol className="mt-5 space-y-3">

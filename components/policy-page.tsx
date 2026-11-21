@@ -19,7 +19,7 @@ export function PolicyPage({
         <span className="text-ink-300">/</span>{" "}
         <span className="text-ink-700">{title}</span>
       </nav>
-      <h1 className="mt-4 text-3xl font-extrabold tracking-tight text-ink-900 sm:text-4xl">{title}</h1>
+      <h1 className="mt-4 font-display text-3xl font-semibold tracking-tight text-ink-900 sm:text-4xl">{title}</h1>
       <p className="mt-2 text-sm text-ink-400">Last updated: {updated}</p>
       {intro && <p className="mt-5 text-lg leading-relaxed text-ink-600">{intro}</p>}
       <div className="mt-8 space-y-8">{children}</div>
@@ -36,7 +36,7 @@ export function PolicySection({
 }) {
   return (
     <section>
-      <h2 className="text-xl font-bold tracking-tight text-ink-900">{heading}</h2>
+      <h2 className="font-display text-xl font-semibold tracking-tight text-ink-900">{heading}</h2>
       <div className="mt-3 space-y-3 text-[15px] leading-relaxed text-ink-700">{children}</div>
     </section>
   );

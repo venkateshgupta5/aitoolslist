@@ -86,7 +86,7 @@ export default async function EditionPage({
             <span className="h-1.5 w-1.5 rounded-full bg-brand-500" />
             Archive edition · {archive.label}
           </div>
-          <h1 className="mt-4 text-3xl font-extrabold tracking-tight text-ink-900 sm:text-4xl">
+          <h1 className="mt-4 font-display text-3xl font-semibold tracking-tight text-ink-900 sm:text-4xl">
             {archive.name}
           </h1>
           <p className="mt-3 max-w-2xl text-ink-600">
@@ -145,7 +145,7 @@ function CurrentEdition() {
         <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
         Published · fortnightly edition · {EDITION.label}
       </div>
-      <h1 className="mt-4 text-3xl font-extrabold tracking-tight text-ink-900 sm:text-4xl">
+      <h1 className="mt-4 font-display text-3xl font-semibold tracking-tight text-ink-900 sm:text-4xl">
         {EDITION.name}
       </h1>
       <p className="mt-3 max-w-2xl text-ink-600">

@@ -89,7 +89,7 @@ export default async function CategoryPage({
       <span className="mt-4 block text-[11px] font-semibold uppercase tracking-wide text-brand-600">
         Category {category.order.toString().padStart(2, "0")}
       </span>
-      <h1 className="mt-2 text-3xl font-extrabold tracking-tight text-ink-900 sm:text-4xl">
+      <h1 className="mt-2 font-display text-3xl font-semibold tracking-tight text-ink-900 sm:text-4xl">
         {category.name}
       </h1>
       <p className="mt-3 max-w-2xl text-ink-600">{category.coverage}</p>

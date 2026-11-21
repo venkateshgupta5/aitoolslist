@@ -170,7 +170,7 @@ export default async function ProductPage({
             {initials(product.name)}
           </div>
           <div className="min-w-0">
-            <h1 className="text-3xl font-extrabold tracking-tight text-ink-900 sm:text-4xl">{product.name}</h1>
+            <h1 className="font-display text-3xl font-semibold tracking-tight text-ink-900 sm:text-4xl">{product.name}</h1>
             <p className="mt-1 text-ink-600">{product.tagline}</p>
           </div>
         </div>

@@ -17,7 +17,7 @@ export default function ContactPage() {
         <span className="text-ink-300">/</span>{" "}
         <span className="text-ink-700">Contact</span>
       </nav>
-      <h1 className="mt-4 text-3xl font-extrabold tracking-tight text-ink-900 sm:text-4xl">Contact us</h1>
+      <h1 className="mt-4 font-display text-3xl font-semibold tracking-tight text-ink-900 sm:text-4xl">Contact us</h1>
       <p className="mt-4 text-lg leading-relaxed text-ink-600">
         We&apos;re happy to help with listings, corrections, press or general
         questions.

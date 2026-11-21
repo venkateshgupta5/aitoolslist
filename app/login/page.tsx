@@ -19,7 +19,7 @@ export default async function LoginPage() {
 
       {user ? (
         <>
-          <h1 className="mt-6 text-2xl font-bold tracking-tight text-ink-900">
+          <h1 className="mt-6 font-display text-2xl font-semibold tracking-tight text-ink-900">
             You&apos;re signed in
           </h1>
           <p className="mt-2 text-ink-600">
@@ -40,7 +40,7 @@ export default async function LoginPage() {
         </>
       ) : (
         <>
-          <h1 className="mt-6 text-2xl font-bold tracking-tight text-ink-900">
+          <h1 className="mt-6 font-display text-2xl font-semibold tracking-tight text-ink-900">
             Sign in to aitoolslist.ai
           </h1>
           <p className="mt-2 text-ink-600">

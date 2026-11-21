@@ -22,7 +22,7 @@ export default function EditionsIndexPage() {
         <span className="text-ink-700">Editions</span>
       </nav>
 
-      <h1 className="mt-4 text-3xl font-extrabold tracking-tight text-ink-900 sm:text-4xl">
+      <h1 className="mt-4 font-display text-3xl font-semibold tracking-tight text-ink-900 sm:text-4xl">
         All editions
       </h1>
       <p className="mt-3 max-w-2xl text-ink-600">

@@ -42,7 +42,7 @@ export default function MethodologyPage() {
         <span className="text-ink-700">Methodology</span>
       </nav>
 
-      <h1 className="mt-4 text-3xl font-extrabold tracking-tight text-ink-900 sm:text-4xl">
+      <h1 className="mt-4 font-display text-3xl font-semibold tracking-tight text-ink-900 sm:text-4xl">
         Our research methodology
       </h1>
       <p className="mt-4 text-lg leading-relaxed text-ink-600">
@@ -53,7 +53,7 @@ export default function MethodologyPage() {
       </p>
 
       <section className="mt-12">
-        <h2 className="text-xl font-bold tracking-tight text-ink-900">1. Discovery</h2>
+        <h2 className="font-display text-xl font-semibold tracking-tight text-ink-900">1. Discovery</h2>
         <p className="mt-3 text-[15px] leading-relaxed text-ink-700">
           A discovery agent sweeps credible sources each period for emerging and
           trending products, capturing source URLs and launch/engagement
@@ -68,7 +68,7 @@ export default function MethodologyPage() {
       </section>
 
       <section className="mt-10">
-        <h2 className="text-xl font-bold tracking-tight text-ink-900">2. Scoring</h2>
+        <h2 className="font-display text-xl font-semibold tracking-tight text-ink-900">2. Scoring</h2>
         <p className="mt-3 text-[15px] leading-relaxed text-ink-700">
           Eligible candidates are scored out of 100 on a consistent, auditable
           methodology. The objective is <strong>trending and useful</strong> —
@@ -89,7 +89,7 @@ export default function MethodologyPage() {
       </section>
 
       <section className="mt-10">
-        <h2 className="text-xl font-bold tracking-tight text-ink-900">3. Fact-checking & evidence</h2>
+        <h2 className="font-display text-xl font-semibold tracking-tight text-ink-900">3. Fact-checking & evidence</h2>
         <p className="mt-3 text-[15px] leading-relaxed text-ink-700">
           Shortlisted products are independently fact-checked. We verify the
           product exists, its official URL and category are correct, and that
@@ -104,7 +104,7 @@ export default function MethodologyPage() {
       </section>
 
       <section className="mt-10">
-        <h2 className="text-xl font-bold tracking-tight text-ink-900">4. What &ldquo;Verified&rdquo; means</h2>
+        <h2 className="font-display text-xl font-semibold tracking-tight text-ink-900">4. What &ldquo;Verified&rdquo; means</h2>
         <p className="mt-3 text-[15px] leading-relaxed text-ink-700">
           A <span className="font-semibold text-emerald-700">Verified</span> badge
           means a pick has been editorially approved with dated supporting
@@ -116,7 +116,7 @@ export default function MethodologyPage() {
       </section>
 
       <section className="mt-10">
-        <h2 className="text-xl font-bold tracking-tight text-ink-900">5. Publishing cadence</h2>
+        <h2 className="font-display text-xl font-semibold tracking-tight text-ink-900">5. Publishing cadence</h2>
         <p className="mt-3 text-[15px] leading-relaxed text-ink-700">
           We publish <strong>two editions a month</strong> — one on the 1st
           (covering the 1st–15th) and one on the 16th (covering the 16th to the
@@ -137,7 +137,7 @@ export default function MethodologyPage() {
       </section>
 
       <section className="mt-10 rounded-2xl border border-ink-200/80 bg-ink-50 p-6">
-        <h2 className="text-xl font-bold tracking-tight text-ink-900">Editorial independence</h2>
+        <h2 className="font-display text-xl font-semibold tracking-tight text-ink-900">Editorial independence</h2>
         <p className="mt-3 text-[15px] leading-relaxed text-ink-700">
           Paid listings are clearly labelled <span className="font-semibold">Sponsored</span> and
           <span className="font-semibold"> never influence our independent editorial rankings</span>.
