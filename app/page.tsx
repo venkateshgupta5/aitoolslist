@@ -367,8 +367,9 @@ export default function HomePage() {
           <p className="text-[11px] font-semibold uppercase tracking-wide text-brand-600">For product makers</p>
           <h2 className="mt-1 text-3xl font-semibold tracking-tight text-ink-900 sm:text-4xl">Get your product listed</h2>
           <p className="mt-2 max-w-2xl text-ink-600">
-            A researched, permanent profile, not a row in a directory. Submit in a
-            minute, and only pay if we approve it.
+            Distribution is the moat. A listing here is a researched, permanent
+            profile that search engines and AI assistants can crawl and cite, not a
+            row in a directory. Submit in a minute, and only pay if we approve it.
           </p>
 
           <div className="mt-10 grid gap-8 lg:grid-cols-[1.4fr_1fr]">
@@ -454,11 +455,13 @@ export default function HomePage() {
             Ask an AI what to use. Is your product in the answer?
           </h2>
           <p className="mt-4 text-ink-600">
-            People ask an assistant before they open a tab, and it replies from the
-            structured sources it can read. If your product is not in one of them, it
-            cannot be named, however good it is. Every profile here is written in the
-            same shape, verdict, pricing, alternatives, strengths and limits, so a
-            model can lift a line and credit it to you.
+            Founders, product leaders and finance teams increasingly ask ChatGPT or
+            Claude to compare and shortlist vendors before they ever visit a website.
+            The assistant answers from the structured sources it can read, so the
+            shortlist exists before anyone lands on your page. If your product is not
+            in one of those sources, it cannot be named, however good it is. Every
+            profile here is written in the same shape, verdict, pricing, alternatives,
+            strengths and limits, so a model can lift a line and credit it to you.
           </p>
         </div>
 

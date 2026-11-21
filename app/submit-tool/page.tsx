@@ -34,8 +34,8 @@ const deliverables = [
   },
   {
     key: "C",
-    title: "Search-friendly page",
-    body: "A crawlable, indexable page with a descriptive title, meta description, canonical URL and SoftwareApplication structured data. (We can't promise search rankings.)",
+    title: "Built for search and AI discovery",
+    body: "A crawlable, indexable page with a descriptive title, meta description, canonical URL and SoftwareApplication structured data, written in the predictable shape that search engines and AI assistants can read and cite when someone asks what to use. (We can't promise rankings.)",
   },
   {
     key: "D",
@@ -117,10 +117,11 @@ export default function SubmitToolPage() {
                 Your AI product deserves more than another directory listing.
               </h1>
               <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-ink-600">
-                Get discovered by founders, developers, product managers and
-                teams exploring the AI ecosystem. Build a professional product
-                presence with a structured, editorially reviewed listing on
-                aitoolslist.ai.
+                Your buyers now ask ChatGPT and Claude to compare and shortlist
+                vendors before they ever reach your site. Get a structured,
+                editorially reviewed profile that search engines and AI assistants
+                can crawl and cite, so founders, product leaders and finance teams
+                discover you when it counts.
               </p>
 
               <div className="mt-6 flex items-baseline gap-2">
@@ -242,7 +243,7 @@ export default function SubmitToolPage() {
         </div>
         <div className="mt-6 grid gap-5 md:grid-cols-3 text-sm leading-relaxed text-ink-600">
           <p><span className="font-semibold text-ink-900">Curation over volume.</span> One standout tool per category each edition, we publish research, not an unfiltered list.</p>
-          <p><span className="font-semibold text-ink-900">A real taxonomy.</span> 13 well-defined categories so buyers browse by genuine use case and capability.</p>
+          <p><span className="font-semibold text-ink-900">A real taxonomy.</span> 14 well-defined categories so buyers browse by genuine use case and capability.</p>
           <p><span className="font-semibold text-ink-900">Editorial standards.</span> Evidence-backed, dated, with vendor claims clearly labelled. <Link href="/methodology" className="font-medium text-brand-600 hover:text-brand-700">See our methodology →</Link></p>
         </div>
       </section>
@@ -321,7 +322,7 @@ export default function SubmitToolPage() {
         </div>
 
         <div className="mt-10 rounded-2xl bg-ink-900 p-6 text-center">
-          <p className="text-white">Ready to get your product in front of the right people?</p>
+          <p className="text-white">When a buyer shortlists AI vendors today, should your product be on the list, or should that discovery go to a more visible competitor?</p>
           <ListingCta where="faq" className="mt-4 inline-flex rounded-lg bg-white px-5 py-2.5 text-sm font-semibold text-ink-900 hover:bg-ink-100">
             Submit your product · {PRICE}
           </ListingCta>
