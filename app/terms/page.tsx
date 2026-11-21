@@ -4,7 +4,7 @@ import { PolicyPage, PolicySection } from "@/components/policy-page";
 
 export const metadata: Metadata = {
   title: "Terms of service",
-  description: "The terms governing use of aitoolslist.ai and the $299 premium product listing.",
+  description: "The terms governing use of aitoolslist.ai and the $199 premium product listing.",
   alternates: { canonical: "/terms" },
 };
 
@@ -24,7 +24,7 @@ export default function TermsPage() {
       </PolicySection>
       <PolicySection heading="The premium listing">
         <ul className="list-disc space-y-1.5 pl-5">
-          <li>The listing is a <span className="font-semibold">one-time $299 (USD)</span> charge, no subscription or renewal fees.</li>
+          <li>The listing is a <span className="font-semibold">one-time $199 (USD)</span> charge, no subscription or renewal fees.</li>
           <li>It is collected <span className="font-semibold">only after editorial approval</span>.</li>
           <li>Listings are <span className="font-semibold">permanent</span>, they stay live for as long as we operate and your product is active.</li>
           <li>Every submission is reviewed; approval is not guaranteed.</li>

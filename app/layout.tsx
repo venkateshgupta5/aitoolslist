@@ -6,6 +6,7 @@ import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { AuthProvider } from "@/components/session-provider";
 import { ConsentAnalytics } from "@/components/consent-analytics";
+import { AnnouncementBar } from "@/components/announcement-bar";
 import { siteConfig, absoluteUrl } from "@/lib/site";
 
 const inter = Inter({
@@ -94,6 +95,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen flex flex-col antialiased">
         <AuthProvider>
+          <AnnouncementBar />
           <Navbar />
           <main className="flex-1">{children}</main>
           <Footer />

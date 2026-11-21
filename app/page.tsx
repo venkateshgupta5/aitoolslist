@@ -9,10 +9,38 @@ import {
   productForCategory,
   categoryAccent,
   allEditions,
+  products,
+  archiveEditions,
 } from "@/lib/content";
 import { siteConfig } from "@/lib/site";
 import { PickCard } from "@/components/pick-card";
+import { VisibilityCheck } from "@/components/visibility-check";
 import { NewsletterForm } from "@/components/forms/newsletter-form";
+
+const visibilityRows = [
+  { label: "Category", value: "AI Monetization & Billing", href: "/categories/ai-monetization-billing" },
+  { label: "Edition", value: "The fortnightly edition", href: `/editions/${EDITION.slug}` },
+  { label: "Profile", value: "A permanent product page", href: "/tools/flexprice" },
+  { label: "Alternatives", value: "Listed in rival comparisons", href: "/tools/flexprice" },
+  { label: "AI answers", value: "Structured for assistants to cite", href: undefined },
+];
+
+const listingPerks = [
+  "One payment, the page never expires",
+  "Reviewed by a human, refunded if rejected",
+  "Clearly labelled sponsored, independent of our rankings",
+];
+
+const faqItems = [
+  {
+    q: "Do AI assistants use aitoolslist to recommend tools?",
+    a: "Increasingly, yes. Buyers ask a model what to use instead of opening ten tabs, and it answers from whatever structured sources it can read. Every profile here keeps its verdict, pricing, alternatives and pros and cons in the same predictable sections, the shape a model can quote and attribute.",
+  },
+  {
+    q: "How do I get my product in front of them?",
+    a: "Get listed, with a real verdict. There is no SDK or integration to set up: the profile itself is the visibility, a structured, citable page an assistant can read when someone asks what to use. A product that is not in the catalogue cannot be named, however good it is.",
+  },
+];
 
 const pillars = [
   {
@@ -30,7 +58,7 @@ const pillars = [
 ];
 
 const listingIncludes = [
-  "One-time $299, no subscription, no renewals",
+  "One-time $199, no subscription, no renewals",
   "A dedicated, permanent product profile",
   "Editorial review within 3 business days",
   "You only pay after your product is approved",
@@ -53,6 +81,23 @@ export default function HomePage() {
     { value: summary.verified, label: "Verified this edition" },
     { value: editions.length, label: "Editions archived" },
   ];
+
+  const catalogue = [
+    ...products.map((p) => ({ name: p.name, href: `/tools/${p.slug}` })),
+    ...archiveEditions.flatMap((e) =>
+      e.picks.map((pk) => ({ name: pk.name, href: `/editions/${e.slug}` })),
+    ),
+  ];
+
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  };
 
   return (
     <>
@@ -331,6 +376,126 @@ export default function HomePage() {
               </p>
             </Link>
           ))}
+        </div>
+      </section>
+
+      {/* ── For product makers: visibility map + listing package ──────── */}
+      <section className="border-y border-ink-200/60 bg-white">
+        <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
+          <p className="text-[11px] font-semibold uppercase tracking-wide text-brand-600">For product makers</p>
+          <h2 className="font-display mt-1 text-3xl font-semibold tracking-tight text-ink-900 sm:text-4xl">What a listing gets you</h2>
+          <p className="mt-2 max-w-2xl text-ink-600">
+            One researched profile, surfaced everywhere buyers and AI assistants look.
+          </p>
+
+          <div className="mt-10 grid gap-5 lg:grid-cols-[1.35fr_1fr]">
+            {/* Visibility map */}
+            <div className="rounded-2xl border border-ink-200/70 bg-paper p-6">
+              <div className="flex items-center justify-between">
+                <p className="text-[11px] font-semibold uppercase tracking-wide text-ink-400">Visibility map</p>
+                <p className="text-sm text-ink-500">
+                  Example from{" "}
+                  <Link href="/tools/flexprice" className="font-semibold text-ink-700 hover:text-brand-700">Flexprice</Link>
+                </p>
+              </div>
+              <h3 className="font-display mt-1 text-xl font-semibold text-ink-900">Where one listing appears</h3>
+              <dl className="mt-5 divide-y divide-ink-100">
+                {visibilityRows.map((r) => (
+                  <div key={r.label} className="flex items-center justify-between gap-4 py-3.5">
+                    <dt className="text-[11px] font-semibold uppercase tracking-wide text-ink-400">{r.label}</dt>
+                    <dd className="flex items-center gap-2 text-sm font-semibold text-ink-900">
+                      {r.href ? (
+                        <Link href={r.href} className="hover:text-brand-700">{r.value}</Link>
+                      ) : (
+                        r.value
+                      )}
+                      <span className="text-ink-300">→</span>
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+
+            {/* Listing package */}
+            <div className="flex flex-col rounded-2xl border border-ink-200/70 bg-paper p-6">
+              <p className="text-[11px] font-semibold uppercase tracking-wide text-ink-400">Listing package</p>
+              <div className="mt-3 rounded-xl border border-ink-200 bg-white px-5 py-4">
+                <p className="flex items-baseline gap-2 text-ink-500">
+                  <span className="text-sm">from</span>
+                  <span className="font-display text-4xl font-semibold text-ink-900">{siteConfig.listingPrice}</span>
+                  <span className="text-sm">one-time</span>
+                </p>
+              </div>
+              <ul className="mt-5 space-y-3 text-sm text-ink-700">
+                {listingPerks.map((t) => (
+                  <li key={t} className="flex items-start gap-2.5">
+                    <svg className="mt-0.5 shrink-0 text-emerald-500" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M20 6 9 17l-5-5" />
+                    </svg>
+                    {t}
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-6 flex flex-wrap gap-2">
+                <Link href="/submit-tool" className="rounded-lg bg-brand-600 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-700">List your app</Link>
+                <Link href="/tools/flexprice" className="rounded-lg border border-ink-300 bg-white px-5 py-2.5 text-sm font-semibold text-ink-800 transition-colors hover:bg-ink-50">View example listing</Link>
+              </div>
+              <p className="mt-5 border-t border-ink-100 pt-4 text-xs text-ink-400">
+                {summary.evaluated} categories, researched and fact-checked every fortnight.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Agent visibility + FAQ ────────────────────────────────────── */}
+      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        />
+        <div className="grid gap-10 lg:grid-cols-2">
+          <div>
+            <p className="text-[11px] font-semibold uppercase tracking-wide text-brand-600">Agent visibility</p>
+            <h2 className="font-display mt-1 text-3xl font-semibold tracking-tight text-ink-900 sm:text-4xl">
+              Are AI assistants recommending your product?
+            </h2>
+            <p className="mt-3 text-ink-600">
+              Buyers increasingly ask an assistant what to use before they open a
+              single tab. It answers from the structured sources it can read, and a
+              shortlist exists before anyone visits your site. Your product is on it,
+              or it is not.
+            </p>
+            <div className="mt-6 rounded-2xl border border-ink-200/70 bg-white p-5 card-ring">
+              <p className="text-[11px] font-semibold uppercase tracking-wide text-ink-400">Check your visibility</p>
+              <p className="mt-1 text-sm text-ink-600">
+                Type your product name to see whether it is in the catalogue an
+                assistant reads, and where it appears.
+              </p>
+              <VisibilityCheck items={catalogue} />
+            </div>
+          </div>
+
+          <div className="rounded-2xl border border-ink-200/70 bg-white p-6 card-ring">
+            <p className="text-[11px] font-semibold uppercase tracking-wide text-ink-400">What assistants can read</p>
+            <p className="mt-2 text-sm text-ink-600">
+              Public profiles designed for discovery, comparison and citation before
+              a recommendation is made.
+            </p>
+            <dl className="mt-5 divide-y divide-ink-100">
+              {faqItems.map((f, i) => (
+                <div key={f.q} className="py-4">
+                  <dt className="flex items-baseline gap-3">
+                    <span className="font-mono text-xs text-ink-400">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span className="font-semibold text-ink-900">{f.q}</span>
+                  </dt>
+                  <dd className="mt-2 pl-7 text-sm leading-relaxed text-ink-600">{f.a}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
         </div>
       </section>
 

@@ -13,11 +13,11 @@ import { siteConfig } from "@/lib/site";
 export const metadata: Metadata = {
   title: `List your app, ${siteConfig.listingPrice} premium listing`,
   description:
-    "Get your AI product a permanent, editorially reviewed listing on aitoolslist.ai for a one-time $299. Submit for review, you only pay after approval. Payment never guarantees rankings, traffic or leads.",
+    "Get your AI product a permanent, editorially reviewed listing on aitoolslist.ai for a one-time $199. Submit for review, you only pay after approval. Payment never guarantees rankings, traffic or leads.",
   alternates: { canonical: "/submit-tool" },
 };
 
-const PRICE = "$299";
+const PRICE = "$199";
 
 // Operational deliverables only (spec §3: A–E). We do NOT sell homepage,
 // newsletter or social promotion, that would compromise editorial independence.
@@ -55,7 +55,7 @@ const deliverables = [
 ];
 
 const terms = [
-  ["Price", "One-time $299 (USD). No subscription, no renewal fees."],
+  ["Price", "One-time $199 (USD). No subscription, no renewal fees."],
   ["Listing duration", "Permanent, stays live for as long as aitoolslist.ai operates and your product is active."],
   ["Payment timing", "Collected only after editorial approval, via a secure payment link. Nothing is charged upfront."],
   ["Editorial review", "Required. Within 3 business days of submission."],
@@ -66,8 +66,8 @@ const terms = [
 ];
 
 const faqs = [
-  ["Why does listing my product cost $299?", "It pays for a human editorial review and a permanent, structured, SEO-ready profile on a curated platform, not an auto-published row in an unfiltered directory. You're buying credibility and a real product page, not just a link."],
-  ["Is the $299 payment one-time or recurring?", "One-time. There is no subscription and no renewal fee."],
+  ["Why does listing my product cost $199?", "It pays for a human editorial review and a permanent, structured, SEO-ready profile on a curated platform, not an auto-published row in an unfiltered directory. You're buying credibility and a real product page, not just a link."],
+  ["Is the $199 payment one-time or recurring?", "One-time. There is no subscription and no renewal fee."],
   ["How long will my product remain listed?", "Permanently, your listing stays live for as long as aitoolslist.ai operates and your product remains active. We don't call it “lifetime,” but there's no expiry or renewal charge."],
   ["What is included in the listing?", "A dedicated product profile, category placement, a search-friendly (crawlable, indexable) page, a prominent link to your website, one structured edit round, and a human editorial review. It's clearly labelled Sponsored."],
   ["How long does editorial review take?", "Within 3 business days of your submission. If approved, we email you a payment link; after payment we publish within 2 business days."],
@@ -83,7 +83,7 @@ const flow = [
   ["Submit", "Tell us about your product using the form below. No payment yet."],
   ["Editorial review", "We review for relevance, accuracy and quality within 3 business days."],
   ["Approval or decline", "We email you the outcome. If declined, you pay nothing."],
-  ["Payment", "Approved? We send a secure payment link for the one-time $299."],
+  ["Payment", "Approved? We send a secure payment link for the one-time $199."],
   ["Published", "We publish your listing and send you the live URL."],
 ];
 

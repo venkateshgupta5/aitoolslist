@@ -3,7 +3,7 @@
 import { track as vercelTrack } from "@vercel/analytics";
 
 /**
- * Conversion-funnel events for the $299 listing (per spec §Analytics).
+ * Conversion-funnel events for the $199 listing (per spec §Analytics).
  * Client-side events fire through Vercel Analytics when available (no-op
  * otherwise). Approval/rejection/checkout/payment are operational steps handled
  * off-platform, their names are listed here for a consistent taxonomy but they

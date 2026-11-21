@@ -4,7 +4,7 @@ import { PolicyPage, PolicySection } from "@/components/policy-page";
 
 export const metadata: Metadata = {
   title: "Refund policy",
-  description: "aitoolslist.ai refund policy for the $299 premium listing: payment is collected only after approval, with clear refund terms.",
+  description: "aitoolslist.ai refund policy for the $199 premium listing: payment is collected only after approval, with clear refund terms.",
   alternates: { canonical: "/refund-policy" },
 };
 
@@ -13,7 +13,7 @@ export default function RefundPolicyPage() {
     <PolicyPage
       title="Refund policy"
       updated="November 20, 2026"
-      intro="The $299 premium listing is a one-time payment collected only after your product is approved. This policy explains exactly when you are and aren't charged, and when refunds apply."
+      intro="The $199 premium listing is a one-time payment collected only after your product is approved. This policy explains exactly when you are and aren't charged, and when refunds apply."
     >
       <PolicySection heading="You pay nothing unless approved">
         <p>
@@ -23,7 +23,7 @@ export default function RefundPolicyPage() {
       </PolicySection>
       <PolicySection heading="After payment, our delivery guarantee">
         <p>
-          Once approved, you receive a secure payment link for the one-time $299.
+          Once approved, you receive a secure payment link for the one-time $199.
           After payment we publish your listing within 2 business days.
         </p>
         <p>

@@ -19,7 +19,7 @@ export default function EditorialPolicyPage() {
         <p>
           Editorial picks (our fortnightly category winners) are selected on a
           transparent scoring methodology, never on payment. A{" "}
-          <span className="font-semibold">$299 Sponsored listing</span> gives you a
+          <span className="font-semibold">$199 Sponsored listing</span> gives you a
           quality product page; it <span className="font-semibold">never</span> makes
           you a category winner, never influences rankings, and is always clearly
           labelled Sponsored.

@@ -79,7 +79,7 @@ export function ListingForm({ categories }: { categories: Category[] }) {
         </p>
         <ol className="mt-3 space-y-1.5 text-sm text-emerald-700">
           <li>1. We review for relevance, accuracy and completeness, within 3 business days.</li>
-          <li>2. If approved, we email you a secure payment link for the one-time $299.</li>
+          <li>2. If approved, we email you a secure payment link for the one-time $199.</li>
           <li>3. After payment, we publish your listing and send you the live URL.</li>
         </ol>
         <p className="mt-3 text-xs text-emerald-700/80">
@@ -192,10 +192,10 @@ export function ListingForm({ categories }: { categories: Category[] }) {
         disabled={state === "submitting"}
         className="w-full rounded-lg bg-ink-900 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-ink-800 focus:outline-none focus:ring-2 focus:ring-ink-900/30 focus:ring-offset-2 disabled:opacity-60"
       >
-        {state === "submitting" ? "Submitting…" : "Submit your product · $299"}
+        {state === "submitting" ? "Submitting…" : "Submit your product · $199"}
       </button>
       <p className="text-center text-xs text-ink-500">
-        No charge now. You only pay the one-time $299 after your product is
+        No charge now. You only pay the one-time $199 after your product is
         approved. Payment does not guarantee rankings, traffic or leads.
       </p>
     </form>

@@ -4,7 +4,7 @@ import { PolicyPage, PolicySection } from "@/components/policy-page";
 
 export const metadata: Metadata = {
   title: "Listing guidelines",
-  description: "What we look for when reviewing a $299 premium listing submission, and what gets declined.",
+  description: "What we look for when reviewing a $199 premium listing submission, and what gets declined.",
   alternates: { canonical: "/listing-guidelines" },
 };
 
