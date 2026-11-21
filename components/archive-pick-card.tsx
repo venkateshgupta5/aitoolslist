@@ -49,6 +49,12 @@ export function ArchivePickCard({ slot }: { slot: ArchivePickSlot }) {
             {pick.shortDescription}
           </p>
 
+          {pick.overview && (
+            <p className="mt-2 text-[13px] leading-relaxed text-ink-500">
+              {pick.overview}
+            </p>
+          )}
+
           <div className="mt-3 flex-1 rounded-lg bg-ink-50 px-3 py-2.5">
             <p className="text-[11px] font-semibold uppercase tracking-wide text-ink-400">
               Why it mattered

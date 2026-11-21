@@ -1052,6 +1052,7 @@ export interface ArchivePick {
   name: string;
   tagline: string;
   shortDescription: string;
+  overview?: string; // deeper original write-up (verified picks); renders when present
   officialUrl: string;
   whyItMatters: string;
   verification: VerificationStatus; // "verified" | "researched"
@@ -1083,6 +1084,8 @@ export const archiveEditions: ArchiveEdition[] = [
         name: "Fuxi",
         tagline: "Terminal AI coding agent, multi-provider",
         shortDescription: "Single-binary terminal coding agent with multi-provider routing.",
+        overview:
+          "Fuxi is a single-binary terminal coding agent that routes across 10+ LLM providers (DeepSeek, OpenAI, Claude, Qwen and more) with automatic failover and provider racing for reliability. It ships a deep tool suite — 50+ capabilities spanning file editing, shell commands and code search — plus persistent sessions with long-term memory and MCP client support. Permission-gated autonomous execution and extensibility through hooks, skills, plugins and slash commands let even non-developers build by conversation, and it installs as a single static binary with no runtime dependencies.",
         officialUrl: "https://www.fuxicode.com",
         whyItMatters:
           "A single static binary that routes across 10+ LLM providers with automatic failover and MCP support — part of August 2026's wave of local, provider-agnostic terminal coding agents.",
@@ -1098,6 +1101,8 @@ export const archiveEditions: ArchiveEdition[] = [
         name: "Phone Harness",
         tagline: "Let your AI agent control your phone",
         shortDescription: "Agents tap, type and scroll real iOS/Android apps.",
+        overview:
+          "Phone Harness lets AI agents operate real iPhones and Android devices — tapping, typing and scrolling through apps exactly as a person would, using visual input and on-screen controls with no jailbreaking or special APIs. Teams can use hosted cloud phones or connect their own device, giving agents genuine mobile-app reach instead of brittle per-app integrations. It targets developers building agents that need to act inside everyday consumer mobile apps.",
         officialUrl: "https://phone-harness.com",
         whyItMatters:
           "Gives agents real tap/type/scroll control of iOS and Android without jailbreaking or special APIs — a concrete step toward agents operating everyday mobile apps.",
@@ -1127,6 +1132,8 @@ export const archiveEditions: ArchiveEdition[] = [
         name: "CostPerPrompt",
         tagline: "Live AI API pricing & cost calculators",
         shortDescription: "Real-time pricing and workload cost calculators for AI APIs.",
+        overview:
+          "CostPerPrompt tracks live pricing for hundreds of AI models across major providers, refreshed automatically from public provider listings. Beyond a raw price table, it offers purpose-built calculators that model real workloads — chatbots with growing context, RAG pipelines split into indexing/retrieval/generation, and voice AI billed across STT + LLM + TTS — plus GPU-rental and image-API pricing and a token counter. It's a reference tool for teams estimating and controlling usage-based AI spend before it lands on the bill.",
         officialUrl: "https://costperprompt.com",
         whyItMatters:
           "Tracks live pricing across hundreds of models with workload calculators (chatbot, RAG, voice) — the cost tooling that matters as teams move to usage-based AI spend.",
@@ -1194,10 +1201,12 @@ export const archiveEditions: ArchiveEdition[] = [
         name: "VoiceMem",
         tagline: "Universal memory for voice agents",
         shortDescription: "Fully streaming universal memory layer for voice agents.",
+        overview:
+          "VoiceMem is memory infrastructure for voice agents that need persistent understanding of a user. Its streaming 'dual-brain' design stores factual information (schemas and entities) in a left brain and emotional and personality data in a right brain, aiming for accurate, personality-aware, low-latency and low-cost memory. It's Apache-2.0 and open source, built for developers shipping real-time voice applications.",
         officialUrl: "https://github.com/xzf-thu/VoiceMem",
         whyItMatters:
           "Universal, fully-streaming memory infrastructure built specifically for voice agents, targeting latency at the architecture level.",
-        verification: "researched",
+        verification: "verified",
         launchDate: "2026-08-17",
         sources: [
           { title: "xzf-thu/VoiceMem on GitHub (2.9k★)", url: "https://github.com/xzf-thu/VoiceMem", type: "github" },
@@ -1246,10 +1255,12 @@ export const archiveEditions: ArchiveEdition[] = [
         name: "shadcn lint",
         tagline: "Agent-first linter for design systems",
         shortDescription: "Design-system rules that AI agents can verify.",
+        overview:
+          "shadcn/lint is an agent-first linter that lets you write design-system rules AI agents can verify, without rewriting components. When an agent breaks a rule, it returns contextual errors with fix suggestions drawn from the project's available components, variants and theme values. It works with React, Vue or Svelte on Tailwind CSS v4+, runs under both ESLint and Oxlint, and is MIT-licensed.",
         officialUrl: "https://github.com/shadcn-ui/lint",
         whyItMatters:
           "An agent-first linter letting you write design-system rules agents can verify — from the shadcn/ui author, signaling tooling built explicitly for AI-written code.",
-        verification: "researched",
+        verification: "verified",
         launchDate: "2026-09-02",
         sources: [
           { title: "shadcn-ui/lint on GitHub (3.4k★)", url: "https://github.com/shadcn-ui/lint", type: "github" },
@@ -1326,12 +1337,14 @@ export const archiveEditions: ArchiveEdition[] = [
       {
         categorySlug: "ai-agents",
         name: "Andee",
-        tagline: "On-device phone & Mac agent",
-        shortDescription: "Phone/Mac agent that uses any app, on-device.",
+        tagline: "On-device Android agent for any app",
+        shortDescription: "On-device Android agent that drives any app.",
+        overview:
+          "Andee is an Android agent that runs directly on your phone and automates tasks across any app with no integrations — reading the screen, reasoning about the next action, and tapping, typing and swiping like you would. It's powered by any OpenAI-compatible model you configure (DeepSeek by default), and keeps its notebook, habits and vault strictly on-device; only conversation data goes to your chosen model endpoint, never to Andee's maintainers. It runs on Android 11+ and targets users who want a private, model-agnostic phone agent.",
         officialUrl: "https://heyandee.com",
         whyItMatters:
-          "A phone/Mac agent that operates any app like you do — no integrations or root — with memory and passwords kept on-device.",
-        verification: "researched",
+          "An on-device Android agent that operates any app like you do — no integrations or root — keeping memory, habits and vault on the phone.",
+        verification: "verified",
         launchDate: "2026-09-17",
         sources: [
           { title: "kuafuai/andee on GitHub (6.2k★)", url: "https://github.com/kuafuai/andee", type: "github" },
@@ -1342,6 +1355,8 @@ export const archiveEditions: ArchiveEdition[] = [
         name: "TypeLLM",
         tagline: "Type-safe generation with LLMs",
         shortDescription: "Type-safe LLM generation; no out-of-schema hallucinations.",
+        overview:
+          "TypeLLM is a workflow-automation platform that treats a multi-step process as a single inference unit rather than a chain of brittle API calls, with type-safe generation that guarantees no out-of-schema output. Its published benchmarks contrast that type-safe guarantee against standard model APIs that lack it. It targets developers who need reliable, structured LLM output inside automated workflows.",
         officialUrl: "https://typellm.ai",
         whyItMatters:
           "Type-safe LLM generation that treats a multi-step workflow as a single inference unit, aiming to eliminate out-of-schema hallucinations.",
@@ -1409,10 +1424,12 @@ export const archiveEditions: ArchiveEdition[] = [
         name: "ARTEX",
         tagline: "Autonomous AI penetration-testing system",
         shortDescription: "Autonomous AI system for penetration testing.",
+        overview:
+          "ARTEX is a self-hosted, LLM-driven penetration-testing platform where multiple AI agents work together to test targets for vulnerabilities — decomposing goals into executable tasks, running real security tools, and recording evidence that links each finding to captured network traffic. A dual-graph architecture separates what's known about a target (asset graph) from testing progress (exploration graph); a planner agent dispatches work to concurrent worker agents through a recording proxy, producing an auditable chain of reasoning and proof. It's open source under AGPL-3.0 and explicitly restricted to authorized testing — aimed at security professionals doing sanctioned pentests, bug bounties and red-team work.",
         officialUrl: "https://github.com/BaaRai/ARTEX",
         whyItMatters:
           "An autonomous AI penetration-testing system that drew the fortnight's strongest GitHub momentum for offensive-security agents.",
-        verification: "researched",
+        verification: "verified",
         launchDate: "2026-10-08",
         sources: [
           { title: "BaaRai/ARTEX on GitHub (13.9k★)", url: "https://github.com/BaaRai/ARTEX", type: "github" },
@@ -1423,10 +1440,12 @@ export const archiveEditions: ArchiveEdition[] = [
         name: "Indra",
         tagline: "1M-param OCR model, runs on CPU",
         shortDescription: "1M-param OCR model, CPU-fast, near billion-param accuracy.",
+        overview:
+          "Indra, from Datalab, is an OCR model that turns PDFs and images into markdown, text or JSON with bounding boxes. At roughly 1 million parameters it runs entirely on CPU — no GPU or PyTorch — yet reaches about 15× Tesseract's speed and scores 66.7 on OmniParseBench versus PaddleOCR's 58.4. The code is Apache-2.0, with a modified OpenRAIL-M license on the model weights for research and personal use.",
         officialUrl: "https://www.datalab.to",
         whyItMatters:
           "A 1M-parameter OCR model that runs on CPU ~15× faster than Tesseract while approaching billion-parameter accuracy — efficient inference from Datalab.",
-        verification: "researched",
+        verification: "verified",
         launchDate: "2026-10-13",
         sources: [
           { title: "datalab-to/indra on GitHub (1.9k★)", url: "https://github.com/datalab-to/indra", type: "github" },
@@ -1438,6 +1457,8 @@ export const archiveEditions: ArchiveEdition[] = [
         name: "Grandet",
         tagline: "Cheapest API for any model",
         shortDescription: "Finds the cheapest API/provider per model, via MCP.",
+        overview:
+          "Grandet compares LLM API prices across official providers, inference hosts and relays to surface the cheapest option for any given model. It maintains a large database of provider sites, organizes costs by input/output tokens, and separates relay-credit pricing from cash pricing. It exposes an MCP server and a price API, plus a downloadable Skill for Claude, Cursor and similar tools, so an agent can route each call to the lowest-cost provider programmatically.",
         officialUrl: "https://grandet.ai",
         whyItMatters:
           "Finds the cheapest API/provider for any model across thousands of sources, with an MCP server — cost routing as monetization infrastructure.",
@@ -1477,10 +1498,12 @@ export const archiveEditions: ArchiveEdition[] = [
         name: "Agent UI (Vercel Labs)",
         tagline: "UI behaviors for agents",
         shortDescription: "Library of UI behaviors for agents to build interfaces.",
+        overview:
+          "Vercel Labs' UI SDK is a library of reusable behavioral primitives — like createPopup, createSelection and createTypeahead — that AI agents combine to build custom interfaces instead of generating whole components from scratch, cutting errors. It supports React, Vue, Svelte, Solid and Web Components and ships a starter component library. The source is open on GitHub, aimed at teams building agent-generated UI.",
         officialUrl: "https://ui-sdk.dev",
         whyItMatters:
           "A library of UI behaviors for agents to build next-generation interfaces — from Vercel Labs, part of the move to agent-generated UI.",
-        verification: "researched",
+        verification: "verified",
         launchDate: "2026-10-26",
         sources: [
           { title: "vercel-labs/ui on GitHub (6.3k★)", url: "https://github.com/vercel-labs/ui", type: "github" },
@@ -1557,6 +1580,8 @@ export const archiveEditions: ArchiveEdition[] = [
         name: "WebsiteBench",
         tagline: "Can agents rebuild full-stack sites?",
         shortDescription: "Benchmark: agents reverse-engineer websites via browser exploration.",
+        overview:
+          "WebsiteBench, from TIGER-AI-Lab, is a benchmark that tests whether AI agents can reverse-engineer a full-stack version of a website by exploring it through a browser. It spans 70 tasks and measures pass rate, compute cost, token usage and interaction turns, with a public leaderboard comparing frontier and open models. It gives buyers and researchers an independent read on how well agents can actually replicate real production web apps.",
         officialUrl: "https://website-bench.com",
         whyItMatters:
           "A TIGER-AI-Lab benchmark testing whether agents can reverse-engineer full-stack versions of websites through browser exploration — 70 tasks with a public leaderboard.",
