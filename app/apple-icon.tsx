@@ -16,10 +16,11 @@ export default function AppleIcon() {
           justifyContent: "center",
           backgroundColor: "#f8541f",
           color: "#ffffff",
-          fontSize: 104,
+          fontSize: 92,
           fontWeight: 700,
           letterSpacing: "-0.04em",
           fontFamily: "sans-serif",
+          paddingBottom: 6,
         }}
       >
         ai

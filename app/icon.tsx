@@ -16,11 +16,12 @@ export default function Icon() {
           justifyContent: "center",
           backgroundColor: "#f8541f",
           color: "#ffffff",
-          fontSize: 19,
+          fontSize: 20,
           fontWeight: 700,
           letterSpacing: "-0.03em",
-          borderRadius: 7,
+          borderRadius: 8,
           fontFamily: "sans-serif",
+          paddingBottom: 1,
         }}
       >
         ai
