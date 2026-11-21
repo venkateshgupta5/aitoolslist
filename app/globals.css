@@ -3,8 +3,9 @@
 @theme {
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system,
     "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  --font-display: var(--font-fraunces), ui-serif, Georgia, "Times New Roman",
-    serif;
+  /* Simple, neutral sans for headings too (Product Hunt style) */
+  --font-display: var(--font-inter), ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 
   /* Warm "paper" canvas for an editorial publication feel */
   --color-paper: #faf7f2;
