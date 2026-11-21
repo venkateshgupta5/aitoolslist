@@ -432,7 +432,7 @@ export default function HomePage() {
               </ul>
               <div className="mt-6 flex flex-col gap-2">
                 <Link href="/submit-tool" className="rounded-lg bg-brand-600 px-5 py-2.5 text-center text-sm font-semibold text-white transition-colors hover:bg-brand-700">List your product</Link>
-                <Link href="/tools/flexprice" className="rounded-lg border border-ink-300 bg-white px-5 py-2.5 text-center text-sm font-semibold text-ink-800 transition-colors hover:bg-ink-50">See an example listing</Link>
+                <Link href="/tools/lago" className="rounded-lg border border-ink-300 bg-white px-5 py-2.5 text-center text-sm font-semibold text-ink-800 transition-colors hover:bg-ink-50">See an example listing</Link>
               </div>
               <p className="mt-5 border-t border-ink-100 pt-4 text-xs text-ink-400">
                 {summary.evaluated} categories, researched and fact-checked every fortnight.
