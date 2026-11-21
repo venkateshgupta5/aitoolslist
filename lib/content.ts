@@ -1158,6 +1158,22 @@ export const archiveEditions: ArchiveEdition[] = [
           { title: "juspay/xyne-spaces on GitHub", url: "https://github.com/juspay/xyne-spaces", type: "github" },
         ],
       },
+      {
+        categorySlug: "ai-compute-gpu-cloud",
+        name: "Perimeter Compute",
+        tagline: "Distributed AI cloud in city office buildings",
+        shortDescription: "Distributed GPU cloud using office buildings' spare energy.",
+        overview:
+          "Perimeter Compute launched as a distributed AI cloud provider that deploys GPU compute inside commercial office buildings in major US cities, tapping their excess energy capacity instead of building new data centers. The distributed-edge approach aims to add GPU supply closer to demand while using power that would otherwise go unused, targeting AI teams that need additional capacity. (Reported by DataCenterDynamics; company scale not independently deep-verified here.)",
+        officialUrl: "https://www.datacenterdynamics.com/en/news/distributed-ai-cloud-provider-perimeter-compute-launches/",
+        whyItMatters:
+          "A novel answer to the GPU-supply crunch — compute placed in office buildings on otherwise-wasted energy — reported as an Aug 2026 launch by an industry outlet.",
+        verification: "researched",
+        launchDate: "2026-08-04",
+        sources: [
+          { title: "Distributed AI cloud provider Perimeter Compute launches (DataCenterDynamics, Aug 4 2026)", url: "https://www.datacenterdynamics.com/en/news/distributed-ai-cloud-provider-perimeter-compute-launches/", type: "news" },
+        ],
+      },
     ],
   },
   {
@@ -1238,6 +1254,23 @@ export const archiveEditions: ArchiveEdition[] = [
         launchDate: "2026-08-16",
         sources: [
           { title: "aerovato/operator-memory on GitHub", url: "https://github.com/aerovato/operator-memory", type: "github" },
+        ],
+      },
+      {
+        categorySlug: "ai-sales",
+        name: "Runable",
+        tagline: "AI agent that builds and grows a business",
+        shortDescription: "Go-to-market agent: ads, social, SEO, customer acquisition.",
+        overview:
+          "Runable is an AI agent platform that lets non-technical founders build a website or app from natural-language prompts, then extends into go-to-market work — running ad campaigns, managing social media, handling SEO and optimizing presence in AI-chatbot results. It manages the underlying infrastructure (deployment, analytics) so users can turn AI-generated products into working businesses without stitching services together. In August 2026 it raised a $21M Series A (co-led by Susquehanna Venture Capital and Nexus Venture Partners) at a $65M post-money valuation.",
+        officialUrl: "https://runable.com",
+        whyItMatters:
+          "Pushes AI agents past building software into customer acquisition and growth — the go-to-market automation frontier — with a dated, reputably-reported Series A.",
+        verification: "verified",
+        launchDate: "2026-08-26",
+        sources: [
+          { title: "Runable hits $21M Series A (TechCrunch, Aug 26 2026)", url: "https://techcrunch.com/2026/08/26/runable-hits-21m-to-bet-ai-agents-can-go-from-building-businesses-to-growing-them/", type: "techcrunch" },
+          { title: "Runable — official site", url: "https://runable.com", type: "official" },
         ],
       },
     ],
@@ -1563,6 +1596,23 @@ export const archiveEditions: ArchiveEdition[] = [
         launchDate: "2026-10-18",
         sources: [
           { title: "Show HN: Sphinx (Oct 18, 2026)", url: "https://news.ycombinator.com/item?id=50137950", type: "hackernews" },
+        ],
+      },
+      {
+        categorySlug: "ai-compute-gpu-cloud",
+        name: "Modal",
+        tagline: "Serverless cloud for AI and data workloads",
+        shortDescription: "Serverless GPU/CPU cloud for AI, ML and data.",
+        overview:
+          "Modal is a serverless cloud that lets developers run AI, ML and data workloads — training, batch inference, fine-tuning and more — by writing Python and having Modal provision GPUs and CPUs on demand, without managing infrastructure. In October 2026 it raised a $750M Series D at a $15.75B post-money valuation, reported by DataCenterDynamics, underscoring how much capital is flowing to developer-first AI compute. (Funding is a dated signal of momentum, not proof of product quality.)",
+        officialUrl: "https://modal.com",
+        whyItMatters:
+          "One of the fortnight's largest AI-infrastructure raises ($750M Series D), signaling strong demand for serverless, developer-first GPU compute.",
+        verification: "researched",
+        launchDate: "2026-10-16",
+        sources: [
+          { title: "AI cloud Modal raises $750M Series D (DataCenterDynamics, Oct 16 2026)", url: "https://www.datacenterdynamics.com/en/news/ai-cloud-modal-raises-750m-in-series-d-funding-round/", type: "news" },
+          { title: "Modal — official site", url: "https://modal.com", type: "official" },
         ],
       },
     ],
