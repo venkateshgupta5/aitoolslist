@@ -1,16 +1,7 @@
 import Link from "next/link";
 import type { Pick } from "@/lib/content";
-import { categoryAccent } from "@/lib/content";
 import { VerificationBadge } from "@/components/verification-badge";
-
-function initials(name: string) {
-  return name
-    .split(/\s+/)
-    .slice(0, 2)
-    .map((w) => w[0])
-    .join("")
-    .toUpperCase();
-}
+import { ToolLogo } from "@/components/tool-logo";
 
 export function PickCard({
   pick,
@@ -48,9 +39,7 @@ export function PickCard({
       {product ? (
         <>
           <div className="mt-3 flex items-start gap-3">
-            <div className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-sm font-bold text-white ${categoryAccent(category.slug)}`}>
-              {initials(product.name)}
-            </div>
+            <ToolLogo name={product.name} logo={product.logo} categorySlug={category.slug} />
             <div className="min-w-0">
               <h3 className="text-[17px] font-bold leading-snug tracking-tight text-ink-900">
                 {product.name}

@@ -10,6 +10,7 @@ import {
   type ClaimRow,
 } from "@/lib/content";
 import { VerificationBadge } from "@/components/verification-badge";
+import { ToolLogo } from "@/components/tool-logo";
 import { SectionNav, type NavSection } from "@/components/tools/section-nav";
 import { EnquiryDisclosure } from "@/components/tools/enquiry-disclosure";
 import { absoluteUrl, siteConfig } from "@/lib/site";
@@ -40,10 +41,6 @@ export async function generateMetadata({
     },
     twitter: { card: "summary_large_image", title, description },
   };
-}
-
-function initials(name: string) {
-  return name.split(/\s+/).slice(0, 2).map((w) => w[0]).join("").toUpperCase();
 }
 
 /** Standard content section with an anchor and sticky-nav offset. */
@@ -166,9 +163,7 @@ export default async function ProductPage({
           </Link>
         )}
         <div className="mt-2 flex items-start gap-4">
-          <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-ink-900 text-lg font-bold text-white">
-            {initials(product.name)}
-          </div>
+          <ToolLogo name={product.name} logo={product.logo} categorySlug={product.categorySlug} size={56} className="rounded-2xl" />
           <div className="min-w-0">
             <h1 className="font-display text-3xl font-semibold tracking-tight text-ink-900 sm:text-4xl">{product.name}</h1>
             <p className="mt-1 text-ink-600">{product.tagline}</p>
@@ -438,7 +433,7 @@ export default async function ProductPage({
         <aside className="space-y-5 lg:sticky lg:top-32">
           <div className="rounded-2xl border border-ink-200/80 bg-white p-5">
             <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-ink-900 text-sm font-bold text-white">{initials(product.name)}</div>
+              <ToolLogo name={product.name} logo={product.logo} categorySlug={product.categorySlug} size={40} className="rounded-xl" />
               <div className="min-w-0">
                 <p className="truncate text-sm font-bold text-ink-900">{product.name}</p>
                 <p className="truncate text-xs text-ink-500">{product.productType ?? category?.name}</p>

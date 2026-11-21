@@ -43,6 +43,7 @@ export interface Product {
   sources: Source[];
   lastVerified: string | null;
   verification: VerificationStatus;
+  logo?: string; // compressed logo served from /public/logos; falls back to initials
 
   // ── Intelligence-layer enrichment (Product Listing Enhancements spec) ──
   // All optional; sections render only when populated (never padded).
@@ -834,9 +835,27 @@ const enrichment: Record<string, Partial<Product>> = {
   },
 };
 
+// Slugs with a compressed logo in /public/logos (see scripts; initials otherwise).
+const LOGO_SLUGS = new Set([
+  "google-cloud-a5x-vera-rubin",
+  "sarvam-token-factory",
+  "weaviate",
+  "google-adk-2",
+  "langfuse",
+  "google-antigravity",
+  "perplexity-multiagent",
+  "salesforce-hunter",
+  "retell-ai",
+  "artificial-analysis",
+  "mayo-clinic-platform-cds",
+  "isomorphic-labs",
+  "flexprice",
+]);
+
 export const products: Product[] = baseProducts.map((p) => ({
   ...p,
   ...(enrichment[p.slug] ?? {}),
+  logo: LOGO_SLUGS.has(p.slug) ? `/logos/${p.slug}.png` : undefined,
 }));
 
 /** At-a-glance specification rows (spec §6). Values grounded in research;

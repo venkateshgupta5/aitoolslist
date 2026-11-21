@@ -14,6 +14,7 @@ import {
 } from "@/lib/content";
 import { siteConfig } from "@/lib/site";
 import { PickCard } from "@/components/pick-card";
+import { ToolLogo } from "@/components/tool-logo";
 import { VisibilityCheck } from "@/components/visibility-check";
 import { NewsletterForm } from "@/components/forms/newsletter-form";
 
@@ -51,9 +52,6 @@ const listingIncludes = [
   "Clearly labelled “Sponsored”, never an editorial winner",
 ];
 
-function initials(name: string) {
-  return name.split(/\s+/).slice(0, 2).map((w) => w[0]).join("").toUpperCase();
-}
 
 export default function HomePage() {
   const picks = editionPicks();
@@ -168,9 +166,7 @@ export default function HomePage() {
                     href={`/tools/${p.product!.slug}`}
                     className="flex items-center gap-3 rounded-xl bg-white/[0.04] px-3 py-2.5 ring-1 ring-inset ring-white/10 transition-colors hover:bg-white/[0.08]"
                   >
-                    <div className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-[10px] font-bold text-white ${categoryAccent(p.category.slug)}`}>
-                      {initials(p.product!.name)}
-                    </div>
+                    <ToolLogo name={p.product!.name} logo={p.product!.logo} categorySlug={p.category.slug} size={36} className="rounded-lg" />
                     <div className="min-w-0 flex-1">
                       <p className="truncate text-sm font-semibold text-white">{p.product!.name}</p>
                       <p className="truncate text-[11px] text-white/45">{p.category.name}</p>
