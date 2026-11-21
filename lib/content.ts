@@ -1137,6 +1137,20 @@ export const archiveEditions: ArchiveEdition[] = [
           { title: "CostPerPrompt — official site", url: "https://costperprompt.com", type: "official" },
         ],
       },
+      {
+        categorySlug: "ai-development-orchestration",
+        name: "Xyne Spaces",
+        tagline: "The AI Org-OS for humans and agents",
+        shortDescription: "Collaborative org workspace for humans and AI agents.",
+        officialUrl: "https://xyne.ai",
+        whyItMatters:
+          "An open 'AI Org-OS' positioning humans and agents as collaborators in one workspace — from the Juspay team, part of the agent-orchestration surface wave.",
+        verification: "researched",
+        launchDate: "2026-08-02",
+        sources: [
+          { title: "juspay/xyne-spaces on GitHub", url: "https://github.com/juspay/xyne-spaces", type: "github" },
+        ],
+      },
     ],
   },
   {
@@ -1201,6 +1215,20 @@ export const archiveEditions: ArchiveEdition[] = [
         launchDate: "2026-08-19",
         sources: [
           { title: "tabtin-ai/TabTin on GitHub", url: "https://github.com/tabtin-ai/TabTin", type: "github" },
+        ],
+      },
+      {
+        categorySlug: "ai-coding-developer-tools",
+        name: "Operator Memory",
+        tagline: "Self-improving context engine for coding agents",
+        shortDescription: "Self-improving context engine for coding agents.",
+        officialUrl: "https://github.com/aerovato/operator-memory",
+        whyItMatters:
+          "A self-improving context engine for coding agents — part of the fortnight's run of memory/context layers aimed at making coding agents learn across sessions.",
+        verification: "researched",
+        launchDate: "2026-08-16",
+        sources: [
+          { title: "aerovato/operator-memory on GitHub", url: "https://github.com/aerovato/operator-memory", type: "github" },
         ],
       },
     ],
@@ -1271,6 +1299,20 @@ export const archiveEditions: ArchiveEdition[] = [
           { title: "pizza-bot-app/pizza-bot on GitHub", url: "https://github.com/pizza-bot-app/pizza-bot", type: "github" },
         ],
       },
+      {
+        categorySlug: "ai-development-orchestration",
+        name: "AlphaCode",
+        tagline: "Free MIT AI coding agent, no API key",
+        shortDescription: "Open coding agent with swarm mode, built in Rust.",
+        officialUrl: "https://alphacli.github.io/",
+        whyItMatters:
+          "A free, MIT-licensed coding agent with a built-in model (or bring your own), swarm mode and 40+ tools — lowering the barrier to multi-agent coding workflows.",
+        verification: "researched",
+        launchDate: "2026-09-01",
+        sources: [
+          { title: "dragonked2/alphacode on GitHub", url: "https://github.com/dragonked2/alphacode", type: "github" },
+        ],
+      },
     ],
   },
   {
@@ -1336,6 +1378,20 @@ export const archiveEditions: ArchiveEdition[] = [
         launchDate: "2026-09-29",
         sources: [
           { title: "openspline/openspline on GitHub", url: "https://github.com/openspline/openspline", type: "github" },
+        ],
+      },
+      {
+        categorySlug: "ai-evals",
+        name: "TinyAIArena",
+        tagline: "Watch AI agents battle it out",
+        shortDescription: "Head-to-head arena pitting AI agents against each other.",
+        officialUrl: "https://tinyaiarena.com/",
+        whyItMatters:
+          "A public arena where small AI agents compete head-to-head — a lightweight, watchable take on agent evaluation and comparison.",
+        verification: "researched",
+        launchDate: "2026-09-27",
+        sources: [
+          { title: "Show HN: TinyAIArena (Sep 27, 2026)", url: "https://news.ycombinator.com/item?id=49867775", type: "hackernews" },
         ],
       },
     ],
@@ -1472,6 +1528,20 @@ export const archiveEditions: ArchiveEdition[] = [
           { title: "interfere-inc/landmines on GitHub", url: "https://github.com/interfere-inc/landmines", type: "github" },
         ],
       },
+      {
+        categorySlug: "ai-observability-evaluation",
+        name: "Sphinx",
+        tagline: "Quizzes you on your AI's code before shipping",
+        shortDescription: "Git hook that quizzes you on AI-written code.",
+        officialUrl: "https://sphinx-six-theta.vercel.app/",
+        whyItMatters:
+          "A hook that quizzes you on your AI's code before you ship it — a human-in-the-loop guardrail against merging code you don't understand.",
+        verification: "researched",
+        launchDate: "2026-10-18",
+        sources: [
+          { title: "Show HN: Sphinx (Oct 18, 2026)", url: "https://news.ycombinator.com/item?id=50137950", type: "hackernews" },
+        ],
+      },
     ],
   },
   {
@@ -1581,4 +1651,29 @@ export function archiveEditionPicks(edition: ArchiveEdition): ArchivePickSlot[] 
     category,
     pick: edition.picks.find((p) => p.categorySlug === category.slug),
   }));
+}
+
+export interface CategoryArchiveEntry {
+  editionSlug: string;
+  editionLabel: string;
+  pick: ArchivePick;
+}
+
+/** Every archive pick for a category, across all editions, newest first. */
+export function archivePicksForCategory(
+  categorySlug: string,
+): CategoryArchiveEntry[] {
+  const out: CategoryArchiveEntry[] = [];
+  for (const edition of archiveEditions) {
+    for (const pick of edition.picks) {
+      if (pick.categorySlug === categorySlug) {
+        out.push({
+          editionSlug: edition.slug,
+          editionLabel: edition.label,
+          pick,
+        });
+      }
+    }
+  }
+  return out.sort((a, b) => b.editionSlug.localeCompare(a.editionSlug));
 }

@@ -5,9 +5,11 @@ import {
   categories,
   categoryBySlug,
   productForCategory,
+  archivePicksForCategory,
   EDITION,
 } from "@/lib/content";
 import { PickCard } from "@/components/pick-card";
+import { VerificationBadge } from "@/components/verification-badge";
 import { absoluteUrl } from "@/lib/site";
 
 export function generateStaticParams() {
@@ -44,6 +46,7 @@ export default async function CategoryPage({
   if (!category) notFound();
 
   const product = productForCategory(category.slug);
+  const archive = archivePicksForCategory(category.slug);
 
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
@@ -103,6 +106,48 @@ export default async function CategoryPage({
           )}
         </div>
       </div>
+
+      {archive.length > 0 && (
+        <div className="mt-12">
+          <h2 className="text-sm font-semibold uppercase tracking-wide text-ink-400">
+            Previous editions
+          </h2>
+          <p className="mt-1 text-sm text-ink-500">
+            Earlier picks in this category from our backfilled archive (sourced
+            from Hacker News and GitHub, checked against each product&apos;s
+            official site).
+          </p>
+          <ul className="mt-4 divide-y divide-ink-100 overflow-hidden rounded-2xl border border-ink-200/80 bg-white">
+            {archive.map(({ editionSlug, editionLabel, pick }) => (
+              <li
+                key={`${editionSlug}-${pick.name}`}
+                className="flex flex-col gap-2 p-4 sm:flex-row sm:items-center sm:justify-between"
+              >
+                <div className="min-w-0">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <a
+                      href={pick.officialUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[15px] font-bold tracking-tight text-ink-900 hover:text-brand-700"
+                    >
+                      {pick.name}
+                    </a>
+                    <VerificationBadge status={pick.verification} />
+                  </div>
+                  <p className="mt-0.5 text-sm text-ink-500">{pick.tagline}</p>
+                </div>
+                <Link
+                  href={`/editions/${editionSlug}`}
+                  className="shrink-0 text-sm font-medium text-brand-600 hover:text-brand-700"
+                >
+                  {editionLabel} →
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
 
       <div className="mt-12 rounded-2xl border border-ink-200/80 bg-white p-6">
         <h3 className="text-base font-semibold text-ink-900">
