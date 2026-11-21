@@ -99,16 +99,6 @@ export default async function EditionPage({
             fortnight&apos;s window, then checked against each product&apos;s own
             site or repository. Every pick carries a dated evidence link.
           </p>
-          <div className="mt-4 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-[13px] leading-relaxed text-amber-800">
-            <strong className="font-semibold">Scope note:</strong> these archive
-            editions predate aitoolslist.ai&apos;s live coverage (which began with
-            the Nov 16–30, 2026 edition). Picks marked{" "}
-            <em>Researched · pending approval</em> rest on the dated HN/GitHub
-            record; <em>Verified</em> picks were additionally confirmed against
-            the product&apos;s official site. They have not been through the full
-            editorial fact-check applied to the current edition.
-          </div>
-
           <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {archiveEditionPicks(archive).map((slot) => (
               <ArchivePickCard key={slot.category.slug} slot={slot} />
