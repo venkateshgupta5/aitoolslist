@@ -6,6 +6,8 @@ import {
   categoryBySlug,
   productForCategory,
   archivePicksForCategory,
+  buildCategoryFaq,
+  faqJsonLd,
   EDITION,
 } from "@/lib/content";
 import { PickCard } from "@/components/pick-card";
@@ -73,12 +75,20 @@ export default async function CategoryPage({
     ],
   };
 
+  const faq = buildCategoryFaq(category);
+
   return (
     <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
+      {faq.length > 0 && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(faq)) }}
+        />
+      )}
       <nav className="text-sm text-ink-500">
         <Link href="/" className="hover:text-ink-900">
           Home

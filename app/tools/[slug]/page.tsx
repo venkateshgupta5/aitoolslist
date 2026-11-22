@@ -9,6 +9,8 @@ import {
   claimStatuses,
   toIsoDate,
   hasFreeTier,
+  buildProductFaq,
+  faqJsonLd,
   type ClaimRow,
 } from "@/lib/content";
 import { VerificationBadge } from "@/components/verification-badge";
@@ -156,11 +158,15 @@ export default async function ProductPage({
       { "@type": "ListItem", position: 3, name: product.name, item: absoluteUrl(`/tools/${slug}`) },
     ],
   };
+  const faq = buildProductFaq(product);
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-12">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(appJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      {faq.length > 0 && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(faq)) }} />
+      )}
 
       {/* Breadcrumb */}
       <nav className="text-sm text-ink-500">

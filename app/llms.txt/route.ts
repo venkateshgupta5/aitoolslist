@@ -1,0 +1,51 @@
+import { categories, products, EDITION } from "@/lib/content";
+import { siteConfig, absoluteUrl } from "@/lib/site";
+
+// Serves /llms.txt — a markdown index for LLMs / answer engines (the emerging
+// llms.txt convention). Lists our curated categories and researched tool
+// profiles so retrieval-augmented models can find and cite the right pages.
+// Regenerated from live content on every request.
+export const dynamic = "force-static";
+
+export function GET() {
+  const lines: string[] = [];
+
+  lines.push(`# ${siteConfig.name}`);
+  lines.push("");
+  lines.push(`> ${siteConfig.description}`);
+  lines.push("");
+  lines.push(
+    `${siteConfig.name} is an independent, fortnightly AI product intelligence publication. Each edition researches, fact-checks and curates standout AI tools across ${categories.length} categories. Every tool profile states what was verified, when it was last verified, and links to primary sources. Current edition: ${EDITION.label}.`,
+  );
+  lines.push("");
+
+  lines.push("## Key pages");
+  lines.push(`- [Home](${absoluteUrl("/")}): ${siteConfig.tagline}`);
+  lines.push(`- [Categories](${absoluteUrl("/categories")}): All ${categories.length} AI tool categories we track.`);
+  lines.push(`- [Current edition](${absoluteUrl(`/editions/${EDITION.slug}`)}): ${EDITION.label} — this fortnight's researched picks.`);
+  lines.push(`- [Methodology](${absoluteUrl("/methodology")}): Sources, scoring, evidence standard and what "Verified" means.`);
+  lines.push(`- [About](${absoluteUrl("/about")}): What ${siteConfig.name} is and how it stays independent.`);
+  lines.push("");
+
+  lines.push("## Categories");
+  for (const c of categories) {
+    lines.push(`- [${c.name}](${absoluteUrl(`/categories/${c.slug}`)}): ${c.coverage}`);
+  }
+  lines.push("");
+
+  lines.push("## Tool profiles");
+  for (const p of products) {
+    const desc = p.shortDescription || p.tagline || p.overview;
+    lines.push(`- [${p.name}](${absoluteUrl(`/tools/${p.slug}`)}): ${desc}`);
+  }
+  lines.push("");
+
+  const body = lines.join("\n");
+
+  return new Response(body, {
+    headers: {
+      "Content-Type": "text/plain; charset=utf-8",
+      "Cache-Control": "public, max-age=0, s-maxage=3600, stale-while-revalidate=86400",
+    },
+  });
+}

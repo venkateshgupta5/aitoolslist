@@ -1862,3 +1862,83 @@ export function hasFreeTier(pricing?: string): boolean {
     /\b(mit|apache|agpl|gplv?3?)[- ]licen/.test(p)
   );
 }
+
+export interface FaqItem {
+  question: string;
+  answer: string;
+}
+
+/**
+ * Build a FAQ for a tool from its existing, page-visible fields only.
+ * Each entry is skipped when its source field is empty, so we never invent
+ * answers. These power FAQPage structured data (AEO / LLM extraction) and
+ * map to content already rendered on the page.
+ */
+export function buildProductFaq(product: Product): FaqItem[] {
+  const category = categoryBySlug(product.categorySlug);
+  const faq: FaqItem[] = [];
+
+  const whatIs = product.overview || product.shortDescription;
+  if (whatIs) faq.push({ question: `What is ${product.name}?`, answer: whatIs });
+
+  if (product.pricing)
+    faq.push({ question: `How much does ${product.name} cost?`, answer: product.pricing });
+
+  const audience = product.whoShouldUse?.length
+    ? product.whoShouldUse
+    : product.targetAudience;
+  if (audience?.length)
+    faq.push({
+      question: `Who should use ${product.name}?`,
+      answer: audience.join(" "),
+    });
+
+  if (product.alternatives?.length)
+    faq.push({
+      question: `What are the alternatives to ${product.name}?`,
+      answer: `Alternatives to ${product.name} include ${product.alternatives.join(", ")}.`,
+    });
+
+  const why = product.whyItMatters || product.selectionRationale;
+  if (why && category)
+    faq.push({
+      question: `Why is ${product.name} a standout in ${category.name}?`,
+      answer: why,
+    });
+
+  return faq;
+}
+
+/** FAQ for a category page, from the current researched pick + coverage. */
+export function buildCategoryFaq(category: Category): FaqItem[] {
+  const faq: FaqItem[] = [];
+  const pick = productForCategory(category.slug);
+
+  faq.push({
+    question: `What does the ${category.name} category cover?`,
+    answer: category.coverage,
+  });
+
+  if (pick) {
+    const why = pick.whyItMatters || pick.selectionRationale || pick.overview;
+    faq.push({
+      question: `What is the standout ${category.name} AI tool in the current edition?`,
+      answer: `${pick.name} is this edition's researched, fact-checked pick in ${category.name}. ${why}`.trim(),
+    });
+  }
+
+  return faq;
+}
+
+/** Shape a FAQ list into schema.org FAQPage JSON-LD. */
+export function faqJsonLd(faq: FaqItem[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faq.map((f) => ({
+      "@type": "Question",
+      name: f.question,
+      acceptedAnswer: { "@type": "Answer", text: f.answer },
+    })),
+  };
+}
