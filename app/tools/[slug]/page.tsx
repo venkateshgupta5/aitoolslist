@@ -7,6 +7,8 @@ import {
   categoryBySlug,
   atAGlance,
   claimStatuses,
+  toIsoDate,
+  hasFreeTier,
   type ClaimRow,
 } from "@/lib/content";
 import { VerificationBadge } from "@/components/verification-badge";
@@ -119,6 +121,9 @@ export default async function ProductPage({
     { id: "research", label: "Research" },
   ];
 
+  const datePublished = toIsoDate(product.launchDate);
+  const dateModified = toIsoDate(product.lastVerified);
+  const free = hasFreeTier(product.pricing);
   const appJsonLd = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
@@ -126,6 +131,21 @@ export default async function ProductPage({
     applicationCategory: category?.name,
     description: product.overview,
     url: product.officialUrl,
+    ...(product.productType ? { applicationSubCategory: product.productType } : {}),
+    ...(datePublished ? { datePublished } : {}),
+    ...(dateModified ? { dateModified } : {}),
+    ...(free
+      ? {
+          isAccessibleForFree: true,
+          offers: {
+            "@type": "Offer",
+            price: "0",
+            priceCurrency: "USD",
+            availability: "https://schema.org/InStock",
+            url: product.officialUrl,
+          },
+        }
+      : {}),
   };
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",

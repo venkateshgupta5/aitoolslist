@@ -24,13 +24,18 @@ export async function generateMetadata({
   const { slug } = await params;
   const category = categoryBySlug(slug);
   if (!category) return {};
+  const pick = productForCategory(category.slug);
+  const pickBit = pick
+    ? ` This edition's researched, fact-checked pick: ${pick.name}.`
+    : "";
+  const description = `${category.coverage}${pickBit} Independent AI product intelligence across ${category.name} on aitoolslist.ai.`;
   return {
     title: `${category.name}, standout AI tools`,
-    description: `${category.coverage} Discover this edition's researched, fact-checked pick in ${category.name} on aitoolslist.ai.`,
+    description,
     alternates: { canonical: `/categories/${slug}` },
     openGraph: {
       title: `${category.name} | aitoolslist.ai`,
-      description: category.coverage,
+      description,
       url: absoluteUrl(`/categories/${slug}`),
     },
   };

@@ -1822,3 +1822,43 @@ export function archivePicksForCategory(
   }
   return out.sort((a, b) => b.editionSlug.localeCompare(a.editionSlug));
 }
+
+// ── SEO structured-data helpers (truthful only; never fabricate) ──
+
+/**
+ * Convert a human or ISO date string to an ISO 8601 date (YYYY-MM-DD),
+ * returning undefined when the value is missing or too ambiguous to trust
+ * (e.g. "November 2026 (full release)" has no day, so we omit it rather
+ * than invent one). Parenthetical qualifiers are stripped first.
+ */
+export function toIsoDate(value?: string | null): string | undefined {
+  if (!value) return undefined;
+  const cleaned = value.replace(/\(.*?\)/g, "").trim();
+  if (/^\d{4}-\d{2}-\d{2}$/.test(cleaned)) return cleaned;
+  // Require an explicit day, e.g. "November 20, 2026".
+  if (!/^[A-Za-z]+\s+\d{1,2},\s+\d{4}$/.test(cleaned)) return undefined;
+  const parsed = new Date(cleaned);
+  if (Number.isNaN(parsed.getTime())) return undefined;
+  // Use the locally-parsed calendar parts (not toISOString, which would shift
+  // the date across a UTC boundary and report the wrong day).
+  const y = parsed.getFullYear();
+  const m = String(parsed.getMonth() + 1).padStart(2, "0");
+  const d = String(parsed.getDate()).padStart(2, "0");
+  return `${y}-${m}-${d}`;
+}
+
+/**
+ * True only when the product genuinely offers a free / open-source /
+ * self-host option (not a free trial or free credits on a paid plan).
+ */
+export function hasFreeTier(pricing?: string): boolean {
+  if (!pricing) return false;
+  const p = pricing.toLowerCase();
+  if (/\bfree (trial|credit)/.test(p)) return false; // paid product with a freebie
+  return (
+    /free to self-host/.test(p) ||
+    /open-source/.test(p) ||
+    /freely accessible/.test(p) ||
+    /\b(mit|apache|agpl|gplv?3?)[- ]licen/.test(p)
+  );
+}
