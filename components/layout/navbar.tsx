@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
-import { siteConfig } from "@/lib/site";
 
 const navLinks = [
   { href: "/#this-week", label: "Discover" },
@@ -80,7 +79,7 @@ export function Navbar() {
             href="/submit-tool"
             className="rounded-lg bg-ink-900 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-ink-800"
           >
-            List your product · {siteConfig.listingPrice}
+            List your product
           </Link>
           {user ? (
             <Link
@@ -162,7 +161,7 @@ export function Navbar() {
               onClick={() => setOpen(false)}
               className="mt-1 rounded-lg bg-ink-900 px-3 py-2.5 text-center text-[15px] font-semibold text-white"
             >
-              List your product · {siteConfig.listingPrice}
+              List your product
             </Link>
           </div>
         </div>
