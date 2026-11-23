@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
-  products,
-  productBySlug,
+  toolPages,
+  toolPageBySlug,
   categoryBySlug,
   atAGlance,
   claimStatuses,
@@ -20,7 +20,7 @@ import { EnquiryDisclosure } from "@/components/tools/enquiry-disclosure";
 import { absoluteUrl, siteConfig } from "@/lib/site";
 
 export function generateStaticParams() {
-  return products.map((p) => ({ slug: p.slug }));
+  return toolPages.map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({
@@ -29,7 +29,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const product = productBySlug(slug);
+  const product = toolPageBySlug(slug);
   if (!product) return {};
   const title = `${product.name} – Features, Pricing & Review`;
   const description = `Discover ${product.name}: ${product.shortDescription} Explore features, pricing, benchmarks, alternatives and independent research in our verified AI product profile.`;
@@ -104,7 +104,7 @@ export default async function ProductPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const product = productBySlug(slug);
+  const product = toolPageBySlug(slug);
   if (!product) notFound();
 
   const category = categoryBySlug(product.categorySlug);

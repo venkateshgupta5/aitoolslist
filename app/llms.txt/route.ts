@@ -1,6 +1,7 @@
 import {
   categories,
   products,
+  archiveProducts,
   EDITION,
   segments,
   categoriesForSegment,
@@ -48,6 +49,16 @@ export function GET() {
     lines.push(`- [${p.name}](${absoluteUrl(`/tools/${p.slug}`)}): ${desc}`);
   }
   lines.push("");
+
+  if (archiveProducts.length > 0) {
+    lines.push("## Past-edition tools");
+    lines.push("Standout tools from earlier fortnightly editions, each with a verified profile.");
+    for (const p of archiveProducts) {
+      const desc = p.shortDescription || p.tagline;
+      lines.push(`- [${p.name}](${absoluteUrl(`/tools/${p.slug}`)}): ${desc}`);
+    }
+    lines.push("");
+  }
 
   const body = lines.join("\n");
 

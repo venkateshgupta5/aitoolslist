@@ -1,21 +1,13 @@
 import Link from "next/link";
 import type { ArchivePickSlot } from "@/lib/content";
-import { categoryAccent } from "@/lib/content";
+import { archivePickSlug } from "@/lib/content";
 import { VerificationBadge } from "@/components/verification-badge";
-
-function initials(name: string) {
-  return name
-    .split(/\s+/)
-    .slice(0, 2)
-    .map((w) => w[0])
-    .join("")
-    .toUpperCase();
-}
+import { ToolLogo } from "@/components/tool-logo";
 
 /**
- * Card for a historical (archive) edition pick. Unlike the current edition,
- * archive picks have no full /tools profile, they link out to the product's
- * official site/repo and show the dated source evidence they were drawn from.
+ * Card for a historical (archive) edition pick. Archive picks now have their
+ * own /tools profile; the card links to it and shows the dated source evidence
+ * they were drawn from.
  */
 export function ArchivePickCard({
   slot,
@@ -48,19 +40,21 @@ export function ArchivePickCard({
 
       {pick ? (
         <>
-          <div className="mt-3 flex items-start gap-3">
-            <div
-              className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-sm font-bold text-white ${categoryAccent(category.slug)}`}
-            >
-              {initials(pick.name)}
-            </div>
+          <Link href={`/tools/${archivePickSlug(pick)}`} className="mt-3 flex items-start gap-3">
+            <ToolLogo
+              name={pick.name}
+              logo={`/logos/${archivePickSlug(pick)}.png`}
+              categorySlug={category.slug}
+              size={44}
+              className="rounded-xl"
+            />
             <div className="min-w-0">
-              <h3 className="text-[17px] font-bold leading-snug tracking-tight text-ink-900">
+              <h3 className="text-[17px] font-bold leading-snug tracking-tight text-ink-900 hover:text-brand-700">
                 {pick.name}
               </h3>
               <p className="mt-0.5 text-sm text-ink-500">{pick.tagline}</p>
             </div>
-          </div>
+          </Link>
 
           <p className="mt-3 text-sm leading-relaxed text-ink-600">
             {pick.shortDescription}
@@ -98,14 +92,12 @@ export function ArchivePickCard({
 
           <div className="mt-3 flex items-center justify-between gap-2 border-t border-ink-100 pt-3">
             <VerificationBadge status={pick.verification} />
-            <a
-              href={pick.officialUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href={`/tools/${archivePickSlug(pick)}`}
               className="shrink-0 text-sm font-semibold text-brand-600 transition-colors hover:text-brand-700"
             >
-              Visit site ↗
-            </a>
+              View analysis →
+            </Link>
           </div>
         </>
       ) : (

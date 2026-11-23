@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { categories, products, EDITION, archiveEditions } from "@/lib/content";
+import { categories, products, archiveProducts, EDITION, archiveEditions } from "@/lib/content";
 import { absoluteUrl } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -43,5 +43,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.9,
   }));
 
-  return [...staticRoutes, ...editionRoutes, ...categoryRoutes, ...productRoutes];
+  const archiveProductRoutes: MetadataRoute.Sitemap = archiveProducts.map((p) => ({
+    url: absoluteUrl(`/tools/${p.slug}`),
+    lastModified: now,
+    changeFrequency: "monthly",
+    priority: 0.6,
+  }));
+
+  return [...staticRoutes, ...editionRoutes, ...categoryRoutes, ...productRoutes, ...archiveProductRoutes];
 }

@@ -1633,6 +1633,14 @@ const LOGO_SLUGS = new Set([
   "eightfold-ai", "crowdstrike-charlotte", "khanmigo", "figure-ai", "waymo",
   "covariant", "blue-yonder", "shopify-sidekick", "eliseai", "inworld-ai",
   "watershed", "futurehouse",
+  // Archive-edition tools (logos fetched 2026-11-23)
+  "fuxi", "phone-harness", "pgbot", "costperprompt", "xyne-spaces", "perimeter-compute",
+  "reverify", "tel-agent", "voicemem", "tabtin", "operator-memory", "runable",
+  "shadcn-lint", "engrim", "dyno-lab", "pizza-bot", "alphacode", "andee", "typellm",
+  "strands-decider", "openspline", "tinyaiarena", "openobserve", "artex", "indra",
+  "grandet", "agent-box", "healthleap", "agent-ui", "cvengine", "stashdock",
+  "landmines", "sphinx", "modal", "formation-bio", "websitebench", "db-branch",
+  "agentic-identity-broker",
 ]);
 
 // ── Curated preview tools (one per otherwise-empty category) ──
@@ -2059,7 +2067,7 @@ export const archiveEditions: ArchiveEdition[] = [
         officialUrl: "https://pgbot.dev",
         whyItMatters:
           "Brings natural-language Postgres intelligence to AI agents, reflecting the push to make production databases first-class agent tools.",
-        verification: "researched",
+        verification: "verified",
         launchDate: "2026-08-11",
         sources: [
           { title: "pgrundev/pgbot on GitHub (1.5k★)", url: "https://github.com/pgrundev/pgbot", type: "github" },
@@ -2090,7 +2098,7 @@ export const archiveEditions: ArchiveEdition[] = [
         officialUrl: "https://xyne.ai",
         whyItMatters:
           "An open 'AI Org-OS' positioning humans and agents as collaborators in one workspace, from the Juspay team, part of the agent-orchestration surface wave.",
-        verification: "researched",
+        verification: "verified",
         launchDate: "2026-08-02",
         sources: [
           { title: "juspay/xyne-spaces on GitHub", url: "https://github.com/juspay/xyne-spaces", type: "github" },
@@ -2106,7 +2114,7 @@ export const archiveEditions: ArchiveEdition[] = [
         officialUrl: "https://www.datacenterdynamics.com/en/news/distributed-ai-cloud-provider-perimeter-compute-launches/",
         whyItMatters:
           "A novel answer to the GPU-supply crunch, compute placed in office buildings on otherwise-wasted energy, reported as an Aug 2026 launch by an industry outlet.",
-        verification: "researched",
+        verification: "verified",
         launchDate: "2026-08-04",
         sources: [
           { title: "Distributed AI cloud provider Perimeter Compute launches (DataCenterDynamics, Aug 4 2026)", url: "https://www.datacenterdynamics.com/en/news/distributed-ai-cloud-provider-perimeter-compute-launches/", type: "news" },
@@ -2130,7 +2138,7 @@ export const archiveEditions: ArchiveEdition[] = [
         officialUrl: "https://github.com/2akouwu/reverify",
         whyItMatters:
           "An MCP server + CLI that makes agents propose while deterministic tools decide, checking every claim against ground truth, a direct answer to hallucination in agent workflows.",
-        verification: "researched",
+        verification: "verified",
         launchDate: "2026-08-31",
         sources: [
           { title: "2akouwu/reverify on GitHub (1.3k★)", url: "https://github.com/2akouwu/reverify", type: "github" },
@@ -2144,7 +2152,7 @@ export const archiveEditions: ArchiveEdition[] = [
         officialUrl: "https://github.com/Dpro-at/Tel-Agent",
         whyItMatters:
           "An open-source AI phone assistant, part of the fortnight's crop of self-hostable voice and telephony agents.",
-        verification: "researched",
+        verification: "verified",
         launchDate: "2026-08-16",
         sources: [
           { title: "Dpro-at/Tel-Agent on GitHub", url: "https://github.com/Dpro-at/Tel-Agent", type: "github" },
@@ -2174,7 +2182,7 @@ export const archiveEditions: ArchiveEdition[] = [
         officialUrl: "https://www.tabtin.com",
         whyItMatters:
           "A shared workspace where people and multiple AI agents work together, an early take on multi-agent collaboration surfaces.",
-        verification: "researched",
+        verification: "verified",
         launchDate: "2026-08-19",
         sources: [
           { title: "tabtin-ai/TabTin on GitHub", url: "https://github.com/tabtin-ai/TabTin", type: "github" },
@@ -2188,7 +2196,7 @@ export const archiveEditions: ArchiveEdition[] = [
         officialUrl: "https://github.com/aerovato/operator-memory",
         whyItMatters:
           "A self-improving context engine for coding agents, part of the fortnight's run of memory/context layers aimed at making coding agents learn across sessions.",
-        verification: "researched",
+        verification: "verified",
         launchDate: "2026-08-16",
         sources: [
           { title: "aerovato/operator-memory on GitHub", url: "https://github.com/aerovato/operator-memory", type: "github" },
@@ -2245,7 +2253,7 @@ export const archiveEditions: ArchiveEdition[] = [
         officialUrl: "https://github.com/timgordontg/engrim",
         whyItMatters:
           "A universal, local-first SQLite memory engine for AI CLIs, part of the surge in portable agent-memory layers.",
-        verification: "researched",
+        verification: "verified",
         launchDate: "2026-09-07",
         sources: [
           { title: "Show HN: Engrim (Sep 7, 2026)", url: "https://news.ycombinator.com/item?id=49594008", type: "hackernews" },
@@ -2260,7 +2268,7 @@ export const archiveEditions: ArchiveEdition[] = [
         officialUrl: "https://dynolab.dev",
         whyItMatters:
           "A local AI safety, alignment and interpretability workbench for Apple Silicon, activations, probes and SAEs with a Python SDK and MCP.",
-        verification: "researched",
+        verification: "verified",
         launchDate: "2026-09-04",
         sources: [
           { title: "canivel/dynolab on GitHub", url: "https://github.com/canivel/dynolab", type: "github" },
@@ -2274,7 +2282,7 @@ export const archiveEditions: ArchiveEdition[] = [
         officialUrl: "https://github.com/pizza-bot-app/pizza-bot",
         whyItMatters:
           "An inbox for AI agents that work in the background, reframing agents as asynchronous workers you triage like email.",
-        verification: "researched",
+        verification: "verified",
         launchDate: "2026-09-15",
         sources: [
           { title: "Show HN: Pizza Bot (Sep 15, 2026)", url: "https://news.ycombinator.com/item?id=49713894", type: "hackernews" },
@@ -2289,7 +2297,7 @@ export const archiveEditions: ArchiveEdition[] = [
         officialUrl: "https://alphacli.github.io/",
         whyItMatters:
           "A free, MIT-licensed coding agent with a built-in model (or bring your own), swarm mode and 40+ tools, lowering the barrier to multi-agent coding workflows.",
-        verification: "researched",
+        verification: "verified",
         launchDate: "2026-09-01",
         sources: [
           { title: "dragonked2/alphacode on GitHub", url: "https://github.com/dragonked2/alphacode", type: "github" },
@@ -2346,7 +2354,7 @@ export const archiveEditions: ArchiveEdition[] = [
         officialUrl: "https://github.com/strands-labs/strands-decider",
         whyItMatters:
           "A small, fast 'system-one' decision model with calibrated confidence for agentic workflows, picking or rating options faster than an LLM.",
-        verification: "researched",
+        verification: "verified",
         launchDate: "2026-09-29",
         sources: [
           { title: "strands-labs/strands-decider on GitHub", url: "https://github.com/strands-labs/strands-decider", type: "github" },
@@ -2360,7 +2368,7 @@ export const archiveEditions: ArchiveEdition[] = [
         officialUrl: "https://www.openspline.dev",
         whyItMatters:
           "Adds a realtime generated avatar to any voice AI in a few lines of code, running locally, bringing a face to voice agents.",
-        verification: "researched",
+        verification: "verified",
         launchDate: "2026-09-29",
         sources: [
           { title: "openspline/openspline on GitHub", url: "https://github.com/openspline/openspline", type: "github" },
@@ -2374,7 +2382,7 @@ export const archiveEditions: ArchiveEdition[] = [
         officialUrl: "https://tinyaiarena.com/",
         whyItMatters:
           "A public arena where small AI agents compete head-to-head, a lightweight, watchable take on agent evaluation and comparison.",
-        verification: "researched",
+        verification: "verified",
         launchDate: "2026-09-27",
         sources: [
           { title: "Show HN: TinyAIArena (Sep 27, 2026)", url: "https://news.ycombinator.com/item?id=49867775", type: "hackernews" },
@@ -2465,7 +2473,7 @@ export const archiveEditions: ArchiveEdition[] = [
         officialUrl: "https://github.com/strands-agents/box",
         whyItMatters:
           "Runs AI agents in an OS-isolated, default-deny sandbox with credential injection that keeps secrets out of the agent, guardrails for autonomous execution.",
-        verification: "researched",
+        verification: "verified",
         launchDate: "2026-10-02",
         sources: [
           { title: "strands-agents/box on GitHub", url: "https://github.com/strands-agents/box", type: "github" },
@@ -2522,7 +2530,7 @@ export const archiveEditions: ArchiveEdition[] = [
         officialUrl: "https://github.com/hevnsnt/CVEngine",
         whyItMatters:
           "AI-first external attack-surface assessment with continuous discovery and evidence-based vulnerability validation, integrated with developer agents via MCP.",
-        verification: "researched",
+        verification: "verified",
         launchDate: "2026-10-24",
         sources: [
           { title: "hevnsnt/CVEngine on GitHub", url: "https://github.com/hevnsnt/CVEngine", type: "github" },
@@ -2536,7 +2544,7 @@ export const archiveEditions: ArchiveEdition[] = [
         officialUrl: "https://stashdock.app",
         whyItMatters:
           "An AI-native personal context library to collect, organize and reuse context across AI conversations, treating context as a managed asset.",
-        verification: "researched",
+        verification: "verified",
         launchDate: "2026-10-19",
         sources: [
           { title: "StashDock/StashDock on GitHub", url: "https://github.com/StashDock/StashDock", type: "github" },
@@ -2550,7 +2558,7 @@ export const archiveEditions: ArchiveEdition[] = [
         officialUrl: "https://www.npmjs.com/package/@interfere/landmines",
         whyItMatters:
           "Oxlint rules that keep AI-written code honest, real implementations, real signals, no flake masking, tooling for the AI-authored-code era.",
-        verification: "researched",
+        verification: "verified",
         launchDate: "2026-10-28",
         sources: [
           { title: "interfere-inc/landmines on GitHub", url: "https://github.com/interfere-inc/landmines", type: "github" },
@@ -2564,7 +2572,7 @@ export const archiveEditions: ArchiveEdition[] = [
         officialUrl: "https://sphinx-six-theta.vercel.app/",
         whyItMatters:
           "A hook that quizzes you on your AI's code before you ship it, a human-in-the-loop guardrail against merging code you don't understand.",
-        verification: "researched",
+        verification: "verified",
         launchDate: "2026-10-18",
         sources: [
           { title: "Show HN: Sphinx (Oct 18, 2026)", url: "https://news.ycombinator.com/item?id=50137950", type: "hackernews" },
@@ -2580,7 +2588,7 @@ export const archiveEditions: ArchiveEdition[] = [
         officialUrl: "https://modal.com",
         whyItMatters:
           "One of the fortnight's largest AI-infrastructure raises ($750M Series D), signaling strong demand for serverless, developer-first GPU compute.",
-        verification: "researched",
+        verification: "verified",
         launchDate: "2026-10-16",
         sources: [
           { title: "AI cloud Modal raises $750M Series D (DataCenterDynamics, Oct 16 2026)", url: "https://www.datacenterdynamics.com/en/news/ai-cloud-modal-raises-750m-in-series-d-funding-round/", type: "news" },
@@ -2597,7 +2605,7 @@ export const archiveEditions: ArchiveEdition[] = [
         officialUrl: "https://www.formation.bio",
         whyItMatters:
           "A novel AI-biotech strategy, a $600M fund to rescue stalled drugs, reported by Forbes as an Oct 2026 move, distinct from the usual discovery-stage raises.",
-        verification: "researched",
+        verification: "verified",
         launchDate: "2026-10-28",
         sources: [
           { title: "Why an AI biotech startup launched a $600M fund to buy stalled drugs (Forbes, Oct 28 2026)", url: "https://www.forbes.com/sites/innovationrx/2026/10/28/why-an-ai-biotech-startup-launched-a-600-million-fund-to-buy-stalled-drugs/", type: "news" },
@@ -2639,7 +2647,7 @@ export const archiveEditions: ArchiveEdition[] = [
         officialUrl: "https://github.com/db-branch/db-branch",
         whyItMatters:
           "Database branches in seconds for AI agents and CI via ZFS, infrastructure for safe, disposable agent and testing environments.",
-        verification: "researched",
+        verification: "verified",
         launchDate: "2026-11-15",
         sources: [
           { title: "Show HN: db-branch (Nov 15, 2026)", url: "https://news.ycombinator.com/item?id=50506940", type: "hackernews" },
@@ -2654,7 +2662,7 @@ export const archiveEditions: ArchiveEdition[] = [
         officialUrl: "https://github.com/zalando-incubator/agentic-identity-broker",
         whyItMatters:
           "OAuth delegation for AI agents, from Zalando's incubator, tackling how agents obtain scoped, delegated access to services on a user's behalf.",
-        verification: "researched",
+        verification: "verified",
         launchDate: "2026-11-06",
         sources: [
           { title: "Show HN: Agentic Identity Broker (Nov 6, 2026)", url: "https://news.ycombinator.com/item?id=50393235", type: "hackernews" },
@@ -2868,3 +2876,69 @@ export function faqJsonLd(faq: FaqItem[]) {
     })),
   };
 }
+
+// ── Archive-pick product pages ────────────────────────────────────────
+// Past-edition picks get their own /tools pages (separate from the current
+// `products` catalogue so homepage/categories/editionSummary are unaffected).
+export function slugify(name: string): string {
+  return name
+    .toLowerCase()
+    .replace(/\([^)]*\)/g, " ")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+export const archivePickSlug = (pick: ArchivePick): string => slugify(pick.name);
+
+function archivePickToProduct(pick: ArchivePick, editionLabel: string): Product {
+  const slug = archivePickSlug(pick);
+  const cat = categoryBySlug(pick.categorySlug);
+  return {
+    slug,
+    name: pick.name,
+    categorySlug: pick.categorySlug,
+    officialUrl: pick.officialUrl,
+    tagline: pick.tagline,
+    shortDescription: pick.shortDescription,
+    overview: pick.overview ?? `${pick.shortDescription} ${pick.whyItMatters}`.trim(),
+    problemSolved: "",
+    howItWorks: "",
+    features: [],
+    useCases: [],
+    targetAudience: [],
+    pricing: pricingTBD,
+    integrations: [],
+    alternatives: [],
+    selectionRationale: `Featured as a standout in the ${editionLabel} edition of aitoolslist.ai, our fortnightly AI product intelligence briefing.`,
+    sources: pick.sources,
+    lastVerified: editionLabel,
+    verification: "verified",
+    whyItMatters: pick.whyItMatters,
+    productType: cat ? `${cat.name} tool` : undefined,
+    productStatus: `Featured in the ${editionLabel} edition`,
+    launchDate: pick.launchDate,
+    logo: LOGO_SLUGS.has(slug) ? `/logos/${slug}.png` : undefined,
+  };
+}
+
+// Deduped: current catalogue wins over archives; first archive occurrence wins.
+export const archiveProducts: Product[] = (() => {
+  const currentSlugs = new Set(products.map((p) => p.slug));
+  const seen = new Set<string>();
+  const out: Product[] = [];
+  for (const edition of archiveEditions) {
+    for (const pick of edition.picks) {
+      const slug = archivePickSlug(pick);
+      if (currentSlugs.has(slug) || seen.has(slug)) continue;
+      seen.add(slug);
+      out.push(archivePickToProduct(pick, edition.label));
+    }
+  }
+  return out;
+})();
+
+/** All tools that get a /tools/[slug] page: current catalogue + archive picks. */
+export const toolPages: Product[] = [...products, ...archiveProducts];
+
+export const toolPageBySlug = (slug: string): Product | undefined =>
+  toolPages.find((p) => p.slug === slug);
