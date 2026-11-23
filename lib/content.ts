@@ -927,11 +927,118 @@ const LOGO_SLUGS = new Set([
   "lago",
 ]);
 
-export const products: Product[] = baseProducts.map((p) => ({
-  ...p,
-  ...(enrichment[p.slug] ?? {}),
-  logo: LOGO_SLUGS.has(p.slug) ? `/logos/${p.slug}.png` : undefined,
-}));
+// ── Curated preview tools (one per otherwise-empty category) ──
+// These are well-known category leaders added so every category has a tool to
+// browse. They are explicitly NOT verified edition picks: verification is
+// "preview" ("Curated preview · pending fact-check"), pricing is never invented,
+// and the fortnightly research pipeline upgrades them to verified over time.
+interface PreviewSpec {
+  slug: string;
+  name: string;
+  categorySlug: string;
+  officialUrl: string;
+  tagline: string;
+  shortDescription: string;
+  overview: string;
+  alternatives: string[];
+  source: { title: string; url: string };
+}
+
+function preview(s: PreviewSpec): Product {
+  const categoryName = categories.find((c) => c.slug === s.categorySlug)?.name ?? "its category";
+  return {
+    slug: s.slug,
+    name: s.name,
+    categorySlug: s.categorySlug,
+    officialUrl: s.officialUrl,
+    tagline: s.tagline,
+    shortDescription: s.shortDescription,
+    overview: s.overview,
+    problemSolved: `See ${s.name}'s official site for how it addresses ${categoryName} needs.`,
+    howItWorks:
+      "This is a curated preview. Full methodology and independent fact-checking are pending; visit the official site for current details.",
+    features: [],
+    useCases: [],
+    targetAudience: [],
+    pricing: pricingTBD,
+    integrations: [],
+    alternatives: s.alternatives,
+    selectionRationale: `Curated as a notable product in ${categoryName}. This profile is a preview, pending our full research and fact-check.`,
+    sources: [{ title: s.source.title, url: s.source.url, type: "curated" }],
+    lastVerified: null,
+    verification: "preview",
+  };
+}
+
+const previewProducts: Product[] = [
+  // ── AI Infrastructure & Cloud ──
+  preview({ slug: "nvidia-run-ai", name: "NVIDIA Run:ai", categorySlug: "ai-gpu-orchestration-scheduling", officialUrl: "https://www.nvidia.com/en-us/software/run-ai/", tagline: "GPU orchestration for Kubernetes", shortDescription: "Workload & GPU orchestration for AI clusters.", overview: "NVIDIA Run:ai is a GPU orchestration and scheduling platform for Kubernetes that pools, shares and prioritises GPU resources across training, fine-tuning and inference.", alternatives: ["SkyPilot", "Kueue", "Volcano"], source: { title: "NVIDIA Run:ai", url: "https://www.nvidia.com/en-us/software/run-ai/" } }),
+  preview({ slug: "deepspeed", name: "DeepSpeed", categorySlug: "ai-training-infrastructure", officialUrl: "https://www.deepspeed.ai", tagline: "Distributed deep-learning training", shortDescription: "Large-scale distributed model training library.", overview: "DeepSpeed is Microsoft's open-source deep-learning optimisation library for training very large models efficiently across many GPUs, with ZeRO memory optimisation and parallelism.", alternatives: ["PyTorch FSDP", "Megatron-LM", "Hugging Face Accelerate"], source: { title: "DeepSpeed", url: "https://www.deepspeed.ai" } }),
+  preview({ slug: "unsloth", name: "Unsloth", categorySlug: "ai-model-compression-quantization", officialUrl: "https://unsloth.ai", tagline: "Faster fine-tuning & quantization", shortDescription: "Efficient fine-tuning and quantization for LLMs.", overview: "Unsloth is an open-source library for faster, memory-efficient fine-tuning and quantization of large language models on a single GPU.", alternatives: ["bitsandbytes", "AutoGPTQ", "llama.cpp (GGUF)"], source: { title: "Unsloth", url: "https://unsloth.ai" } }),
+  preview({ slug: "llama-cpp", name: "llama.cpp", categorySlug: "ai-edge-computing", officialUrl: "https://github.com/ggml-org/llama.cpp", tagline: "LLM inference on local hardware", shortDescription: "CPU-first local/edge LLM inference engine.", overview: "llama.cpp is an open-source C/C++ inference engine and the GGUF format that have become the de-facto standard for running language models locally and at the edge on CPU-first hardware.", alternatives: ["Ollama", "MLC LLM", "TensorFlow Lite"], source: { title: "llama.cpp", url: "https://github.com/ggml-org/llama.cpp" } }),
+  preview({ slug: "nvidia-spectrum-x", name: "NVIDIA Spectrum-X", categorySlug: "ai-networking-data-transfer", officialUrl: "https://www.nvidia.com/en-us/networking/", tagline: "Ethernet networking for AI", shortDescription: "High-throughput networking for AI clusters.", overview: "NVIDIA Spectrum-X and NVLink provide high-bandwidth, low-latency networking and interconnect designed for large-scale AI training and inference clusters.", alternatives: ["InfiniBand", "Cisco Unified Edge", "Arista AI networking"], source: { title: "NVIDIA Networking", url: "https://www.nvidia.com/en-us/networking/" } }),
+  preview({ slug: "vast-data", name: "VAST Data", categorySlug: "ai-storage-infrastructure", officialUrl: "https://www.vastdata.com", tagline: "Storage for AI at scale", shortDescription: "High-bandwidth data platform for AI.", overview: "VAST Data is a data platform providing high-bandwidth storage and a unified data layer purpose-built for large-scale AI training and inference workloads.", alternatives: ["WEKA", "DDN", "Pure Storage"], source: { title: "VAST Data", url: "https://www.vastdata.com" } }),
+  preview({ slug: "cerebras", name: "Cerebras", categorySlug: "ai-hardware-accelerators", officialUrl: "https://www.cerebras.ai", tagline: "Wafer-scale AI accelerators", shortDescription: "Wafer-scale chips and AI inference cloud.", overview: "Cerebras builds wafer-scale AI accelerators and an inference cloud, offering very high-throughput training and inference as an alternative to conventional GPUs.", alternatives: ["NVIDIA Blackwell", "Groq", "Google TPU"], source: { title: "Cerebras", url: "https://www.cerebras.ai" } }),
+  preview({ slug: "vast-ai", name: "Vast.ai", categorySlug: "ai-compute-marketplaces", officialUrl: "https://vast.ai", tagline: "GPU rental marketplace", shortDescription: "On-demand GPU marketplace for AI.", overview: "Vast.ai is a marketplace for renting on-demand GPU compute from a wide range of providers, often at lower cost than hyperscalers, for training and inference.", alternatives: ["RunPod", "Akash Network", "Aethir"], source: { title: "Vast.ai", url: "https://vast.ai" } }),
+
+  // ── AI Models & Intelligence ──
+  preview({ slug: "microsoft-phi", name: "Microsoft Phi", categorySlug: "small-language-models", officialUrl: "https://azure.microsoft.com/en-us/products/phi", tagline: "Small, capable language models", shortDescription: "Compact high-quality open small models.", overview: "Microsoft's Phi family are small language models designed to deliver strong reasoning and quality at a fraction of the size and cost of frontier models, suited to on-device and cost-sensitive use.", alternatives: ["Google Gemma", "Qwen (small)", "NVIDIA Nemotron Nano"], source: { title: "Microsoft Phi", url: "https://azure.microsoft.com/en-us/products/phi" } }),
+  preview({ slug: "google-gemini", name: "Google Gemini", categorySlug: "multimodal-ai-models", officialUrl: "https://deepmind.google/technologies/gemini/", tagline: "Multimodal frontier model", shortDescription: "Text, image, audio and video reasoning.", overview: "Google Gemini is a family of multimodal models that reason across text, images, audio and video, known for long-context and strong video understanding.", alternatives: ["GPT-5 (OpenAI)", "Claude (Anthropic)", "Qwen3-VL"], source: { title: "Google Gemini", url: "https://deepmind.google/technologies/gemini/" } }),
+  preview({ slug: "midjourney", name: "Midjourney", categorySlug: "ai-image-generation", officialUrl: "https://www.midjourney.com", tagline: "Text-to-image generation", shortDescription: "Leading artistic text-to-image model.", overview: "Midjourney is a generative AI known for high artistic quality in text-to-image generation, widely used by designers and creators.", alternatives: ["Stable Diffusion", "DALL·E", "Flux"], source: { title: "Midjourney", url: "https://www.midjourney.com" } }),
+  preview({ slug: "runway", name: "Runway", categorySlug: "ai-video-generation", officialUrl: "https://runwayml.com", tagline: "Generative video platform", shortDescription: "Text/image-to-video generation & editing.", overview: "Runway is a generative video platform offering text- and image-to-video generation plus AI editing tools used across film, advertising and social content.", alternatives: ["OpenAI Sora", "Google Veo", "Kling"], source: { title: "Runway", url: "https://runwayml.com" } }),
+  preview({ slug: "elevenlabs", name: "ElevenLabs", categorySlug: "ai-audio-speech-models", officialUrl: "https://elevenlabs.io", tagline: "AI voice & speech", shortDescription: "Speech synthesis and voice AI.", overview: "ElevenLabs provides high-quality AI speech synthesis, voice cloning and generative audio APIs used for dubbing, narration and voice agents.", alternatives: ["OpenAI TTS", "Cartesia", "PlayHT"], source: { title: "ElevenLabs", url: "https://elevenlabs.io" } }),
+  preview({ slug: "cohere", name: "Cohere", categorySlug: "ai-embeddings-reranking", officialUrl: "https://cohere.com", tagline: "Embeddings & reranking models", shortDescription: "Enterprise embedding and rerank models.", overview: "Cohere provides leading embedding and reranking models (Embed and Rerank) that power retrieval quality in search and RAG systems, with an enterprise focus.", alternatives: ["Voyage AI", "OpenAI embeddings", "Jina AI"], source: { title: "Cohere", url: "https://cohere.com" } }),
+  preview({ slug: "mostly-ai", name: "MOSTLY AI", categorySlug: "synthetic-data-generation", officialUrl: "https://mostly.ai", tagline: "Synthetic data generation", shortDescription: "Privacy-safe synthetic data platform.", overview: "MOSTLY AI generates statistically representative, privacy-safe synthetic data for training, testing and analytics without exposing real records.", alternatives: ["Gretel", "Tonic.ai", "Hazy"], source: { title: "MOSTLY AI", url: "https://mostly.ai" } }),
+  preview({ slug: "writer-palmyra", name: "Writer", categorySlug: "domain-specific-ai-models", officialUrl: "https://writer.com", tagline: "Enterprise domain models", shortDescription: "Palmyra domain-specific enterprise models.", overview: "Writer builds the Palmyra family of domain-specific enterprise models and an AI platform tuned for regulated industries like finance and healthcare.", alternatives: ["BloombergGPT", "Hugging Face", "Cohere"], source: { title: "Writer", url: "https://writer.com" } }),
+
+  // ── AI Agents & Automation ──
+  preview({ slug: "mem0", name: "Mem0", categorySlug: "ai-agent-memory-context", officialUrl: "https://mem0.ai", tagline: "Memory layer for agents", shortDescription: "Persistent memory for AI agents.", overview: "Mem0 is a memory layer that gives AI agents persistent, personalised long-term memory across sessions, widely adopted in agent SDKs.", alternatives: ["Letta (MemGPT)", "Zep", "Anthropic Memory Tool"], source: { title: "Mem0", url: "https://mem0.ai" } }),
+  preview({ slug: "auth0-ai", name: "Auth0 for AI Agents", categorySlug: "ai-agent-identity-access-management", officialUrl: "https://auth0.com", tagline: "Identity & access for agents", shortDescription: "Auth and fine-grained access for agents.", overview: "Auth0 provides identity and access management with token issuance and fine-grained authorisation, giving AI agents a verifiable identity and scoped permissions.", alternatives: ["Microsoft Entra Agent ID", "WorkOS", "Okta"], source: { title: "Auth0", url: "https://auth0.com" } }),
+  preview({ slug: "lasso-security", name: "Lasso Security", categorySlug: "ai-agent-security-governance", officialUrl: "https://www.lasso.security", tagline: "Agent & LLM security", shortDescription: "Security and governance for AI agents.", overview: "Lasso Security provides runtime security, monitoring and governance for LLM and agent applications, guarding against misuse, data leakage and prompt attacks.", alternatives: ["Protect AI", "Orby AI", "CalypsoAI"], source: { title: "Lasso Security", url: "https://www.lasso.security" } }),
+  preview({ slug: "skyfire", name: "Skyfire", categorySlug: "ai-agent-payments-transactions", officialUrl: "https://www.skyfire.xyz", tagline: "Payments for AI agents", shortDescription: "Agent-native payment infrastructure.", overview: "Skyfire provides payment infrastructure that lets autonomous AI agents transact, pay for services and settle programmatically with identity and spend controls.", alternatives: ["Payman", "Catena Labs", "Stripe"], source: { title: "Skyfire", url: "https://www.skyfire.xyz" } }),
+  preview({ slug: "n8n", name: "n8n", categorySlug: "ai-workflow-automation", officialUrl: "https://n8n.io", tagline: "Workflow automation", shortDescription: "Source-available AI workflow automation.", overview: "n8n is a source-available workflow automation platform with a visual editor and AI/agent nodes for connecting apps and automating processes.", alternatives: ["Zapier", "Make", "Gumloop"], source: { title: "n8n", url: "https://n8n.io" } }),
+  preview({ slug: "browser-use", name: "Browser Use", categorySlug: "browser-computer-use-agents", officialUrl: "https://browser-use.com", tagline: "AI browser agents", shortDescription: "Open-source agents that drive the browser.", overview: "Browser Use is an open-source framework and cloud for AI agents that operate web browsers, one of the fastest-growing projects in computer-use automation.", alternatives: ["Skyvern", "OpenAI Operator", "Anthropic Computer Use"], source: { title: "Browser Use", url: "https://browser-use.com" } }),
+  preview({ slug: "chatgpt", name: "ChatGPT", categorySlug: "ai-personal-assistants", officialUrl: "https://chatgpt.com", tagline: "AI personal assistant", shortDescription: "The leading consumer AI assistant.", overview: "OpenAI's ChatGPT is the most widely used AI personal assistant, handling research, writing, coding and everyday tasks across web and mobile.", alternatives: ["Google Gemini", "Anthropic Claude", "Perplexity"], source: { title: "ChatGPT", url: "https://chatgpt.com" } }),
+
+  // ── AI Developer Ecosystem ──
+  preview({ slug: "openrouter", name: "OpenRouter", categorySlug: "ai-developer-apis-sdks", officialUrl: "https://openrouter.ai", tagline: "Unified LLM API", shortDescription: "One API across hundreds of models.", overview: "OpenRouter is a unified API and marketplace that routes requests across hundreds of LLMs from many providers through a single endpoint with fallbacks and cost controls.", alternatives: ["Portkey", "Together AI", "LiteLLM"], source: { title: "OpenRouter", url: "https://openrouter.ai" } }),
+  preview({ slug: "together-ai", name: "Together AI", categorySlug: "ai-model-fine-tuning", officialUrl: "https://www.together.ai", tagline: "Fine-tuning & inference", shortDescription: "Fine-tune and serve open models.", overview: "Together AI offers serverless and dedicated inference plus fine-tuning for open and custom models, letting teams adapt models on proprietary data.", alternatives: ["Fireworks AI", "Baseten", "OpenAI fine-tuning"], source: { title: "Together AI", url: "https://www.together.ai" } }),
+  preview({ slug: "promptlayer", name: "PromptLayer", categorySlug: "ai-prompt-engineering-management", officialUrl: "https://www.promptlayer.com", tagline: "Prompt management", shortDescription: "Versioning and evals for prompts.", overview: "PromptLayer is a prompt management platform for versioning, testing, evaluating and collaborating on LLM prompts across teams.", alternatives: ["Langfuse Prompts", "PromptHub", "Portkey"], source: { title: "PromptLayer", url: "https://www.promptlayer.com" } }),
+  preview({ slug: "replicate", name: "Replicate", categorySlug: "ai-deployment-hosting", officialUrl: "https://replicate.com", tagline: "Run & deploy models", shortDescription: "Deploy and run models via API.", overview: "Replicate lets developers run and deploy open-source and custom models as scalable API endpoints without managing infrastructure.", alternatives: ["Modal", "Baseten", "Hugging Face Inference"], source: { title: "Replicate", url: "https://replicate.com" } }),
+  preview({ slug: "lakera", name: "Lakera", categorySlug: "ai-security-guardrails", officialUrl: "https://www.lakera.ai", tagline: "AI guardrails & security", shortDescription: "Prompt-injection and guardrail defence.", overview: "Lakera provides real-time guardrails and security for GenAI apps, defending against prompt injection, data leakage and unsafe output.", alternatives: ["Guardrails AI", "Protect AI", "AWS Bedrock Guardrails"], source: { title: "Lakera", url: "https://www.lakera.ai" } }),
+  preview({ slug: "scale-ai", name: "Scale AI", categorySlug: "ai-data-annotation-labeling", officialUrl: "https://scale.com", tagline: "Data labeling at scale", shortDescription: "Enterprise data annotation platform.", overview: "Scale AI provides large-scale data labeling, annotation and human-in-the-loop data operations for training and evaluating AI models.", alternatives: ["Labelbox", "Label Studio", "SuperAnnotate"], source: { title: "Scale AI", url: "https://scale.com" } }),
+  preview({ slug: "glean", name: "Glean", categorySlug: "ai-knowledge-management", officialUrl: "https://www.glean.com", tagline: "Enterprise AI search", shortDescription: "AI knowledge search across work apps.", overview: "Glean is an enterprise AI platform that connects a company's apps into a unified, permission-aware knowledge search and assistant.", alternatives: ["Guru", "Notion AI", "Dust"], source: { title: "Glean", url: "https://www.glean.com" } }),
+  preview({ slug: "sourcegraph", name: "Sourcegraph", categorySlug: "ai-developer-productivity", officialUrl: "https://sourcegraph.com", tagline: "Code intelligence & AI", shortDescription: "AI across large codebases.", overview: "Sourcegraph provides code search and AI coding assistants (Cody/Amp) that help developers understand and change large, complex codebases.", alternatives: ["GitHub Copilot", "Cursor", "Warp"], source: { title: "Sourcegraph", url: "https://sourcegraph.com" } }),
+
+  // ── AI Business Applications ──
+  preview({ slug: "jasper", name: "Jasper", categorySlug: "ai-marketing-advertising", officialUrl: "https://www.jasper.ai", tagline: "AI for marketing teams", shortDescription: "Marketing content and campaign AI.", overview: "Jasper is an AI platform built for marketing teams to generate on-brand copy, campaigns and creative at scale.", alternatives: ["Copy.ai", "HubSpot Breeze", "Writer"], source: { title: "Jasper", url: "https://www.jasper.ai" } }),
+  preview({ slug: "canva", name: "Canva", categorySlug: "ai-content-creation", officialUrl: "https://www.canva.com", tagline: "AI content & design", shortDescription: "Design and content with Magic Studio.", overview: "Canva is a design platform whose Magic Studio AI generates images, text, video and on-brand visual content for individuals and teams.", alternatives: ["Adobe Firefly", "Descript", "Jasper"], source: { title: "Canva", url: "https://www.canva.com" } }),
+  preview({ slug: "profound", name: "Profound", categorySlug: "ai-seo-geo-aeo", officialUrl: "https://www.tryprofound.com", tagline: "Answer-engine optimization", shortDescription: "Track & improve AI-answer visibility.", overview: "Profound is a generative-engine-optimization platform that tracks how brands appear in AI answers (ChatGPT, Perplexity, Google AI) and helps improve that visibility.", alternatives: ["Conductor", "AthenaHQ", "AI Rank Lab"], source: { title: "Profound", url: "https://www.tryprofound.com" } }),
+  preview({ slug: "harvey", name: "Harvey", categorySlug: "ai-legal-technology", officialUrl: "https://www.harvey.ai", tagline: "AI for legal work", shortDescription: "Legal research, drafting and review.", overview: "Harvey is an AI platform for law firms and legal teams covering research, contract analysis, drafting and legal workflows.", alternatives: ["Legora", "CoCounsel", "Legalfly"], source: { title: "Harvey", url: "https://www.harvey.ai" } }),
+  preview({ slug: "eightfold-ai", name: "Eightfold AI", categorySlug: "ai-hr-recruitment", officialUrl: "https://eightfold.ai", tagline: "Talent intelligence", shortDescription: "AI for hiring and workforce planning.", overview: "Eightfold AI is a talent-intelligence platform using AI for sourcing, screening, skills mapping and workforce planning.", alternatives: ["HireVue", "Paradox", "Skima AI"], source: { title: "Eightfold AI", url: "https://eightfold.ai" } }),
+  preview({ slug: "crowdstrike-charlotte", name: "CrowdStrike Charlotte AI", categorySlug: "ai-cybersecurity", officialUrl: "https://www.crowdstrike.com", tagline: "AI security operations", shortDescription: "Agentic detection and response.", overview: "CrowdStrike's Falcon platform with Charlotte AI applies agentic AI to threat detection, triage and response across endpoints and cloud.", alternatives: ["Darktrace", "Vectra AI", "Microsoft Security Copilot"], source: { title: "CrowdStrike", url: "https://www.crowdstrike.com" } }),
+  preview({ slug: "khanmigo", name: "Khanmigo", categorySlug: "ai-education-learning", officialUrl: "https://www.khanmigo.ai", tagline: "AI tutor", shortDescription: "AI tutoring from Khan Academy.", overview: "Khanmigo is Khan Academy's AI tutor and teaching assistant, providing personalised guidance across subjects for students and educators.", alternatives: ["Google Gemini for Education", "Duolingo Max", "Carnegie Learning"], source: { title: "Khanmigo", url: "https://www.khanmigo.ai" } }),
+
+  // ── Emerging & Specialized AI ──
+  preview({ slug: "figure-ai", name: "Figure AI", categorySlug: "ai-robotics", officialUrl: "https://www.figure.ai", tagline: "Humanoid robots", shortDescription: "General-purpose humanoid robotics.", overview: "Figure AI builds general-purpose humanoid robots with its own vision-language-action models, deployed in early commercial and manufacturing settings.", alternatives: ["Physical Intelligence", "Boston Dynamics", "Apptronik"], source: { title: "Figure AI", url: "https://www.figure.ai" } }),
+  preview({ slug: "waymo", name: "Waymo", categorySlug: "autonomous-vehicles", officialUrl: "https://waymo.com", tagline: "Autonomous driving", shortDescription: "Self-driving ride-hailing at scale.", overview: "Waymo operates one of the most mature autonomous-driving stacks, running paid driverless ride-hailing across multiple US cities.", alternatives: ["Wayve", "Nuro", "Tesla FSD"], source: { title: "Waymo", url: "https://waymo.com" } }),
+  preview({ slug: "covariant", name: "Covariant", categorySlug: "ai-manufacturing", officialUrl: "https://covariant.ai", tagline: "AI for robotic manipulation", shortDescription: "Foundation models for warehouse robots.", overview: "Covariant builds AI foundation models for robotic manipulation used in warehouses and manufacturing for picking and handling diverse items.", alternatives: ["Symbotic", "RightHand Robotics", "Instrumental"], source: { title: "Covariant", url: "https://covariant.ai" } }),
+  preview({ slug: "blue-yonder", name: "Blue Yonder", categorySlug: "ai-supply-chain-logistics", officialUrl: "https://blueyonder.com", tagline: "AI supply chain", shortDescription: "AI-driven supply-chain platform.", overview: "Blue Yonder is a comprehensive AI-powered supply-chain platform for planning, forecasting, fulfilment and logistics optimisation at scale.", alternatives: ["FourKites", "project44", "o9 Solutions"], source: { title: "Blue Yonder", url: "https://blueyonder.com" } }),
+  preview({ slug: "shopify-sidekick", name: "Shopify Sidekick", categorySlug: "ai-retail-ecommerce", officialUrl: "https://www.shopify.com", tagline: "AI commerce assistant", shortDescription: "AI across the commerce platform.", overview: "Shopify's AI (Sidekick and Magic) helps merchants run storefronts with AI-generated content, insights and in-admin assistance.", alternatives: ["Bloomreach", "Lily AI", "Rep AI"], source: { title: "Shopify", url: "https://www.shopify.com" } }),
+  preview({ slug: "eliseai", name: "EliseAI", categorySlug: "ai-real-estate", officialUrl: "https://www.eliseai.com", tagline: "AI for real estate", shortDescription: "AI leasing and property operations.", overview: "EliseAI provides conversational AI for real estate, automating leasing, resident communication and property operations for multifamily housing.", alternatives: ["Rechat", "Besty AI", "Compass AI"], source: { title: "EliseAI", url: "https://www.eliseai.com" } }),
+  preview({ slug: "inworld-ai", name: "Inworld AI", categorySlug: "ai-gaming", officialUrl: "https://inworld.ai", tagline: "AI for games", shortDescription: "AI engine for game characters & NPCs.", overview: "Inworld AI provides an AI engine for games, powering intelligent NPCs, characters and runtime experiences for developers.", alternatives: ["Meshy", "Luma AI", "Scenario"], source: { title: "Inworld AI", url: "https://inworld.ai" } }),
+  preview({ slug: "watershed", name: "Watershed", categorySlug: "ai-climate-energy", officialUrl: "https://watershed.com", tagline: "Climate & carbon platform", shortDescription: "AI-assisted carbon accounting.", overview: "Watershed is an enterprise climate platform for measuring, reporting and reducing carbon emissions, increasingly AI-assisted for data and disclosure.", alternatives: ["Persefoni", "Sweep", "BrainBox AI"], source: { title: "Watershed", url: "https://watershed.com" } }),
+  preview({ slug: "futurehouse", name: "FutureHouse", categorySlug: "ai-scientific-research", officialUrl: "https://www.futurehouse.org", tagline: "AI scientist", shortDescription: "AI agents for scientific discovery.", overview: "FutureHouse builds AI agents for scientific research, aiming to automate parts of the discovery process across the life sciences and beyond.", alternatives: ["Lila Sciences", "Google AI Co-Scientist", "Anthropic Claude Science"], source: { title: "FutureHouse", url: "https://www.futurehouse.org" } }),
+];
+
+export const products: Product[] = [
+  ...baseProducts.map((p) => ({
+    ...p,
+    ...(enrichment[p.slug] ?? {}),
+    logo: LOGO_SLUGS.has(p.slug) ? `/logos/${p.slug}.png` : undefined,
+  })),
+  ...previewProducts,
+];
 
 /** At-a-glance specification rows (spec §6). Values grounded in research;
  *  unknowns shown as "Not verified". */
@@ -1024,18 +1131,27 @@ export const verificationLabel: Record<VerificationStatus, string> = {
 export function editionSummary() {
   const categoriesTotal = categories.length; // 60
   const segmentsTotal = segments.length; // 6
-  const researched = products.length; // categories with a researched pick this edition
+  // "researched" = fully researched + verified edition picks (NOT curated previews).
+  const researched = products.filter((p) => p.verification !== "preview").length;
+  const previewed = products.filter((p) => p.verification === "preview").length;
   const verified = products.filter((p) => p.verification === "verified").length;
+  const toolsTotal = products.length;
   return {
     categoriesTotal,
     segmentsTotal,
     researched,
+    previewed,
     verified,
+    toolsTotal,
     // `evaluated` kept as an alias for the total taxonomy size (back-compat).
     evaluated: categoriesTotal,
     insufficient: categoriesTotal - researched,
   };
 }
+
+/** Is this product a fully-researched edition pick (not a curated preview)? */
+export const isEditionPick = (p: Product | undefined): boolean =>
+  !!p && p.verification !== "preview";
 
 export const segmentBySlug = (slug: string) =>
   segments.find((s) => s.slug === slug);
@@ -2015,11 +2131,16 @@ export function buildCategoryFaq(category: Category): FaqItem[] {
     answer: category.coverage,
   });
 
-  if (pick) {
+  if (pick && isEditionPick(pick)) {
     const why = pick.whyItMatters || pick.selectionRationale || pick.overview;
     faq.push({
       question: `What is the standout ${category.name} AI tool in the current edition?`,
       answer: `${pick.name} is this edition's researched, fact-checked pick in ${category.name}. ${why}`.trim(),
+    });
+  } else if (pick) {
+    faq.push({
+      question: `What is a notable ${category.name} AI tool?`,
+      answer: `${pick.name} is a notable tool in ${category.name}. ${pick.overview} (Curated preview, pending our full fact-check.)`.trim(),
     });
   }
 

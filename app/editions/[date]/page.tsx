@@ -4,6 +4,7 @@ import {
   EDITION,
   editionPicks,
   editionSummary,
+  isEditionPick,
   getArchiveEdition,
   archiveEditions,
   archiveEditionPicks,
@@ -127,7 +128,7 @@ export default async function EditionPage({
 }
 
 function CurrentEdition() {
-  const picksWithProducts = editionPicks().filter((p) => p.product);
+  const picksWithProducts = editionPicks().filter((p) => isEditionPick(p.product));
   const summary = editionSummary();
   return (
     <>

@@ -7,6 +7,8 @@ import {
   editionSummary,
   segments,
   categoriesForSegment,
+  productForCategory,
+  isEditionPick,
   allEditions,
   products,
   archiveEditions,
@@ -66,7 +68,7 @@ export default function HomePage() {
   const picks = editionPicks();
   const summary = editionSummary();
   const editions = allEditions();
-  const picksWithProducts = picks.filter((p) => p.product);
+  const picksWithProducts = picks.filter((p) => isEditionPick(p.product));
   const topPicks = picksWithProducts.slice(0, 5);
 
   const heroStats = [
@@ -287,36 +289,58 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── Explore by segment ────────────────────────────────────────── */}
+      {/* ── The full map: segments → categories → tools ───────────────── */}
       <section id="categories" className="mx-auto max-w-6xl scroll-mt-20 px-4 py-16 sm:px-6 sm:py-20">
         <div className="flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-end">
           <div>
             <p className="text-[11px] font-semibold uppercase tracking-wide text-brand-600">The map</p>
-            <h2 className="font-display mt-1 text-3xl font-semibold tracking-tight text-ink-900 sm:text-4xl">Explore AI by segment</h2>
-            <p className="mt-2 text-ink-600">{summary.categoriesTotal} categories, organised into {summary.segmentsTotal} segments. Jump to the area you care about.</p>
+            <h2 className="font-display mt-1 text-3xl font-semibold tracking-tight text-ink-900 sm:text-4xl">The AI landscape, mapped</h2>
+            <p className="mt-2 max-w-2xl text-ink-600">
+              {summary.categoriesTotal} categories across {summary.segmentsTotal} segments, each with a tool to start from. {summary.verified} are verified edition picks; the rest are curated previews pending our fact-check.
+            </p>
           </div>
-          <Link href="/categories" className="text-sm font-semibold text-brand-600 hover:text-brand-700">All categories →</Link>
+          <Link href="/categories" className="shrink-0 text-sm font-semibold text-brand-600 hover:text-brand-700">All categories →</Link>
         </div>
 
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 space-y-10">
           {segments.map((s) => {
             const segCats = categoriesForSegment(s.slug);
-            const live = segCats.filter((c) => picksWithProducts.some((p) => p.category.slug === c.slug)).length;
             const accent = segmentAccents[(s.order - 1) % segmentAccents.length];
             return (
-              <Link key={s.slug} href={`/categories#${s.slug}`} className="group flex flex-col rounded-2xl border border-ink-200/70 bg-white p-6 card-ring transition-all hover:-translate-y-0.5 hover:border-brand-300">
-                <div className="flex items-center gap-3">
-                  <div className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-sm font-bold text-white ${accent}`}>
+              <div key={s.slug}>
+                <div className="flex items-center gap-3 border-b border-ink-200/70 pb-3">
+                  <div className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-xs font-bold text-white ${accent}`}>
                     {s.order}
                   </div>
+                  <Link href={`/categories#${s.slug}`} className="font-display text-lg font-semibold tracking-tight text-ink-900 hover:text-brand-700">
+                    {s.name}
+                  </Link>
                   <span className="text-xs font-medium text-ink-400">{segCats.length} categories</span>
                 </div>
-                <h3 className="font-display mt-4 text-lg font-semibold leading-snug text-ink-900 group-hover:text-brand-700">{s.name}</h3>
-                <p className="mt-1.5 flex-1 text-sm leading-relaxed text-ink-600">{s.tagline}</p>
-                <p className="mt-3 text-xs font-medium text-ink-500">
-                  {live > 0 ? <>{live} researched pick{live === 1 ? "" : "s"} this edition</> : "Picks coming soon"}
-                </p>
-              </Link>
+                <div className="mt-4 grid gap-x-6 gap-y-1 sm:grid-cols-2">
+                  {segCats.map((c) => {
+                    const product = productForCategory(c.slug);
+                    const verified = isEditionPick(product);
+                    return (
+                      <Link
+                        key={c.slug}
+                        href={`/categories/${c.slug}`}
+                        className="group flex items-center justify-between gap-3 rounded-lg px-2 py-2 transition-colors hover:bg-ink-50"
+                      >
+                        <span className="truncate text-sm font-medium text-ink-800 group-hover:text-brand-700">
+                          {c.name}
+                        </span>
+                        <span className="flex shrink-0 items-center gap-1.5 text-xs text-ink-500">
+                          {product && (
+                            <span className="max-w-[9rem] truncate">{product.name}</span>
+                          )}
+                          {verified && <span className="text-emerald-500">✓</span>}
+                        </span>
+                      </Link>
+                    );
+                  })}
+                </div>
+              </div>
             );
           })}
         </div>

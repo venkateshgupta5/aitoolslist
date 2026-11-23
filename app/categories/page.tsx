@@ -4,6 +4,7 @@ import {
   segments,
   categoriesForSegment,
   productForCategory,
+  isEditionPick,
   categoryAccent,
 } from "@/lib/content";
 
@@ -87,12 +88,21 @@ export default function CategoriesPage() {
                         </p>
                         <p className="mt-2 text-xs">
                           {product ? (
-                            <span className="text-ink-500">
-                              This edition:{" "}
-                              <span className="font-semibold text-ink-800">
-                                {product.name}
+                            isEditionPick(product) ? (
+                              <span className="text-ink-500">
+                                This edition:{" "}
+                                <span className="font-semibold text-ink-800">
+                                  {product.name}
+                                </span>
                               </span>
-                            </span>
+                            ) : (
+                              <span className="text-ink-400">
+                                Preview:{" "}
+                                <span className="font-medium text-ink-600">
+                                  {product.name}
+                                </span>
+                              </span>
+                            )
                           ) : (
                             <span className="text-ink-400">Pick coming soon</span>
                           )}

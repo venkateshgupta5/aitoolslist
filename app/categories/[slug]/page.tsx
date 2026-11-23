@@ -5,6 +5,7 @@ import {
   categories,
   categoryBySlug,
   productForCategory,
+  isEditionPick,
   archivePicksForCategory,
   buildCategoryFaq,
   faqJsonLd,
@@ -28,7 +29,9 @@ export async function generateMetadata({
   if (!category) return {};
   const pick = productForCategory(category.slug);
   const pickBit = pick
-    ? ` This edition's researched, fact-checked pick: ${pick.name}.`
+    ? isEditionPick(pick)
+      ? ` This edition's researched, fact-checked pick: ${pick.name}.`
+      : ` Featured tool: ${pick.name} (curated preview).`
     : "";
   const description = `${category.coverage}${pickBit} Independent AI product intelligence across ${category.name} on aitoolslist.ai.`;
   return {
@@ -123,9 +126,11 @@ export default async function CategoryPage({
           <PickCard
             pick={{ category, product }}
             highlightLabel={
-              product
+              isEditionPick(product)
                 ? `This edition's pick · ${EDITION.label}`
-                : `This edition · ${EDITION.label}`
+                : product
+                  ? "Curated preview · pending fact-check"
+                  : `This edition · ${EDITION.label}`
             }
           />
           {archive.map(({ editionSlug, editionLabel, pick }) => (
