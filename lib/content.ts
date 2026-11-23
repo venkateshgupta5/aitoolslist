@@ -2989,7 +2989,7 @@ function archivePickToProduct(pick: ArchivePick, editionLabel: string): Product 
     pricing: pricingTBD,
     integrations: [],
     alternatives: [],
-    selectionRationale: `Featured as a standout in the ${editionLabel} edition of aitoolslist.ai, our fortnightly AI product intelligence briefing.`,
+    selectionRationale: `Featured as a standout AI tool in our ${editionLabel} rankings on aitoolslist.ai.`,
     sources: pick.sources,
     lastVerified: editionLabel,
     verification: "verified",

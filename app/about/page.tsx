@@ -4,7 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "aitoolslist.ai is a research-driven AI intelligence and discovery publication, not another unfiltered directory. Learn how we select and verify tools.",
+    "aitoolslist.ai is a research-driven AI tool discovery and evaluation platform, not another unfiltered directory. Learn how we find, verify and rank the best AI tools.",
   alternates: { canonical: "/about" },
 };
 
@@ -13,8 +13,8 @@ const steps = [
   { day: "Classify", activity: "Extract candidates and map them to categories" },
   { day: "Research & score", activity: "Enrich and score against a consistent methodology" },
   { day: "Fact-check", activity: "Independently verify shortlisted products" },
-  { day: "Approve", activity: "Editorial sign-off by a human reviewer" },
-  { day: "Publish", activity: "Release the edition, preserved permanently" },
+  { day: "Approve", activity: "Sign-off by a human reviewer" },
+  { day: "Publish", activity: "Update the rankings, with past versions preserved" },
 ];
 
 export default function AboutPage() {
@@ -29,12 +29,14 @@ export default function AboutPage() {
       </nav>
 
       <h1 className="mt-4 font-display text-3xl font-semibold tracking-tight text-ink-900 sm:text-4xl">
-        An AI intelligence and discovery publication
+        Find the right AI tool, with confidence
       </h1>
       <p className="mt-4 text-lg leading-relaxed text-ink-600">
-        aitoolslist.ai is not another unfiltered AI tools directory. Our
-        competitive advantage is the quality of selection, the credibility of
-        our research and the usefulness of the product information we publish.
+        aitoolslist.ai is a discovery and evaluation platform, not another
+        unfiltered AI tools directory. We help you find the right AI tool through
+        the quality of our selection, the credibility of our research and the
+        usefulness of the product information, independently verified and updated
+        every fortnight.
       </p>
 
       <div className="mt-10 space-y-6 text-[15px] leading-relaxed text-ink-700">

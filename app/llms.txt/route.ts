@@ -22,7 +22,7 @@ export function GET() {
   lines.push(`> ${siteConfig.description}`);
   lines.push("");
   lines.push(
-    `${siteConfig.name} is an independent, fortnightly AI product intelligence publication. Each edition researches, fact-checks and curates standout AI tools across ${categories.length} categories organised into ${segments.length} segments. Every tool profile states what was verified, when it was last verified, and links to primary sources. Current edition: ${EDITION.label}.`,
+    `${siteConfig.name} is an independent AI tool discovery and evaluation platform. It helps people find the right AI tool across ${categories.length} categories organised into ${segments.length} segments, with independently researched, verified profiles refreshed every fortnight. Every tool profile states what was verified, when it was last verified, and links to primary sources. Last updated: ${EDITION.label}.`,
   );
   lines.push("");
 

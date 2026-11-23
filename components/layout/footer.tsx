@@ -20,8 +20,8 @@ export function Footer() {
               </span>
             </div>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-ink-500">
-              An AI intelligence and discovery publication. Independently
-              researched. Fact-checked. Updated every fortnight.
+              Find the right AI tool. Independently researched, verified and
+              updated every fortnight.
             </p>
           </div>
 
@@ -88,7 +88,7 @@ export function Footer() {
               </li>
               <li>
                 <Link href="/editions" className="text-sm text-ink-600 hover:text-ink-900">
-                  Editions
+                  Rankings
                 </Link>
               </li>
               <li>

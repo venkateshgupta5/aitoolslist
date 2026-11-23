@@ -3,9 +3,9 @@ import Link from "next/link";
 import { allEditions } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "All editions, aitoolslist.ai",
+  title: "AI tool rankings, every fortnight | aitoolslist.ai",
   description:
-    "Every fortnightly edition of aitoolslist.ai, the current researched edition plus the backfilled archive of standout emerging AI tools, August 2026 onward.",
+    "How our AI tool rankings have evolved, fortnight by fortnight. The latest verified picks plus the preserved archive of standout AI tools, August 2026 onward.",
   alternates: { canonical: "/editions" },
 };
 
@@ -19,18 +19,17 @@ export default function EditionsIndexPage() {
           Home
         </Link>{" "}
         <span className="text-ink-300">/</span>{" "}
-        <span className="text-ink-700">Editions</span>
+        <span className="text-ink-700">Rankings</span>
       </nav>
 
       <h1 className="mt-4 font-display text-3xl font-semibold tracking-tight text-ink-900 sm:text-4xl">
-        All editions
+        AI tool rankings, every fortnight
       </h1>
       <p className="mt-3 max-w-2xl text-ink-600">
-        We publish two editions a month, the 1st (1st–15th) and the 16th
-        (16th–end of month). The latest edition is fully researched and
-        fact-checked; earlier editions are a backfilled archive, sourced from
-        Hacker News and GitHub and checked against each product&apos;s official
-        site.
+        We refresh our rankings twice a month, the 1st (1st–15th) and the 16th
+        (16th–end of month). The latest picks are fully researched and verified;
+        earlier ones are preserved so you can see how the landscape shifts over
+        time.
       </p>
 
       <ul className="mt-10 space-y-3">

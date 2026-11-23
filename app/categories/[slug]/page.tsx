@@ -33,7 +33,7 @@ export async function generateMetadata({
       ? ` This edition's researched, fact-checked pick: ${pick.name}.`
       : ` Featured tool: ${pick.name} (curated preview).`
     : "";
-  const description = `${category.coverage}${pickBit} Independent AI product intelligence across ${category.name} on aitoolslist.ai.`;
+  const description = `${category.coverage}${pickBit} Discover and compare the best ${category.name} AI tools, independently researched and verified on aitoolslist.ai.`;
   return {
     title: `${category.name}, standout AI tools`,
     description,

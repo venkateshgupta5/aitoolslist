@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const alt =
-  "aitoolslist.ai, AI product intelligence, every fortnight";
+  "aitoolslist.ai — Find the best AI tools";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -61,10 +61,10 @@ export default function OpengraphImage() {
               lineHeight: 1.04,
             }}
           >
-            <div style={{ display: "flex" }}>The AI products that</div>
+            <div style={{ display: "flex" }}>Thousands of AI tools.</div>
             <div style={{ display: "flex" }}>
-              <span>actually&nbsp;</span>
-              <span style={{ color: "#ff6f3d", fontStyle: "italic" }}>matter.</span>
+              <span>Find the&nbsp;</span>
+              <span style={{ color: "#ff6f3d", fontStyle: "italic" }}>right one.</span>
             </div>
           </div>
           <div
@@ -75,8 +75,8 @@ export default function OpengraphImage() {
               maxWidth: "960px",
             }}
           >
-            Independent, fortnightly AI product intelligence, researched,
-            fact-checked and ranked across 60 categories.
+            Discover and evaluate the best AI tools across 60 categories,
+            backed by independent research, evidence and expert evaluation.
           </div>
         </div>
 

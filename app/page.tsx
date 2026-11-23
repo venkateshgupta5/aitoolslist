@@ -79,10 +79,9 @@ export default function HomePage() {
   ];
 
   const heroTrust = [
-    "Research-led, not crowd-sourced",
-    "Evidence-linked",
-    "No paid rankings",
-    "New edition every fortnight",
+    "Independently researched and verified",
+    "Evidence-backed comparisons",
+    "Fresh discoveries and rankings every fortnight",
   ];
 
   const answerEngines = ["ChatGPT", "Claude", "Perplexity", "Gemini", "Copilot"];
@@ -116,33 +115,30 @@ export default function HomePage() {
           {/* Left, message */}
           <div>
             <div className="flex flex-wrap items-center gap-2">
-              <Link
-                href={`/editions/${EDITION.slug}`}
-                className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-medium text-white/80 backdrop-blur transition-colors hover:border-white/35 hover:text-white"
-              >
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-medium text-white/80 backdrop-blur">
                 <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse-dot" />
-                Live edition · {EDITION.label}
-                <span className="text-white/40">→</span>
-              </Link>
+                Updated every fortnight
+              </span>
               <span className="inline-flex items-center rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-xs font-medium text-white/55">
-                Independent · reader-first
+                Independent · no paid rankings
               </span>
             </div>
 
-            <h1 className="font-display mt-6 text-balance text-[2.75rem] font-semibold leading-[1.02] tracking-tight text-white sm:text-6xl lg:text-7xl">
-              The AI products
+            <h1 className="font-display mt-6 text-balance text-[2.6rem] font-semibold leading-[1.05] tracking-tight text-white sm:text-[3.4rem] lg:text-[4rem]">
+              Thousands of AI tools.
               <br />
-              that actually{" "}
+              One place to{" "}
               <span className="relative italic text-brand-400">
-                matter.
+                find the right one.
                 <span className="absolute -bottom-1 left-0 h-[3px] w-full rounded-full bg-gradient-to-r from-brand-500 to-transparent" aria-hidden />
               </span>
             </h1>
 
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/70">
-              An independent, fortnightly intelligence publication, {" "}
-              <span className="text-white">researched, fact-checked and ranked</span>{" "}
-              across {summary.categoriesTotal} categories in {summary.segmentsTotal} segments. Not another unfiltered directory.
+              Discover and evaluate the world&apos;s best AI products across {summary.categoriesTotal} categories.
+              Whether you&apos;re building, creating, automating, researching or scaling your business, find the
+              right AI tool, backed by{" "}
+              <span className="text-white">independent research, evidence and expert evaluation</span>.
             </p>
 
             {/* Trust chips */}
@@ -159,16 +155,16 @@ export default function HomePage() {
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link
-                href="#this-week"
+                href="/categories"
                 className="rounded-xl bg-brand-500 px-6 py-3.5 text-center text-sm font-semibold text-white shadow-lg shadow-brand-500/30 transition-colors hover:bg-brand-400"
               >
-                Read this edition →
+                Find the best AI tool →
               </Link>
               <Link
-                href="/categories"
+                href="#categories"
                 className="rounded-xl border border-white/20 bg-white/5 px-6 py-3.5 text-center text-sm font-semibold text-white backdrop-blur transition-colors hover:bg-white/10"
               >
-                Browse {summary.categoriesTotal} categories
+                Explore all {summary.categoriesTotal} categories
               </Link>
             </div>
 
@@ -202,10 +198,10 @@ export default function HomePage() {
                 <div>
                   <p className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wide text-white/50">
                     <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse-dot" />
-                    This edition
+                    Top verified picks
                   </p>
                   <p className="font-display mt-1 text-xl font-semibold text-white">
-                    {EDITION.label}
+                    Updated {EDITION.label}
                   </p>
                 </div>
                 <span className="rounded-full bg-emerald-400/15 px-2.5 py-1 text-[11px] font-semibold text-emerald-300 ring-1 ring-inset ring-emerald-400/30">
@@ -255,7 +251,7 @@ export default function HomePage() {
                 href={`/editions/${EDITION.slug}`}
                 className="mt-5 flex items-center justify-between rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/[0.07]"
               >
-                View the full edition
+                See all verified picks
                 <span className="text-brand-400">→</span>
               </Link>
             </div>
@@ -285,16 +281,16 @@ export default function HomePage() {
       <section id="this-week" className="mx-auto max-w-6xl scroll-mt-20 px-4 py-16 sm:px-6 sm:py-20">
         <div className="flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-end">
           <div>
-            <p className="text-[11px] font-semibold uppercase tracking-wide text-brand-600">The edition</p>
+            <p className="text-[11px] font-semibold uppercase tracking-wide text-brand-600">Top picks right now</p>
             <h2 className="font-display mt-1 text-3xl font-semibold tracking-tight text-ink-900 sm:text-4xl">
-              This edition&apos;s picks
+              The best AI tools, verified
             </h2>
             <p className="mt-2 text-ink-600">
-              {summary.researched} researched picks · {summary.verified} verified · across {summary.categoriesTotal} categories · {EDITION.label}
+              {summary.verified} independently verified picks across {summary.categoriesTotal} categories · refreshed {EDITION.label}
             </p>
           </div>
-          <Link href={`/editions/${EDITION.slug}`} className="text-sm font-semibold text-brand-600 hover:text-brand-700">
-            View full edition &amp; history →
+          <Link href="/categories" className="text-sm font-semibold text-brand-600 hover:text-brand-700">
+            Browse all tools &amp; categories →
           </Link>
         </div>
 
@@ -309,12 +305,12 @@ export default function HomePage() {
       <section className="border-y border-ink-200/60 bg-white">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
           <div className="max-w-2xl">
-            <p className="text-[11px] font-semibold uppercase tracking-wide text-brand-600">Editorial · industry intelligence</p>
+            <p className="text-[11px] font-semibold uppercase tracking-wide text-brand-600">Context · what&apos;s moving</p>
             <h2 className="font-display mt-1 text-3xl font-semibold tracking-tight text-ink-900 sm:text-4xl">
-              The AI landscape this fortnight
+              The AI landscape right now
             </h2>
             <p className="mt-2 text-ink-600">
-              What moved in the AI market, kept separate from our product rankings. Funding and launches are context, not proof of product quality.
+              What moved in the AI market, kept separate from our tool rankings. Funding and launches are context, not proof of product quality.
             </p>
           </div>
 
@@ -340,7 +336,7 @@ export default function HomePage() {
           </div>
 
           <div className="mt-6 overflow-hidden rounded-2xl border border-brand-200 bg-gradient-to-br from-brand-50 to-paper p-6">
-            <p className="text-[11px] font-semibold uppercase tracking-wide text-brand-700">This edition&apos;s takeaways</p>
+            <p className="text-[11px] font-semibold uppercase tracking-wide text-brand-700">Key takeaways this fortnight</p>
             <ul className="mt-3 grid gap-2.5 sm:grid-cols-2">
               {takeaways.map((t) => (
                 <li key={t} className="flex gap-2.5 text-sm text-ink-700">
@@ -437,11 +433,11 @@ export default function HomePage() {
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
         <div className="flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-end">
           <div>
-            <p className="text-[11px] font-semibold uppercase tracking-wide text-brand-600">The archive</p>
-            <h2 className="font-display mt-1 text-3xl font-semibold tracking-tight text-ink-900 sm:text-4xl">Every edition, preserved</h2>
-            <p className="mt-2 text-ink-600">Fortnightly editions are kept forever and never overwritten.</p>
+            <p className="text-[11px] font-semibold uppercase tracking-wide text-brand-600">Track the changes</p>
+            <h2 className="font-display mt-1 text-3xl font-semibold tracking-tight text-ink-900 sm:text-4xl">How the rankings have evolved</h2>
+            <p className="mt-2 text-ink-600">Every fortnight&apos;s rankings are kept, so you can see how the landscape shifts over time.</p>
           </div>
-          <Link href="/editions" className="text-sm font-semibold text-brand-600 hover:text-brand-700">All editions →</Link>
+          <Link href="/editions" className="text-sm font-semibold text-brand-600 hover:text-brand-700">All rankings →</Link>
         </div>
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {editions.slice(0, 6).map((e) => (
@@ -449,7 +445,7 @@ export default function HomePage() {
               <div className="flex items-center gap-2">
                 <span className={`h-1.5 w-1.5 rounded-full ${e.isCurrent ? "bg-emerald-500" : "bg-ink-300"}`} />
                 <span className={`text-[11px] font-semibold uppercase tracking-wide ${e.isCurrent ? "text-emerald-700" : "text-ink-400"}`}>
-                  {e.isCurrent ? "Current edition" : "Archive"}
+                  {e.isCurrent ? "Latest" : "Archive"}
                 </span>
               </div>
               <h3 className="font-display mt-2 text-lg font-semibold text-ink-900 group-hover:text-brand-700">{e.label}</h3>
@@ -497,7 +493,7 @@ export default function HomePage() {
                 <div className="mt-3 flex flex-wrap gap-2">
                   {[
                     "Its category page",
-                    "The fortnightly edition",
+                    "The fortnightly rankings",
                     "A permanent product page",
                     "Rival comparisons",
                     "Answers AI assistants cite",
@@ -615,18 +611,18 @@ export default function HomePage() {
       {/* ── Newsletter ────────────────────────────────────────────────── */}
       <section className="border-t border-ink-200/60 bg-white">
         <div className="mx-auto max-w-2xl px-4 py-20 text-center sm:px-6">
-          <h2 className="font-display text-3xl font-semibold tracking-tight text-ink-900 sm:text-4xl">Stay ahead of the AI curve.</h2>
+          <h2 className="font-display text-3xl font-semibold tracking-tight text-ink-900 sm:text-4xl">Never miss a great AI tool.</h2>
           <p className="mt-3 text-ink-600">
-            One concise fortnightly briefing covering the AI products, launches and developments worth your attention.
+            Get our freshest verified picks and new-tool discoveries in your inbox, once every fortnight.
           </p>
           <div className="mt-6">
-            <NewsletterForm cta="Get the fortnightly briefing" />
+            <NewsletterForm cta="Get fortnightly tool alerts" />
           </div>
           <p className="mt-3 text-xs text-ink-400">Free. One email every two weeks. Unsubscribe anytime.</p>
 
           <div className="mx-auto mt-8 max-w-md rounded-2xl border border-ink-200/70 bg-paper p-4 text-left">
-            <p className="text-[11px] font-semibold uppercase tracking-wide text-ink-400">Latest edition preview</p>
-            <p className="mt-1 text-sm font-semibold text-ink-800">{EDITION.name}</p>
+            <p className="text-[11px] font-semibold uppercase tracking-wide text-ink-400">Latest verified picks</p>
+            <p className="mt-1 text-sm font-semibold text-ink-800">Updated {EDITION.label}</p>
             <p className="mt-1 text-sm text-ink-600">
               {picks.filter((p) => p.product).slice(0, 3).map((p) => p.product!.name).join(" · ")} and {summary.verified - 3} more.
             </p>

@@ -46,9 +46,9 @@ export default function MethodologyPage() {
         Our research methodology
       </h1>
       <p className="mt-4 text-lg leading-relaxed text-ink-600">
-        Every edition features one standout tool per category where the evidence supports it,
-        discovered, researched, scored, fact-checked and approved before
-        publication. Here is exactly how that works, and where our confidence
+        We feature one standout tool per category where the evidence supports it,
+        discovered, researched, scored, fact-checked and verified before we
+        publish it. Here is exactly how that works, and where our confidence
         ends.
       </p>
 
