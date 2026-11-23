@@ -242,8 +242,8 @@ export default function SubmitToolPage() {
           </div>
         </div>
         <div className="mt-6 grid gap-5 md:grid-cols-3 text-sm leading-relaxed text-ink-600">
-          <p><span className="font-semibold text-ink-900">Curation over volume.</span> One standout tool per category each edition, we publish research, not an unfiltered list.</p>
-          <p><span className="font-semibold text-ink-900">A real taxonomy.</span> 14 well-defined categories so buyers browse by genuine use case and capability.</p>
+          <p><span className="font-semibold text-ink-900">Curation over volume.</span> One standout tool per category where evidence supports it, we publish research, not an unfiltered list.</p>
+          <p><span className="font-semibold text-ink-900">A real taxonomy.</span> 60 well-defined categories across 6 segments so buyers browse by genuine use case and capability.</p>
           <p><span className="font-semibold text-ink-900">Editorial standards.</span> Evidence-backed, dated, with vendor claims clearly labelled. <Link href="/methodology" className="font-medium text-brand-600 hover:text-brand-700">See our methodology →</Link></p>
         </div>
       </section>

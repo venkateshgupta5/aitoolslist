@@ -78,8 +78,9 @@ export function PickCard({
         <div className="mt-6 flex flex-1 flex-col items-start justify-center">
           <VerificationBadge status="no_pick" />
           <p className="mt-3 text-sm text-ink-500">
-            No candidate met the evidence threshold this week, we flag it rather
-            than force a weak pick.
+            No researched pick in this category yet. Our coverage expands every
+            fortnight — we add a pick only once a candidate clears the evidence
+            threshold, never a forced one.
           </p>
         </div>
       )}

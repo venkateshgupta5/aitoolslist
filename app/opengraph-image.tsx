@@ -76,7 +76,7 @@ export default function OpengraphImage() {
             }}
           >
             Independent, fortnightly AI product intelligence, researched,
-            fact-checked and ranked across 14 categories.
+            fact-checked and ranked across 60 categories.
           </div>
         </div>
 
@@ -89,7 +89,7 @@ export default function OpengraphImage() {
             color: "rgba(245,241,234,0.55)",
           }}
         >
-          <span>14 categories</span>
+          <span>60 categories</span>
           <span style={{ margin: "0 18px", color: "#f8541f" }}>•</span>
           <span>Evidence-backed</span>
           <span style={{ margin: "0 18px", color: "#f8541f" }}>•</span>

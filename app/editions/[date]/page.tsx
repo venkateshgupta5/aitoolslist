@@ -31,7 +31,7 @@ export async function generateMetadata({
   return {
     title: name,
     description: isCurrent
-      ? "The curated fortnightly edition: 14 categories evaluated, one standout AI tool per category where evidence supports it, independently researched and fact-checked."
+      ? "The curated fortnightly edition: researched, fact-checked standout AI tools across our 60-category, 6-segment taxonomy, with one pick per category where the evidence supports it."
       : archive
         ? `Archive edition (${archive.label}): standout emerging AI tools, sourced from Hacker News and GitHub and fact-checked against their official sites.`
         : "Edition not found.",
@@ -90,7 +90,7 @@ export default async function EditionPage({
             {archive.name}
           </h1>
           <p className="mt-3 max-w-2xl text-ink-600">
-            {archive.picks.length} standout picks across {14} categories.
+            {archive.picks.length} standout picks from this fortnight&apos;s window.
             Backfilled per our{" "}
             <Link href="/methodology" className="font-medium text-brand-600 hover:text-brand-700">
               research methodology
@@ -127,7 +127,7 @@ export default async function EditionPage({
 }
 
 function CurrentEdition() {
-  const picks = editionPicks();
+  const picksWithProducts = editionPicks().filter((p) => p.product);
   const summary = editionSummary();
   return (
     <>
@@ -139,15 +139,17 @@ function CurrentEdition() {
         {EDITION.name}
       </h1>
       <p className="mt-3 max-w-2xl text-ink-600">
-        {summary.evaluated} categories evaluated · {summary.verified} verified
-        picks published. Every pick is researched and fact-checked before
-        publication. We publish two editions a month, the 1st (1st–15th) and the
-        16th (16th–end of month). Historical editions are preserved and never
+        {summary.researched} researched picks · {summary.verified} verified, drawn
+        from our {summary.categoriesTotal}-category taxonomy across {summary.segmentsTotal}{" "}
+        segments. Every pick is researched and fact-checked before publication;
+        categories without a qualifying pick this edition are left open rather than
+        forced. We publish two editions a month, the 1st (1st–15th) and the 16th
+        (16th–end of month). Historical editions are preserved and never
         overwritten.
       </p>
 
       <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {picks.map((pick) => (
+        {picksWithProducts.map((pick) => (
           <PickCard key={pick.category.slug} pick={pick} />
         ))}
       </div>

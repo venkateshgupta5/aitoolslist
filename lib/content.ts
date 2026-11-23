@@ -74,7 +74,25 @@ export interface Category {
   name: string;
   order: number;
   coverage: string;
+  segmentSlug: string;
 }
+
+// Six top-level segments group the 60 categories.
+export interface Segment {
+  slug: string;
+  name: string;
+  tagline: string;
+  order: number;
+}
+
+export const segments: Segment[] = [
+  { slug: "ai-infrastructure", name: "AI Infrastructure & Cloud", tagline: "The compute, hardware and cloud layer AI runs on.", order: 1 },
+  { slug: "ai-models-intelligence", name: "AI Models & Intelligence", tagline: "Foundation models, multimodal generation, search and retrieval.", order: 2 },
+  { slug: "ai-agents-automation", name: "AI Agents & Automation", tagline: "Autonomous agents, workflows and the infrastructure around them.", order: 3 },
+  { slug: "ai-developer-ecosystem", name: "AI Developer Ecosystem", tagline: "APIs, code generation, testing, tuning and developer tooling.", order: 4 },
+  { slug: "ai-business-applications", name: "AI Business Applications", tagline: "AI applied to support, marketing, finance, legal, security and more.", order: 5 },
+  { slug: "emerging-specialized-ai", name: "Emerging & Specialized AI", tagline: "Robotics, autonomy, science and vertical AI frontiers.", order: 6 },
+];
 
 // Editions are fortnightly: two per month (1st–15th and 16th–end of month).
 // The current edition (as of Nov 20, 2026) is the second-half period.
@@ -88,20 +106,77 @@ export const EDITION = {
 };
 
 export const categories: Category[] = [
-  { slug: "ai-compute-gpu-cloud", name: "AI Compute & GPU Cloud", order: 1, coverage: "GPU clusters, cloud compute and specialized AI chips." },
-  { slug: "ai-model-serving-inference", name: "AI Model Serving & Inference", order: 2, coverage: "Model hosting, inference engines, optimization and deployment." },
-  { slug: "ai-data-infrastructure", name: "AI Data Infrastructure", order: 3, coverage: "Vector databases, data pipelines, embeddings and processing." },
-  { slug: "ai-development-orchestration", name: "AI Development & Orchestration", order: 4, coverage: "LLM frameworks, agent orchestration and workflow infrastructure." },
-  { slug: "ai-observability-evaluation", name: "AI Observability & Evaluation", order: 5, coverage: "LLM monitoring, tracing, testing, evaluations and guardrails." },
-  { slug: "ai-coding-developer-tools", name: "AI Coding & Developer Tools", order: 6, coverage: "AI IDEs, coding assistants and developer productivity." },
-  { slug: "ai-agents", name: "AI Agents", order: 7, coverage: "Autonomous agents and agent-building platforms." },
-  { slug: "ai-sales", name: "AI Sales", order: 8, coverage: "Sales intelligence and go-to-market automation." },
-  { slug: "ai-voice-agents", name: "AI Voice Agents", order: 9, coverage: "Voice AI and conversational phone agents." },
-  { slug: "ai-evals", name: "AI Evals", order: 10, coverage: "Model testing, benchmarking and evaluation platforms." },
-  { slug: "ai-observability", name: "AI Observability", order: 11, coverage: "Production monitoring, analytics and reliability." },
-  { slug: "ai-healthcare", name: "AI Healthcare", order: 12, coverage: "Clinical AI and healthcare workflow automation." },
-  { slug: "ai-biotech-drug-discovery", name: "AI Biotech & Drug Discovery", order: 13, coverage: "Computational biology and drug discovery." },
-  { slug: "ai-monetization-billing", name: "AI Monetization & Billing Infrastructure", order: 14, coverage: "Usage-based billing, metering, pricing and payments infrastructure for AI products." },
+  // ── 1. AI Infrastructure & Cloud ──
+  { slug: "ai-cloud-platforms", name: "AI Cloud Platforms", order: 1, segmentSlug: "ai-infrastructure", coverage: "Hyperscaler and specialist clouds for training and serving AI at scale." },
+  { slug: "ai-gpu-orchestration-scheduling", name: "AI GPU Orchestration & Scheduling", order: 2, segmentSlug: "ai-infrastructure", coverage: "Schedulers and orchestrators that pack, share and prioritise GPU workloads." },
+  { slug: "ai-training-infrastructure", name: "AI Training Infrastructure", order: 3, segmentSlug: "ai-infrastructure", coverage: "Distributed training stacks, clusters and large-run tooling." },
+  { slug: "ai-inference-optimization", name: "AI Inference Optimization", order: 4, segmentSlug: "ai-infrastructure", coverage: "Inference engines and token factories that cut latency and cost." },
+  { slug: "ai-model-compression-quantization", name: "AI Model Compression & Quantization", order: 5, segmentSlug: "ai-infrastructure", coverage: "Quantization, pruning and distillation to shrink models for deployment." },
+  { slug: "ai-edge-computing", name: "AI Edge Computing", order: 6, segmentSlug: "ai-infrastructure", coverage: "On-device and edge inference runtimes and hardware." },
+  { slug: "ai-networking-data-transfer", name: "AI Networking & Data Transfer", order: 7, segmentSlug: "ai-infrastructure", coverage: "Interconnects and high-throughput data movement for AI clusters." },
+  { slug: "ai-storage-infrastructure", name: "AI Storage Infrastructure", order: 8, segmentSlug: "ai-infrastructure", coverage: "High-bandwidth storage, caching and data layers for AI workloads." },
+  { slug: "ai-hardware-accelerators", name: "AI Hardware & Accelerators", order: 9, segmentSlug: "ai-infrastructure", coverage: "GPUs, TPUs and custom silicon purpose-built for AI." },
+  { slug: "ai-compute-marketplaces", name: "AI Compute Marketplaces", order: 10, segmentSlug: "ai-infrastructure", coverage: "Marketplaces and brokers for on-demand GPU and compute capacity." },
+
+  // ── 2. AI Models & Intelligence ──
+  { slug: "foundation-models-llms", name: "Foundation Models & LLMs", order: 11, segmentSlug: "ai-models-intelligence", coverage: "Frontier large language models and the benchmarks that rank them." },
+  { slug: "small-language-models", name: "Small Language Models (SLMs)", order: 12, segmentSlug: "ai-models-intelligence", coverage: "Compact, efficient models for on-device and cost-sensitive use." },
+  { slug: "multimodal-ai-models", name: "Multimodal AI Models", order: 13, segmentSlug: "ai-models-intelligence", coverage: "Models that reason across text, images, audio and video." },
+  { slug: "ai-image-generation", name: "AI Image Generation", order: 14, segmentSlug: "ai-models-intelligence", coverage: "Text-to-image and image-editing generative models." },
+  { slug: "ai-video-generation", name: "AI Video Generation", order: 15, segmentSlug: "ai-models-intelligence", coverage: "Text-to-video and video-editing generative models." },
+  { slug: "ai-audio-speech-models", name: "AI Audio & Speech Models", order: 16, segmentSlug: "ai-models-intelligence", coverage: "Speech synthesis, recognition and generative audio models." },
+  { slug: "ai-search-retrieval", name: "AI Search & Retrieval", order: 17, segmentSlug: "ai-models-intelligence", coverage: "Vector databases, semantic search and RAG retrieval systems." },
+  { slug: "ai-embeddings-reranking", name: "AI Embeddings & Reranking", order: 18, segmentSlug: "ai-models-intelligence", coverage: "Embedding and reranking models that power retrieval quality." },
+  { slug: "synthetic-data-generation", name: "Synthetic Data Generation", order: 19, segmentSlug: "ai-models-intelligence", coverage: "Synthetic datasets for training, testing and privacy." },
+  { slug: "domain-specific-ai-models", name: "Domain-Specific AI Models", order: 20, segmentSlug: "ai-models-intelligence", coverage: "Models specialised for code, biology, finance, law and more." },
+
+  // ── 3. AI Agents & Automation ──
+  { slug: "ai-agent-platforms", name: "AI Agent Platforms", order: 21, segmentSlug: "ai-agents-automation", coverage: "Frameworks and SDKs for building and running autonomous agents." },
+  { slug: "ai-agent-memory-context", name: "AI Agent Memory & Context", order: 22, segmentSlug: "ai-agents-automation", coverage: "Memory, context and state layers that make agents persistent." },
+  { slug: "ai-agent-identity-access-management", name: "AI Agent Identity & Access Management", order: 23, segmentSlug: "ai-agents-automation", coverage: "Identity, auth and access control for autonomous agents." },
+  { slug: "ai-agent-security-governance", name: "AI Agent Security & Governance", order: 24, segmentSlug: "ai-agents-automation", coverage: "Guardrails, policy and oversight for agent behaviour." },
+  { slug: "ai-agent-payments-transactions", name: "AI Agent Payments & Transactions", order: 25, segmentSlug: "ai-agents-automation", coverage: "Payment rails and transaction infrastructure for agents." },
+  { slug: "ai-workflow-automation", name: "AI Workflow Automation", order: 26, segmentSlug: "ai-agents-automation", coverage: "AI-native workflow builders and process automation." },
+  { slug: "browser-computer-use-agents", name: "Browser & Computer Use Agents", order: 27, segmentSlug: "ai-agents-automation", coverage: "Agents that operate browsers and computers like a human." },
+  { slug: "multi-agent-collaboration", name: "Multi-Agent Collaboration", order: 28, segmentSlug: "ai-agents-automation", coverage: "Systems that coordinate multiple agents toward a goal." },
+  { slug: "ai-personal-assistants", name: "AI Personal Assistants", order: 29, segmentSlug: "ai-agents-automation", coverage: "Consumer and prosumer AI assistants for everyday tasks." },
+  { slug: "enterprise-ai-automation", name: "Enterprise AI Automation", order: 30, segmentSlug: "ai-agents-automation", coverage: "AI automation for enterprise sales, ops and back office." },
+
+  // ── 4. AI Developer Ecosystem ──
+  { slug: "ai-developer-apis-sdks", name: "AI Developer APIs & SDKs", order: 31, segmentSlug: "ai-developer-ecosystem", coverage: "APIs, SDKs and gateways developers build AI features on." },
+  { slug: "ai-code-generation", name: "AI Code Generation", order: 32, segmentSlug: "ai-developer-ecosystem", coverage: "AI coding environments, assistants and agentic IDEs." },
+  { slug: "ai-testing-qa", name: "AI Testing & QA", order: 33, segmentSlug: "ai-developer-ecosystem", coverage: "LLM observability, evaluation, tracing and quality assurance." },
+  { slug: "ai-model-fine-tuning", name: "AI Model Fine-Tuning", order: 34, segmentSlug: "ai-developer-ecosystem", coverage: "Fine-tuning, adapters and post-training platforms." },
+  { slug: "ai-prompt-engineering-management", name: "AI Prompt Engineering & Management", order: 35, segmentSlug: "ai-developer-ecosystem", coverage: "Prompt management, versioning and optimisation tooling." },
+  { slug: "ai-deployment-hosting", name: "AI Deployment & Hosting", order: 36, segmentSlug: "ai-developer-ecosystem", coverage: "Model deployment, serving and hosting platforms." },
+  { slug: "ai-security-guardrails", name: "AI Security & Guardrails", order: 37, segmentSlug: "ai-developer-ecosystem", coverage: "Input/output guardrails, safety and prompt-injection defence." },
+  { slug: "ai-data-annotation-labeling", name: "AI Data Annotation & Labeling", order: 38, segmentSlug: "ai-developer-ecosystem", coverage: "Labeling, annotation and human-in-the-loop data platforms." },
+  { slug: "ai-knowledge-management", name: "AI Knowledge Management", order: 39, segmentSlug: "ai-developer-ecosystem", coverage: "AI-native knowledge bases and internal retrieval." },
+  { slug: "ai-developer-productivity", name: "AI Developer Productivity", order: 40, segmentSlug: "ai-developer-ecosystem", coverage: "Tooling that speeds up how developers ship with AI." },
+
+  // ── 5. AI Business Applications ──
+  { slug: "ai-customer-support", name: "AI Customer Support", order: 41, segmentSlug: "ai-business-applications", coverage: "AI support agents, deflection and voice/chat automation." },
+  { slug: "ai-marketing-advertising", name: "AI Marketing & Advertising", order: 42, segmentSlug: "ai-business-applications", coverage: "AI for campaigns, creative, targeting and go-to-market." },
+  { slug: "ai-content-creation", name: "AI Content Creation", order: 43, segmentSlug: "ai-business-applications", coverage: "AI writing, design and multimedia content tools." },
+  { slug: "ai-seo-geo-aeo", name: "AI Search Engine Optimization (GEO/AEO)", order: 44, segmentSlug: "ai-business-applications", coverage: "Getting discovered and cited by search and AI answer engines." },
+  { slug: "ai-finance-accounting", name: "AI Finance & Accounting", order: 45, segmentSlug: "ai-business-applications", coverage: "AI for finance ops, billing, metering and accounting." },
+  { slug: "ai-legal-technology", name: "AI Legal Technology", order: 46, segmentSlug: "ai-business-applications", coverage: "AI for contracts, research and legal workflows." },
+  { slug: "ai-hr-recruitment", name: "AI HR & Recruitment", order: 47, segmentSlug: "ai-business-applications", coverage: "AI for sourcing, screening and people operations." },
+  { slug: "ai-cybersecurity", name: "AI Cybersecurity", order: 48, segmentSlug: "ai-business-applications", coverage: "AI for threat detection, response and security operations." },
+  { slug: "ai-education-learning", name: "AI Education & Learning", order: 49, segmentSlug: "ai-business-applications", coverage: "AI tutors, learning platforms and training tools." },
+  { slug: "ai-healthcare-operations", name: "AI Healthcare Operations", order: 50, segmentSlug: "ai-business-applications", coverage: "Clinical decision support and healthcare workflow automation." },
+
+  // ── 6. Emerging & Specialized AI ──
+  { slug: "ai-robotics", name: "AI Robotics", order: 51, segmentSlug: "emerging-specialized-ai", coverage: "Robotics foundation models, humanoids and embodied AI." },
+  { slug: "autonomous-vehicles", name: "Autonomous Vehicles", order: 52, segmentSlug: "emerging-specialized-ai", coverage: "Self-driving stacks, perception and autonomy platforms." },
+  { slug: "ai-manufacturing", name: "AI in Manufacturing", order: 53, segmentSlug: "emerging-specialized-ai", coverage: "AI for factories, quality and industrial automation." },
+  { slug: "ai-supply-chain-logistics", name: "AI in Supply Chain & Logistics", order: 54, segmentSlug: "emerging-specialized-ai", coverage: "AI for forecasting, routing and logistics optimisation." },
+  { slug: "ai-retail-ecommerce", name: "AI in Retail & E-commerce", order: 55, segmentSlug: "emerging-specialized-ai", coverage: "AI for merchandising, search and commerce experiences." },
+  { slug: "ai-real-estate", name: "AI in Real Estate", order: 56, segmentSlug: "emerging-specialized-ai", coverage: "AI for property search, valuation and transactions." },
+  { slug: "ai-gaming", name: "AI in Gaming", order: 57, segmentSlug: "emerging-specialized-ai", coverage: "AI for game content, NPCs and production." },
+  { slug: "ai-in-drug-discovery", name: "AI in Drug Discovery", order: 58, segmentSlug: "emerging-specialized-ai", coverage: "AI for molecular design, biology and therapeutics." },
+  { slug: "ai-climate-energy", name: "AI in Climate & Energy", order: 59, segmentSlug: "emerging-specialized-ai", coverage: "AI for grids, climate modelling and energy systems." },
+  { slug: "ai-scientific-research", name: "AI for Scientific Research", order: 60, segmentSlug: "emerging-specialized-ai", coverage: "AI accelerating discovery across the sciences." },
 ];
 
 const pricingTBD =
@@ -111,7 +186,7 @@ const baseProducts: Product[] = [
   {
     slug: "google-cloud-a5x-vera-rubin",
     name: "Google Cloud A5X (Vera Rubin)",
-    categorySlug: "ai-compute-gpu-cloud",
+    categorySlug: "ai-cloud-platforms",
     officialUrl: "https://cloud.google.com/blog/topics/ai-infrastructure/google-cloud-infrastructure-at-nvidia-gtc-berlin-2026",
     tagline: "A5X instances on NVIDIA Vera Rubin NVL72",
     shortDescription: "GA GPU instances on NVIDIA's Vera Rubin platform.",
@@ -138,7 +213,7 @@ const baseProducts: Product[] = [
   {
     slug: "sarvam-token-factory",
     name: "Sarvam Token Factory",
-    categorySlug: "ai-model-serving-inference",
+    categorySlug: "ai-inference-optimization",
     officialUrl: "https://www.sarvam.ai",
     tagline: "India-hosted inference via an OpenAI-compatible API",
     shortDescription: "India-hosted model inference, OpenAI-compatible API.",
@@ -166,7 +241,7 @@ const baseProducts: Product[] = [
   {
     slug: "weaviate",
     name: "Weaviate",
-    categorySlug: "ai-data-infrastructure",
+    categorySlug: "ai-search-retrieval",
     officialUrl: "https://weaviate.io",
     tagline: "Open-source vector database, now Platform & Enterprise",
     shortDescription: "Vector database with new Platform & Enterprise editions.",
@@ -193,7 +268,7 @@ const baseProducts: Product[] = [
   {
     slug: "google-adk-2",
     name: "Google ADK 2.0",
-    categorySlug: "ai-development-orchestration",
+    categorySlug: "ai-agent-platforms",
     officialUrl: "https://google.github.io/adk-docs/",
     tagline: "Graph-based multi-agent orchestration framework",
     shortDescription: "Agent Development Kit with graph-based orchestration.",
@@ -220,7 +295,7 @@ const baseProducts: Product[] = [
   {
     slug: "langfuse",
     name: "Langfuse",
-    categorySlug: "ai-observability-evaluation",
+    categorySlug: "ai-testing-qa",
     officialUrl: "https://langfuse.com",
     tagline: "Open-source LLM observability & evaluation",
     shortDescription: "Open-source tracing and evals for LLM apps.",
@@ -247,7 +322,7 @@ const baseProducts: Product[] = [
   {
     slug: "google-antigravity",
     name: "Google Antigravity (Gemini 4 Neon)",
-    categorySlug: "ai-coding-developer-tools",
+    categorySlug: "ai-code-generation",
     officialUrl: "https://antigravity.google",
     tagline: "Agentic coding in Google's Antigravity CLI",
     shortDescription: "Agentic coding tool topping the coding-agent index.",
@@ -274,7 +349,7 @@ const baseProducts: Product[] = [
   {
     slug: "perplexity-multiagent",
     name: "Perplexity Multiagent",
-    categorySlug: "ai-agents",
+    categorySlug: "multi-agent-collaboration",
     officialUrl: "https://www.perplexity.ai",
     tagline: "Up to 16 AI agents working as one team",
     shortDescription: "Lead agent coordinates up to 16 sub-agents.",
@@ -302,7 +377,7 @@ const baseProducts: Product[] = [
   {
     slug: "salesforce-hunter",
     name: "Hunter by Salesforce",
-    categorySlug: "ai-sales",
+    categorySlug: "enterprise-ai-automation",
     officialUrl: "https://www.salesforce.com",
     tagline: "Outbound AI sales agent in Slack, Teams & Claude",
     shortDescription: "Outbound AI sales agent that meets reps in chat.",
@@ -329,7 +404,7 @@ const baseProducts: Product[] = [
   {
     slug: "retell-ai",
     name: "Retell AI",
-    categorySlug: "ai-voice-agents",
+    categorySlug: "ai-customer-support",
     officialUrl: "https://www.retellai.com",
     tagline: "AI voice agents for contact centers",
     shortDescription: "Developer platform for AI phone agents.",
@@ -357,7 +432,7 @@ const baseProducts: Product[] = [
   {
     slug: "artificial-analysis",
     name: "Artificial Analysis",
-    categorySlug: "ai-evals",
+    categorySlug: "foundation-models-llms",
     officialUrl: "https://artificialanalysis.ai",
     tagline: "Independent AI model benchmarking",
     shortDescription: "Independent model benchmarking & intelligence index.",
@@ -387,7 +462,7 @@ const baseProducts: Product[] = [
   {
     slug: "mayo-clinic-platform-cds",
     name: "Mayo Clinic Platform CDS",
-    categorySlug: "ai-healthcare",
+    categorySlug: "ai-healthcare-operations",
     officialUrl: "https://www.mayoclinicplatform.org",
     tagline: "AI clinical decision support in the EHR",
     shortDescription: "AI clinical decision support embedded in EHRs.",
@@ -414,7 +489,7 @@ const baseProducts: Product[] = [
   {
     slug: "isomorphic-labs",
     name: "Isomorphic Labs",
-    categorySlug: "ai-biotech-drug-discovery",
+    categorySlug: "ai-in-drug-discovery",
     officialUrl: "https://www.isomorphiclabs.com",
     tagline: "AI-first drug discovery heading to the clinic",
     shortDescription: "AI drug discovery; $5B raised to reach clinic.",
@@ -441,7 +516,7 @@ const baseProducts: Product[] = [
   {
     slug: "lago",
     name: "Lago",
-    categorySlug: "ai-monetization-billing",
+    categorySlug: "ai-finance-accounting",
     officialUrl: "https://www.getlago.com",
     tagline: "Open-source metering and usage-based billing API",
     shortDescription: "Open-source metering and usage-based billing platform.",
@@ -943,13 +1018,32 @@ export const verificationLabel: Record<VerificationStatus, string> = {
 };
 
 // ── Homepage: edition summary ────────────────────────────────────────
-// Honest coverage messaging (spec §6.5): 14 evaluated, N verified, rest flagged.
+// Honest coverage: the taxonomy spans 60 categories across 6 segments; each
+// edition researches a subset, so we report researched + verified separately
+// and never imply all 60 were covered this fortnight.
 export function editionSummary() {
-  const evaluated = categories.length;
+  const categoriesTotal = categories.length; // 60
+  const segmentsTotal = segments.length; // 6
+  const researched = products.length; // categories with a researched pick this edition
   const verified = products.filter((p) => p.verification === "verified").length;
-  const published = products.length;
-  return { evaluated, verified, insufficient: evaluated - published };
+  return {
+    categoriesTotal,
+    segmentsTotal,
+    researched,
+    verified,
+    // `evaluated` kept as an alias for the total taxonomy size (back-compat).
+    evaluated: categoriesTotal,
+    insufficient: categoriesTotal - researched,
+  };
 }
+
+export const segmentBySlug = (slug: string) =>
+  segments.find((s) => s.slug === slug);
+
+export const categoriesForSegment = (segmentSlug: string) =>
+  categories
+    .filter((c) => c.segmentSlug === segmentSlug)
+    .sort((a, b) => a.order - b.order);
 
 // Deterministic category accent colour for icons (no fabricated logos; spec §6.3).
 const accentPalette = [
@@ -1099,7 +1193,7 @@ export const archiveEditions: ArchiveEdition[] = [
     periodEnd: "2026-08-15",
     picks: [
       {
-        categorySlug: "ai-coding-developer-tools",
+        categorySlug: "ai-code-generation",
         name: "Fuxi",
         tagline: "Terminal AI coding agent, multi-provider",
         shortDescription: "Single-binary terminal coding agent with multi-provider routing.",
@@ -1116,7 +1210,7 @@ export const archiveEditions: ArchiveEdition[] = [
         ],
       },
       {
-        categorySlug: "ai-agents",
+        categorySlug: "multi-agent-collaboration",
         name: "Phone Harness",
         tagline: "Let your AI agent control your phone",
         shortDescription: "Agents tap, type and scroll real iOS/Android apps.",
@@ -1133,7 +1227,7 @@ export const archiveEditions: ArchiveEdition[] = [
         ],
       },
       {
-        categorySlug: "ai-data-infrastructure",
+        categorySlug: "ai-search-retrieval",
         name: "pgbot",
         tagline: "Postgres intelligence for AI agents",
         shortDescription: "Natural-language Postgres intelligence layer for AI agents.",
@@ -1147,7 +1241,7 @@ export const archiveEditions: ArchiveEdition[] = [
         ],
       },
       {
-        categorySlug: "ai-monetization-billing",
+        categorySlug: "ai-finance-accounting",
         name: "CostPerPrompt",
         tagline: "Live AI API pricing & cost calculators",
         shortDescription: "Real-time pricing and workload cost calculators for AI APIs.",
@@ -1164,7 +1258,7 @@ export const archiveEditions: ArchiveEdition[] = [
         ],
       },
       {
-        categorySlug: "ai-development-orchestration",
+        categorySlug: "ai-agent-platforms",
         name: "Xyne Spaces",
         tagline: "The AI Org-OS for humans and agents",
         shortDescription: "Collaborative org workspace for humans and AI agents.",
@@ -1178,7 +1272,7 @@ export const archiveEditions: ArchiveEdition[] = [
         ],
       },
       {
-        categorySlug: "ai-compute-gpu-cloud",
+        categorySlug: "ai-cloud-platforms",
         name: "Perimeter Compute",
         tagline: "Distributed AI cloud in city office buildings",
         shortDescription: "Distributed GPU cloud using office buildings' spare energy.",
@@ -1204,7 +1298,7 @@ export const archiveEditions: ArchiveEdition[] = [
     periodEnd: "2026-08-31",
     picks: [
       {
-        categorySlug: "ai-observability-evaluation",
+        categorySlug: "ai-testing-qa",
         name: "Reverify",
         tagline: "Grounded, hallucination-checked agent toolkit",
         shortDescription: "Agents propose; deterministic tools decide, every claim checked.",
@@ -1218,7 +1312,7 @@ export const archiveEditions: ArchiveEdition[] = [
         ],
       },
       {
-        categorySlug: "ai-voice-agents",
+        categorySlug: "ai-customer-support",
         name: "Tel-Agent",
         tagline: "Open-source AI phone assistant",
         shortDescription: "Self-hostable AI phone assistant, open source.",
@@ -1232,7 +1326,7 @@ export const archiveEditions: ArchiveEdition[] = [
         ],
       },
       {
-        categorySlug: "ai-data-infrastructure",
+        categorySlug: "ai-search-retrieval",
         name: "VoiceMem",
         tagline: "Universal memory for voice agents",
         shortDescription: "Fully streaming universal memory layer for voice agents.",
@@ -1248,7 +1342,7 @@ export const archiveEditions: ArchiveEdition[] = [
         ],
       },
       {
-        categorySlug: "ai-agents",
+        categorySlug: "multi-agent-collaboration",
         name: "TabTin",
         tagline: "Humans + multiple AI agents, one workspace",
         shortDescription: "Workspace where people and multiple AI agents collaborate.",
@@ -1262,7 +1356,7 @@ export const archiveEditions: ArchiveEdition[] = [
         ],
       },
       {
-        categorySlug: "ai-coding-developer-tools",
+        categorySlug: "ai-code-generation",
         name: "Operator Memory",
         tagline: "Self-improving context engine for coding agents",
         shortDescription: "Self-improving context engine for coding agents.",
@@ -1276,7 +1370,7 @@ export const archiveEditions: ArchiveEdition[] = [
         ],
       },
       {
-        categorySlug: "ai-sales",
+        categorySlug: "enterprise-ai-automation",
         name: "Runable",
         tagline: "AI agent that builds and grows a business",
         shortDescription: "Go-to-market agent: ads, social, SEO, customer acquisition.",
@@ -1303,7 +1397,7 @@ export const archiveEditions: ArchiveEdition[] = [
     periodEnd: "2026-09-15",
     picks: [
       {
-        categorySlug: "ai-coding-developer-tools",
+        categorySlug: "ai-code-generation",
         name: "shadcn lint",
         tagline: "Agent-first linter for design systems",
         shortDescription: "Design-system rules that AI agents can verify.",
@@ -1319,7 +1413,7 @@ export const archiveEditions: ArchiveEdition[] = [
         ],
       },
       {
-        categorySlug: "ai-data-infrastructure",
+        categorySlug: "ai-search-retrieval",
         name: "Engrim",
         tagline: "Local-first memory engine for AI CLIs",
         shortDescription: "Universal local-first SQLite memory engine for AI CLIs.",
@@ -1334,7 +1428,7 @@ export const archiveEditions: ArchiveEdition[] = [
         ],
       },
       {
-        categorySlug: "ai-evals",
+        categorySlug: "foundation-models-llms",
         name: "Dyno Lab",
         tagline: "AI safety & interpretability workbench",
         shortDescription: "Local alignment and interpretability workbench for Apple Silicon.",
@@ -1348,7 +1442,7 @@ export const archiveEditions: ArchiveEdition[] = [
         ],
       },
       {
-        categorySlug: "ai-agents",
+        categorySlug: "multi-agent-collaboration",
         name: "Pizza Bot",
         tagline: "An inbox for background AI agents",
         shortDescription: "Inbox for AI agents that work in the background.",
@@ -1363,7 +1457,7 @@ export const archiveEditions: ArchiveEdition[] = [
         ],
       },
       {
-        categorySlug: "ai-development-orchestration",
+        categorySlug: "ai-agent-platforms",
         name: "AlphaCode",
         tagline: "Free MIT AI coding agent, no API key",
         shortDescription: "Open coding agent with swarm mode, built in Rust.",
@@ -1387,7 +1481,7 @@ export const archiveEditions: ArchiveEdition[] = [
     periodEnd: "2026-09-30",
     picks: [
       {
-        categorySlug: "ai-agents",
+        categorySlug: "multi-agent-collaboration",
         name: "Andee",
         tagline: "On-device Android agent for any app",
         shortDescription: "On-device Android agent that drives any app.",
@@ -1403,7 +1497,7 @@ export const archiveEditions: ArchiveEdition[] = [
         ],
       },
       {
-        categorySlug: "ai-development-orchestration",
+        categorySlug: "ai-agent-platforms",
         name: "TypeLLM",
         tagline: "Type-safe generation with LLMs",
         shortDescription: "Type-safe LLM generation; no out-of-schema hallucinations.",
@@ -1420,7 +1514,7 @@ export const archiveEditions: ArchiveEdition[] = [
         ],
       },
       {
-        categorySlug: "ai-model-serving-inference",
+        categorySlug: "ai-inference-optimization",
         name: "Strands Decider",
         tagline: "Fast decision model for agents",
         shortDescription: "Small, fast decision model with calibrated confidence.",
@@ -1434,7 +1528,7 @@ export const archiveEditions: ArchiveEdition[] = [
         ],
       },
       {
-        categorySlug: "ai-voice-agents",
+        categorySlug: "ai-customer-support",
         name: "OpenSpline",
         tagline: "Realtime avatars for voice AI",
         shortDescription: "Realtime generated avatar for your voice AI, locally.",
@@ -1448,7 +1542,7 @@ export const archiveEditions: ArchiveEdition[] = [
         ],
       },
       {
-        categorySlug: "ai-evals",
+        categorySlug: "foundation-models-llms",
         name: "TinyAIArena",
         tagline: "Watch AI agents battle it out",
         shortDescription: "Head-to-head arena pitting AI agents against each other.",
@@ -1462,7 +1556,7 @@ export const archiveEditions: ArchiveEdition[] = [
         ],
       },
       {
-        categorySlug: "ai-observability",
+        categorySlug: "ai-testing-qa",
         name: "OpenObserve",
         tagline: "Open-source observability with AI monitoring",
         shortDescription: "Rust observability platform adding agent/LLM monitoring in v1.0.",
@@ -1489,7 +1583,7 @@ export const archiveEditions: ArchiveEdition[] = [
     periodEnd: "2026-10-15",
     picks: [
       {
-        categorySlug: "ai-agents",
+        categorySlug: "multi-agent-collaboration",
         name: "ARTEX",
         tagline: "Autonomous AI penetration-testing system",
         shortDescription: "Autonomous AI system for penetration testing.",
@@ -1505,7 +1599,7 @@ export const archiveEditions: ArchiveEdition[] = [
         ],
       },
       {
-        categorySlug: "ai-model-serving-inference",
+        categorySlug: "ai-inference-optimization",
         name: "Indra",
         tagline: "1M-param OCR model, runs on CPU",
         shortDescription: "1M-param OCR model, CPU-fast, near billion-param accuracy.",
@@ -1522,7 +1616,7 @@ export const archiveEditions: ArchiveEdition[] = [
         ],
       },
       {
-        categorySlug: "ai-monetization-billing",
+        categorySlug: "ai-finance-accounting",
         name: "Grandet",
         tagline: "Cheapest API for any model",
         shortDescription: "Finds the cheapest API/provider per model, via MCP.",
@@ -1539,7 +1633,7 @@ export const archiveEditions: ArchiveEdition[] = [
         ],
       },
       {
-        categorySlug: "ai-observability-evaluation",
+        categorySlug: "ai-testing-qa",
         name: "Agent Box",
         tagline: "Sandbox that restricts AI agents",
         shortDescription: "OS-isolated, default-deny sandbox for running AI agents.",
@@ -1553,7 +1647,7 @@ export const archiveEditions: ArchiveEdition[] = [
         ],
       },
       {
-        categorySlug: "ai-healthcare",
+        categorySlug: "ai-healthcare-operations",
         name: "Healthleap",
         tagline: "AI that flags at-risk hospital patients",
         shortDescription: "Nightly AI screening of inpatient records for missed conditions.",
@@ -1580,7 +1674,7 @@ export const archiveEditions: ArchiveEdition[] = [
     periodEnd: "2026-10-31",
     picks: [
       {
-        categorySlug: "ai-development-orchestration",
+        categorySlug: "ai-agent-platforms",
         name: "Agent UI (Vercel Labs)",
         tagline: "UI behaviors for agents",
         shortDescription: "Library of UI behaviors for agents to build interfaces.",
@@ -1596,7 +1690,7 @@ export const archiveEditions: ArchiveEdition[] = [
         ],
       },
       {
-        categorySlug: "ai-agents",
+        categorySlug: "multi-agent-collaboration",
         name: "CVEngine",
         tagline: "AI-first attack-surface assessment",
         shortDescription: "AI-first external attack-surface assessment with MCP integration.",
@@ -1610,7 +1704,7 @@ export const archiveEditions: ArchiveEdition[] = [
         ],
       },
       {
-        categorySlug: "ai-data-infrastructure",
+        categorySlug: "ai-search-retrieval",
         name: "StashDock",
         tagline: "AI-native personal context library",
         shortDescription: "Collect, organize and reuse context across AI chats.",
@@ -1624,7 +1718,7 @@ export const archiveEditions: ArchiveEdition[] = [
         ],
       },
       {
-        categorySlug: "ai-coding-developer-tools",
+        categorySlug: "ai-code-generation",
         name: "Landmines",
         tagline: "Lint rules that keep AI code honest",
         shortDescription: "Oxlint rules catching fake implementations in AI code.",
@@ -1638,7 +1732,7 @@ export const archiveEditions: ArchiveEdition[] = [
         ],
       },
       {
-        categorySlug: "ai-observability-evaluation",
+        categorySlug: "ai-testing-qa",
         name: "Sphinx",
         tagline: "Quizzes you on your AI's code before shipping",
         shortDescription: "Git hook that quizzes you on AI-written code.",
@@ -1652,7 +1746,7 @@ export const archiveEditions: ArchiveEdition[] = [
         ],
       },
       {
-        categorySlug: "ai-compute-gpu-cloud",
+        categorySlug: "ai-cloud-platforms",
         name: "Modal",
         tagline: "Serverless cloud for AI and data workloads",
         shortDescription: "Serverless GPU/CPU cloud for AI, ML and data.",
@@ -1669,7 +1763,7 @@ export const archiveEditions: ArchiveEdition[] = [
         ],
       },
       {
-        categorySlug: "ai-biotech-drug-discovery",
+        categorySlug: "ai-in-drug-discovery",
         name: "Formation Bio",
         tagline: "AI drug developer with a $600M stalled-drug fund",
         shortDescription: "AI-driven drug developer; $600M fund to revive stalled drugs.",
@@ -1696,7 +1790,7 @@ export const archiveEditions: ArchiveEdition[] = [
     periodEnd: "2026-11-15",
     picks: [
       {
-        categorySlug: "ai-evals",
+        categorySlug: "foundation-models-llms",
         name: "WebsiteBench",
         tagline: "Can agents rebuild full-stack sites?",
         shortDescription: "Benchmark: agents reverse-engineer websites via browser exploration.",
@@ -1713,7 +1807,7 @@ export const archiveEditions: ArchiveEdition[] = [
         ],
       },
       {
-        categorySlug: "ai-data-infrastructure",
+        categorySlug: "ai-search-retrieval",
         name: "db-branch",
         tagline: "Instant DB branches for AI agents & CI",
         shortDescription: "ZFS-backed database branches in seconds for agents/CI.",
@@ -1728,7 +1822,7 @@ export const archiveEditions: ArchiveEdition[] = [
         ],
       },
       {
-        categorySlug: "ai-agents",
+        categorySlug: "multi-agent-collaboration",
         name: "Agentic Identity Broker",
         tagline: "OAuth delegation for AI agents",
         shortDescription: "OAuth delegation so agents get scoped, delegated access.",
@@ -1790,12 +1884,14 @@ export interface ArchivePickSlot {
   pick: ArchivePick | undefined;
 }
 
-/** All 14 categories paired with this archive edition's pick (or none). */
+/** This archive edition's picks, each paired with its (remapped) category. */
 export function archiveEditionPicks(edition: ArchiveEdition): ArchivePickSlot[] {
-  return sortedCategories().map((category) => ({
-    category,
-    pick: edition.picks.find((p) => p.categorySlug === category.slug),
-  }));
+  return edition.picks
+    .flatMap((pick) => {
+      const category = categoryBySlug(pick.categorySlug);
+      return category ? [{ category, pick }] : [];
+    })
+    .sort((a, b) => a.category.order - b.category.order);
 }
 
 export interface CategoryArchiveEntry {

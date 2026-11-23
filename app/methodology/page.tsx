@@ -24,7 +24,7 @@ const weights = [
 
 const cadence = [
   ["Discover", "Sweep credible sources for the period's launches and signals"],
-  ["Classify", "Extract candidates and map them to the 14 categories"],
+  ["Classify", "Extract candidates and map them to the 60 categories across 6 segments"],
   ["Research & score", "Enrich candidates and score on the consistent methodology"],
   ["Fact-check", "Independently verify shortlisted products and evidence"],
   ["Approve", "Editorial sign-off before anything is published"],
@@ -46,7 +46,7 @@ export default function MethodologyPage() {
         Our research methodology
       </h1>
       <p className="mt-4 text-lg leading-relaxed text-ink-600">
-        Every edition features exactly one standout tool per category, 
+        Every edition features one standout tool per category where the evidence supports it,
         discovered, researched, scored, fact-checked and approved before
         publication. Here is exactly how that works, and where our confidence
         ends.

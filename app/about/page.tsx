@@ -39,9 +39,10 @@ export default function AboutPage() {
 
       <div className="mt-10 space-y-6 text-[15px] leading-relaxed text-ink-700">
         <p>
-          Every fortnight we feature exactly one standout tool in each of 13
-          categories, two editions a month, covering the 1st–15th and the
-          16th–end of month. Each selection is researched against credible
+          Every fortnight we research standout AI tools across our taxonomy of 60
+          categories in 6 segments, publishing one pick per category where the
+          evidence supports it. We run two editions a month, covering the 1st–15th
+          and the 16th–end of month. Each selection is researched against credible
           sources, independently fact-checked, and approved by a human editor
           before it is published.
         </p>

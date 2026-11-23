@@ -5,9 +5,8 @@ import {
   landscape,
   takeaways,
   editionSummary,
-  sortedCategories,
-  productForCategory,
-  categoryAccent,
+  segments,
+  categoriesForSegment,
   allEditions,
   products,
   archiveEditions,
@@ -52,13 +51,23 @@ const listingIncludes = [
   "Clearly labelled “Sponsored”, never an editorial winner",
 ];
 
+// Accent colour per top-level segment (icons only; no fabricated branding).
+const segmentAccents = [
+  "bg-indigo-600",
+  "bg-sky-600",
+  "bg-violet-600",
+  "bg-emerald-600",
+  "bg-amber-600",
+  "bg-rose-600",
+];
+
 
 export default function HomePage() {
   const picks = editionPicks();
   const summary = editionSummary();
-  const cats = sortedCategories();
   const editions = allEditions();
-  const topPicks = picks.filter((p) => p.product).slice(0, 5);
+  const picksWithProducts = picks.filter((p) => p.product);
+  const topPicks = picksWithProducts.slice(0, 5);
 
   const heroStats = [
     { value: summary.evaluated, label: "Categories tracked" },
@@ -113,7 +122,7 @@ export default function HomePage() {
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/70">
               An independent, fortnightly intelligence publication, {" "}
               <span className="text-white">researched, fact-checked and ranked</span>{" "}
-              across {summary.evaluated} categories. Not another unfiltered directory.
+              across {summary.categoriesTotal} categories in {summary.segmentsTotal} segments. Not another unfiltered directory.
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -127,7 +136,7 @@ export default function HomePage() {
                 href="/categories"
                 className="rounded-xl border border-white/20 bg-white/5 px-6 py-3.5 text-center text-sm font-semibold text-white backdrop-blur transition-colors hover:bg-white/10"
               >
-                Browse {summary.evaluated} categories
+                Browse {summary.categoriesTotal} categories
               </Link>
             </div>
 
@@ -187,19 +196,19 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Category ticker strip */}
+        {/* Segment ticker strip */}
         <div className="relative border-t border-white/10">
           <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-x-5 gap-y-2 px-4 py-4 sm:px-6">
             <span className="text-[11px] font-semibold uppercase tracking-wide text-white/40">
-              Tracking
+              {summary.categoriesTotal} categories across
             </span>
-            {cats.map((c) => (
+            {segments.map((s) => (
               <Link
-                key={c.slug}
-                href={`/categories/${c.slug}`}
+                key={s.slug}
+                href={`/categories#${s.slug}`}
                 className="text-xs font-medium text-white/55 transition-colors hover:text-brand-400"
               >
-                {c.name}
+                {s.name}
               </Link>
             ))}
           </div>
@@ -215,7 +224,7 @@ export default function HomePage() {
               This edition&apos;s picks
             </h2>
             <p className="mt-2 text-ink-600">
-              {summary.evaluated} categories evaluated · {summary.verified} verified picks · {EDITION.label}
+              {summary.researched} researched picks · {summary.verified} verified · across {summary.categoriesTotal} categories · {EDITION.label}
             </p>
           </div>
           <Link href={`/editions/${EDITION.slug}`} className="text-sm font-semibold text-brand-600 hover:text-brand-700">
@@ -224,7 +233,7 @@ export default function HomePage() {
         </div>
 
         <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {picks.map((pick) => (
+          {picksWithProducts.map((pick) => (
             <PickCard key={pick.category.slug} pick={pick} />
           ))}
         </div>
@@ -278,32 +287,35 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── Explore categories ────────────────────────────────────────── */}
+      {/* ── Explore by segment ────────────────────────────────────────── */}
       <section id="categories" className="mx-auto max-w-6xl scroll-mt-20 px-4 py-16 sm:px-6 sm:py-20">
         <div className="flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-end">
           <div>
             <p className="text-[11px] font-semibold uppercase tracking-wide text-brand-600">The map</p>
-            <h2 className="font-display mt-1 text-3xl font-semibold tracking-tight text-ink-900 sm:text-4xl">Explore AI by category</h2>
-            <p className="mt-2 text-ink-600">Jump straight to the area you care about.</p>
+            <h2 className="font-display mt-1 text-3xl font-semibold tracking-tight text-ink-900 sm:text-4xl">Explore AI by segment</h2>
+            <p className="mt-2 text-ink-600">{summary.categoriesTotal} categories, organised into {summary.segmentsTotal} segments. Jump to the area you care about.</p>
           </div>
           <Link href="/categories" className="text-sm font-semibold text-brand-600 hover:text-brand-700">All categories →</Link>
         </div>
 
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {cats.map((c) => {
-            const product = productForCategory(c.slug);
+          {segments.map((s) => {
+            const segCats = categoriesForSegment(s.slug);
+            const live = segCats.filter((c) => picksWithProducts.some((p) => p.category.slug === c.slug)).length;
+            const accent = segmentAccents[(s.order - 1) % segmentAccents.length];
             return (
-              <Link key={c.slug} href={`/categories/${c.slug}`} className="group flex items-start gap-4 rounded-2xl border border-ink-200/70 bg-white p-5 card-ring transition-all hover:-translate-y-0.5 hover:border-brand-300">
-                <div className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-sm font-bold text-white ${categoryAccent(c.slug)}`}>
-                  {c.order}
+              <Link key={s.slug} href={`/categories#${s.slug}`} className="group flex flex-col rounded-2xl border border-ink-200/70 bg-white p-6 card-ring transition-all hover:-translate-y-0.5 hover:border-brand-300">
+                <div className="flex items-center gap-3">
+                  <div className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-sm font-bold text-white ${accent}`}>
+                    {s.order}
+                  </div>
+                  <span className="text-xs font-medium text-ink-400">{segCats.length} categories</span>
                 </div>
-                <div className="min-w-0">
-                  <h3 className="font-display text-base font-semibold text-ink-900 group-hover:text-brand-700">{c.name}</h3>
-                  <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-ink-500">{c.coverage}</p>
-                  <p className="mt-2 text-xs text-ink-500">
-                    {product ? <>This edition: <span className="font-semibold text-ink-700">{product.name}</span></> : "No verified pick this edition"}
-                  </p>
-                </div>
+                <h3 className="font-display mt-4 text-lg font-semibold leading-snug text-ink-900 group-hover:text-brand-700">{s.name}</h3>
+                <p className="mt-1.5 flex-1 text-sm leading-relaxed text-ink-600">{s.tagline}</p>
+                <p className="mt-3 text-xs font-medium text-ink-500">
+                  {live > 0 ? <>{live} researched pick{live === 1 ? "" : "s"} this edition</> : "Picks coming soon"}
+                </p>
               </Link>
             );
           })}
@@ -436,7 +448,7 @@ export default function HomePage() {
                 <Link href="/tools/lago" className="rounded-lg border border-ink-300 bg-white px-5 py-2.5 text-center text-sm font-semibold text-ink-800 transition-colors hover:bg-ink-50">See an example listing</Link>
               </div>
               <p className="mt-5 border-t border-ink-100 pt-4 text-xs text-ink-400">
-                {summary.evaluated} categories, researched and fact-checked every fortnight.
+                {summary.categoriesTotal} categories across {summary.segmentsTotal} segments, researched and fact-checked every fortnight.
               </p>
             </div>
           </div>

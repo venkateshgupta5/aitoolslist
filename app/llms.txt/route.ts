@@ -1,4 +1,10 @@
-import { categories, products, EDITION } from "@/lib/content";
+import {
+  categories,
+  products,
+  EDITION,
+  segments,
+  categoriesForSegment,
+} from "@/lib/content";
 import { siteConfig, absoluteUrl } from "@/lib/site";
 
 // Serves /llms.txt — a markdown index for LLMs / answer engines (the emerging
@@ -15,7 +21,7 @@ export function GET() {
   lines.push(`> ${siteConfig.description}`);
   lines.push("");
   lines.push(
-    `${siteConfig.name} is an independent, fortnightly AI product intelligence publication. Each edition researches, fact-checks and curates standout AI tools across ${categories.length} categories. Every tool profile states what was verified, when it was last verified, and links to primary sources. Current edition: ${EDITION.label}.`,
+    `${siteConfig.name} is an independent, fortnightly AI product intelligence publication. Each edition researches, fact-checks and curates standout AI tools across ${categories.length} categories organised into ${segments.length} segments. Every tool profile states what was verified, when it was last verified, and links to primary sources. Current edition: ${EDITION.label}.`,
   );
   lines.push("");
 
@@ -27,11 +33,14 @@ export function GET() {
   lines.push(`- [About](${absoluteUrl("/about")}): What ${siteConfig.name} is and how it stays independent.`);
   lines.push("");
 
-  lines.push("## Categories");
-  for (const c of categories) {
-    lines.push(`- [${c.name}](${absoluteUrl(`/categories/${c.slug}`)}): ${c.coverage}`);
+  for (const segment of segments) {
+    lines.push(`## ${segment.name}`);
+    lines.push(`${segment.tagline}`);
+    for (const c of categoriesForSegment(segment.slug)) {
+      lines.push(`- [${c.name}](${absoluteUrl(`/categories/${c.slug}`)}): ${c.coverage}`);
+    }
+    lines.push("");
   }
-  lines.push("");
 
   lines.push("## Tool profiles");
   for (const p of products) {
