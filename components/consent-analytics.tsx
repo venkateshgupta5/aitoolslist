@@ -4,39 +4,41 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import Script from "next/script";
 
-const KEY = "aitoolslist-cookie-consent";
+const KEY = "aitoolslist-cookie-notice";
 
 /**
- * Consent-gated Google Analytics. GA (which sets cookies) only loads after the
- * visitor explicitly accepts, satisfying GDPR/UK PECR. Choice is remembered in
- * localStorage. Vercel Analytics (cookieless) runs independently.
+ * Google Analytics loads unconditionally (not gated by the cookie notice).
+ * The banner below is an informational cookie notice that the visitor
+ * acknowledges; it does not gate tracking. (Vercel Analytics, cookieless,
+ * runs separately via <Analytics /> in the layout.)
+ *
+ * NOTE: GA sets cookies, so running it without opt-in is not GDPR/UK-PECR
+ * compliant for EU/UK visitors. If that matters, switch to GA Consent Mode so
+ * the notice can actually toggle consent.
  */
 export function ConsentAnalytics({ gaId }: { gaId?: string }) {
-  const [consent, setConsent] = useState<"granted" | "denied" | null>(null);
-  const [ready, setReady] = useState(false);
+  const [dismissed, setDismissed] = useState(true);
 
   useEffect(() => {
     try {
-      const v = localStorage.getItem(KEY);
-      if (v === "granted" || v === "denied") setConsent(v);
+      setDismissed(localStorage.getItem(KEY) === "1");
     } catch {
-      /* localStorage unavailable */
+      setDismissed(false);
     }
-    setReady(true);
   }, []);
 
-  function choose(value: "granted" | "denied") {
+  function acknowledge() {
     try {
-      localStorage.setItem(KEY, value);
+      localStorage.setItem(KEY, "1");
     } catch {
       /* ignore */
     }
-    setConsent(value);
+    setDismissed(true);
   }
 
   return (
     <>
-      {gaId && consent === "granted" && (
+      {gaId && (
         <>
           <Script
             src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
@@ -52,12 +54,12 @@ export function ConsentAnalytics({ gaId }: { gaId?: string }) {
         </>
       )}
 
-      {ready && consent === null && (
+      {!dismissed && (
         <div className="fixed inset-x-0 bottom-0 z-[60] border-t border-ink-200/80 bg-white/95 px-4 py-4 backdrop-blur sm:px-6">
           <div className="mx-auto flex max-w-6xl flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
             <p className="text-sm leading-relaxed text-ink-600">
-              We use privacy-friendly analytics to understand how the site is
-              used. You can accept or decline analytics cookies. See our{" "}
+              We use cookies and analytics to understand how the site is used and
+              improve it. See our{" "}
               <Link
                 href="/privacy"
                 className="font-medium text-brand-600 hover:text-brand-700"
@@ -69,17 +71,10 @@ export function ConsentAnalytics({ gaId }: { gaId?: string }) {
             <div className="flex shrink-0 gap-2">
               <button
                 type="button"
-                onClick={() => choose("denied")}
-                className="rounded-lg border border-ink-300 bg-white px-4 py-2 text-sm font-semibold text-ink-700 transition-colors hover:bg-ink-50"
-              >
-                Decline
-              </button>
-              <button
-                type="button"
-                onClick={() => choose("granted")}
+                onClick={acknowledge}
                 className="rounded-lg bg-brand-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-700"
               >
-                Accept
+                Got it
               </button>
             </div>
           </div>
