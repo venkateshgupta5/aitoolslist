@@ -11,23 +11,23 @@ const check = (
 );
 
 /** Framed real screenshot. */
-function Screenshot({ src, alt }: { src: string; alt: string }) {
+function Screenshot({ src, alt, w, h }: { src: string; alt: string; w: number; h: number }) {
   return (
     <div className="overflow-hidden rounded-2xl border border-ink-200/80 bg-white shadow-xl shadow-ink-900/5 card-ring">
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={src} alt={alt} width={2360} height={1228} loading="lazy" className="w-full" />
+      <img src={src} alt={alt} width={w} height={h} loading="lazy" className="h-auto w-full" />
     </div>
   );
 }
 
-/** 1. An actual aitoolslist.ai product page. */
+/** 1. An actual aitoolslist.ai product page (annotated). */
 export function ProductPageMock() {
-  return <Screenshot src="/screens/product-page.png" alt="An actual product page on aitoolslist.ai, with a verified profile, structured details and a link to the product's website" />;
+  return <Screenshot src="/screens/product-page.png" w={2460} h={2345} alt="An actual product page on aitoolslist.ai, with a verified profile, structured details and a link to the product's website" />;
 }
 
-/** 2. An actual category page with the featured product at the top. */
+/** 2. An actual category page with the featured product at the top (annotated). */
 export function CategoryPlacementMock() {
-  return <Screenshot src="/screens/category-page.png" alt="An actual category page on aitoolslist.ai, with the featured product highlighted at the top" />;
+  return <Screenshot src="/screens/category-page.png" w={2460} h={2290} alt="An actual category page on aitoolslist.ai, with the featured product highlighted at the top" />;
 }
 
 /** 3. SEO ecosystem: our profile links out to your site. */
