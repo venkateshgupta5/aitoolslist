@@ -72,10 +72,20 @@ export default function HomePage() {
   const topPicks = picksWithProducts.slice(0, 5);
 
   const heroStats = [
-    { value: summary.evaluated, label: "Categories tracked" },
-    { value: summary.verified, label: "Verified this edition" },
-    { value: editions.length, label: "Editions archived" },
+    { value: summary.categoriesTotal, label: "Categories" },
+    { value: summary.segmentsTotal, label: "Segments" },
+    { value: summary.toolsTotal, label: "Tools profiled" },
+    { value: summary.verified, label: "Verified picks" },
   ];
+
+  const heroTrust = [
+    "Research-led, not crowd-sourced",
+    "Evidence-linked",
+    "No paid rankings",
+    "New edition every fortnight",
+  ];
+
+  const answerEngines = ["ChatGPT", "Claude", "Perplexity", "Gemini", "Copilot"];
 
   const catalogue = [
     ...products.map((p) => ({ name: p.name, href: `/tools/${p.slug}` })),
@@ -105,20 +115,28 @@ export default function HomePage() {
         <div className="relative mx-auto grid max-w-6xl items-center gap-14 px-4 py-20 sm:px-6 lg:grid-cols-[1.08fr_0.92fr] lg:py-28">
           {/* Left, message */}
           <div>
-            <Link
-              href={`/editions/${EDITION.slug}`}
-              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-medium text-white/80 backdrop-blur transition-colors hover:border-white/35 hover:text-white"
-            >
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse-dot" />
-              Live edition · {EDITION.label}
-              <span className="text-white/40">→</span>
-            </Link>
+            <div className="flex flex-wrap items-center gap-2">
+              <Link
+                href={`/editions/${EDITION.slug}`}
+                className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-medium text-white/80 backdrop-blur transition-colors hover:border-white/35 hover:text-white"
+              >
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse-dot" />
+                Live edition · {EDITION.label}
+                <span className="text-white/40">→</span>
+              </Link>
+              <span className="inline-flex items-center rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-xs font-medium text-white/55">
+                Independent · reader-first
+              </span>
+            </div>
 
-            <h1 className="font-display mt-6 text-balance text-[2.75rem] font-semibold leading-[1.03] tracking-tight text-white sm:text-6xl lg:text-7xl">
+            <h1 className="font-display mt-6 text-balance text-[2.75rem] font-semibold leading-[1.02] tracking-tight text-white sm:text-6xl lg:text-7xl">
               The AI products
               <br />
               that actually{" "}
-              <span className="italic text-brand-400">matter.</span>
+              <span className="relative italic text-brand-400">
+                matter.
+                <span className="absolute -bottom-1 left-0 h-[3px] w-full rounded-full bg-gradient-to-r from-brand-500 to-transparent" aria-hidden />
+              </span>
             </h1>
 
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/70">
@@ -126,6 +144,18 @@ export default function HomePage() {
               <span className="text-white">researched, fact-checked and ranked</span>{" "}
               across {summary.categoriesTotal} categories in {summary.segmentsTotal} segments. Not another unfiltered directory.
             </p>
+
+            {/* Trust chips */}
+            <ul className="mt-6 flex flex-wrap gap-x-5 gap-y-2">
+              {heroTrust.map((t) => (
+                <li key={t} className="flex items-center gap-1.5 text-[13px] text-white/60">
+                  <svg className="h-3.5 w-3.5 shrink-0 text-brand-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                    <path d="M20 6 9 17l-5-5" />
+                  </svg>
+                  {t}
+                </li>
+              ))}
+            </ul>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link
@@ -142,11 +172,23 @@ export default function HomePage() {
               </Link>
             </div>
 
-            <dl className="mt-12 flex flex-wrap gap-x-10 gap-y-6">
+            {/* AI answer-engine hook */}
+            <div className="mt-8 flex flex-wrap items-center gap-x-3 gap-y-1.5">
+              <span className="text-[11px] font-medium uppercase tracking-wide text-white/35">
+                Structured to be cited by
+              </span>
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                {answerEngines.map((e) => (
+                  <span key={e} className="text-[13px] font-semibold text-white/65">{e}</span>
+                ))}
+              </div>
+            </div>
+
+            <dl className="mt-10 grid max-w-md grid-cols-4 gap-x-4 border-t border-white/10 pt-6">
               {heroStats.map((s) => (
                 <div key={s.label}>
                   <dt className="font-display text-3xl font-semibold text-white">{s.value}</dt>
-                  <dd className="mt-0.5 text-xs font-medium uppercase tracking-wide text-white/50">{s.label}</dd>
+                  <dd className="mt-0.5 text-[11px] font-medium uppercase tracking-wide text-white/50">{s.label}</dd>
                 </div>
               ))}
             </dl>
@@ -158,7 +200,8 @@ export default function HomePage() {
             <div className="glass relative rounded-3xl p-5 shadow-2xl sm:p-6">
               <div className="flex items-start justify-between">
                 <div>
-                  <p className="text-[11px] font-semibold uppercase tracking-wide text-white/50">
+                  <p className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wide text-white/50">
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse-dot" />
                     This edition
                   </p>
                   <p className="font-display mt-1 text-xl font-semibold text-white">
@@ -168,6 +211,24 @@ export default function HomePage() {
                 <span className="rounded-full bg-emerald-400/15 px-2.5 py-1 text-[11px] font-semibold text-emerald-300 ring-1 ring-inset ring-emerald-400/30">
                   {summary.verified} verified
                 </span>
+              </div>
+
+              {/* Coverage micro-bar */}
+              <div className="mt-4">
+                <div className="flex h-1.5 overflow-hidden rounded-full bg-white/10">
+                  <span
+                    className="bg-emerald-400"
+                    style={{ width: `${(summary.verified / summary.categoriesTotal) * 100}%` }}
+                  />
+                  <span
+                    className="bg-brand-400/70"
+                    style={{ width: `${(summary.previewed / summary.categoriesTotal) * 100}%` }}
+                  />
+                </div>
+                <p className="mt-2 text-[11px] text-white/45">
+                  <span className="text-emerald-300">{summary.verified} verified</span> ·{" "}
+                  <span className="text-brand-300">{summary.previewed} curated previews</span> · across {summary.categoriesTotal} categories
+                </p>
               </div>
 
               <div className="mt-5 space-y-2">
