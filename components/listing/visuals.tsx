@@ -10,81 +10,24 @@ const check = (
   </svg>
 );
 
-/** 1. A sample product page. */
-export function ProductPageMock() {
+/** Framed real screenshot. */
+function Screenshot({ src, alt }: { src: string; alt: string }) {
   return (
-    <div className="rounded-2xl border border-ink-200/80 bg-white p-5 card-ring">
-      <div className="flex items-center gap-2 border-b border-ink-100 pb-3 text-[11px] text-ink-400">
-        <span className="h-2 w-2 rounded-full bg-rose-300" />
-        <span className="h-2 w-2 rounded-full bg-amber-300" />
-        <span className="h-2 w-2 rounded-full bg-emerald-300" />
-        <span className="ml-2 truncate">aitoolslist.ai/tools/your-product</span>
-      </div>
-      <div className="mt-4 flex items-start gap-3">
-        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 text-base font-bold text-white">
-          YP
-        </div>
-        <div className="min-w-0">
-          <div className="flex items-center gap-2">
-            <p className="text-base font-bold text-ink-900">Your Product</p>
-            <span className="rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-semibold text-emerald-700 ring-1 ring-inset ring-emerald-600/20">
-              Listed
-            </span>
-          </div>
-          <p className="text-xs text-ink-500">One line that nails what you do</p>
-        </div>
-      </div>
-      <div className="mt-4 grid grid-cols-2 gap-2 text-[11px]">
-        {[["Category", "AI Image Generation"], ["Pricing", "From $19/mo"], ["Type", "Web app · API"], ["Website", "yourproduct.com"]].map(([k, v]) => (
-          <div key={k} className="rounded-lg bg-ink-50 px-2.5 py-2">
-            <p className="text-ink-400">{k}</p>
-            <p className="mt-0.5 font-semibold text-ink-800">{v}</p>
-          </div>
-        ))}
-      </div>
-      <div className="mt-4 space-y-1.5">
-        {["Key features, described clearly", "Who it's for and real use cases", "Structured for search and AI"].map((t) => (
-          <p key={t} className="flex items-center gap-2 text-xs text-ink-600">{check}{t}</p>
-        ))}
-      </div>
-      <div className="mt-4 rounded-lg bg-brand-500 py-2 text-center text-xs font-semibold text-white">
-        Visit website ↗
-      </div>
+    <div className="overflow-hidden rounded-2xl border border-ink-200/80 bg-white shadow-xl shadow-ink-900/5 card-ring">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={src} alt={alt} width={2360} height={1228} loading="lazy" className="w-full" />
     </div>
   );
 }
 
-/** 2. A category page with the featured product pinned on top. */
+/** 1. An actual aitoolslist.ai product page. */
+export function ProductPageMock() {
+  return <Screenshot src="/screens/product-page.png" alt="An actual product page on aitoolslist.ai, with a verified profile, structured details and a link to the product's website" />;
+}
+
+/** 2. An actual category page with the featured product at the top. */
 export function CategoryPlacementMock() {
-  return (
-    <div className="rounded-2xl border border-ink-200/80 bg-white p-5 card-ring">
-      <p className="text-[11px] font-semibold uppercase tracking-wide text-brand-600">AI Image Generation</p>
-      <p className="mt-0.5 text-xs text-ink-400">Hundreds of tools · one featured spot</p>
-
-      <div className="mt-4 rounded-xl border-2 border-brand-300 bg-brand-50/60 p-3 ring-2 ring-brand-500/10">
-        <div className="flex items-center gap-2.5">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-brand-500 to-brand-700 text-xs font-bold text-white">YP</div>
-          <div className="min-w-0 flex-1">
-            <p className="text-sm font-bold text-ink-900">Your Product</p>
-            <p className="text-[11px] text-ink-500">Featured at the top</p>
-          </div>
-          <span className="rounded-full bg-brand-600 px-2 py-0.5 text-[10px] font-semibold text-white">Featured</span>
-        </div>
-      </div>
-
-      <div className="mt-2 space-y-2 opacity-60">
-        {["Competing tool A", "Competing tool B", "Competing tool C"].map((n, i) => (
-          <div key={n} className="flex items-center gap-2.5 rounded-xl border border-ink-200/70 bg-white p-3">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-ink-100 text-[11px] font-bold text-ink-400">{String.fromCharCode(65 + i)}</div>
-            <div className="min-w-0 flex-1">
-              <p className="text-sm font-semibold text-ink-700">{n}</p>
-              <div className="mt-1 h-1.5 w-24 rounded-full bg-ink-100" />
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
+  return <Screenshot src="/screens/category-page.png" alt="An actual category page on aitoolslist.ai, with the featured product highlighted at the top" />;
 }
 
 /** 3. SEO ecosystem: our profile links out to your site. */

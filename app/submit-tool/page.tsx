@@ -56,7 +56,7 @@ const benefits: {
     points: [
       "Featured at the very top of your category",
       "Seen first by buyers browsing by use case",
-      "e.g. pinned to the top of AI Image Generation",
+      "Pinned above the competing tools in your space",
     ],
     visual: "category",
   },
