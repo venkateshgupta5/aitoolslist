@@ -1606,6 +1606,86 @@ const enrichment: Record<string, Partial<Product>> = {
     integrations: ["Scientific databases", "Research tools"],
     sources: [{ title: "FutureHouse", url: "https://www.futurehouse.org", type: "official" }],
   },
+
+  // ════════ Deep profiles for standout ARCHIVE tools (researched Nov 2026) ════════
+  "modal": {
+    productType: "Serverless GPU/compute platform", productStatus: "Generally available",
+    pricing: "Starter free ($30 compute/mo); Team $250/mo + usage. Per-second GPU (vendor-reported): H100 ≈$0.001097/s (~$3.95/hr), L4 ~$0.80/hr, B200 ~$6.25/hr; storage $0.09/GiB/mo. Nov 2026 — verify on official pricing.",
+    specs: [{ label: "Billing", value: "Per-second, scale-to-zero" }, { label: "GPU types", value: "11 (T4 → B300)" }, { label: "Cold start", value: "~1–2s containers (vendor)" }],
+    differentiators: ["Code-first infra in pure Python (decorators)", "Per-second billing, scales to zero", "Fast container cold starts"],
+    features: ["Define GPU/compute in Python with @app.function", "11 NVIDIA GPU types", "Autoscaling to zero", "Sandboxes, volumes and scheduled jobs"],
+    useCases: ["Serverless model inference", "Batch and fine-tuning jobs", "GPU-backed Python workloads"],
+    targetAudience: ["Python ML engineers", "AI startups", "Teams avoiding cluster ops"],
+    strengths: ["Excellent developer experience", "True scale-to-zero economics", "No infra/YAML to manage"],
+    limitations: ["Per-second costs add up at steady high load", "Python-centric"],
+    whoShouldUse: ["Python teams wanting serverless GPUs without managing clusters"],
+    notSuitableWhen: ["You need a reserved, always-on dedicated cluster"],
+    integrations: ["Python", "Hugging Face", "Common ML frameworks"],
+    alternatives: ["Replicate", "Baseten", "RunPod"],
+    sources: [{ title: "Modal", url: "https://modal.com", type: "official" }, { title: "Modal pricing breakdown 2026", url: "https://dupple.com/learn/modal-pricing", type: "analysis" }],
+  },
+  "openobserve": {
+    productType: "Observability platform (open-source)", productStatus: "Generally available",
+    pricing: "Open-source self-host: free, unlimited ingestion. Cloud: 50 GB/day free, then ≈$0.50/GB ingested + $0.01/GB queried, unlimited users. Vendor-reported, Nov 2026.",
+    specs: [{ label: "License", value: "Open-source (self-host free)" }, { label: "Cloud free tier", value: "50 GB/day" }, { label: "Storage", value: "~140x lower cost (vendor claim)" }],
+    differentiators: ["Rust-built, single-binary deploy", "Unifies logs/metrics/traces/RUM + LLM telemetry", "Ingestion-based pricing, unlimited users"],
+    features: ["Logs, metrics, traces, RUM in one", "LLM/AI observability across 80+ frameworks", "19+ dashboard chart types + alerting/SLOs", "Incident correlation to cut alert noise"],
+    useCases: ["Full-stack observability", "LLM app tracing and cost tracking", "Cost-efficient Datadog/Splunk alternative"],
+    targetAudience: ["Platform/SRE teams", "Cost-conscious orgs", "AI app teams"],
+    strengths: ["Very low storage cost", "Open-source + single binary", "Unified signals incl. LLM"],
+    limitations: ["Younger ecosystem than Datadog", "Self-host needs ops"],
+    whoShouldUse: ["Teams wanting unified, low-cost observability they can self-host"],
+    notSuitableWhen: ["You need a fully managed incumbent with vast integrations"],
+    integrations: ["OpenTelemetry", "80+ LLM frameworks", "Grafana (adjacent)"],
+    alternatives: ["Datadog", "Grafana/Loki", "Langfuse (LLM-only)"],
+    sources: [{ title: "OpenObserve", url: "https://openobserve.ai", type: "official" }, { title: "OpenObserve (GitHub)", url: "https://github.com/openobserve/openobserve", type: "github" }],
+  },
+  "indra": {
+    productType: "OCR model (open-source)", productStatus: "Generally available",
+    pricing: "Open-source model, free to use; part of Datalab's document-intelligence tooling. Nov 2026.",
+    specs: [{ label: "Model size", value: "~1M parameters" }, { label: "Throughput", value: "49.4 pages/sec on 32 CPU cores (vendor)" }, { label: "Runs on", value: "CPU" }],
+    benchmarks: [{ label: "CPU throughput", value: "49.4 pages/sec (32 cores)", kind: "vendor" }, { label: "Speed vs Tesseract", value: "~15x faster (vendor)", kind: "vendor" }],
+    differentiators: ["Tiny (~1M params) yet accurate", "Runs fast on CPU, no GPU needed", "From Datalab (Surya/Marker makers)"],
+    features: ["PDF/image → markdown, text or JSON", "Line bounding boxes + layout labels", "Reading order and confidences", "CPU-efficient inference"],
+    useCases: ["High-volume document OCR", "Cheap CPU-only OCR pipelines", "Feeding RAG/document systems"],
+    targetAudience: ["Developers", "Document-AI teams", "RAG builders"],
+    strengths: ["Fast on commodity CPUs", "Open-source", "Strong accuracy for its size"],
+    limitations: ["Focused on OCR, not full document reasoning", "Newer than incumbents"],
+    whoShouldUse: ["Teams needing fast, cheap, open OCR at scale"],
+    notSuitableWhen: ["You need a managed end-to-end document platform"],
+    integrations: ["Hugging Face", "Python", "Datalab Surya/Marker"],
+    alternatives: ["Tesseract", "Surya", "Cloud OCR APIs"],
+    sources: [{ title: "Datalab Indra (GitHub)", url: "https://github.com/datalab-to/indra", type: "github" }, { title: "Indra OCR (Hugging Face)", url: "https://huggingface.co/datalab-to/indra-ocr", type: "official" }],
+  },
+  "formation-bio": {
+    productType: "AI-native drug development", productStatus: "Operating company",
+    pricing: "Not applicable, Formation Bio is an AI-native pharma company, not a SaaS product. Nov 2026.",
+    differentiators: ["AI-native pharma operating model", "OpenAI + Sanofi collaboration", "$600M drug-development accelerator fund"],
+    features: ["AI across the drug-development lifecycle", "In-licenses and advances drug programs", "AI tooling (e.g. Muse) for development"],
+    useCases: ["Accelerating clinical drug development", "AI-assisted pharma R&D"],
+    targetAudience: ["Pharma/biotech partners", "Investors", "Industry observers"],
+    strengths: ["Well-funded and ambitious", "Credible AI partnerships", "Clear AI-native thesis"],
+    limitations: ["Operating company, not a tool to adopt", "Long, capital-intensive horizon"],
+    whoShouldUse: ["Partners and observers of AI-native pharma"],
+    notSuitableWhen: ["You're looking for a self-serve software product"],
+    integrations: ["Clinical/pharma systems"],
+    alternatives: ["Isomorphic Labs", "Recursion", "Insilico Medicine"],
+    sources: [{ title: "Formation Bio", url: "https://www.formation.bio", type: "official" }, { title: "Formation Bio $600M fund", url: "https://www.prnewswire.com/news-releases/formation-bio-announces-600-million-debut-fund-to-expand-drug-development-capacity-302921852.html", type: "news" }],
+  },
+  "runable": {
+    productType: "AI general agent", productStatus: "Generally available",
+    differentiators: ["End-to-end plan-and-execute agent", "Produces 10 output types", "Business-outcome oriented"],
+    features: ["Autonomous research and execution", "Generates websites, slides, reports, video, spreadsheets and more", "Runbooks across marketing/sales/research", "Chat-based control"],
+    useCases: ["Automating repetitive business workflows", "Deep research and content production", "Running go-to-market tasks"],
+    targetAudience: ["Founders", "Marketers", "Small business teams"],
+    strengths: ["Broad output range", "End-to-end execution", "Approachable for non-developers"],
+    limitations: ["General agents can be inconsistent on complex tasks", "Young product"],
+    whoShouldUse: ["Small teams wanting one agent for many output types"],
+    notSuitableWhen: ["You need a specialised, deterministic tool"],
+    integrations: ["Web app", "Business tools"],
+    alternatives: ["Manus", "Genspark", "ChatGPT agents"],
+    sources: [{ title: "Runable", url: "https://runable.com", type: "official" }],
+  },
 };
 
 // Slugs with a compressed logo in /public/logos (see scripts; initials otherwise).
@@ -2931,7 +3011,9 @@ export const archiveProducts: Product[] = (() => {
       const slug = archivePickSlug(pick);
       if (currentSlugs.has(slug) || seen.has(slug)) continue;
       seen.add(slug);
-      out.push(archivePickToProduct(pick, edition.label));
+      const base = archivePickToProduct(pick, edition.label);
+      // Allow deep enrichment (features, pricing, specs) for standout archive tools.
+      out.push({ ...base, ...(enrichment[slug] ?? {}) });
     }
   }
   return out;
