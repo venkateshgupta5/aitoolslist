@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { signIn, signOut, auth } from "@/auth";
+import { signIn, auth } from "@/auth";
+import { SignOutButton } from "@/components/auth/sign-out-button";
 
 export const metadata: Metadata = {
   title: "Sign in",
@@ -26,17 +27,9 @@ export default async function LoginPage() {
             {user.name ? `${user.name} · ` : ""}
             {user.email}
           </p>
-          <form
-            action={async () => {
-              "use server";
-              await signOut({ redirectTo: "/" });
-            }}
-            className="mt-8 w-full"
-          >
-            <button className="w-full rounded-lg border border-ink-300 bg-white px-6 py-3 text-sm font-semibold text-ink-800 hover:bg-ink-50">
-              Sign out
-            </button>
-          </form>
+          <div className="mt-8 w-full">
+            <SignOutButton className="w-full rounded-lg border border-ink-300 bg-white px-6 py-3 text-sm font-semibold text-ink-800 hover:bg-ink-50" />
+          </div>
         </>
       ) : (
         <>

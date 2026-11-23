@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { auth, signOut } from "@/auth";
+import { auth } from "@/auth";
+import { SignOutButton } from "@/components/auth/sign-out-button";
 
 export const metadata: Metadata = {
   title: "Your profile",
@@ -111,17 +112,9 @@ export default async function ProfilePage() {
       </div>
 
       {/* Sign out */}
-      <form
-        action={async () => {
-          "use server";
-          await signOut({ redirectTo: "/" });
-        }}
-        className="mt-8"
-      >
-        <button className="rounded-lg border border-ink-300 bg-white px-6 py-3 text-sm font-semibold text-ink-800 transition-colors hover:bg-ink-50">
-          Sign out
-        </button>
-      </form>
+      <div className="mt-8">
+        <SignOutButton className="rounded-lg border border-ink-300 bg-white px-6 py-3 text-sm font-semibold text-ink-800 transition-colors hover:bg-ink-50" />
+      </div>
     </div>
   );
 }

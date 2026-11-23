@@ -71,13 +71,6 @@ export default function HomePage() {
   const picksWithProducts = picks.filter((p) => isEditionPick(p.product));
   const topPicks = picksWithProducts.slice(0, 5);
 
-  const heroStats = [
-    { value: summary.categoriesTotal, label: "Categories" },
-    { value: summary.segmentsTotal, label: "Segments" },
-    { value: summary.toolsTotal, label: "Tools profiled" },
-    { value: summary.verified, label: "Verified picks" },
-  ];
-
   const heroTrust = [
     "Independently researched and verified",
     "Evidence-backed comparisons",
@@ -179,15 +172,6 @@ export default function HomePage() {
                 ))}
               </div>
             </div>
-
-            <dl className="mt-10 grid max-w-md grid-cols-4 gap-x-4 border-t border-white/10 pt-6">
-              {heroStats.map((s) => (
-                <div key={s.label}>
-                  <dt className="font-display text-3xl font-semibold text-white">{s.value}</dt>
-                  <dd className="mt-0.5 text-[11px] font-medium uppercase tracking-wide text-white/50">{s.label}</dd>
-                </div>
-              ))}
-            </dl>
           </div>
 
           {/* Right, data-driven edition card visual */}
