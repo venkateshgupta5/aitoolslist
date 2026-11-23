@@ -127,41 +127,33 @@ export default async function SubmitToolPage() {
       <section className="hero-dark relative overflow-hidden">
         <div className="pointer-events-none absolute inset-0 hero-grid-lines" aria-hidden />
         <div className="glow-orb pointer-events-none absolute -left-24 -top-24 h-80 w-80 bg-brand-500/40" aria-hidden />
-        <div className="relative mx-auto max-w-3xl px-4 py-20 text-center sm:px-6 lg:py-24">
-          <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-medium text-white/80 backdrop-blur">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse-dot" />
-            List your product
-          </span>
-
-          <h1 className="font-display mt-6 text-balance text-4xl font-semibold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-6xl">
-            Building is easy.
-            <br />
-            Distribution is the{" "}
+        <div className="relative mx-auto max-w-3xl px-4 py-10 text-center sm:px-6 sm:py-12">
+          <h1 className="font-display text-balance text-2xl font-semibold leading-tight tracking-tight text-white sm:text-[2rem]">
+            Building is easy. Distribution is the{" "}
             <span className="italic text-brand-400">hard part.</span>
           </h1>
 
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/70">
-            Reach high-intent buyers, improve your search visibility and get discovered by
-            AI-powered search engines and LLMs. Put your product in front of people who are
-            actively exploring and evaluating AI tools.
+          <p className="mx-auto mt-3 max-w-xl text-[15px] leading-relaxed text-white/65">
+            Reach high-intent buyers, improve your search visibility, and get discovered by
+            AI search engines and LLMs.
           </p>
 
-          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <div className="mt-5 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <GateCta
               where="hero"
-              className="rounded-xl bg-brand-500 px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-brand-500/30 transition-colors hover:bg-brand-400"
+              className="rounded-xl bg-brand-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-brand-500/30 transition-colors hover:bg-brand-400"
             >
               List your product →
             </GateCta>
             <a
               href="#benefits"
-              className="rounded-xl border border-white/20 bg-white/5 px-7 py-3.5 text-sm font-semibold text-white backdrop-blur transition-colors hover:bg-white/10"
+              className="rounded-xl border border-white/20 bg-white/5 px-6 py-3 text-sm font-semibold text-white backdrop-blur transition-colors hover:bg-white/10"
             >
               See what&apos;s included
             </a>
           </div>
 
-          <p className="mt-5 text-xs text-white/45">
+          <p className="mt-4 text-xs text-white/45">
             Submit free · pay only after approval · permanent listing
           </p>
         </div>
