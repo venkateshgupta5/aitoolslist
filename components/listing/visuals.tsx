@@ -1,6 +1,6 @@
 /**
  * Illustrative, self-contained mockups for the "List your product" page.
- * No external images — styled with the site's ink/brand tokens so they stay
+ * No external images, styled with the site's ink/brand tokens so they stay
  * crisp and on-brand in light and dark.
  */
 

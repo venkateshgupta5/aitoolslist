@@ -41,7 +41,7 @@ const benefits: {
   {
     eyebrow: "Your own page",
     title: "A dedicated product page that works for you",
-    body: "A clean, structured listing that showcases your product — key features, a clear description, pricing and a prominent link to your website.",
+    body: "A clean, structured listing that showcases your product: key features, a clear description, pricing and a prominent link to your website.",
     points: [
       "Features, description and pricing, laid out clearly",
       "A prominent, clickable link straight to your site",
@@ -52,7 +52,7 @@ const benefits: {
   {
     eyebrow: "Premium placement",
     title: "Top placement in your category",
-    body: "Premium visibility at the top of the most relevant category page — ahead of hundreds of competing AI tools.",
+    body: "Premium visibility at the top of the most relevant category page, ahead of hundreds of competing AI tools.",
     points: [
       "Featured at the very top of your category",
       "Seen first by buyers browsing by use case",
@@ -86,7 +86,7 @@ const benefits: {
   {
     eyebrow: "Newsletter",
     title: "Featured to an audience hunting for new tools",
-    body: "Put your product in front of our newsletter readers — AI builders, founders and buyers actively discovering and adopting new tools.",
+    body: "Put your product in front of our newsletter readers: AI builders, founders and buyers actively discovering and adopting new tools.",
     points: [
       "Featured in our fortnightly newsletter",
       "Reach enthusiasts, professionals and potential buyers",

@@ -79,7 +79,7 @@ export function PickCard({
           <VerificationBadge status="no_pick" />
           <p className="mt-3 text-sm text-ink-500">
             No researched pick in this category yet. Our coverage expands every
-            fortnight — we add a pick only once a candidate clears the evidence
+            fortnight. We add a pick only once a candidate clears the evidence
             threshold, never a forced one.
           </p>
         </div>

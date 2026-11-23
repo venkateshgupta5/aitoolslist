@@ -1,4 +1,4 @@
-// Serves /badge.svg — the "Featured on aitoolslist.ai" badge that featured
+// Serves /badge.svg: the "Featured on aitoolslist.ai" badge that featured
 // companies embed on their own site (linking back to their profile). Each
 // embed is an editorial backlink to aitoolslist.ai. Supports ?theme=light.
 export const dynamic = "force-static";

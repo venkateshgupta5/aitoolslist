@@ -1,6 +1,6 @@
 export const siteConfig = {
   name: "aitoolslist.ai",
-  title: "aitoolslist.ai — Find the best AI tools",
+  title: "aitoolslist.ai: Find the best AI tools",
   description:
     "Discover and evaluate the best AI tools across 60 categories, backed by independent research, evidence and expert evaluation. Find the right AI tool for building, creating, automating, researching or scaling your business.",
   tagline: "Thousands of AI tools. One place to find the right one.",

@@ -71,7 +71,7 @@ export default async function ProfilePage() {
         <dl className="mt-4 divide-y divide-ink-100 text-sm">
           <div className="flex items-center justify-between gap-4 py-2.5">
             <dt className="text-ink-500">Name</dt>
-            <dd className="font-medium text-ink-900">{user.name ?? "—"}</dd>
+            <dd className="font-medium text-ink-900">{user.name ?? "Not set"}</dd>
           </div>
           <div className="flex items-center justify-between gap-4 py-2.5">
             <dt className="text-ink-500">Email</dt>

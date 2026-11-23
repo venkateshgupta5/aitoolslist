@@ -1242,7 +1242,7 @@ const enrichment: Record<string, Partial<Product>> = {
   },
   "chatgpt": {
     productType: "AI assistant", productStatus: "Generally available", verification: "verified", lastVerified: "November 2026",
-    pricing: "Free; Go $8/mo; Plus $20/mo; Pro from $100/mo; Business $25/user/mo (≈$20 annual). API billed per token. Vendor-reported, Nov 2026 — verify on the official pricing page.",
+    pricing: "Free; Go $8/mo; Plus $20/mo; Pro from $100/mo; Business $25/user/mo (≈$20 annual). API billed per token. Vendor-reported, Nov 2026. Verify on the official pricing page.",
     specs: [{ label: "Pricing model", value: "Freemium + subscription + API" }, { label: "Plus price", value: "$20/mo (vendor-reported)" }],
     whyItMatters: "ChatGPT is the most widely used AI assistant and, for many people, the default interface to AI.",
     differentiators: ["Largest user base and ecosystem", "Strong general reasoning", "Rich app and integration surface"],
@@ -1610,7 +1610,7 @@ const enrichment: Record<string, Partial<Product>> = {
   // ════════ Deep profiles for standout ARCHIVE tools (researched Nov 2026) ════════
   "modal": {
     productType: "Serverless GPU/compute platform", productStatus: "Generally available",
-    pricing: "Starter free ($30 compute/mo); Team $250/mo + usage. Per-second GPU (vendor-reported): H100 ≈$0.001097/s (~$3.95/hr), L4 ~$0.80/hr, B200 ~$6.25/hr; storage $0.09/GiB/mo. Nov 2026 — verify on official pricing.",
+    pricing: "Starter free ($30 compute/mo); Team $250/mo + usage. Per-second GPU (vendor-reported): H100 ≈$0.001097/s (~$3.95/hr), L4 ~$0.80/hr, B200 ~$6.25/hr; storage $0.09/GiB/mo. Nov 2026. Verify on official pricing.",
     specs: [{ label: "Billing", value: "Per-second, scale-to-zero" }, { label: "GPU types", value: "11 (T4 → B300)" }, { label: "Cold start", value: "~1–2s containers (vendor)" }],
     differentiators: ["Code-first infra in pure Python (decorators)", "Per-second billing, scales to zero", "Fast container cold starts"],
     features: ["Define GPU/compute in Python with @app.function", "11 NVIDIA GPU types", "Autoscaling to zero", "Sandboxes, volumes and scheduled jobs"],

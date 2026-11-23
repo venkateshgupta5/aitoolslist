@@ -8,7 +8,7 @@ import {
 } from "@/lib/content";
 import { siteConfig, absoluteUrl } from "@/lib/site";
 
-// Serves /llms.txt — a markdown index for LLMs / answer engines (the emerging
+// Serves /llms.txt: a markdown index for LLMs / answer engines (the emerging
 // llms.txt convention). Lists our curated categories and researched tool
 // profiles so retrieval-augmented models can find and cite the right pages.
 // Regenerated from live content on every request.
@@ -29,7 +29,7 @@ export function GET() {
   lines.push("## Key pages");
   lines.push(`- [Home](${absoluteUrl("/")}): ${siteConfig.tagline}`);
   lines.push(`- [Categories](${absoluteUrl("/categories")}): All ${categories.length} AI tool categories we track.`);
-  lines.push(`- [Current edition](${absoluteUrl(`/editions/${EDITION.slug}`)}): ${EDITION.label} — this fortnight's researched picks.`);
+  lines.push(`- [Current edition](${absoluteUrl(`/editions/${EDITION.slug}`)}): ${EDITION.label}, this fortnight's researched picks.`);
   lines.push(`- [Methodology](${absoluteUrl("/methodology")}): Sources, scoring, evidence standard and what "Verified" means.`);
   lines.push(`- [About](${absoluteUrl("/about")}): What ${siteConfig.name} is and how it stays independent.`);
   lines.push("");

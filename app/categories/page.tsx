@@ -11,7 +11,7 @@ import {
 export const metadata: Metadata = {
   title: "All categories",
   description:
-    "Browse 60 AI categories across 6 segments — infrastructure, models, agents, developer tooling, business applications and emerging AI. Researched, fact-checked picks every edition.",
+    "Browse 60 AI categories across 6 segments: infrastructure, models, agents, developer tooling, business applications and emerging AI. Researched, fact-checked picks every edition.",
   alternates: { canonical: "/categories" },
 };
 
@@ -31,7 +31,7 @@ export default function CategoriesPage() {
       </h1>
       <p className="mt-3 max-w-2xl text-ink-600">
         The full map of the AI landscape we track. Each edition researches and
-        fact-checks standout tools across these categories — more coverage every
+        fact-checks standout tools across these categories, more coverage every
         fortnight.
       </p>
 
