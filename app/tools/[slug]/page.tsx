@@ -59,6 +59,10 @@ function Section({
   eyebrow?: string;
   children: React.ReactNode;
 }) {
+  // Skip sections whose content is empty (e.g. fields left blank for a tool).
+  if (children == null || children === "" || (Array.isArray(children) && children.length === 0)) {
+    return null;
+  }
   return (
     <section id={id} className="scroll-mt-32 border-t border-ink-200/70 py-7 first:border-t-0 first:pt-0">
       {eyebrow && (

@@ -140,13 +140,12 @@ function CurrentEdition() {
         {EDITION.name}
       </h1>
       <p className="mt-3 max-w-2xl text-ink-600">
-        {summary.researched} researched picks · {summary.verified} verified, drawn
-        from our {summary.categoriesTotal}-category taxonomy across {summary.segmentsTotal}{" "}
-        segments. Every pick is researched and fact-checked before publication;
-        categories without a qualifying pick this edition are left open rather than
-        forced. We publish two editions a month, the 1st (1st–15th) and the 16th
-        (16th–end of month). Historical editions are preserved and never
-        overwritten.
+        {summary.verified} verified picks across our {summary.categoriesTotal}-category
+        taxonomy in {summary.segmentsTotal} segments. Every pick is researched and
+        fact-checked before publication; where a specific claim (such as pricing)
+        isn&apos;t independently confirmed, we label it rather than guess. We publish
+        two editions a month, the 1st (1st–15th) and the 16th (16th–end of month).
+        Historical editions are preserved and never overwritten.
       </p>
 
       <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">

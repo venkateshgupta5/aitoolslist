@@ -226,8 +226,11 @@ export default function HomePage() {
                   />
                 </div>
                 <p className="mt-2 text-[11px] text-white/45">
-                  <span className="text-emerald-300">{summary.verified} verified</span> ·{" "}
-                  <span className="text-brand-300">{summary.previewed} curated previews</span> · across {summary.categoriesTotal} categories
+                  <span className="text-emerald-300">{summary.verified} verified</span>
+                  {summary.previewed > 0 && (
+                    <> · <span className="text-brand-300">{summary.previewed} curated previews</span></>
+                  )}{" "}
+                  · across {summary.categoriesTotal} categories
                 </p>
               </div>
 
@@ -357,7 +360,7 @@ export default function HomePage() {
             <p className="text-[11px] font-semibold uppercase tracking-wide text-brand-600">The map</p>
             <h2 className="font-display mt-1 text-3xl font-semibold tracking-tight text-ink-900 sm:text-4xl">The AI landscape, mapped</h2>
             <p className="mt-2 max-w-2xl text-ink-600">
-              {summary.categoriesTotal} categories across {summary.segmentsTotal} segments, each with a tool to start from. {summary.verified} are verified edition picks; the rest are curated previews pending our fact-check.
+              {summary.categoriesTotal} categories across {summary.segmentsTotal} segments, each with a researched, verified tool profile. One standout per category, every fortnight.
             </p>
           </div>
           <Link href="/categories" className="shrink-0 text-sm font-semibold text-brand-600 hover:text-brand-700">All categories →</Link>
