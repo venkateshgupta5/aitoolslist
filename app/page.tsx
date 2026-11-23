@@ -104,7 +104,7 @@ export default function HomePage() {
         <div className="glow-orb pointer-events-none absolute -left-28 -top-24 h-80 w-80 bg-brand-500/40" aria-hidden />
         <div className="glow-orb pointer-events-none absolute right-[-6rem] top-24 h-80 w-80 bg-violet-500/25" aria-hidden />
 
-        <div className="relative mx-auto grid max-w-6xl items-center gap-14 px-4 py-20 sm:px-6 lg:grid-cols-[1.08fr_0.92fr] lg:py-28">
+        <div className="relative mx-auto grid max-w-6xl items-center gap-x-14 gap-y-10 px-4 pb-10 pt-16 sm:px-6 lg:grid-cols-[1.08fr_0.92fr] lg:pb-12 lg:pt-20">
           {/* Left, message */}
           <div>
             <div className="flex flex-wrap items-center gap-2">
