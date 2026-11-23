@@ -10,7 +10,8 @@
     "db:generate": "drizzle-kit generate",
     "db:push": "drizzle-kit push",
     "db:seed": "tsx scripts/seed.ts",
-    "agent": "tsx agent/cli.ts"
+    "agent": "tsx agent/cli.ts",
+    "screenshots": "python3 scripts/gen-screenshots.py"
   },
   "dependencies": {
     "@neondatabase/serverless": "^0.10.4",
