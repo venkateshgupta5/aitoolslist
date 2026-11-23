@@ -10,6 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: absoluteUrl("/categories"), lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: absoluteUrl("/about"), lastModified: now, changeFrequency: "monthly", priority: 0.5 },
     { url: absoluteUrl("/submit-tool"), lastModified: now, changeFrequency: "monthly", priority: 0.6 },
+    { url: absoluteUrl("/badge"), lastModified: now, changeFrequency: "yearly", priority: 0.3 },
     { url: absoluteUrl("/methodology"), lastModified: now, changeFrequency: "monthly", priority: 0.5 },
     { url: absoluteUrl("/contact"), lastModified: now, changeFrequency: "yearly", priority: 0.3 },
     { url: absoluteUrl("/listing-guidelines"), lastModified: now, changeFrequency: "yearly", priority: 0.3 },
