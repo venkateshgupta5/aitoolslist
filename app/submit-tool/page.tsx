@@ -13,7 +13,7 @@ import { siteConfig } from "@/lib/site";
 export const metadata: Metadata = {
   title: `List your product, ${siteConfig.listingPrice} premium listing`,
   description:
-    "Get your AI product a permanent, editorially reviewed listing on aitoolslist.ai for a one-time $199. Submit for review, you only pay after approval. Payment never guarantees rankings, traffic or leads.",
+    "Get your AI product a permanent, independently reviewed listing on aitoolslist.ai for a one-time $199. Submit for review, you only pay after approval. Payment never guarantees rankings, traffic or leads.",
   alternates: { canonical: "/submit-tool" },
 };
 
@@ -25,7 +25,7 @@ const deliverables = [
   {
     key: "A",
     title: "Dedicated product profile",
-    body: "A structured product page with your name, description, website, category, features, use cases and any pricing you supply, on the same rich template as our editorial picks.",
+    body: "A structured product page with your name, description, website, category, features, use cases and any pricing you supply, on the same rich template as our verified picks.",
   },
   {
     key: "B",
@@ -50,7 +50,7 @@ const deliverables = [
   {
     key: "F",
     title: "Sponsored, honestly labelled",
-    body: "Your listing is clearly marked “Sponsored.” It never appears as an editorial pick and never influences our independent rankings, which is exactly what keeps the platform worth being listed on.",
+    body: "Your listing is clearly marked “Sponsored.” It never appears as a verified pick and never influences our independent rankings, which is exactly what keeps the platform worth being listed on.",
   },
 ];
 
@@ -59,7 +59,7 @@ const terms = [
   ["Listing duration", "Permanent, stays live for as long as aitoolslist.ai operates and your product is active."],
   ["Payment timing", "Collected only after editorial approval, via a secure payment link. Nothing is charged upfront."],
   ["Editorial review", "Required. Within 3 business days of submission."],
-  ["Publication", "Within 2 business days of payment."],
+  ["Go live", "Within 2 business days of payment."],
   ["If rejected", "You pay nothing. We share the reason where we can."],
   ["Edits", "One structured edit round included; minor text/URL updates anytime by email, free."],
   ["Invoice & taxes", "Invoice available on request. Any applicable taxes are shown at invoicing."],
@@ -119,7 +119,7 @@ export default function SubmitToolPage() {
               <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-ink-600">
                 Your buyers now ask ChatGPT and Claude to compare and shortlist
                 vendors before they ever reach your site. Get a structured,
-                editorially reviewed profile that search engines and AI assistants
+                independently reviewed profile that search engines and AI assistants
                 can crawl and cite, so founders, product leaders and finance teams
                 discover you when it counts.
               </p>
@@ -214,7 +214,7 @@ export default function SubmitToolPage() {
           </div>
           <p className="mt-4 text-sm text-ink-500">
             Want to see a real, published profile?{" "}
-            <Link href="/tools/weaviate" className="font-medium text-brand-600 hover:text-brand-700">View an editorial example →</Link>
+            <Link href="/tools/weaviate" className="font-medium text-brand-600 hover:text-brand-700">View a verified example →</Link>
           </p>
         </div>
       </section>
