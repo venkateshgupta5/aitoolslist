@@ -1047,6 +1047,8 @@ const enrichment: Record<string, Partial<Product>> = {
   },
   "google-gemini": {
     productType: "Multimodal foundation model", productStatus: "Generally available", verification: "verified", lastVerified: "November 2026",
+    pricing: "Consumer: Google AI Plus $4.99/mo, AI Pro $19.99/mo, AI Ultra $99.99–$199.99/mo. API (Gemini 3.1 Pro): ≈$2 input / $12 output per 1M tokens, cheaper Flash tiers. Vendor-reported, Nov 2026.",
+    specs: [{ label: "Consumer entry", value: "$4.99/mo (AI Plus)" }, { label: "API (Pro)", value: "≈$2/$12 per 1M tokens" }],
     whyItMatters: "Gemini is among the leading multimodal models, especially strong on long context and video understanding.",
     differentiators: ["Native multimodality (text/image/audio/video)", "Very long context windows", "Deep Google ecosystem integration"],
     features: ["Multimodal reasoning", "Long-context processing", "Strong video understanding", "API and Workspace integration"],
@@ -1061,6 +1063,8 @@ const enrichment: Record<string, Partial<Product>> = {
   },
   "midjourney": {
     productType: "Text-to-image model", productStatus: "Generally available", verification: "verified", lastVerified: "November 2026",
+    pricing: "Basic $10/mo, Standard $30/mo, Pro $60/mo, Mega $120/mo (≈20% off annual); no free tier. Plans differ by Fast GPU hours. Vendor-reported, Nov 2026.",
+    specs: [{ label: "Entry price", value: "$10/mo (Basic)" }, { label: "Free tier", value: "None" }],
     whyItMatters: "Midjourney set the bar for aesthetic quality in generative images and remains a go-to for creative work.",
     differentiators: ["Distinctive artistic quality", "Strong style control", "Large creative community"],
     features: ["High-quality text-to-image", "Style and aspect controls", "Image variations and upscaling", "Web and Discord access"],
@@ -1075,6 +1079,8 @@ const enrichment: Record<string, Partial<Product>> = {
   },
   "runway": {
     productType: "Generative video platform", productStatus: "Generally available", verification: "verified", lastVerified: "November 2026",
+    pricing: "Free (limited credits); Standard $15/mo (625 credits); Pro $35/mo; Max $95/mo (adds Explore unlimited at relaxed queue). Vendor-reported, Nov 2026.",
+    specs: [{ label: "Entry price", value: "$15/mo (Standard)" }, { label: "Billing", value: "Credit-based" }],
     whyItMatters: "Runway helped pioneer production-grade AI video and is widely used across film, ads and social content.",
     differentiators: ["Pioneer in AI video", "Creative editing suite beyond generation", "Used in professional production"],
     features: ["Text/image-to-video", "AI video editing tools", "Motion and camera controls", "Collaboration features"],
@@ -1089,6 +1095,8 @@ const enrichment: Record<string, Partial<Product>> = {
   },
   "elevenlabs": {
     productType: "Voice & speech AI", productStatus: "Generally available", verification: "verified", lastVerified: "November 2026",
+    pricing: "Free (10k credits); Starter $6/mo; Creator $22/mo; Pro $99/mo; Scale $299/mo; Business $990/mo (≈17% off annual). Vendor-reported, Nov 2026.",
+    specs: [{ label: "Entry price", value: "$6/mo (Starter)" }, { label: "Free tier", value: "Yes (10k credits)" }],
     whyItMatters: "ElevenLabs set a new quality bar for AI speech and powers much of the voice-agent and dubbing ecosystem.",
     differentiators: ["Highly natural speech synthesis", "Voice cloning", "Broad language coverage"],
     features: ["Text-to-speech", "Voice cloning and design", "Dubbing and multilingual audio", "Low-latency streaming API"],
@@ -1203,7 +1211,8 @@ const enrichment: Record<string, Partial<Product>> = {
   },
   "n8n": {
     productType: "Workflow automation platform", productStatus: "Generally available", verification: "verified", lastVerified: "November 2026",
-    pricing: "Source-available (fair-code), free to self-host; paid cloud and enterprise tiers, see official pricing.",
+    pricing: "Source-available (fair-code), free to self-host; Cloud Starter ≈€24/mo (≈€20 annual, 2,500 executions); Pro and Enterprise tiers above. Vendor-reported, Nov 2026.",
+    specs: [{ label: "Self-host", value: "Free (source-available)" }, { label: "Cloud entry", value: "≈€24/mo (Starter)" }],
     whyItMatters: "n8n combines no-code automation with real extensibility and AI/agent nodes, and can be self-hosted for data control.",
     differentiators: ["Self-hostable, source-available", "AI/agent nodes built in", "Code when you need it, no-code when you don't"],
     features: ["Visual workflow builder", "400+ integrations", "AI and agent nodes", "Self-host or cloud"],
@@ -1233,6 +1242,8 @@ const enrichment: Record<string, Partial<Product>> = {
   },
   "chatgpt": {
     productType: "AI assistant", productStatus: "Generally available", verification: "verified", lastVerified: "November 2026",
+    pricing: "Free; Go $8/mo; Plus $20/mo; Pro from $100/mo; Business $25/user/mo (≈$20 annual). API billed per token. Vendor-reported, Nov 2026 — verify on the official pricing page.",
+    specs: [{ label: "Pricing model", value: "Freemium + subscription + API" }, { label: "Plus price", value: "$20/mo (vendor-reported)" }],
     whyItMatters: "ChatGPT is the most widely used AI assistant and, for many people, the default interface to AI.",
     differentiators: ["Largest user base and ecosystem", "Strong general reasoning", "Rich app and integration surface"],
     features: ["Conversational assistant", "Web browsing and tools", "Voice and image input", "Custom GPTs and apps"],
@@ -1291,6 +1302,8 @@ const enrichment: Record<string, Partial<Product>> = {
   },
   "replicate": {
     productType: "Model hosting & deployment", productStatus: "Generally available", verification: "verified", lastVerified: "November 2026",
+    pricing: "Pay-per-use, no subscription: per-second GPU (e.g. ≈$0.001525/s on H100) or per-output (e.g. FLUX Schnell ≈$0.003/image). Vendor-reported, Nov 2026.",
+    specs: [{ label: "Billing", value: "Per-second / per-output" }, { label: "Subscription", value: "None" }],
     whyItMatters: "Replicate turns open-source and custom models into production APIs with almost no infra work, speeding up shipping.",
     differentiators: ["Run models with one API call", "Huge community model catalogue", "Cog packaging for custom models"],
     features: ["API access to thousands of models", "Custom model deployment (Cog)", "Autoscaling", "Pay-per-use"],
@@ -1363,6 +1376,8 @@ const enrichment: Record<string, Partial<Product>> = {
   // ── AI Business Applications ──
   "jasper": {
     productType: "AI marketing platform", productStatus: "Generally available", verification: "verified", lastVerified: "November 2026",
+    pricing: "Pro $69/mo ($59/mo billed annually); Business custom (12-month minimum). Free trial available. Vendor-reported, Nov 2026.",
+    specs: [{ label: "Entry price", value: "$69/mo (Pro)" }, { label: "Billing", value: "Per seat / subscription" }],
     whyItMatters: "Jasper is purpose-built for marketing teams, combining brand controls with campaign and content generation.",
     differentiators: ["Marketing-specific workflows", "Brand voice controls", "Campaign-level tooling"],
     features: ["On-brand copy generation", "Campaign workflows", "Brand voice and style", "Team collaboration"],
@@ -1377,6 +1392,8 @@ const enrichment: Record<string, Partial<Product>> = {
   },
   "canva": {
     productType: "AI design & content platform", productStatus: "Generally available", verification: "verified", lastVerified: "November 2026",
+    pricing: "Free; Pro $18/mo (≈$12/mo billed annually); Business $25/user/mo; Enterprise custom. Vendor-reported, Nov 2026.",
+    specs: [{ label: "Pro price", value: "$18/mo (≈$12 annual)" }, { label: "Free tier", value: "Yes" }],
     whyItMatters: "Canva put design in everyone's hands, and its Magic Studio AI brings generation and editing into that same simple surface.",
     differentiators: ["Design + AI in one approachable tool", "Huge template/asset library", "Team and brand features"],
     features: ["AI image and text generation", "Design templates and editor", "Brand kit and collaboration", "Video and presentation tools"],
@@ -1405,6 +1422,8 @@ const enrichment: Record<string, Partial<Product>> = {
   },
   "harvey": {
     productType: "Legal AI platform", productStatus: "Generally available", verification: "verified", lastVerified: "November 2026",
+    pricing: "Enterprise / custom pricing (contact sales); not publicly listed. As of Nov 2026.",
+    specs: [{ label: "Pricing", value: "Enterprise / custom" }],
     whyItMatters: "Harvey is among the most adopted AI platforms in law firms, built for the accuracy and workflow demands of legal work.",
     differentiators: ["Built specifically for legal", "Adopted by major firms", "Workflow + research + drafting in one"],
     features: ["Legal research and analysis", "Contract review", "Drafting assistance", "Secure enterprise deployment"],
@@ -1739,9 +1758,11 @@ export function atAGlance(p: Product): { label: string; value: string }[] {
     { label: "Launch", value: p.launchDate ?? "Not verified" },
   ];
   const pricingShort =
-    /mit|free|open source|not applicable/i.test(p.pricing) && p.pricing.length < 90
-      ? p.pricing
-      : "Not publicly verified";
+    p.pricing === pricingTBD
+      ? "Not publicly verified"
+      : p.pricing.length <= 52
+        ? p.pricing
+        : `${p.pricing.split(/[;.]/)[0].slice(0, 52).trim()}…`;
   rows.push({ label: "Pricing", value: pricingShort });
   if (p.specs) rows.push(...p.specs);
   return rows;
