@@ -7,6 +7,7 @@ import {
   isEditionPick,
   categoryAccent,
 } from "@/lib/content";
+import { CategoryIcon } from "@/components/category-icon";
 
 export const metadata: Metadata = {
   title: "All categories",
@@ -75,9 +76,9 @@ export default function CategoriesPage() {
                       className="group flex items-start gap-4 rounded-2xl border border-ink-200/70 bg-white p-5 card-ring transition-all hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-md"
                     >
                       <div
-                        className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-xs font-bold text-white ${categoryAccent(c.slug)}`}
+                        className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-white ${categoryAccent(c.slug)}`}
                       >
-                        {c.order}
+                        <CategoryIcon slug={c.slug} className="h-5 w-5" />
                       </div>
                       <div className="min-w-0">
                         <h3 className="font-display text-base font-semibold leading-snug text-ink-900 group-hover:text-brand-700">

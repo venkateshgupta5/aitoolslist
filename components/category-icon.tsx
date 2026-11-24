@@ -1,0 +1,153 @@
+import {
+  Cloud,
+  Boxes,
+  Dumbbell,
+  Gauge,
+  Shrink,
+  Smartphone,
+  Network,
+  HardDrive,
+  Cpu,
+  Store,
+  Brain,
+  Feather,
+  Shapes,
+  Image,
+  Film,
+  AudioLines,
+  Search,
+  ScatterChart,
+  DatabaseZap,
+  Target,
+  Bot,
+  MemoryStick,
+  Fingerprint,
+  ShieldCheck,
+  CreditCard,
+  Workflow,
+  MousePointerClick,
+  Users,
+  Sparkles,
+  Building2,
+  Braces,
+  Code,
+  FlaskConical,
+  SlidersHorizontal,
+  SquareTerminal,
+  Rocket,
+  Shield,
+  Tags,
+  Library,
+  Zap,
+  Headset,
+  Megaphone,
+  PenTool,
+  TrendingUp,
+  Calculator,
+  Scale,
+  UserPlus,
+  Lock,
+  GraduationCap,
+  Stethoscope,
+  Cog,
+  Car,
+  Factory,
+  Truck,
+  ShoppingBag,
+  Building,
+  Gamepad2,
+  Pill,
+  Leaf,
+  Atom,
+  Shapes as FallbackIcon,
+  type LucideIcon,
+} from "lucide-react";
+
+/**
+ * One vector icon per category slug, used on the category cards in place of a
+ * plain number. Keyed by slug so it stays stable if ordering changes.
+ */
+const CATEGORY_ICONS: Record<string, LucideIcon> = {
+  // AI Infrastructure & Cloud
+  "ai-cloud-platforms": Cloud,
+  "ai-gpu-orchestration-scheduling": Boxes,
+  "ai-training-infrastructure": Dumbbell,
+  "ai-inference-optimization": Gauge,
+  "ai-model-compression-quantization": Shrink,
+  "ai-edge-computing": Smartphone,
+  "ai-networking-data-transfer": Network,
+  "ai-storage-infrastructure": HardDrive,
+  "ai-hardware-accelerators": Cpu,
+  "ai-compute-marketplaces": Store,
+  // AI Models & Intelligence
+  "foundation-models-llms": Brain,
+  "small-language-models": Feather,
+  "multimodal-ai-models": Shapes,
+  "ai-image-generation": Image,
+  "ai-video-generation": Film,
+  "ai-audio-speech-models": AudioLines,
+  "ai-search-retrieval": Search,
+  "ai-embeddings-reranking": ScatterChart,
+  "synthetic-data-generation": DatabaseZap,
+  "domain-specific-ai-models": Target,
+  // AI Agents & Automation
+  "ai-agent-platforms": Bot,
+  "ai-agent-memory-context": MemoryStick,
+  "ai-agent-identity-access-management": Fingerprint,
+  "ai-agent-security-governance": ShieldCheck,
+  "ai-agent-payments-transactions": CreditCard,
+  "ai-workflow-automation": Workflow,
+  "browser-computer-use-agents": MousePointerClick,
+  "multi-agent-collaboration": Users,
+  "ai-personal-assistants": Sparkles,
+  "enterprise-ai-automation": Building2,
+  // AI Developer Ecosystem
+  "ai-developer-apis-sdks": Braces,
+  "ai-code-generation": Code,
+  "ai-testing-qa": FlaskConical,
+  "ai-model-fine-tuning": SlidersHorizontal,
+  "ai-prompt-engineering-management": SquareTerminal,
+  "ai-deployment-hosting": Rocket,
+  "ai-security-guardrails": Shield,
+  "ai-data-annotation-labeling": Tags,
+  "ai-knowledge-management": Library,
+  "ai-developer-productivity": Zap,
+  // AI Business Applications
+  "ai-customer-support": Headset,
+  "ai-marketing-advertising": Megaphone,
+  "ai-content-creation": PenTool,
+  "ai-seo-geo-aeo": TrendingUp,
+  "ai-finance-accounting": Calculator,
+  "ai-legal-technology": Scale,
+  "ai-hr-recruitment": UserPlus,
+  "ai-cybersecurity": Lock,
+  "ai-education-learning": GraduationCap,
+  "ai-healthcare-operations": Stethoscope,
+  // Emerging & Specialized AI
+  "ai-robotics": Cog,
+  "autonomous-vehicles": Car,
+  "ai-manufacturing": Factory,
+  "ai-supply-chain-logistics": Truck,
+  "ai-retail-ecommerce": ShoppingBag,
+  "ai-real-estate": Building,
+  "ai-gaming": Gamepad2,
+  "ai-in-drug-discovery": Pill,
+  "ai-climate-energy": Leaf,
+  "ai-scientific-research": Atom,
+};
+
+export function categoryIconFor(slug: string): LucideIcon {
+  return CATEGORY_ICONS[slug] ?? FallbackIcon;
+}
+
+/** Render the icon for a category slug. */
+export function CategoryIcon({
+  slug,
+  className = "h-5 w-5",
+}: {
+  slug: string;
+  className?: string;
+}) {
+  const Icon = categoryIconFor(slug);
+  return <Icon className={className} strokeWidth={2} aria-hidden />;
+}

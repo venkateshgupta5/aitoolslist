@@ -9,8 +9,10 @@ import {
   archivePicksForCategory,
   buildCategoryFaq,
   faqJsonLd,
+  categoryAccent,
   EDITION,
 } from "@/lib/content";
+import { CategoryIcon } from "@/components/category-icon";
 import { PickCard } from "@/components/pick-card";
 import { ArchivePickCard } from "@/components/archive-pick-card";
 import { absoluteUrl } from "@/lib/site";
@@ -104,10 +106,17 @@ export default async function CategoryPage({
         <span className="text-ink-700">{category.name}</span>
       </nav>
 
-      <span className="mt-4 block text-[11px] font-semibold uppercase tracking-wide text-brand-600">
-        Category {category.order.toString().padStart(2, "0")}
-      </span>
-      <h1 className="mt-2 font-display text-3xl font-semibold tracking-tight text-ink-900 sm:text-4xl">
+      <div className="mt-6 flex items-center gap-4">
+        <div
+          className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl text-white ${categoryAccent(category.slug)}`}
+        >
+          <CategoryIcon slug={category.slug} className="h-6 w-6" />
+        </div>
+        <span className="text-[11px] font-semibold uppercase tracking-wide text-brand-600">
+          Category {category.order.toString().padStart(2, "0")}
+        </span>
+      </div>
+      <h1 className="mt-3 font-display text-3xl font-semibold tracking-tight text-ink-900 sm:text-4xl">
         {category.name}
       </h1>
       <p className="mt-3 max-w-2xl text-ink-600">{category.coverage}</p>
