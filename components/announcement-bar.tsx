@@ -19,14 +19,14 @@ export function AnnouncementBar() {
   if (!show) return null;
 
   return (
-    <div className="relative bg-ink-950 text-white">
+    <div className="relative border-b border-ink-200 bg-surface text-ink-900">
       <div className="mx-auto max-w-6xl px-10 py-2.5 text-center text-sm">
-        <p className="text-white/80">
+        <p className="text-ink-600">
           Building is easy, distribution is hard. Get your AI product discovered
           by buyers, search engines, and AI assistants.{" "}
           <Link
             href="/submit-tool"
-            className="font-semibold text-white underline underline-offset-4 decoration-brand-400 hover:text-brand-300"
+            className="font-semibold text-brand-600 underline underline-offset-4 decoration-brand-300 hover:text-brand-700"
           >
             List your product →
           </Link>
@@ -43,7 +43,7 @@ export function AnnouncementBar() {
           }
           setShow(false);
         }}
-        className="absolute right-3 top-1/2 flex h-6 w-6 -translate-y-1/2 items-center justify-center rounded text-white/50 transition-colors hover:bg-white/10 hover:text-white"
+        className="absolute right-3 top-1/2 flex h-6 w-6 -translate-y-1/2 items-center justify-center rounded text-ink-400 transition-colors hover:bg-ink-100 hover:text-ink-900"
       >
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
           <line x1="18" y1="6" x2="6" y2="18" />

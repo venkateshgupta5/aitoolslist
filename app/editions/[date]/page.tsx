@@ -83,7 +83,7 @@ export default async function EditionPage({
         <CurrentEdition />
       ) : archive ? (
         <>
-          <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-ink-200 bg-white px-3 py-1 text-xs font-medium text-ink-600">
+          <div className="mt-4 inline-flex items-center gap-2 rounded-lg border border-ink-200 bg-white px-3 py-1 text-xs font-medium text-ink-600">
             <span className="h-1.5 w-1.5 rounded-full bg-brand-500" />
             Archive edition · {archive.label}
           </div>
@@ -132,7 +132,7 @@ function CurrentEdition() {
   const summary = editionSummary();
   return (
     <>
-      <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-ink-200 bg-white px-3 py-1 text-xs font-medium text-ink-600">
+      <div className="mt-4 inline-flex items-center gap-2 rounded-lg border border-ink-200 bg-white px-3 py-1 text-xs font-medium text-ink-600">
         <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
         Published · fortnightly edition · {EDITION.label}
       </div>

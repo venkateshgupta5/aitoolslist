@@ -15,15 +15,15 @@ export function PickCard({
 
   return (
     <article
-      className={`group flex h-full flex-col rounded-2xl border bg-white p-5 card-ring transition-all hover:shadow-md ${
+      className={`group flex h-full flex-col rounded-xl border bg-white p-5 card-ring transition-all ${
         highlightLabel
-          ? "border-brand-300 ring-2 ring-brand-500/15"
-          : "border-ink-200/80 hover:border-brand-300"
+          ? "border-ink-300"
+          : "border-ink-200 hover:border-ink-300"
       }`}
     >
       {/* 1. Category / highlight + identity */}
       {highlightLabel ? (
-        <span className="mb-2 inline-flex w-fit items-center gap-1.5 rounded-full bg-brand-50 px-2.5 py-0.5 text-[11px] font-semibold text-brand-700 ring-1 ring-inset ring-brand-600/20">
+        <span className="tag tag-sky mb-2 w-fit">
           <span className="h-1.5 w-1.5 rounded-full bg-brand-500" />
           {highlightLabel}
         </span>

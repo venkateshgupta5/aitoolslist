@@ -1,43 +1,81 @@
 @import "tailwindcss";
 
+/* ──────────────────────────────────────────────────────────────────────────
+   Design system: Notion-style (per SKILL.md)
+   White canvas, warm-gray ink, pastel tint cards, blue links, black buttons,
+   8px rectangles / 12px cards, Inter. Tokens map onto the existing Tailwind
+   names (paper / ink-* / brand-*) so every component inherits automatically.
+   ────────────────────────────────────────────────────────────────────────── */
+
 @theme {
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system,
-    "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  /* Simple, neutral sans for headings too (Product Hunt style) */
-  --font-display: var(--font-inter), ui-sans-serif, system-ui, -apple-system,
-    "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-sans: var(--font-inter), -apple-system, system-ui, "Segoe UI",
+    Helvetica, Arial, sans-serif;
+  --font-display: var(--font-inter), -apple-system, system-ui, "Segoe UI",
+    Helvetica, Arial, sans-serif;
 
-  /* Warm "paper" canvas for an editorial publication feel */
-  --color-paper: #faf7f2;
+  /* Surface — white canvas, warm off-white secondary band */
+  --color-paper: #ffffff; /* canvas / body */
+  --color-surface: #f6f5f4; /* secondary band / subtle fills */
 
-  /* Warm-neutral ink ramp (stone), harmonizes with the ember accent */
-  --color-ink-50: #f7f5f1;
-  --color-ink-100: #ece9e2;
-  --color-ink-200: #dcd7cd;
-  --color-ink-300: #b9b2a5;
-  --color-ink-400: #8c8577;
-  --color-ink-500: #6a6456;
-  --color-ink-600: #514b40;
-  --color-ink-700: #3e3a31;
-  --color-ink-800: #2a2721;
-  --color-ink-900: #1a1713;
-  --color-ink-950: #0e0c0a;
+  /* Warm-gray ink ramp (never pure gray). Low end = hairlines, high = text. */
+  --color-ink-50: #f6f5f4; /* surface */
+  --color-ink-100: #ede9e4; /* hairline-soft */
+  --color-ink-200: #e5e3df; /* hairline */
+  --color-ink-300: #c8c4be; /* hairline-strong */
+  --color-ink-400: #a4a097; /* stone — disabled / placeholder */
+  --color-ink-500: #787671; /* steel — muted text */
+  --color-ink-600: #5d5b54; /* slate — secondary body */
+  --color-ink-700: #37352f; /* charcoal — strong body */
+  --color-ink-800: #262522;
+  --color-ink-900: #1a1a1a; /* primary text */
+  --color-ink-950: #000000; /* deep ink */
 
-  /* "Ember" accent, warm coral/tangerine, confident and un-generic */
-  --color-brand-50: #fff4ee;
-  --color-brand-100: #ffe4d6;
-  --color-brand-200: #ffc5ad;
-  --color-brand-300: #ff9e78;
-  --color-brand-400: #ff6f3d;
-  --color-brand-500: #f8541f;
-  --color-brand-600: #dc3f10;
-  --color-brand-700: #b4330d;
-  --color-brand-800: #8f2b11;
-  --color-brand-900: #742611;
+  /* Brand accent → Notion blue. Used for inline links and small accents. */
+  --color-brand-50: #eef6fd;
+  --color-brand-100: #d6e9fb;
+  --color-brand-200: #aed3f6;
+  --color-brand-300: #7ab8ef;
+  --color-brand-400: #3b97e6;
+  --color-brand-500: #0075de; /* link */
+  --color-brand-600: #0066c4;
+  --color-brand-700: #0553a0;
+  --color-brand-800: #0a4582;
+  --color-brand-900: #0d3b6c;
+
+  /* Pastel tints — tag and card backgrounds only. One job each. */
+  --color-sky: #dcecfa;
+  --color-rose: #fde0ec;
+  --color-mint: #d9f3e1;
+  --color-lavender: #e6e0f5;
+  --color-peach: #ffe8d4;
+  --color-yellow: #fef7d6;
+  --color-yellow-bold: #f9e79f;
+  --color-taggray: #f0eeec;
+
+  /* Text on tints (deep shade of the same hue, AA on its tint) */
+  --color-on-peach: #793400;
+  --color-on-mint: #1a5c2b;
+  --color-on-lavender: #391c57;
+  --color-on-sky: #0a4a85;
+  --color-on-rose: #8a1b4d;
+
+  /* Status */
+  --color-verified: #1aae39; /* green */
+
+  /* Radius — 8px rectangles for controls, 12px for cards. Remap the larger
+     Tailwind steps down to 12px so existing rounded-2xl / rounded-3xl cards
+     become Notion-correct without touching every file. */
+  --radius-lg: 0.5rem; /* 8px — buttons, tags, chips, tabs */
+  --radius-xl: 0.75rem; /* 12px — cards */
+  --radius-2xl: 0.75rem; /* 12px (was 16px) */
+  --radius-3xl: 0.75rem; /* 12px (was 24px) */
 }
 
 :root {
   color-scheme: light;
+  /* Depth tokens (Notion: at most one sh-3 per screen) */
+  --sh-2: 0 4px 12px rgba(15, 15, 15, 0.08); /* hover lift */
+  --sh-3: 0 24px 48px -8px rgba(15, 15, 15, 0.2); /* one hero mockup only */
 }
 
 html {
@@ -62,54 +100,113 @@ body {
   text-wrap: balance;
 }
 
-/* ── Cinematic dark hero ──────────────────────────────────────────────── */
-.hero-dark {
-  position: relative;
-  color: #f5f1ea;
-  background:
-    radial-gradient(55% 45% at 12% 8%, rgba(248, 84, 31, 0.26), transparent 60%),
-    radial-gradient(45% 55% at 88% 14%, rgba(139, 92, 246, 0.20), transparent 62%),
-    radial-gradient(60% 60% at 72% 96%, rgba(56, 132, 255, 0.14), transparent 60%),
-    #0d0b0a;
+/* ── Eyebrow ───────────────────────────────────────────────────────────── */
+.eyebrow {
+  font: 600 12px/1.4 var(--font-sans);
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--color-ink-500);
 }
 
-/* Fine grid, faded toward the edges */
-.hero-grid-lines {
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.055) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.055) 1px, transparent 1px);
-  background-size: 54px 54px;
-  -webkit-mask-image: radial-gradient(72% 72% at 50% 35%, #000 50%, transparent 100%);
-  mask-image: radial-gradient(72% 72% at 50% 35%, #000 50%, transparent 100%);
+/* ── Notion text highlight: one phrase in the H1 only ──────────────────── */
+.hl {
+  padding: 0 0.18em;
+  border-radius: 4px;
+  background: var(--color-yellow);
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
 }
 
-.glow-orb {
-  filter: blur(64px);
-  border-radius: 9999px;
+/* Marker underline for result numbers */
+.num {
+  background: linear-gradient(transparent 62%, var(--color-yellow-bold) 62%);
+  font-weight: 600;
 }
 
-.glass {
-  background: rgba(255, 255, 255, 0.055);
-  -webkit-backdrop-filter: blur(16px);
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+/* ── Tag / chip (8px rectangle, pastel tints) ──────────────────────────── */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: var(--radius-lg);
+  font: 600 13px/1.4 var(--font-sans);
+  background: var(--color-taggray);
+  color: var(--color-ink-700);
+}
+.tag-sky {
+  background: var(--color-sky);
+  color: var(--color-on-sky);
+}
+.tag-mint {
+  background: var(--color-mint);
+  color: var(--color-on-mint);
+}
+.tag-peach {
+  background: var(--color-peach);
+  color: var(--color-on-peach);
+}
+.tag-lavender {
+  background: var(--color-lavender);
+  color: var(--color-on-lavender);
+}
+.tag-rose {
+  background: var(--color-rose);
+  color: var(--color-on-rose);
 }
 
+/* ── Card ──────────────────────────────────────────────────────────────── */
 .card-ring {
   box-shadow:
-    0 1px 2px rgba(20, 19, 15, 0.04),
-    0 10px 30px -16px rgba(20, 19, 15, 0.16);
+    0 1px 2px rgba(20, 19, 15, 0.03),
+    0 1px 1px rgba(20, 19, 15, 0.04);
+}
+.card-ring:hover {
+  box-shadow: var(--sh-2);
 }
 
+/* ── Light Notion hero: surface band with a faded grid ─────────────────── */
+.hero-notion {
+  position: relative;
+  color: var(--color-ink-900);
+  background: var(--color-surface);
+}
+.hero-grid-lines {
+  background-image:
+    linear-gradient(rgba(26, 23, 19, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(26, 23, 19, 0.04) 1px, transparent 1px);
+  background-size: 54px 54px;
+  -webkit-mask-image: radial-gradient(72% 72% at 50% 35%, #000 45%, transparent 100%);
+  mask-image: radial-gradient(72% 72% at 50% 35%, #000 45%, transparent 100%);
+}
+
+/* ── Focus ─────────────────────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--color-ink-900);
+  outline-offset: 2px;
+}
+
+/* ── Status dot pulse (pills allowed only for status dots) ─────────────── */
 @keyframes pulse-dot {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.35; transform: scale(0.82); }
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.35;
+    transform: scale(0.82);
+  }
 }
 .animate-pulse-dot {
   animation: pulse-dot 2.4s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  .animate-pulse-dot { animation: none; }
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-pulse-dot {
+    animation: none;
+  }
 }

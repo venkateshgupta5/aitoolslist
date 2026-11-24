@@ -40,7 +40,7 @@ export function BacklinkSeoMock() {
           <p className="text-[10px] text-ink-400">/tools/your-product</p>
         </div>
         <div className="flex flex-col items-center">
-          <span className="rounded-full bg-emerald-50 px-2 py-0.5 text-[9px] font-semibold text-emerald-700 ring-1 ring-inset ring-emerald-600/20">dofollow link</span>
+          <span className="rounded-md bg-emerald-50 px-2 py-0.5 text-[9px] font-semibold text-emerald-700 ring-1 ring-inset ring-emerald-600/20">dofollow link</span>
           <span className="mt-0.5 text-brand-500">→</span>
         </div>
         <div className="flex-1 rounded-xl border border-brand-300 bg-brand-50/60 p-3 text-center">
@@ -71,7 +71,7 @@ export function AiCitationMock() {
         A few strong options depending on your needs. For your use case,{" "}
         <span className="font-semibold text-ink-900">Your Product</span> stands out for its
         quality and pricing.
-        <span className="mt-2 flex w-fit items-center gap-1.5 rounded-full bg-white px-2 py-0.5 text-[10px] font-medium text-ink-500 ring-1 ring-inset ring-ink-200">
+        <span className="mt-2 flex w-fit items-center gap-1.5 rounded-md bg-white px-2 py-0.5 text-[10px] font-medium text-ink-500 ring-1 ring-inset ring-ink-200">
           <span className="h-1.5 w-1.5 rounded-full bg-brand-500" />
           Source: aitoolslist.ai
         </span>

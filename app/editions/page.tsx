@@ -45,12 +45,12 @@ export default function EditionsIndexPage() {
                     {e.label}
                   </h2>
                   {e.isCurrent ? (
-                    <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-2.5 py-0.5 text-[11px] font-medium text-emerald-700 ring-1 ring-inset ring-emerald-600/20">
+                    <span className="inline-flex items-center gap-1.5 rounded-lg bg-emerald-50 px-2.5 py-0.5 text-[11px] font-medium text-emerald-700 ring-1 ring-inset ring-emerald-600/20">
                       <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
                       Current
                     </span>
                   ) : (
-                    <span className="rounded-full bg-ink-100 px-2.5 py-0.5 text-[11px] font-medium text-ink-500 ring-1 ring-inset ring-ink-500/20">
+                    <span className="rounded-lg bg-ink-100 px-2.5 py-0.5 text-[11px] font-medium text-ink-500 ring-1 ring-inset ring-ink-500/20">
                       Archive
                     </span>
                   )}
