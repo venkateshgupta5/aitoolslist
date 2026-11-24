@@ -81,11 +81,11 @@ export default function AboutPage() {
         ))}
       </ol>
 
-      <div className="mt-12 rounded-xl border border-ink-200 bg-surface p-6 text-center">
-        <p className="text-ink-900">Have a tool worth featuring?</p>
+      <div className="mt-12 rounded-2xl bg-ink-900 p-6 text-center">
+        <p className="text-white">Have a tool worth featuring?</p>
         <Link
           href="/submit-tool"
-          className="mt-4 inline-block rounded-lg bg-ink-900 px-5 py-2.5 text-sm font-semibold text-white hover:bg-ink-800"
+          className="mt-4 inline-block rounded-lg bg-white px-5 py-2.5 text-sm font-semibold text-ink-900 hover:bg-ink-100"
         >
           List your product
         </Link>

@@ -57,7 +57,7 @@ export default async function ProfilePage() {
             {user.name ?? "Signed-in user"}
           </p>
           <p className="truncate text-ink-600">{user.email}</p>
-          <span className="mt-2 inline-flex items-center gap-1.5 rounded-lg bg-emerald-50 px-2.5 py-0.5 text-[11px] font-medium text-emerald-700 ring-1 ring-inset ring-emerald-600/20">
+          <span className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-2.5 py-0.5 text-[11px] font-medium text-emerald-700 ring-1 ring-inset ring-emerald-600/20">
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
             Signed in with Google
           </span>

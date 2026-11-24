@@ -203,12 +203,12 @@ export default async function ProductPage({
         <div className="mt-4 flex flex-wrap items-center gap-2.5">
           <VerificationBadge status={product.verification} />
           {product.researchConfidence && (
-            <span className="inline-flex items-center gap-1.5 rounded-lg bg-ink-100 px-2.5 py-0.5 text-[11px] font-medium text-ink-600 ring-1 ring-inset ring-ink-500/20">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-ink-100 px-2.5 py-0.5 text-[11px] font-medium text-ink-600 ring-1 ring-inset ring-ink-500/20">
               Research confidence: {product.researchConfidence}
             </span>
           )}
           {product.productType && (
-            <span className="inline-flex items-center rounded-lg bg-ink-100 px-2.5 py-0.5 text-[11px] font-medium text-ink-600">
+            <span className="inline-flex items-center rounded-full bg-ink-100 px-2.5 py-0.5 text-[11px] font-medium text-ink-600">
               {product.productType}
             </span>
           )}
@@ -313,7 +313,7 @@ export default async function ProductPage({
                         <td className="py-2 pr-4 text-ink-600">{b.label}</td>
                         <td className="py-2 pr-4 font-medium text-ink-800">{b.value}</td>
                         <td className="py-2 text-right">
-                          <span className={`rounded-lg px-2 py-0.5 text-[11px] font-medium ${b.kind === "independent" ? "bg-emerald-50 text-emerald-700" : b.kind === "vendor" ? "bg-amber-50 text-amber-700" : "bg-ink-100 text-ink-600"}`}>
+                          <span className={`rounded-full px-2 py-0.5 text-[11px] font-medium ${b.kind === "independent" ? "bg-emerald-50 text-emerald-700" : b.kind === "vendor" ? "bg-amber-50 text-amber-700" : "bg-ink-100 text-ink-600"}`}>
                             {b.kind === "independent" ? "Independent" : b.kind === "vendor" ? "Vendor-reported" : "Community"}
                           </span>
                         </td>
@@ -436,7 +436,7 @@ export default async function ProductPage({
                     <tr key={c.field} className="border-b border-ink-100">
                       <td className="py-2 pr-4 text-ink-600">{c.field}</td>
                       <td className="py-2 pr-4">
-                        <span className={`rounded-lg px-2 py-0.5 text-[11px] font-medium ring-1 ring-inset ${claimColor[c.status]}`}>{c.status}</span>
+                        <span className={`rounded-full px-2 py-0.5 text-[11px] font-medium ring-1 ring-inset ${claimColor[c.status]}`}>{c.status}</span>
                       </td>
                       <td className="py-2 text-right text-xs text-ink-400">{c.note ?? ""}</td>
                     </tr>

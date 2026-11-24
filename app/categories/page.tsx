@@ -42,7 +42,7 @@ export default function CategoriesPage() {
           <a
             key={s.slug}
             href={`#${s.slug}`}
-            className="rounded-lg border border-ink-200 bg-white px-3 py-1.5 text-xs font-semibold text-ink-700 transition-colors hover:border-brand-300 hover:text-brand-700"
+            className="rounded-full border border-ink-200 bg-white px-3 py-1.5 text-xs font-semibold text-ink-700 transition-colors hover:border-brand-300 hover:text-brand-700"
           >
             {s.name}
           </a>

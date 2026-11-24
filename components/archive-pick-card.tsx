@@ -21,7 +21,7 @@ export function ArchivePickCard({
   const { category, pick } = slot;
 
   return (
-    <article className="group flex h-full flex-col rounded-xl border border-ink-200 bg-white p-5 card-ring transition-all hover:border-ink-300">
+    <article className="group flex h-full flex-col rounded-2xl border border-ink-200/80 bg-white p-5 card-ring transition-all hover:border-brand-300 hover:shadow-md">
       {editionHref && editionLabel ? (
         <Link
           href={editionHref}

@@ -124,15 +124,16 @@ export default async function SubmitToolPage() {
       <ListingPageView />
 
       {/* ── HERO (no price) ─────────────────────────────────────────── */}
-      <section className="hero-notion relative overflow-hidden border-b border-ink-200">
+      <section className="hero-dark relative overflow-hidden">
         <div className="pointer-events-none absolute inset-0 hero-grid-lines" aria-hidden />
+        <div className="glow-orb pointer-events-none absolute -left-24 -top-24 h-80 w-80 bg-brand-500/40" aria-hidden />
         <div className="relative mx-auto max-w-3xl px-4 py-10 text-center sm:px-6 sm:py-12">
-          <h1 className="font-display text-balance text-2xl font-semibold leading-tight tracking-tight text-ink-900 sm:text-[2rem]">
+          <h1 className="font-display text-balance text-2xl font-semibold leading-tight tracking-tight text-white sm:text-[2rem]">
             Building is easy. Distribution is the{" "}
-            <span className="hl">hard part.</span>
+            <span className="italic text-brand-400">hard part.</span>
           </h1>
 
-          <p className="mx-auto mt-3 max-w-xl text-[15px] leading-relaxed text-ink-600">
+          <p className="mx-auto mt-3 max-w-xl text-[15px] leading-relaxed text-white/65">
             Reach high-intent buyers, improve your search visibility, and get discovered by
             AI search engines and LLMs.
           </p>
@@ -140,19 +141,19 @@ export default async function SubmitToolPage() {
           <div className="mt-5 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <GateCta
               where="hero"
-              className="rounded-lg bg-ink-900 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-ink-800"
+              className="rounded-xl bg-brand-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-brand-500/30 transition-colors hover:bg-brand-400"
             >
               List your product →
             </GateCta>
             <a
               href="#benefits"
-              className="rounded-lg border border-ink-300 bg-white px-6 py-3 text-sm font-semibold text-ink-900 transition-colors hover:bg-surface"
+              className="rounded-xl border border-white/20 bg-white/5 px-6 py-3 text-sm font-semibold text-white backdrop-blur transition-colors hover:bg-white/10"
             >
               See what&apos;s included
             </a>
           </div>
 
-          <p className="mt-4 text-xs text-ink-500">
+          <p className="mt-4 text-xs text-white/45">
             Submit free · pay only after approval · permanent listing
           </p>
         </div>
@@ -255,7 +256,7 @@ export default async function SubmitToolPage() {
             ["Go live", "Your permanent listing goes live and we send you the URL."],
           ].map(([title, body], i) => (
             <li key={title} className="rounded-2xl border border-ink-200/80 bg-white p-5">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-ink-900 text-sm font-bold text-white">{i + 1}</div>
+              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-ink-900 text-sm font-bold text-white">{i + 1}</div>
               <h3 className="mt-3 text-sm font-bold text-ink-900">{title}</h3>
               <p className="mt-1 text-xs leading-relaxed text-ink-600">{body}</p>
             </li>
@@ -315,17 +316,17 @@ export default async function SubmitToolPage() {
           ))}
         </div>
 
-        <div className="mt-10 rounded-xl border border-ink-200 bg-surface p-7 text-center">
-          <p className="mx-auto max-w-xl text-ink-900">
+        <div className="mt-10 rounded-2xl bg-ink-950 p-7 text-center">
+          <p className="mx-auto max-w-xl text-white">
             When a buyer asks an AI assistant which tool to use, should your product be in the
             answer, or should that discovery go to a more visible competitor?
           </p>
           <div className="mt-5">
-            <GateCta where="faq" className="inline-flex rounded-lg bg-ink-900 px-6 py-3 text-sm font-semibold text-white hover:bg-ink-800">
+            <GateCta where="faq" className="inline-flex rounded-xl bg-white px-6 py-3 text-sm font-semibold text-ink-900 hover:bg-ink-100">
               List your product →
             </GateCta>
           </div>
-          <p className="mt-3 text-xs text-ink-500">Submit free · pay only after approval</p>
+          <p className="mt-3 text-xs text-ink-400">Submit free · pay only after approval</p>
         </div>
 
         <p className="mt-6 text-center text-sm text-ink-500">
