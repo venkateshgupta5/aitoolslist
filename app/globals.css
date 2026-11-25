@@ -72,7 +72,23 @@ body {
   text-wrap: balance;
 }
 
-/* ── Cinematic dark hero ──────────────────────────────────────────────── */
+/* ── Editorial light hero ─────────────────────────────────────────────── */
+.hero-light {
+  background:
+    radial-gradient(52% 58% at 100% -4%, rgba(0, 139, 220, 0.12), transparent 60%),
+    radial-gradient(42% 46% at -4% 6%, rgba(0, 165, 236, 0.07), transparent 58%),
+    #ffffff;
+}
+
+/* Faint dot texture, faded toward the edges — subtle, not a full grid. */
+.hero-dots {
+  background-image: radial-gradient(rgba(10, 42, 78, 0.07) 1px, transparent 1px);
+  background-size: 22px 22px;
+  -webkit-mask-image: radial-gradient(78% 68% at 50% 0%, #000 28%, transparent 76%);
+  mask-image: radial-gradient(78% 68% at 50% 0%, #000 28%, transparent 76%);
+}
+
+/* ── Cinematic dark hero (retained for other sections) ────────────────── */
 .hero-dark {
   position: relative;
   color: #f5f8fc;

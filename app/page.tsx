@@ -69,12 +69,6 @@ export default function HomePage() {
   const picksWithProducts = picks.filter((p) => isEditionPick(p.product));
   const topPicks = picksWithProducts.slice(0, 5);
 
-  const heroTrust = [
-    "Independently researched and verified",
-    "Evidence-backed comparisons",
-    "Fresh discoveries and rankings every fortnight",
-  ];
-
   const answerEngines = ["ChatGPT", "Claude", "Perplexity", "Gemini", "Copilot"];
 
   // Trending (sponsored) — 5 tools shown just below the hero.
@@ -136,164 +130,148 @@ export default function HomePage() {
   return (
     <>
       {/* ── Hero (first fold) ─────────────────────────────────────────── */}
-      <section className="hero-dark relative overflow-hidden">
-        <div className="pointer-events-none absolute inset-0 hero-grid-lines" aria-hidden />
-        <div className="glow-orb pointer-events-none absolute -left-28 -top-24 h-80 w-80 bg-brand-500/40" aria-hidden />
-        <div className="glow-orb pointer-events-none absolute right-[-6rem] top-24 h-80 w-80 bg-violet-500/25" aria-hidden />
+      <section className="hero-light relative overflow-hidden border-b border-ink-200/60">
+        <div className="pointer-events-none absolute inset-0 hero-dots" aria-hidden />
 
-        <div className="relative mx-auto grid max-w-6xl items-center gap-x-14 gap-y-10 px-4 pb-10 pt-16 sm:px-6 lg:grid-cols-[1.08fr_0.92fr] lg:pb-12 lg:pt-20">
+        <div className="relative mx-auto grid max-w-6xl items-center gap-x-14 gap-y-12 px-4 pb-16 pt-14 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:pb-20 lg:pt-20">
           {/* Left, message */}
           <div>
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-medium text-white/80 backdrop-blur">
-                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse-dot" />
-                Updated every fortnight
-              </span>
-              <span className="inline-flex items-center rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-xs font-medium text-white/55">
-                Independent · no paid rankings
-              </span>
-            </div>
+            <span className="inline-flex items-center gap-2 rounded-full border border-ink-200 bg-white/80 px-3 py-1 text-xs font-medium text-ink-600 shadow-sm backdrop-blur">
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse-dot" />
+              Edition {EDITION.label}
+              <span className="h-3 w-px bg-ink-200" />
+              <span className="text-ink-500">{summary.verified} verified picks</span>
+            </span>
 
-            <h1 className="font-display mt-6 text-balance text-[2.6rem] font-semibold leading-[1.05] tracking-tight text-white sm:text-[3.4rem] lg:text-[4rem]">
+            <h1 className="font-display mt-6 text-balance text-[2.7rem] font-extrabold leading-[1.02] tracking-tight text-ink-900 sm:text-[3.4rem] lg:text-[3.9rem]">
               Thousands of AI tools.
               <br />
-              One place to{" "}
-              <span className="relative italic text-brand-400">
-                find the right one.
-                <span className="absolute -bottom-1 left-0 h-[3px] w-full rounded-full bg-gradient-to-r from-brand-500 to-transparent" aria-hidden />
-              </span>
+              One place to find the{" "}
+              <span className="text-brand-600">right one.</span>
             </h1>
 
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/70">
-              Discover and evaluate the world&apos;s best AI products across {summary.categoriesTotal} categories.
-              Whether you&apos;re building, creating, automating, researching or scaling your business, find the
-              right AI tool, backed by{" "}
-              <span className="text-white">independent research, evidence and expert evaluation</span>.
+            <p className="mt-5 max-w-xl text-lg leading-relaxed text-ink-600">
+              Independent, evidence-backed reviews across {summary.categoriesTotal} categories —
+              one verified standout per category, refreshed every fortnight.
             </p>
-
-            {/* Trust chips */}
-            <ul className="mt-6 flex flex-wrap gap-x-5 gap-y-2">
-              {heroTrust.map((t) => (
-                <li key={t} className="flex items-center gap-1.5 text-[13px] text-white/60">
-                  <svg className="h-3.5 w-3.5 shrink-0 text-brand-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-                    <path d="M20 6 9 17l-5-5" />
-                  </svg>
-                  {t}
-                </li>
-              ))}
-            </ul>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link
                 href="/categories"
-                className="rounded-xl bg-brand-500 px-6 py-3.5 text-center text-sm font-semibold text-white shadow-lg shadow-brand-500/30 transition-colors hover:bg-brand-400"
+                className="inline-flex items-center justify-center gap-1.5 rounded-xl bg-brand-500 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-brand-500/25 transition-colors hover:bg-brand-600"
               >
-                Find the best AI tool →
+                Browse {summary.categoriesTotal} categories
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                  <path d="M5 12h14" /><path d="m13 6 6 6-6 6" />
+                </svg>
               </Link>
               <Link
-                href="#categories"
-                className="rounded-xl border border-white/20 bg-white/5 px-6 py-3.5 text-center text-sm font-semibold text-white backdrop-blur transition-colors hover:bg-white/10"
+                href={`/editions/${EDITION.slug}`}
+                className="inline-flex items-center justify-center rounded-xl border border-ink-300 bg-white px-6 py-3.5 text-sm font-semibold text-ink-800 transition-colors hover:border-brand-300 hover:text-brand-700"
               >
-                Explore all {summary.categoriesTotal} categories
+                See this edition&apos;s picks
               </Link>
             </div>
 
+            {/* Quick jump by segment */}
+            <div className="mt-9">
+              <p className="text-[11px] font-semibold uppercase tracking-wide text-ink-400">
+                Explore by segment
+              </p>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {segments.map((s) => (
+                  <Link
+                    key={s.slug}
+                    href={`/categories#${s.slug}`}
+                    className="rounded-full border border-ink-200 bg-white px-3 py-1.5 text-xs font-medium text-ink-700 transition-colors hover:border-brand-300 hover:bg-brand-50/60 hover:text-brand-700"
+                  >
+                    {s.name}
+                  </Link>
+                ))}
+              </div>
+            </div>
+
             {/* AI answer-engine hook */}
-            <div className="mt-8 flex flex-wrap items-center gap-x-3 gap-y-1.5">
-              <span className="text-[11px] font-medium uppercase tracking-wide text-white/35">
+            <div className="mt-9 flex flex-wrap items-center gap-x-3 gap-y-1.5 border-t border-ink-200/70 pt-6">
+              <span className="text-[11px] font-medium uppercase tracking-wide text-ink-400">
                 Structured to be cited by
               </span>
               <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
                 {answerEngines.map((e) => (
-                  <span key={e} className="text-[13px] font-semibold text-white/65">{e}</span>
+                  <span key={e} className="text-[13px] font-semibold text-ink-700">{e}</span>
                 ))}
               </div>
             </div>
           </div>
 
-          {/* Right, data-driven edition card visual */}
+          {/* Right, data-driven edition panel */}
           <div className="relative">
-            <div className="glow-orb pointer-events-none absolute inset-6 bg-brand-500/20" aria-hidden />
-            <div className="glass relative rounded-3xl p-5 shadow-2xl sm:p-6">
+            <div
+              className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-brand-400/15 blur-3xl"
+              aria-hidden
+            />
+            <div className="relative rounded-2xl border border-ink-200/80 bg-white p-5 card-ring sm:p-6">
               <div className="flex items-start justify-between">
                 <div>
-                  <p className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wide text-white/50">
-                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse-dot" />
-                    Top verified picks
+                  <p className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wide text-ink-400">
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse-dot" />
+                    This edition
                   </p>
-                  <p className="font-display mt-1 text-xl font-semibold text-white">
-                    Updated {EDITION.label}
+                  <p className="font-display mt-1 text-xl font-bold text-ink-900">
+                    {EDITION.label}
                   </p>
                 </div>
-                <span className="rounded-full bg-emerald-400/15 px-2.5 py-1 text-[11px] font-semibold text-emerald-300 ring-1 ring-inset ring-emerald-400/30">
+                <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2.5 py-1 text-[11px] font-semibold text-emerald-700 ring-1 ring-inset ring-emerald-600/15">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                    <path d="M20 6 9 17l-5-5" />
+                  </svg>
                   {summary.verified} verified
                 </span>
               </div>
 
               {/* Coverage micro-bar */}
               <div className="mt-4">
-                <div className="flex h-1.5 overflow-hidden rounded-full bg-white/10">
-                  <span
-                    className="bg-emerald-400"
-                    style={{ width: `${(summary.verified / summary.categoriesTotal) * 100}%` }}
-                  />
-                  <span
-                    className="bg-brand-400/70"
-                    style={{ width: `${(summary.previewed / summary.categoriesTotal) * 100}%` }}
-                  />
+                <div className="flex h-1.5 overflow-hidden rounded-full bg-ink-100">
+                  <span className="bg-emerald-500" style={{ width: `${(summary.verified / summary.categoriesTotal) * 100}%` }} />
+                  <span className="bg-brand-400/70" style={{ width: `${(summary.previewed / summary.categoriesTotal) * 100}%` }} />
                 </div>
-                <p className="mt-2 text-[11px] text-white/45">
-                  <span className="text-emerald-300">{summary.verified} verified</span>
+                <p className="mt-2 text-[11px] text-ink-400">
+                  <span className="font-medium text-emerald-600">{summary.verified} verified</span>
                   {summary.previewed > 0 && (
-                    <> · <span className="text-brand-300">{summary.previewed} curated previews</span></>
+                    <> · <span className="font-medium text-brand-600">{summary.previewed} curated previews</span></>
                   )}{" "}
                   · across {summary.categoriesTotal} categories
                 </p>
               </div>
 
-              <div className="mt-5 space-y-2">
-                {topPicks.map((p) => (
+              <div className="mt-5 space-y-0.5">
+                {topPicks.map((p, i) => (
                   <Link
                     key={p.category.slug}
                     href={`/tools/${p.product!.slug}`}
-                    className="flex items-center gap-3 rounded-xl bg-white/[0.04] px-3 py-2.5 ring-1 ring-inset ring-white/10 transition-colors hover:bg-white/[0.08]"
+                    className="group flex items-center gap-3 rounded-xl px-2.5 py-2.5 transition-colors hover:bg-ink-50"
                   >
-                    <ToolLogo name={p.product!.name} logo={p.product!.logo} categorySlug={p.category.slug} size={36} className="rounded-lg" />
+                    <span className="w-4 shrink-0 text-center text-xs font-bold text-ink-300">{i + 1}</span>
+                    <ToolLogo name={p.product!.name} logo={p.product!.logo} categorySlug={p.category.slug} size={36} className="rounded-lg border border-ink-200" />
                     <div className="min-w-0 flex-1">
-                      <p className="truncate text-sm font-semibold text-white">{p.product!.name}</p>
-                      <p className="truncate text-[11px] text-white/45">{p.category.name}</p>
+                      <p className="truncate text-sm font-semibold text-ink-900 group-hover:text-brand-700">{p.product!.name}</p>
+                      <p className="truncate text-[11px] text-ink-500">{p.category.name}</p>
                     </div>
-                    <span className="text-xs text-emerald-400">✓</span>
+                    <svg className="shrink-0 text-emerald-500" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                      <path d="M20 6 9 17l-5-5" />
+                    </svg>
                   </Link>
                 ))}
               </div>
 
               <Link
                 href={`/editions/${EDITION.slug}`}
-                className="mt-5 flex items-center justify-between rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/[0.07]"
+                className="mt-4 flex items-center justify-between rounded-xl border border-ink-200 bg-paper px-4 py-3 text-sm font-semibold text-ink-800 transition-colors hover:border-brand-300 hover:text-brand-700"
               >
                 See all verified picks
-                <span className="text-brand-400">→</span>
+                <span className="text-brand-500">→</span>
               </Link>
             </div>
-          </div>
-        </div>
-
-        {/* Segment ticker strip */}
-        <div className="relative border-t border-white/10">
-          <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-x-5 gap-y-2 px-4 py-4 sm:px-6">
-            <span className="text-[11px] font-semibold uppercase tracking-wide text-white/40">
-              {summary.categoriesTotal} categories across
-            </span>
-            {segments.map((s) => (
-              <Link
-                key={s.slug}
-                href={`/categories#${s.slug}`}
-                className="text-xs font-medium text-white/55 transition-colors hover:text-brand-400"
-              >
-                {s.name}
-              </Link>
-            ))}
           </div>
         </div>
       </section>
