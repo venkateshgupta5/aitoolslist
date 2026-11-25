@@ -2,12 +2,17 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import {
   segments,
+  categories,
   categoriesForSegment,
   productForCategory,
   isEditionPick,
   categoryAccent,
 } from "@/lib/content";
-import { CategoryIcon } from "@/components/category-icon";
+import {
+  CategoriesBrowser,
+  type CatCard,
+  type SegmentNav,
+} from "@/components/categories-browser";
 
 export const metadata: Metadata = {
   title: "All categories",
@@ -17,6 +22,34 @@ export const metadata: Metadata = {
 };
 
 export default function CategoriesPage() {
+  const cards: CatCard[] = categories
+    .slice()
+    .sort((a, b) => a.order - b.order)
+    .map((c) => {
+      const product = productForCategory(c.slug);
+      const status: CatCard["status"] = product
+        ? isEditionPick(product)
+          ? "verified"
+          : "preview"
+        : "none";
+      return {
+        categoryName: c.name,
+        categorySlug: c.slug,
+        segmentSlug: c.segmentSlug,
+        coverage: c.coverage,
+        accentClass: categoryAccent(c.slug),
+        toolName: product?.name ?? null,
+        toolLogo: product?.logo,
+        status,
+      };
+    });
+
+  const segmentNav: SegmentNav[] = segments.map((s) => ({
+    slug: s.slug,
+    name: s.name,
+    count: categoriesForSegment(s.slug).length,
+  }));
+
   return (
     <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
       <nav className="text-sm text-ink-500">
@@ -36,87 +69,7 @@ export default function CategoriesPage() {
         fortnight.
       </p>
 
-      {/* Segment jump nav */}
-      <div className="mt-8 flex flex-wrap gap-2">
-        {segments.map((s) => (
-          <a
-            key={s.slug}
-            href={`#${s.slug}`}
-            className="rounded-full border border-ink-200 bg-white px-3 py-1.5 text-xs font-semibold text-ink-700 transition-colors hover:border-brand-300 hover:text-brand-700"
-          >
-            {s.name}
-          </a>
-        ))}
-      </div>
-
-      <div className="mt-12 space-y-16">
-        {segments.map((segment) => {
-          const cats = categoriesForSegment(segment.slug);
-          return (
-            <section key={segment.slug} id={segment.slug} className="scroll-mt-20">
-              <div className="flex flex-col gap-1 border-b border-ink-200/70 pb-4">
-                <div className="flex items-baseline gap-3">
-                  <h2 className="font-display text-2xl font-semibold tracking-tight text-ink-900">
-                    {segment.name}
-                  </h2>
-                  <span className="text-sm font-medium text-ink-400">
-                    {cats.length} categories
-                  </span>
-                </div>
-                <p className="text-sm text-ink-600">{segment.tagline}</p>
-              </div>
-
-              <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                {cats.map((c) => {
-                  const product = productForCategory(c.slug);
-                  return (
-                    <Link
-                      key={c.slug}
-                      href={`/categories/${c.slug}`}
-                      className="group flex items-start gap-4 rounded-2xl border border-ink-200/70 bg-white p-5 card-ring transition-all hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-md"
-                    >
-                      <div
-                        className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-white ${categoryAccent(c.slug)}`}
-                      >
-                        <CategoryIcon slug={c.slug} className="h-5 w-5" />
-                      </div>
-                      <div className="min-w-0">
-                        <h3 className="font-display text-base font-semibold leading-snug text-ink-900 group-hover:text-brand-700">
-                          {c.name}
-                        </h3>
-                        <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-ink-500">
-                          {c.coverage}
-                        </p>
-                        <p className="mt-2 text-xs">
-                          {product ? (
-                            isEditionPick(product) ? (
-                              <span className="text-ink-500">
-                                This edition:{" "}
-                                <span className="font-semibold text-ink-800">
-                                  {product.name}
-                                </span>
-                              </span>
-                            ) : (
-                              <span className="text-ink-400">
-                                Preview:{" "}
-                                <span className="font-medium text-ink-600">
-                                  {product.name}
-                                </span>
-                              </span>
-                            )
-                          ) : (
-                            <span className="text-ink-400">Pick coming soon</span>
-                          )}
-                        </p>
-                      </div>
-                    </Link>
-                  );
-                })}
-              </div>
-            </section>
-          );
-        })}
-      </div>
+      <CategoriesBrowser segments={segmentNav} cards={cards} />
     </div>
   );
 }
