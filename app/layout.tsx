@@ -88,8 +88,10 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen flex flex-col antialiased">
         <AuthProvider>
-          <AnnouncementBar />
-          <Navbar />
+          <div className="sticky top-0 z-50">
+            <AnnouncementBar />
+            <Navbar />
+          </div>
           <main className="flex-1">{children}</main>
           <Footer />
         </AuthProvider>

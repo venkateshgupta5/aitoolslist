@@ -50,7 +50,7 @@ export function Navbar() {
   const user = session?.user;
 
   return (
-    <header className="sticky top-0 z-50 border-b border-ink-200/70 bg-ink-50/80 backdrop-blur supports-[backdrop-filter]:bg-ink-50/70">
+    <header className="border-b border-ink-200/70 bg-ink-50/80 backdrop-blur supports-[backdrop-filter]:bg-ink-50/70">
       <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
         <Link href="/" className="flex items-center gap-2 shrink-0">
           <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-600 text-sm font-bold text-white">
