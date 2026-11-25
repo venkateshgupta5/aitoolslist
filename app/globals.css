@@ -73,19 +73,26 @@ body {
 }
 
 /* ── Editorial light hero ─────────────────────────────────────────────── */
+/* White base with a soft, flat blue "stage" top-right (behind the picks
+   panel) and a hint of warmth lower-left — a composed wash, not a glow. */
 .hero-light {
   background:
-    radial-gradient(52% 58% at 100% -4%, rgba(0, 139, 220, 0.12), transparent 60%),
-    radial-gradient(42% 46% at -4% 6%, rgba(0, 165, 236, 0.07), transparent 58%),
-    #ffffff;
+    radial-gradient(58% 64% at 96% -8%, #e6f3fd 0%, rgba(230, 243, 253, 0) 55%),
+    linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
 }
 
-/* Faint dot texture, faded toward the edges — subtle, not a full grid. */
-.hero-dots {
-  background-image: radial-gradient(rgba(10, 42, 78, 0.07) 1px, transparent 1px);
-  background-size: 22px 22px;
-  -webkit-mask-image: radial-gradient(78% 68% at 50% 0%, #000 28%, transparent 76%);
-  mask-image: radial-gradient(78% 68% at 50% 0%, #000 28%, transparent 76%);
+/* Engineering graph-paper grid — fitting for a research publication. Fine
+   hairlines on a larger grid, with heavier "major" lines, faded downward so
+   it never competes with the headline. */
+.hero-grid {
+  background-image:
+    linear-gradient(to right, rgba(10, 42, 78, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(10, 42, 78, 0.06) 1px, transparent 1px),
+    linear-gradient(to right, rgba(10, 42, 78, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(10, 42, 78, 0.035) 1px, transparent 1px);
+  background-size: 160px 160px, 160px 160px, 32px 32px, 32px 32px;
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 48%, transparent 90%);
+  mask-image: linear-gradient(180deg, #000 0%, #000 48%, transparent 90%);
 }
 
 /* ── Cinematic dark hero (retained for other sections) ────────────────── */

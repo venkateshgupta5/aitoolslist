@@ -131,7 +131,7 @@ export default function HomePage() {
     <>
       {/* ── Hero (first fold) ─────────────────────────────────────────── */}
       <section className="hero-light relative overflow-hidden border-b border-ink-200/60">
-        <div className="pointer-events-none absolute inset-0 hero-dots" aria-hidden />
+        <div className="pointer-events-none absolute inset-0 hero-grid" aria-hidden />
 
         <div className="relative mx-auto grid max-w-6xl items-center gap-x-14 gap-y-12 px-4 pb-16 pt-14 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:pb-20 lg:pt-20">
           {/* Left, message */}
@@ -206,10 +206,6 @@ export default function HomePage() {
 
           {/* Right, data-driven edition panel */}
           <div className="relative">
-            <div
-              className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-brand-400/15 blur-3xl"
-              aria-hidden
-            />
             <div className="relative rounded-2xl border border-ink-200/80 bg-white p-5 card-ring sm:p-6">
               <div className="flex items-start justify-between">
                 <div>
