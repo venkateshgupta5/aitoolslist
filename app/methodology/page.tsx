@@ -24,7 +24,7 @@ const weights = [
 
 const cadence = [
   ["Discover", "Sweep credible sources for the period's launches and signals"],
-  ["Classify", "Extract candidates and map them to the 60 categories across 6 segments"],
+  ["Classify", "Extract candidates and map them to the 62 categories across 7 segments"],
   ["Research & score", "Enrich candidates and score on the consistent methodology"],
   ["Fact-check", "Independently verify shortlisted products and evidence"],
   ["Approve", "Editorial sign-off before anything is published"],

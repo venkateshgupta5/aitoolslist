@@ -75,7 +75,7 @@ export default function OpengraphImage() {
               maxWidth: "960px",
             }}
           >
-            Discover and evaluate the best AI tools across 60 categories,
+            Discover and evaluate the best AI tools across 62 categories,
             backed by independent research, evidence and expert evaluation.
           </div>
         </div>
@@ -89,7 +89,7 @@ export default function OpengraphImage() {
             color: "rgba(245,241,234,0.55)",
           }}
         >
-          <span>60 categories</span>
+          <span>62 categories</span>
           <span style={{ margin: "0 18px", color: "#008bdc" }}>•</span>
           <span>Evidence-backed</span>
           <span style={{ margin: "0 18px", color: "#008bdc" }}>•</span>

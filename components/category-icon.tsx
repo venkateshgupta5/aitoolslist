@@ -59,6 +59,8 @@ import {
   Pill,
   Leaf,
   Atom,
+  Plane,
+  Wallet,
   Shapes as FallbackIcon,
   type LucideIcon,
 } from "lucide-react";
@@ -134,6 +136,9 @@ const CATEGORY_ICONS: Record<string, LucideIcon> = {
   "ai-in-drug-discovery": Pill,
   "ai-climate-energy": Leaf,
   "ai-scientific-research": Atom,
+  // AI Business Applications (cont.) & AI Finance
+  "ai-travel": Plane,
+  "ai-personal-finance": Wallet,
 };
 
 export function categoryIconFor(slug: string): LucideIcon {

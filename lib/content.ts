@@ -77,7 +77,7 @@ export interface Category {
   segmentSlug: string;
 }
 
-// Six top-level segments group the 60 categories.
+// Top-level segments group the categories.
 export interface Segment {
   slug: string;
   name: string;
@@ -92,6 +92,7 @@ export const segments: Segment[] = [
   { slug: "ai-developer-ecosystem", name: "AI Developer Ecosystem", tagline: "APIs, code generation, testing, tuning and developer tooling.", order: 4 },
   { slug: "ai-business-applications", name: "AI Business Applications", tagline: "AI applied to support, marketing, finance, legal, security and more.", order: 5 },
   { slug: "emerging-specialized-ai", name: "Emerging & Specialized AI", tagline: "Robotics, autonomy, science and vertical AI frontiers.", order: 6 },
+  { slug: "ai-finance", name: "AI Finance", tagline: "AI for investing, payments, banking, accounting and financial analysis.", order: 7 },
 ];
 
 // Editions are fortnightly: two per month (1st–15th and 16th–end of month).
@@ -177,6 +178,12 @@ export const categories: Category[] = [
   { slug: "ai-in-drug-discovery", name: "AI in Drug Discovery", order: 58, segmentSlug: "emerging-specialized-ai", coverage: "AI for molecular design, biology and therapeutics." },
   { slug: "ai-climate-energy", name: "AI in Climate & Energy", order: 59, segmentSlug: "emerging-specialized-ai", coverage: "AI for grids, climate modelling and energy systems." },
   { slug: "ai-scientific-research", name: "AI for Scientific Research", order: 60, segmentSlug: "emerging-specialized-ai", coverage: "AI accelerating discovery across the sciences." },
+
+  // ── 5+. AI Business Applications (cont.) ──
+  { slug: "ai-travel", name: "AI Travel", order: 61, segmentSlug: "ai-business-applications", coverage: "Trip planning, booking and itinerary agents for travellers." },
+
+  // ── 7. AI Finance ──
+  { slug: "ai-personal-finance", name: "AI Personal Finance", order: 62, segmentSlug: "ai-finance", coverage: "Budgeting, saving and investing assistants for individuals." },
 ];
 
 const pricingTBD =
@@ -539,6 +546,60 @@ const baseProducts: Product[] = [
       { title: "getlago/lago on GitHub (AGPLv3, 10.9k stars)", url: "https://github.com/getlago/lago", type: "official" },
     ],
     lastVerified: "November 21, 2026",
+    verification: "verified",
+  },
+  {
+    slug: "mindtrip",
+    name: "Mindtrip",
+    categorySlug: "ai-travel",
+    officialUrl: "https://mindtrip.ai",
+    tagline: "AI trip planner and travel assistant",
+    shortDescription: "Plan, book and organise trips with an AI assistant.",
+    overview:
+      "Mindtrip is an AI travel planning assistant that turns natural-language prompts into personalised itineraries, pairing destination, hotel, restaurant and activity recommendations with interactive maps and booking links in a single workspace.",
+    problemSolved:
+      "Planning a trip normally means juggling dozens of tabs, reviews and booking sites; Mindtrip consolidates research, itinerary-building and booking into one conversational interface.",
+    howItWorks:
+      "Travellers describe their trip in plain language; Mindtrip generates and refines an itinerary, surfaces vetted recommendations on a map, and links out to book flights, stays and activities.",
+    features: ["Conversational itinerary planning", "Personalised recommendations", "Interactive maps", "Shareable, collaborative trip boards", "Direct booking links"],
+    useCases: ["Planning a multi-day trip", "Finding things to do at a destination", "Collaborative group travel planning"],
+    targetAudience: ["Leisure travellers", "Trip planners", "Families and groups"],
+    pricing: pricingTBD,
+    integrations: ["Web", "iOS", "Android"],
+    alternatives: ["Layla", "Wonderplan", "GuideGeek", "Roam Around"],
+    selectionRationale:
+      "One of the most complete consumer AI travel assistants, combining conversational planning, vetted recommendations and booking in a single interface.",
+    sources: [
+      { title: "Mindtrip, official site", url: "https://mindtrip.ai", type: "official" },
+    ],
+    lastVerified: "November 20, 2026",
+    verification: "verified",
+  },
+  {
+    slug: "cleo",
+    name: "Cleo",
+    categorySlug: "ai-personal-finance",
+    officialUrl: "https://www.meetcleo.com",
+    tagline: "AI money assistant you chat with",
+    shortDescription: "Conversational AI assistant for budgeting and saving.",
+    overview:
+      "Cleo is an AI-powered personal finance assistant that connects to your bank accounts and, through a chat interface, tracks spending, builds budgets, nudges saving and answers money questions in plain language.",
+    problemSolved:
+      "Most budgeting apps are passive dashboards; Cleo turns personal finance into an interactive chat that explains spending and actively prompts better habits.",
+    howItWorks:
+      "Users link their accounts; Cleo categorises transactions, surfaces spending insights, sets budgets and savings goals, and answers money questions conversationally.",
+    features: ["Conversational budgeting", "Spending breakdowns and insights", "Automated savings nudges", "Secure account linking", "Goal tracking"],
+    useCases: ["Understanding where money goes", "Building and sticking to a budget", "Saving automatically"],
+    targetAudience: ["Young adults", "Budgeting beginners", "Everyday consumers"],
+    pricing: pricingTBD,
+    integrations: ["Bank account linking (Plaid)", "iOS", "Android"],
+    alternatives: ["Copilot Money", "Monarch Money", "Rocket Money", "Origin"],
+    selectionRationale:
+      "A widely-used, genuinely AI-first personal finance assistant that pioneered the conversational approach to budgeting and saving.",
+    sources: [
+      { title: "Cleo, official site", url: "https://www.meetcleo.com", type: "official" },
+    ],
+    lastVerified: "November 20, 2026",
     verification: "verified",
   },
 ];
@@ -1922,9 +1983,9 @@ export const verificationLabel: Record<VerificationStatus, string> = {
 };
 
 // ── Homepage: edition summary ────────────────────────────────────────
-// Honest coverage: the taxonomy spans 60 categories across 6 segments; each
+// Honest coverage: the taxonomy spans all categories across every segment; each
 // edition researches a subset, so we report researched + verified separately
-// and never imply all 60 were covered this fortnight.
+// and never imply all were covered this fortnight.
 export function editionSummary() {
   const categoriesTotal = categories.length; // 60
   const segmentsTotal = segments.length; // 6

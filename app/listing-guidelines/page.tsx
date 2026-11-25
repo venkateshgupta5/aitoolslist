@@ -20,7 +20,7 @@ export default function ListingGuidelinesPage() {
           <li><span className="font-semibold">It&apos;s a real, working AI product</span> with a live official website.</li>
           <li><span className="font-semibold">Clear positioning</span>, we can tell what it does and who it&apos;s for.</li>
           <li><span className="font-semibold">Accurate information</span>, claims match what the product actually does.</li>
-          <li><span className="font-semibold">A genuine category fit</span> among our 60 categories.</li>
+          <li><span className="font-semibold">A genuine category fit</span> among our 62 categories.</li>
           <li><span className="font-semibold">Completeness</span>, enough detail to build a useful profile.</li>
         </ul>
       </PolicySection>
