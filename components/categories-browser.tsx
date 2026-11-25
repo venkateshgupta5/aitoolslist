@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { CategoryIcon } from "@/components/category-icon";
@@ -68,6 +68,7 @@ export function CategoriesBrowser({
   cards: CatCard[];
 }) {
   const [active, setActive] = useState<string>("all");
+  const rootRef = useRef<HTMLDivElement>(null);
 
   const nav: SegmentNav[] = [
     { slug: "all", name: "All categories", count: cards.length },
@@ -77,8 +78,21 @@ export function CategoriesBrowser({
   const visible =
     active === "all" ? cards : cards.filter((c) => c.segmentSlug === active);
 
+  // Filtering to a segment with few cards can leave the viewport parked on the
+  // footer. Keep the results in view: if the user is scrolled past the top of
+  // the browser, bring it back up (never yank the page downward).
+  const selectSegment = (slug: string) => {
+    setActive(slug);
+    requestAnimationFrame(() => {
+      const el = rootRef.current;
+      if (!el) return;
+      const top = el.getBoundingClientRect().top + window.scrollY - 88;
+      if (window.scrollY > top) window.scrollTo({ top, behavior: "smooth" });
+    });
+  };
+
   return (
-    <div className="mt-10 grid gap-8 lg:grid-cols-[256px_1fr]">
+    <div ref={rootRef} className="mt-10 grid gap-8 lg:grid-cols-[256px_1fr]">
       {/* ── Sidebar ─────────────────────────────────────────────── */}
       <aside className="lg:sticky lg:top-20 lg:self-start">
         <h2 className="px-3 text-lg font-bold tracking-tight text-ink-900">
@@ -91,7 +105,7 @@ export function CategoriesBrowser({
             <button
               key={n.slug}
               type="button"
-              onClick={() => setActive(n.slug)}
+              onClick={() => selectSegment(n.slug)}
               className={`shrink-0 rounded-full border px-3.5 py-1.5 text-sm font-medium transition-colors ${
                 active === n.slug
                   ? "border-brand-500 bg-brand-50 text-brand-700"
@@ -111,7 +125,7 @@ export function CategoriesBrowser({
               <button
                 key={n.slug}
                 type="button"
-                onClick={() => setActive(n.slug)}
+                onClick={() => selectSegment(n.slug)}
                 aria-current={isActive ? "true" : undefined}
                 className={`group flex w-full items-center justify-between gap-2 border-l-2 px-3 py-3 text-left text-[15px] transition-colors ${
                   isActive
