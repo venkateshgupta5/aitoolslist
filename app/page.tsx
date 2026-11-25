@@ -301,6 +301,22 @@ export default function HomePage() {
       {/* ── Trending now (sponsored) ──────────────────────────────────── */}
       <TrendingSponsored items={trendingItems} />
 
+      {/* ── The full map: segments → categories → tools ───────────────── */}
+      <section id="categories" className="mx-auto max-w-6xl scroll-mt-20 px-4 py-16 sm:px-6 sm:py-20">
+        <div className="flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-end">
+          <div>
+            <p className="text-[11px] font-semibold uppercase tracking-wide text-brand-600">The map</p>
+            <h2 className="font-display mt-1 text-3xl font-semibold tracking-tight text-ink-900 sm:text-4xl">The AI landscape, mapped</h2>
+            <p className="mt-2 max-w-2xl text-ink-600">
+              {summary.categoriesTotal} categories across {summary.segmentsTotal} segments, each with a researched, verified tool profile. One standout per category, every fortnight.
+            </p>
+          </div>
+          <Link href="/categories" className="shrink-0 text-sm font-semibold text-brand-600 hover:text-brand-700">All categories →</Link>
+        </div>
+
+        <CategoriesBrowser segments={mapSegmentNav} cards={mapCards} />
+      </section>
+
       {/* ── This edition's picks ──────────────────────────────────────── */}
       <section id="this-week" className="mx-auto max-w-6xl scroll-mt-20 px-4 py-16 sm:px-6 sm:py-20">
         <div className="flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-end">
@@ -371,22 +387,6 @@ export default function HomePage() {
             </ul>
           </div>
         </div>
-      </section>
-
-      {/* ── The full map: segments → categories → tools ───────────────── */}
-      <section id="categories" className="mx-auto max-w-6xl scroll-mt-20 px-4 py-16 sm:px-6 sm:py-20">
-        <div className="flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-end">
-          <div>
-            <p className="text-[11px] font-semibold uppercase tracking-wide text-brand-600">The map</p>
-            <h2 className="font-display mt-1 text-3xl font-semibold tracking-tight text-ink-900 sm:text-4xl">The AI landscape, mapped</h2>
-            <p className="mt-2 max-w-2xl text-ink-600">
-              {summary.categoriesTotal} categories across {summary.segmentsTotal} segments, each with a researched, verified tool profile. One standout per category, every fortnight.
-            </p>
-          </div>
-          <Link href="/categories" className="shrink-0 text-sm font-semibold text-brand-600 hover:text-brand-700">All categories →</Link>
-        </div>
-
-        <CategoriesBrowser segments={mapSegmentNav} cards={mapCards} />
       </section>
 
       {/* ── Why trust ─────────────────────────────────────────────────── */}
