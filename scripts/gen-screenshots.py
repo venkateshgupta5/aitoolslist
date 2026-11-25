@@ -28,8 +28,8 @@ from PIL import Image, ImageDraw, ImageFont
 
 BASE_URL = os.environ.get("BASE_URL", "https://aitoolslist.ai").rstrip("/")
 OUT_DIR = os.path.join(os.path.dirname(__file__), "..", "public", "screens")
-BRAND = (248, 84, 31)
-BRAND6 = (220, 63, 16)
+BRAND = (0, 139, 220)    # #008BDC — Internshala-style primary blue
+BRAND6 = (23, 87, 170)   # #1757AA — darker blue for outlines/arrows
 
 FONT_CANDIDATES = [
     "/System/Library/Fonts/Supplemental/Arial Bold.ttf",       # macOS
