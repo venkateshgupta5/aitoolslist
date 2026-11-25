@@ -18,6 +18,7 @@ import { PickCard } from "@/components/pick-card";
 import { ToolLogo } from "@/components/tool-logo";
 import { VisibilityCheck } from "@/components/visibility-check";
 import { NewsletterForm } from "@/components/forms/newsletter-form";
+import { TrendingSponsored } from "@/components/trending-sponsored";
 
 const faqItems = [
   {
@@ -78,6 +79,16 @@ export default function HomePage() {
   ];
 
   const answerEngines = ["ChatGPT", "Claude", "Perplexity", "Gemini", "Copilot"];
+
+  // Trending (sponsored) — 5 tools shown just below the hero.
+  const trendingItems = topPicks.map((p) => ({
+    name: p.product!.name,
+    tagline: p.product!.tagline,
+    href: `/tools/${p.product!.slug}`,
+    logo: p.product!.logo,
+    categoryName: p.category.name,
+    categorySlug: p.category.slug,
+  }));
 
   const catalogue = [
     ...products.map((p) => ({ name: p.name, href: `/tools/${p.slug}` })),
@@ -260,6 +271,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* ── Trending now (sponsored) ──────────────────────────────────── */}
+      <TrendingSponsored items={trendingItems} />
 
       {/* ── This edition's picks ──────────────────────────────────────── */}
       <section id="this-week" className="mx-auto max-w-6xl scroll-mt-20 px-4 py-16 sm:px-6 sm:py-20">

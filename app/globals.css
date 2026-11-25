@@ -1,39 +1,49 @@
 @import "tailwindcss";
 
 @theme {
+  /* Internshala uses Inter throughout */
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system,
     "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  /* Simple, neutral sans for headings too (Product Hunt style) */
   --font-display: var(--font-inter), ui-sans-serif, system-ui, -apple-system,
     "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 
-  /* Warm "paper" canvas for an editorial publication feel */
-  --color-paper: #faf7f2;
+  /* Clean white canvas (Internshala surface) */
+  --color-paper: #ffffff;
 
-  /* Warm-neutral ink ramp (stone), harmonizes with the ember accent */
-  --color-ink-50: #f7f5f1;
-  --color-ink-100: #ece9e2;
-  --color-ink-200: #dcd7cd;
-  --color-ink-300: #b9b2a5;
-  --color-ink-400: #8c8577;
-  --color-ink-500: #6a6456;
-  --color-ink-600: #514b40;
-  --color-ink-700: #3e3a31;
-  --color-ink-800: #2a2721;
-  --color-ink-900: #1a1713;
-  --color-ink-950: #0e0c0a;
+  /* Cool neutral ink ramp, matching Internshala's plain grays
+     (#333 primary text, #666 secondary, #8A8A8A muted, #DDD/#EEE borders) */
+  --color-ink-50: #f7f7f8;
+  --color-ink-100: #eeeeee;
+  --color-ink-200: #dddddd;
+  --color-ink-300: #bbbbbb;
+  --color-ink-400: #999999;
+  --color-ink-500: #8a8a8a;
+  --color-ink-600: #666666;
+  --color-ink-700: #525252;
+  --color-ink-800: #484848;
+  --color-ink-900: #333333;
+  --color-ink-950: #1a1a1a;
 
-  /* "Ember" accent, warm coral/tangerine, confident and un-generic */
-  --color-brand-50: #fff4ee;
-  --color-brand-100: #ffe4d6;
-  --color-brand-200: #ffc5ad;
-  --color-brand-300: #ff9e78;
-  --color-brand-400: #ff6f3d;
-  --color-brand-500: #f8541f;
-  --color-brand-600: #dc3f10;
-  --color-brand-700: #b4330d;
-  --color-brand-800: #8f2b11;
-  --color-brand-900: #742611;
+  /* Internshala blue accent (#008BDC primary · #00A5EC CTA · #1757AA dark) */
+  --color-brand-50: #e8f6fe;
+  --color-brand-100: #c6e9fc;
+  --color-brand-200: #93d6f8;
+  --color-brand-300: #55bff2;
+  --color-brand-400: #00a5ec;
+  --color-brand-500: #008bdc;
+  --color-brand-600: #0b74bf;
+  --color-brand-700: #1757aa;
+  --color-brand-800: #174a8a;
+  --color-brand-900: #143d6f;
+
+  /* Internshala promo accents — use sparingly, not for primary UI */
+  --color-accent-indigo: #4042ae;
+  --color-accent-orange: #ff8c00;
+  --color-accent-amber: #ffae00;
+
+  /* Tinted panels (Internshala soft-blue / cyan surfaces) */
+  --color-surface-tint: #f3f8ff;
+  --color-surface-cyan: #eafcff;
 }
 
 :root {
@@ -47,7 +57,7 @@ html {
 
 body {
   background-color: var(--color-paper);
-  color: var(--color-ink-900);
+  color: var(--color-ink-900); /* #333 — Internshala primary text */
   font-feature-settings: "cv11", "ss01";
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -65,12 +75,12 @@ body {
 /* ── Cinematic dark hero ──────────────────────────────────────────────── */
 .hero-dark {
   position: relative;
-  color: #f5f1ea;
+  color: #f5f8fc;
   background:
-    radial-gradient(55% 45% at 12% 8%, rgba(248, 84, 31, 0.26), transparent 60%),
-    radial-gradient(45% 55% at 88% 14%, rgba(139, 92, 246, 0.20), transparent 62%),
-    radial-gradient(60% 60% at 72% 96%, rgba(56, 132, 255, 0.14), transparent 60%),
-    #0d0b0a;
+    radial-gradient(55% 45% at 12% 8%, rgba(0, 165, 236, 0.30), transparent 60%),
+    radial-gradient(45% 55% at 88% 14%, rgba(64, 66, 174, 0.24), transparent 62%),
+    radial-gradient(60% 60% at 72% 96%, rgba(0, 139, 220, 0.20), transparent 60%),
+    #0a2a4e;
 }
 
 /* Fine grid, faded toward the edges */
