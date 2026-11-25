@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { CategoryIcon } from "@/components/category-icon";
@@ -74,6 +74,26 @@ export function CategoriesBrowser({
     { slug: "all", name: "All categories", count: cards.length },
     ...segments,
   ];
+
+  // Allow deep-linking to a segment via /categories#<segment-slug> (e.g. from
+  // the footer). Pre-select the segment and bring the grid into view.
+  useEffect(() => {
+    const applyHash = () => {
+      const slug = window.location.hash.replace("#", "");
+      if (slug && segments.some((s) => s.slug === slug)) {
+        setActive(slug);
+        requestAnimationFrame(() => {
+          const el = rootRef.current;
+          if (!el) return;
+          const top = el.getBoundingClientRect().top + window.scrollY - 88;
+          window.scrollTo({ top, behavior: "smooth" });
+        });
+      }
+    };
+    applyHash();
+    window.addEventListener("hashchange", applyHash);
+    return () => window.removeEventListener("hashchange", applyHash);
+  }, [segments]);
   const activeNav = nav.find((n) => n.slug === active) ?? nav[0];
   const visible =
     active === "all" ? cards : cards.filter((c) => c.segmentSlug === active);

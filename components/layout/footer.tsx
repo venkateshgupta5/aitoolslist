@@ -1,15 +1,15 @@
 import Link from "next/link";
 import { siteConfig } from "@/lib/site";
-import { sortedCategories } from "@/lib/content";
+import { segments, categories } from "@/lib/content";
 
 export function Footer() {
-  const cats = sortedCategories();
+  const segs = [...segments].sort((a, b) => a.order - b.order);
   const year = new Date().getFullYear();
 
   return (
     <footer className="border-t border-ink-200/70 bg-white">
       <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
-        <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
+        <div className="grid gap-10 md:grid-cols-[1.5fr_1fr_1fr]">
           <div>
             <div className="flex items-center gap-2">
               <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-600 text-sm font-bold text-white">
@@ -27,37 +27,27 @@ export function Footer() {
 
           <div>
             <h3 className="text-xs font-semibold uppercase tracking-wide text-ink-400">
-              Categories
+              Browse by segment
             </h3>
             <ul className="mt-4 space-y-2.5">
-              {cats.slice(0, 7).map((c) => (
-                <li key={c.slug}>
+              {segs.map((s) => (
+                <li key={s.slug}>
                   <Link
-                    href={`/categories/${c.slug}`}
+                    href={`/categories#${s.slug}`}
                     className="text-sm text-ink-600 hover:text-ink-900"
                   >
-                    {c.name}
+                    {s.name}
                   </Link>
                 </li>
               ))}
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="text-xs font-semibold uppercase tracking-wide text-ink-400">
-              More
-            </h3>
-            <ul className="mt-4 space-y-2.5">
-              {cats.slice(7).map((c) => (
-                <li key={c.slug}>
-                  <Link
-                    href={`/categories/${c.slug}`}
-                    className="text-sm text-ink-600 hover:text-ink-900"
-                  >
-                    {c.name}
-                  </Link>
-                </li>
-              ))}
+              <li>
+                <Link
+                  href="/categories"
+                  className="text-sm font-semibold text-brand-600 hover:text-brand-700"
+                >
+                  All {categories.length} categories →
+                </Link>
+              </li>
             </ul>
           </div>
 
