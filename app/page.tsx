@@ -6,9 +6,11 @@ import {
   takeaways,
   editionSummary,
   segments,
+  categories,
   categoriesForSegment,
   productForCategory,
   isEditionPick,
+  categoryAccent,
   allEditions,
   products,
   archiveEditions,
@@ -19,6 +21,11 @@ import { ToolLogo } from "@/components/tool-logo";
 import { VisibilityCheck } from "@/components/visibility-check";
 import { NewsletterForm } from "@/components/forms/newsletter-form";
 import { TrendingSponsored } from "@/components/trending-sponsored";
+import {
+  CategoriesBrowser,
+  type CatCard,
+  type SegmentNav,
+} from "@/components/categories-browser";
 
 const faqItems = [
   {
@@ -54,16 +61,6 @@ const listingIncludes = [
   "Clearly labelled “Sponsored”, never an editorial winner",
 ];
 
-// Accent colour per top-level segment (icons only; no fabricated branding).
-const segmentAccents = [
-  "bg-indigo-600",
-  "bg-sky-600",
-  "bg-violet-600",
-  "bg-emerald-600",
-  "bg-amber-600",
-  "bg-rose-600",
-];
-
 
 export default function HomePage() {
   const picks = editionPicks();
@@ -88,6 +85,35 @@ export default function HomePage() {
     logo: p.product!.logo,
     categoryName: p.category.name,
     categorySlug: p.category.slug,
+  }));
+
+  // "AI landscape, mapped" — sidebar + card-grid browser (same as /categories).
+  const mapCards: CatCard[] = categories
+    .slice()
+    .sort((a, b) => a.order - b.order)
+    .map((c) => {
+      const product = productForCategory(c.slug);
+      const status: CatCard["status"] = product
+        ? isEditionPick(product)
+          ? "verified"
+          : "preview"
+        : "none";
+      return {
+        categoryName: c.name,
+        categorySlug: c.slug,
+        segmentSlug: c.segmentSlug,
+        coverage: c.coverage,
+        accentClass: categoryAccent(c.slug),
+        toolName: product?.name ?? null,
+        toolLogo: product?.logo,
+        status,
+      };
+    });
+
+  const mapSegmentNav: SegmentNav[] = segments.map((s) => ({
+    slug: s.slug,
+    name: s.name,
+    count: categoriesForSegment(s.slug).length,
   }));
 
   const catalogue = [
@@ -360,48 +386,7 @@ export default function HomePage() {
           <Link href="/categories" className="shrink-0 text-sm font-semibold text-brand-600 hover:text-brand-700">All categories →</Link>
         </div>
 
-        <div className="mt-10 space-y-10">
-          {segments.map((s) => {
-            const segCats = categoriesForSegment(s.slug);
-            const accent = segmentAccents[(s.order - 1) % segmentAccents.length];
-            return (
-              <div key={s.slug}>
-                <div className="flex items-center gap-3 border-b border-ink-200/70 pb-3">
-                  <div className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-xs font-bold text-white ${accent}`}>
-                    {s.order}
-                  </div>
-                  <Link href={`/categories#${s.slug}`} className="font-display text-lg font-semibold tracking-tight text-ink-900 hover:text-brand-700">
-                    {s.name}
-                  </Link>
-                  <span className="text-xs font-medium text-ink-400">{segCats.length} categories</span>
-                </div>
-                <div className="mt-4 grid gap-x-6 gap-y-1 sm:grid-cols-2">
-                  {segCats.map((c) => {
-                    const product = productForCategory(c.slug);
-                    const verified = isEditionPick(product);
-                    return (
-                      <Link
-                        key={c.slug}
-                        href={`/categories/${c.slug}`}
-                        className="group flex items-center justify-between gap-3 rounded-lg px-2 py-2 transition-colors hover:bg-ink-50"
-                      >
-                        <span className="truncate text-sm font-medium text-ink-800 group-hover:text-brand-700">
-                          {c.name}
-                        </span>
-                        <span className="flex shrink-0 items-center gap-1.5 text-xs text-ink-500">
-                          {product && (
-                            <span className="max-w-[9rem] truncate">{product.name}</span>
-                          )}
-                          {verified && <span className="text-emerald-500">✓</span>}
-                        </span>
-                      </Link>
-                    );
-                  })}
-                </div>
-              </div>
-            );
-          })}
-        </div>
+        <CategoriesBrowser segments={mapSegmentNav} cards={mapCards} />
       </section>
 
       {/* ── Why trust ─────────────────────────────────────────────────── */}
