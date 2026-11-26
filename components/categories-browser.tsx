@@ -111,6 +111,18 @@ export function CategoriesBrowser({
     });
   };
 
+  // Quick-scan chips: jump to a category's card and briefly highlight it.
+  const [flash, setFlash] = useState<string | null>(null);
+  const flashTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const jumpToCard = (slug: string) => {
+    const el = document.getElementById(`cat-card-${slug}`);
+    if (!el) return;
+    el.scrollIntoView({ behavior: "smooth", block: "center" });
+    setFlash(slug);
+    if (flashTimer.current) clearTimeout(flashTimer.current);
+    flashTimer.current = setTimeout(() => setFlash(null), 1600);
+  };
+
   return (
     <div ref={rootRef} className="mt-10 grid gap-8 lg:grid-cols-[256px_1fr]">
       {/* ── Sidebar ─────────────────────────────────────────────── */}
@@ -190,14 +202,36 @@ export function CategoriesBrowser({
           </span>
         </div>
 
-        <div className="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
+        {/* Quick-scan chips — jump straight to a category's card (shown when a
+            segment is selected; all chips visible, no scrolling). */}
+        {active !== "all" && (
+          <div className="mt-4 flex flex-wrap gap-2">
+            {visible.map((c) => (
+              <button
+                key={c.categorySlug}
+                type="button"
+                onClick={() => jumpToCard(c.categorySlug)}
+                className="rounded-full border border-ink-200 bg-white px-3 py-1.5 text-xs font-medium text-ink-700 transition-colors hover:border-brand-300 hover:bg-brand-50/60 hover:text-brand-700"
+              >
+                {c.categoryName}
+              </button>
+            ))}
+          </div>
+        )}
+
+        <div className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
           {visible.map((c) => {
             const hex = accentHex[c.accentClass] ?? "#2563eb";
             return (
               <Link
                 key={c.categorySlug}
+                id={`cat-card-${c.categorySlug}`}
                 href={`/categories/${c.categorySlug}`}
-                className="group flex flex-col overflow-hidden rounded-2xl border border-ink-200/80 bg-white card-ring transition-all duration-300 hover:-translate-y-1 hover:border-brand-300 hover:shadow-lg"
+                className={`group flex flex-col overflow-hidden rounded-2xl border bg-white card-ring transition-all duration-300 hover:-translate-y-1 hover:border-brand-300 hover:shadow-lg ${
+                  flash === c.categorySlug
+                    ? "border-brand-400 ring-2 ring-brand-500/30"
+                    : "border-ink-200/80"
+                }`}
               >
                 {/* Thumbnail */}
                 <div
