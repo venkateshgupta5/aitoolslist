@@ -22,6 +22,11 @@ export function DodoInlineCheckout({ payload }: { payload: CheckoutPayload }) {
     "loading",
   );
   const [message, setMessage] = useState<string | null>(null);
+  const [summary, setSummary] = useState<{
+    productName: string;
+    amount: number | null;
+    currency: string;
+  } | null>(null);
   const started = useRef(false);
 
   useEffect(() => {
@@ -39,6 +44,9 @@ export function DodoInlineCheckout({ payload }: { payload: CheckoutPayload }) {
         const json = (await res.json().catch(() => ({}))) as {
           checkoutUrl?: string;
           error?: string;
+          productName?: string;
+          amount?: number | null;
+          currency?: string;
         };
         if (!res.ok || !json.checkoutUrl) {
           if (!cancelled) {
@@ -46,6 +54,13 @@ export function DodoInlineCheckout({ payload }: { payload: CheckoutPayload }) {
             setStatus("error");
           }
           return;
+        }
+        if (!cancelled) {
+          setSummary({
+            productName: json.productName ?? "Sponsored listing",
+            amount: json.amount ?? null,
+            currency: json.currency ?? "USD",
+          });
         }
 
         const { DodoPayments } = await import("dodopayments-checkout");
@@ -122,6 +137,30 @@ export function DodoInlineCheckout({ payload }: { payload: CheckoutPayload }) {
           Secure checkout by Dodo Payments
         </span>
       </div>
+
+      {/* Order summary — price comes from the Dodo product */}
+      {summary && (
+        <div className="mt-4 flex items-center justify-between gap-3 rounded-xl border border-ink-200/80 bg-white px-4 py-3">
+          <div className="min-w-0">
+            <p className="truncate text-sm font-semibold text-ink-900">{summary.productName}</p>
+            <p className="text-xs text-ink-500">One-time payment</p>
+          </div>
+          <div className="shrink-0 text-right">
+            {summary.amount != null ? (
+              <p className="text-base font-bold text-ink-900">
+                {new Intl.NumberFormat("en-US", {
+                  style: "currency",
+                  currency: summary.currency,
+                  maximumFractionDigits: 2,
+                }).format(summary.amount / 100)}
+              </p>
+            ) : null}
+            <p className="text-[11px] text-ink-400">
+              Billed in your local currency at checkout
+            </p>
+          </div>
+        </div>
+      )}
 
       {status === "loading" && (
         <p className="mt-3 flex items-center gap-2 text-sm text-ink-500">

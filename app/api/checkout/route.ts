@@ -55,19 +55,31 @@ export async function POST(req: Request) {
     new URL(req.url).origin;
 
   try {
-    const session = await dodo.checkoutSessions.create({
-      product_cart: [{ product_id: productId, quantity: 1 }],
-      customer: { email: data.email, name: data.contactName },
-      metadata: {
-        company_name: data.companyName,
-        product_name: data.productName,
-        category_slug: data.categorySlug,
-        source: "submit-tool",
-      },
-      return_url: `${origin}/submit-tool?checkout=success`,
-    });
+    // Create the session and read the product price (shown to the buyer).
+    const [session, product] = await Promise.all([
+      dodo.checkoutSessions.create({
+        product_cart: [{ product_id: productId, quantity: 1 }],
+        customer: { email: data.email, name: data.contactName },
+        metadata: {
+          company_name: data.companyName,
+          product_name: data.productName,
+          category_slug: data.categorySlug,
+          source: "submit-tool",
+        },
+        customization: { show_order_details: true },
+        return_url: `${origin}/submit-tool?checkout=success`,
+      }),
+      dodo.products.retrieve(productId),
+    ]);
 
-    return NextResponse.json({ checkoutUrl: session.checkout_url });
+    const price = product.price as { price?: number; currency?: string } | undefined;
+
+    return NextResponse.json({
+      checkoutUrl: session.checkout_url,
+      productName: product.name ?? "Sponsored listing",
+      amount: typeof price?.price === "number" ? price.price : null, // smallest unit
+      currency: price?.currency ?? "USD",
+    });
   } catch (err) {
     console.error("[checkout] failed to create session", err);
     return NextResponse.json(
