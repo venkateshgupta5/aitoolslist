@@ -18,7 +18,7 @@ import {
 export const metadata: Metadata = {
   title: "List your product",
   description:
-    "Building is easy; distribution is hard. List your AI product on aitoolslist.ai to reach high-intent buyers, improve search visibility and get discovered by AI assistants and LLMs. Submit free, pay only after approval.",
+    "Building is easy; distribution is hard. List your AI product on aitoolslist.ai to reach high-intent buyers, improve search visibility and get discovered by AI assistants and LLMs. One-time fee at submission, full refund if we can't approve it.",
   alternates: { canonical: "/submit-tool" },
 };
 
@@ -112,16 +112,16 @@ const benefits: {
 const terms = [
   ["Price", `One-time ${PRICE} (USD). No subscription, no renewal fees.`],
   ["Listing duration", "Permanent, stays live for as long as aitoolslist.ai operates and your product is active."],
-  ["Payment timing", "Collected only after approval, via a secure payment link. Nothing is charged upfront."],
+  ["Payment timing", "Collected at submission, via secure checkout on this page."],
   ["Review", "A human review within 3 business days of submission."],
-  ["Go live", "Within 2 business days of payment."],
-  ["If not a fit", "You pay nothing. We share the reason where we can."],
+  ["Go live", "Within 2 business days of approval."],
+  ["If not a fit", "Full refund. We share the reason where we can."],
   ["Edits", "One structured edit round included; minor text/URL updates anytime by email, free."],
 ];
 
 const faqs = [
   ["Is the payment one-time or recurring?", "One-time. There is no subscription and no renewal fee, and your listing stays live for as long as aitoolslist.ai operates and your product remains active."],
-  ["Do I pay before or after review?", "After. Submit for free; we review within 3 business days, and only send a payment link if your product is approved. If it's not a fit, you pay nothing."],
+  ["Do I pay before or after review?", "At submission. You complete the one-time payment through secure checkout when you submit; we then review within 3 business days. If we can't approve your product, you're fully refunded."],
   ["Does paying guarantee rankings or traffic?", "No. Your listing is clearly marked Sponsored, never appears as an independent verified pick, and never influences our rankings. We provide a high-quality, discoverable page; outcomes depend on your product and market."],
   ["Will my page be found by search engines and AI assistants?", "It's built to be: a crawlable, indexable page with a descriptive title, meta description, canonical URL and SoftwareApplication structured data, in the predictable shape search engines and AI assistants can read and cite. We can't promise rankings."],
   ["Can I update my listing later?", "Yes. One structured edit round is included, and minor updates (description tweaks, URL changes) are free anytime, just email us."],
@@ -167,7 +167,7 @@ export default async function SubmitToolPage() {
           </div>
 
           <p className="mt-4 text-xs text-white/45">
-            Submit free · pay only after approval · permanent listing
+            One-time fee · refunded if not approved · permanent listing
           </p>
         </div>
       </section>
@@ -222,7 +222,7 @@ export default async function SubmitToolPage() {
                 <h2 className="font-display text-2xl font-semibold tracking-tight text-ink-900 sm:text-3xl">One clear price. No surprises.</h2>
                 <p className="mt-2 max-w-lg text-ink-600">
                   A one-time fee for a permanent listing across your category page, search and AI
-                  discovery. You only pay after we approve your product.
+                  discovery. Paid at submission, with a full refund if we can&apos;t approve your product.
                 </p>
               </div>
               <div className="shrink-0">
@@ -260,12 +260,12 @@ export default async function SubmitToolPage() {
       {/* ── HOW IT WORKS ────────────────────────────────────────────── */}
       <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
         <h2 className="font-display text-2xl font-semibold tracking-tight text-ink-900 sm:text-3xl">How it works</h2>
-        <p className="mt-2 text-ink-600">Submit first, pay only if approved.</p>
+        <p className="mt-2 text-ink-600">Submit and pay in one step; full refund if we can&apos;t approve it.</p>
         <ol className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {[
-            ["Sign in & submit", "Sign in, then tell us about your product. No payment yet."],
+            ["Submit & pay", "Sign in, tell us about your product, and complete the one-time payment in secure checkout."],
             ["We review", "A human review for relevance, accuracy and quality, within 3 business days."],
-            ["Approve & pay", "Approved? We send a secure payment link for the one-time fee."],
+            ["Approved", "If it's a fit, we publish it. If not, you're fully refunded."],
             ["Go live", "Your permanent listing goes live and we send you the URL."],
           ].map(([title, body], i) => (
             <li key={title} className="rounded-2xl border border-ink-200/80 bg-white p-5">
@@ -295,8 +295,8 @@ export default async function SubmitToolPage() {
             <div className="mt-8 rounded-2xl border border-ink-200/80 bg-ink-50 p-8 text-center sm:p-10">
               <h3 className="font-display text-lg font-semibold text-ink-900">Sign in to list your product</h3>
               <p className="mx-auto mt-2 max-w-md text-sm text-ink-600">
-                A quick sign-in keeps your submission secure and lets you edit it later. You still
-                only pay after approval.
+                A quick sign-in keeps your submission secure and lets you edit it later. Fully
+                refunded if we can&apos;t approve it.
               </p>
               <form
                 action={async () => {
@@ -339,7 +339,7 @@ export default async function SubmitToolPage() {
               List your product →
             </GateCta>
           </div>
-          <p className="mt-3 text-xs text-ink-400">Submit free · pay only after approval</p>
+          <p className="mt-3 text-xs text-ink-400">One-time fee · refunded if not approved</p>
         </div>
 
         <p className="mt-6 text-center text-sm text-ink-500">

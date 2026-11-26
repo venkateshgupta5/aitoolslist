@@ -4,6 +4,10 @@ import { useRef, useState } from "react";
 import type { Category } from "@/lib/content";
 import { listingSchema } from "@/lib/validation";
 import { track, LISTING_EVENTS } from "@/lib/analytics";
+import {
+  DodoInlineCheckout,
+  type CheckoutPayload,
+} from "@/components/listing/dodo-checkout";
 
 const inputBase =
   "w-full rounded-lg border bg-white px-3.5 py-2.5 text-sm text-ink-900 outline-none placeholder:text-ink-400 focus:ring-2 focus:ring-brand-500/20";
@@ -49,11 +53,12 @@ function Field({
 }
 
 export function ListingForm({ categories }: { categories: Category[] }) {
-  const [state, setState] = useState<"idle" | "submitting" | "done" | "error">(
-    "idle",
-  );
+  const [state, setState] = useState<
+    "idle" | "submitting" | "checkout" | "error"
+  >("idle");
   const [errors, setErrors] = useState<Errors>({});
   const [serverError, setServerError] = useState<string | null>(null);
+  const [checkout, setCheckout] = useState<CheckoutPayload | null>(null);
   const startedRef = useRef(false);
 
   function onFirstInteraction() {
@@ -63,29 +68,16 @@ export function ListingForm({ categories }: { categories: Category[] }) {
     }
   }
 
-  if (state === "done") {
+  if (state === "checkout" && checkout) {
     return (
-      <div
-        className="rounded-xl bg-emerald-50 p-6 ring-1 ring-inset ring-emerald-600/20"
-        role="status"
-        aria-live="polite"
-      >
-        <h3 className="text-base font-semibold text-emerald-800">
-          Application received ✓
-        </h3>
-        <p className="mt-1.5 text-sm text-emerald-700">
-          Thanks, your product is in the review queue. Here&apos;s what happens
-          next:
-        </p>
-        <ol className="mt-3 space-y-1.5 text-sm text-emerald-700">
-          <li>1. We review for relevance, accuracy and completeness, within 3 business days.</li>
-          <li>2. If approved, we email you a secure payment link for the one-time $199.</li>
-          <li>3. After payment, we publish your listing and send you the live URL.</li>
-        </ol>
-        <p className="mt-3 text-xs text-emerald-700/80">
-          You&apos;re not charged anything now. If we can&apos;t approve your
-          product, you pay nothing.
-        </p>
+      <div aria-live="polite">
+        <div className="mb-4 rounded-xl bg-emerald-50 px-4 py-3 ring-1 ring-inset ring-emerald-600/20">
+          <p className="text-sm font-medium text-emerald-800">
+            Details received ✓ Complete the one-time payment below to confirm
+            your listing.
+          </p>
+        </div>
+        <DodoInlineCheckout payload={checkout} />
       </div>
     );
   }
@@ -142,7 +134,15 @@ export function ListingForm({ categories }: { categories: Category[] }) {
         track(LISTING_EVENTS.formError, { reason: "server" });
         return;
       }
-      setState("done");
+      // Details saved — load the embedded Dodo Payments checkout.
+      setCheckout({
+        email: payload.email,
+        contactName: payload.contactName,
+        companyName: payload.companyName,
+        productName: payload.productName,
+        categorySlug: payload.categorySlug,
+      });
+      setState("checkout");
     } catch {
       setServerError("Network error. Please try again.");
       setState("error");
@@ -173,7 +173,7 @@ export function ListingForm({ categories }: { categories: Category[] }) {
         <Field id="contactName" label="Contact name" required error={errors.contactName}>
           <input id="contactName" name="contactName" required className={inputClass("contactName")} placeholder="Jane Doe" aria-invalid={!!errors.contactName} />
         </Field>
-        <Field id="email" label="Work email" required helper="We'll send review updates and the payment link here." error={errors.email}>
+        <Field id="email" label="Work email" required helper="We'll send your receipt and review updates here." error={errors.email}>
           <input id="email" name="email" type="email" inputMode="email" required className={inputClass("email")} placeholder="jane@acme.ai" aria-invalid={!!errors.email} />
         </Field>
       </div>
@@ -192,7 +192,7 @@ export function ListingForm({ categories }: { categories: Category[] }) {
         disabled={state === "submitting"}
         className="w-full rounded-lg bg-ink-900 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-ink-800 focus:outline-none focus:ring-2 focus:ring-ink-900/30 focus:ring-offset-2 disabled:opacity-60"
       >
-        {state === "submitting" ? "Submitting…" : "Submit your product · $199"}
+        {state === "submitting" ? "Submitting…" : "Continue to payment · $199"}
       </button>
       <p className="text-center text-xs text-ink-500">
         No charge now. You only pay the one-time $199 after your product is

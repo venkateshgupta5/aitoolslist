@@ -57,7 +57,7 @@ const listingIncludes = [
   "One-time $199, no subscription, no renewals",
   "A dedicated, permanent product profile",
   "Editorial review within 3 business days",
-  "You only pay after your product is approved",
+  "Full refund if we can't approve your product",
   "Clearly labelled “Sponsored”, never an editorial winner",
 ];
 
@@ -430,7 +430,7 @@ export default function HomePage() {
               <ol className="space-y-5">
                 {[
                   ["Submit", "Tell us about your product. No account, nothing to install, no payment up front."],
-                  ["Human review", "A real editor checks it within three business days. If it is not a fit, you pay nothing."],
+                  ["Human review", "A real editor checks it within three business days. If it is not a fit, you are fully refunded."],
                   ["Live for good", "You get a permanent, structured profile that buyers and AI assistants can read and cite."],
                 ].map(([t, d], i) => (
                   <li key={t} className="flex gap-4">

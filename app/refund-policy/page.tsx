@@ -4,7 +4,7 @@ import { PolicyPage, PolicySection } from "@/components/policy-page";
 
 export const metadata: Metadata = {
   title: "Refund policy",
-  description: "aitoolslist.ai refund policy for the $199 premium listing: payment is collected only after approval, with clear refund terms.",
+  description: "aitoolslist.ai refund policy for the $199 premium listing: the one-time fee is paid at submission, with a full refund if we can't approve your product.",
   alternates: { canonical: "/refund-policy" },
 };
 
@@ -12,19 +12,20 @@ export default function RefundPolicyPage() {
   return (
     <PolicyPage
       title="Refund policy"
-      updated="November 20, 2026"
-      intro="The $199 premium listing is a one-time payment collected only after your product is approved. This policy explains exactly when you are and aren't charged, and when refunds apply."
+      updated="November 26, 2026"
+      intro="The $199 premium listing is a one-time payment made at submission through secure checkout. This policy explains when refunds apply."
     >
-      <PolicySection heading="You pay nothing unless approved">
+      <PolicySection heading="Full refund if we can't approve your product">
         <p>
-          We review every submission before any payment is taken. If we decline
-          your product, you are charged nothing, there is no payment to refund.
+          We review every submission after payment. If we decline your product,
+          you receive a <span className="font-semibold">full refund</span> of the
+          one-time fee, typically within 5–10 business days to your original
+          payment method.
         </p>
       </PolicySection>
-      <PolicySection heading="After payment, our delivery guarantee">
+      <PolicySection heading="After approval, our delivery guarantee">
         <p>
-          Once approved, you receive a secure payment link for the one-time $199.
-          After payment we publish your listing within 2 business days.
+          Once approved, we publish your listing within 2 business days.
         </p>
         <p>
           If we fail to publish the listing we agreed, or the published listing

@@ -31,7 +31,7 @@ export default function ListingGuidelinesPage() {
           <li>Content that is unlawful, deceptive, or infringes others&apos; rights.</li>
           <li>Pure spam, affiliate pages, or products with no meaningful AI component.</li>
         </ul>
-        <p>If we decline, you pay nothing and we&apos;ll share the reason where we can.</p>
+        <p>If we decline, you are fully refunded and we&apos;ll share the reason where we can.</p>
       </PolicySection>
       <PolicySection heading="Edits & updates">
         <p>
