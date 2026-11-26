@@ -14,7 +14,7 @@ const STATUS_STYLES: Record<string, string> = {
 };
 const STATUS_LABELS: Record<string, string> = {
   paid: "Paid",
-  pending: "Pending",
+  pending: "Aborted",
   failed: "Failed",
 };
 
@@ -177,7 +177,7 @@ export default async function ProfilePage() {
                         STATUS_STYLES[key] ?? STATUS_STYLES.pending
                       }`}
                     >
-                      {STATUS_LABELS[key] ?? "Pending"}
+                      {STATUS_LABELS[key] ?? "Aborted"}
                     </span>
                   </div>
                 </li>
