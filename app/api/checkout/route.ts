@@ -51,9 +51,17 @@ export async function POST(req: Request) {
   }
   const data = parsed.data;
 
-  const origin =
-    process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ??
-    new URL(req.url).origin;
+  // Return to whichever host initiated checkout (localhost in dev, the real
+  // domain in prod) rather than a hardcoded site URL.
+  const host =
+    req.headers.get("x-forwarded-host") ?? req.headers.get("host");
+  const proto =
+    req.headers.get("x-forwarded-proto") ??
+    (host?.startsWith("localhost") ? "http" : "https");
+  const origin = host
+    ? `${proto}://${host}`
+    : (process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ??
+      new URL(req.url).origin);
 
   try {
     // Create the session and read the product price (shown to the buyer).
@@ -69,7 +77,7 @@ export async function POST(req: Request) {
           ...(data.submissionId ? { submission_id: data.submissionId } : {}),
         },
         customization: { show_order_details: true },
-        return_url: `${origin}/submit-tool?checkout=success`,
+        return_url: `${origin}/checkout/status`,
       }),
       dodo.products.retrieve(productId),
     ]);
