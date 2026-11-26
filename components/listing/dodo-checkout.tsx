@@ -8,6 +8,7 @@ export type CheckoutPayload = {
   companyName: string;
   productName: string;
   categorySlug: string;
+  submissionId?: string | null;
 };
 
 let sdkInitialized = false;

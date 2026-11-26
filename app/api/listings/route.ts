@@ -35,18 +35,25 @@ export async function POST(req: Request) {
       .where(eq(schema.categories.slug, data.categorySlug))
       .limit(1);
 
-    await db.insert(schema.listingSubmissions).values({
-      companyName: data.companyName,
-      productName: data.productName,
-      websiteUrl: data.websiteUrl,
-      contactName: data.contactName,
-      email: data.email,
-      categoryId: category?.id ?? null,
-      description: data.description || null,
-      paymentStatus: "pending",
-    });
+    const [inserted] = await db
+      .insert(schema.listingSubmissions)
+      .values({
+        companyName: data.companyName,
+        productName: data.productName,
+        websiteUrl: data.websiteUrl,
+        contactName: data.contactName,
+        email: data.email,
+        categoryId: category?.id ?? null,
+        description: data.description || null,
+        paymentStatus: "pending",
+      })
+      .returning({ id: schema.listingSubmissions.id });
 
-    return NextResponse.json({ ok: true, persisted: true });
+    return NextResponse.json({
+      ok: true,
+      persisted: true,
+      submissionId: inserted?.id ?? null,
+    });
   } catch (err) {
     console.error("[listings] insert failed", err);
     return NextResponse.json(

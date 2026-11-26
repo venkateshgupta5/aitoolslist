@@ -10,6 +10,7 @@ const bodySchema = z.object({
   companyName: z.string().min(1).max(160),
   productName: z.string().min(1).max(160),
   categorySlug: z.string().min(1).max(120),
+  submissionId: z.string().max(64).nullish(),
 });
 
 function client() {
@@ -65,6 +66,7 @@ export async function POST(req: Request) {
           product_name: data.productName,
           category_slug: data.categorySlug,
           source: "submit-tool",
+          ...(data.submissionId ? { submission_id: data.submissionId } : {}),
         },
         customization: { show_order_details: true },
         return_url: `${origin}/submit-tool?checkout=success`,

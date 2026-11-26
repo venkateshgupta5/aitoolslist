@@ -141,6 +141,7 @@ export function ListingForm({ categories }: { categories: Category[] }) {
         companyName: payload.companyName,
         productName: payload.productName,
         categorySlug: payload.categorySlug,
+        submissionId: (json?.submissionId as string | undefined) ?? null,
       });
       setState("checkout");
     } catch {
