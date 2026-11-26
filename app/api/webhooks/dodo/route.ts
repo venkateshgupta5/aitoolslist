@@ -39,7 +39,19 @@ export async function POST(req: Request) {
       },
     });
   } catch {
-    return NextResponse.json({ error: "Invalid signature" }, { status: 401 });
+    // Production stays strict. In local dev, the Dodo CLI relay re-serialises
+    // the body (and `wh trigger` sends unsigned events), which can break
+    // verification — fall back to unsafeUnwrap so local testing still works.
+    if (process.env.NODE_ENV !== "production") {
+      try {
+        event = dodo.webhooks.unsafeUnwrap(raw);
+        console.warn("[webhook] DEV: signature not verified (unsafeUnwrap)");
+      } catch {
+        return NextResponse.json({ error: "Invalid payload" }, { status: 401 });
+      }
+    } else {
+      return NextResponse.json({ error: "Invalid signature" }, { status: 401 });
+    }
   }
 
   try {
