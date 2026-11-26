@@ -2,8 +2,12 @@ import { NextResponse } from "next/server";
 import { eq } from "drizzle-orm";
 import { db, schema } from "@/lib/db";
 import { listingSchema } from "@/lib/validation";
+import { auth } from "@/auth";
 
 export async function POST(req: Request) {
+  // The signed-in account (used to show this order under "My orders").
+  const session = await auth();
+  const accountEmail = session?.user?.email ?? null;
   let body: unknown;
   try {
     body = await req.json();
@@ -43,6 +47,7 @@ export async function POST(req: Request) {
         websiteUrl: data.websiteUrl,
         contactName: data.contactName,
         email: data.email,
+        accountEmail: accountEmail ?? data.email,
         categoryId: category?.id ?? null,
         description: data.description || null,
         paymentStatus: "pending",

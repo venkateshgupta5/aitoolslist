@@ -147,6 +147,9 @@ export const listingSubmissions = pgTable("listing_submissions", {
   websiteUrl: text("website_url").notNull(),
   contactName: varchar("contact_name", { length: 150 }).notNull(),
   email: varchar("email", { length: 255 }).notNull(),
+  // The signed-in account that created this submission (for "My orders"),
+  // which can differ from the work email entered above.
+  accountEmail: varchar("account_email", { length: 255 }),
   categoryId: uuid("category_id").references(() => categories.id),
   description: text("description"),
   paymentStatus: varchar("payment_status", { length: 30 }).default("pending"),

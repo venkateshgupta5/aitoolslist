@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { desc, eq } from "drizzle-orm";
+import { desc, eq, or } from "drizzle-orm";
 import { auth } from "@/auth";
 import { db, schema } from "@/lib/db";
 import { siteConfig } from "@/lib/site";
@@ -50,7 +50,12 @@ export default async function ProfilePage() {
             createdAt: schema.listingSubmissions.createdAt,
           })
           .from(schema.listingSubmissions)
-          .where(eq(schema.listingSubmissions.email, user.email))
+          .where(
+            or(
+              eq(schema.listingSubmissions.accountEmail, user.email),
+              eq(schema.listingSubmissions.email, user.email),
+            ),
+          )
           .orderBy(desc(schema.listingSubmissions.createdAt))
       : [];
 
