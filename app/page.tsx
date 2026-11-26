@@ -130,27 +130,27 @@ export default function HomePage() {
   return (
     <>
       {/* ── Hero (first fold) ─────────────────────────────────────────── */}
-      <section className="hero-light relative overflow-hidden border-b border-ink-200/60">
+      <section className="hero-night relative overflow-hidden border-b border-white/10">
         <div className="pointer-events-none absolute inset-0 hero-grid" aria-hidden />
 
         <div className="relative mx-auto grid max-w-6xl items-center gap-x-14 gap-y-12 px-4 pb-16 pt-14 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:pb-20 lg:pt-20">
           {/* Left, message */}
           <div>
-            <span className="inline-flex items-center gap-2 rounded-full border border-ink-200 bg-white/80 px-3 py-1 text-xs font-medium text-ink-600 shadow-sm backdrop-blur">
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse-dot" />
+            <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-medium text-white/80 backdrop-blur">
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse-dot" />
               Edition {EDITION.label}
-              <span className="h-3 w-px bg-ink-200" />
-              <span className="text-ink-500">{summary.verified} verified picks</span>
+              <span className="h-3 w-px bg-white/20" />
+              <span className="text-white/55">{summary.verified} verified picks</span>
             </span>
 
-            <h1 className="font-display mt-6 text-balance text-[2.7rem] font-extrabold leading-[1.02] tracking-tight text-ink-900 sm:text-[3.4rem] lg:text-[3.9rem]">
+            <h1 className="font-display mt-6 text-balance text-[2.7rem] font-extrabold leading-[1.02] tracking-tight text-white sm:text-[3.4rem] lg:text-[3.9rem]">
               Thousands of AI tools.
               <br />
               One place to find the{" "}
-              <span className="text-brand-600">right one.</span>
+              <span className="text-brand-400">right one.</span>
             </h1>
 
-            <p className="mt-5 max-w-xl text-lg leading-relaxed text-ink-600">
+            <p className="mt-5 max-w-xl text-lg leading-relaxed text-white/70">
               Independent, evidence-backed reviews across {summary.categoriesTotal} categories —
               one verified standout per category, refreshed every fortnight.
             </p>
@@ -158,7 +158,7 @@ export default function HomePage() {
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link
                 href="/categories"
-                className="inline-flex items-center justify-center gap-1.5 rounded-xl bg-brand-500 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-brand-500/25 transition-colors hover:bg-brand-600"
+                className="inline-flex items-center justify-center gap-1.5 rounded-xl bg-brand-500 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-brand-500/30 transition-colors hover:bg-brand-400"
               >
                 Browse {summary.categoriesTotal} categories
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
@@ -167,7 +167,7 @@ export default function HomePage() {
               </Link>
               <Link
                 href={`/editions/${EDITION.slug}`}
-                className="inline-flex items-center justify-center rounded-xl border border-ink-300 bg-white px-6 py-3.5 text-sm font-semibold text-ink-800 transition-colors hover:border-brand-300 hover:text-brand-700"
+                className="inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/5 px-6 py-3.5 text-sm font-semibold text-white backdrop-blur transition-colors hover:bg-white/10"
               >
                 See this edition&apos;s picks
               </Link>
@@ -175,7 +175,7 @@ export default function HomePage() {
 
             {/* Quick jump by segment */}
             <div className="mt-9">
-              <p className="text-[11px] font-semibold uppercase tracking-wide text-ink-400">
+              <p className="text-[11px] font-semibold uppercase tracking-wide text-white/40">
                 Explore by segment
               </p>
               <div className="mt-3 flex flex-wrap gap-2">
@@ -183,7 +183,7 @@ export default function HomePage() {
                   <Link
                     key={s.slug}
                     href={`/categories#${s.slug}`}
-                    className="rounded-full border border-ink-200 bg-white px-3 py-1.5 text-xs font-medium text-ink-700 transition-colors hover:border-brand-300 hover:bg-brand-50/60 hover:text-brand-700"
+                    className="rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-medium text-white/75 transition-colors hover:border-brand-400/50 hover:bg-white/10 hover:text-white"
                   >
                     {s.name}
                   </Link>
@@ -192,13 +192,13 @@ export default function HomePage() {
             </div>
 
             {/* AI answer-engine hook */}
-            <div className="mt-9 flex flex-wrap items-center gap-x-3 gap-y-1.5 border-t border-ink-200/70 pt-6">
-              <span className="text-[11px] font-medium uppercase tracking-wide text-ink-400">
+            <div className="mt-9 flex flex-wrap items-center gap-x-3 gap-y-1.5 border-t border-white/10 pt-6">
+              <span className="text-[11px] font-medium uppercase tracking-wide text-white/40">
                 Structured to be cited by
               </span>
               <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
                 {answerEngines.map((e) => (
-                  <span key={e} className="text-[13px] font-semibold text-ink-700">{e}</span>
+                  <span key={e} className="text-[13px] font-semibold text-white/70">{e}</span>
                 ))}
               </div>
             </div>
@@ -206,7 +206,7 @@ export default function HomePage() {
 
           {/* Right, data-driven edition panel */}
           <div className="relative">
-            <div className="relative rounded-2xl border border-ink-200/80 bg-white p-5 card-ring sm:p-6">
+            <div className="relative rounded-2xl border border-white/10 bg-white p-5 shadow-2xl shadow-black/40 ring-1 ring-black/5 sm:p-6">
               <div className="flex items-start justify-between">
                 <div>
                   <p className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wide text-ink-400">

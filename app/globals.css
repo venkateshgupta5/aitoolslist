@@ -72,27 +72,27 @@ body {
   text-wrap: balance;
 }
 
-/* ── Editorial light hero ─────────────────────────────────────────────── */
-/* White base with a soft, flat blue "stage" top-right (behind the picks
-   panel) and a hint of warmth lower-left — a composed wash, not a glow. */
-.hero-light {
+/* ── Editorial dark hero ──────────────────────────────────────────────── */
+/* Deep navy canvas with a flat brand-blue "stage" top-right (behind the
+   picks panel) — a composed wash, not a glow. */
+.hero-night {
   background:
-    radial-gradient(58% 64% at 96% -8%, #e6f3fd 0%, rgba(230, 243, 253, 0) 55%),
-    linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+    radial-gradient(56% 62% at 96% -8%, rgba(0, 139, 220, 0.22) 0%, rgba(0, 139, 220, 0) 55%),
+    linear-gradient(180deg, #0a1628 0%, #0b1220 100%);
 }
 
-/* Engineering graph-paper grid — fitting for a research publication. Fine
-   hairlines on a larger grid, with heavier "major" lines, faded downward so
-   it never competes with the headline. */
+/* Blueprint graph-paper grid — light hairlines on the dark canvas, with
+   heavier "major" lines, faded downward so it never competes with the
+   headline. */
 .hero-grid {
   background-image:
-    linear-gradient(to right, rgba(10, 42, 78, 0.06) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(10, 42, 78, 0.06) 1px, transparent 1px),
-    linear-gradient(to right, rgba(10, 42, 78, 0.035) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(10, 42, 78, 0.035) 1px, transparent 1px);
+    linear-gradient(to right, rgba(255, 255, 255, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.07) 1px, transparent 1px),
+    linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
   background-size: 160px 160px, 160px 160px, 32px 32px, 32px 32px;
-  -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 48%, transparent 90%);
-  mask-image: linear-gradient(180deg, #000 0%, #000 48%, transparent 90%);
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 48%, transparent 92%);
+  mask-image: linear-gradient(180deg, #000 0%, #000 48%, transparent 92%);
 }
 
 /* ── Cinematic dark hero (retained for other sections) ────────────────── */
