@@ -131,7 +131,6 @@ export default function HomePage() {
     <>
       {/* ── Hero (first fold) ─────────────────────────────────────────── */}
       <section className="hero-night relative overflow-hidden border-b border-white/10">
-        <div className="pointer-events-none absolute inset-0 hero-grid" aria-hidden />
 
         <div className="relative mx-auto grid max-w-6xl items-center gap-x-14 gap-y-12 px-4 pb-16 pt-14 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:pb-20 lg:pt-20">
           {/* Left, message */}

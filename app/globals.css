@@ -81,17 +81,6 @@ body {
     linear-gradient(180deg, #0a1628 0%, #0b1220 100%);
 }
 
-/* Blueprint graph-paper grid — a single, uniform set of light hairlines on
-   the dark canvas, faded downward so it never competes with the headline. */
-.hero-grid {
-  background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-  background-size: 44px 44px;
-  -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 46%, transparent 92%);
-  mask-image: linear-gradient(180deg, #000 0%, #000 46%, transparent 92%);
-}
-
 /* ── Cinematic dark hero (retained for other sections) ────────────────── */
 .hero-dark {
   position: relative;
