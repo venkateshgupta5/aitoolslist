@@ -7,6 +7,7 @@ import { GateCta } from "@/components/listing/gate-cta";
 import { ListingPageView } from "@/components/listing/page-view";
 import { siteConfig } from "@/lib/site";
 import {
+  HomepageTrendingMock,
   ProductPageMock,
   CategoryPlacementMock,
   BacklinkSeoMock,
@@ -24,6 +25,7 @@ export const metadata: Metadata = {
 const PRICE = siteConfig.listingPrice;
 
 const VISUALS = {
+  homepage: HomepageTrendingMock,
   product: ProductPageMock,
   category: CategoryPlacementMock,
   seo: BacklinkSeoMock,
@@ -38,6 +40,17 @@ const benefits: {
   points: string[];
   visual: keyof typeof VISUALS;
 }[] = [
+  {
+    eyebrow: "Homepage spotlight",
+    title: "Featured on the homepage, in Trending now",
+    body: "Your product appears as a sponsored card in the Trending now strip on our homepage, high on the first page visitors and AI crawlers see, and clearly marked Sponsored.",
+    points: [
+      "A sponsored card in the homepage Trending now section",
+      "Seen by visitors the moment they land",
+      "Transparently labelled Sponsored, kept out of editorial rankings",
+    ],
+    visual: "homepage",
+  },
   {
     eyebrow: "Your own page",
     title: "A dedicated product page that works for you",

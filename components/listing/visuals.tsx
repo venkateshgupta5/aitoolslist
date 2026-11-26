@@ -10,6 +10,67 @@ const check = (
   </svg>
 );
 
+/** 0. Homepage "Trending now" sponsored placement (mirrors the live strip). */
+export function HomepageTrendingMock() {
+  const accent = "#008bdc";
+  return (
+    <div className="rounded-2xl border border-ink-200/80 bg-white p-5 card-ring">
+      {/* section header */}
+      <div className="flex items-center gap-2.5">
+        <span className="flex h-6 w-6 items-center justify-center rounded-full bg-brand-500 text-white">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+            <path d="M3 17 9 11l4 4 8-8" /><path d="M17 7h4v4" />
+          </svg>
+        </span>
+        <span className="text-sm font-bold tracking-tight text-ink-900">Trending now</span>
+        <span className="rounded-full border border-ink-200 bg-ink-50 px-2 py-0.5 text-[9px] font-semibold uppercase tracking-wide text-ink-500">
+          Sponsored
+        </span>
+      </div>
+
+      {/* the sponsored card */}
+      <div className="relative mt-4 overflow-hidden rounded-xl border border-ink-200/80 bg-white shadow-sm">
+        <span className="absolute inset-x-0 top-0 h-1" style={{ background: `linear-gradient(90deg, ${accent}, color-mix(in srgb, ${accent} 15%, transparent))` }} aria-hidden />
+        {/* rising sparkline */}
+        <svg className="pointer-events-none absolute inset-x-0 bottom-0 h-12 w-full opacity-70" viewBox="0 0 320 48" preserveAspectRatio="none" aria-hidden>
+          <path d="M0 40 L60 34 L120 38 L180 24 L240 28 L320 8" fill="none" stroke={accent} strokeOpacity="0.5" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+        <span className="pointer-events-none absolute right-3 top-1.5 font-display text-3xl font-extrabold leading-none" style={{ color: `color-mix(in srgb, ${accent} 10%, transparent)` }} aria-hidden>
+          01
+        </span>
+
+        <div className="relative p-4">
+          <div className="flex items-center gap-2">
+            <span className="flex h-9 w-9 items-center justify-center rounded-lg border border-ink-200/80 bg-white text-xs font-bold text-white">
+              <span className="flex h-full w-full items-center justify-center rounded-md bg-brand-500">YP</span>
+            </span>
+            <span className="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-semibold" style={{ color: accent, backgroundColor: `color-mix(in srgb, ${accent} 11%, white)` }}>
+              <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                <path d="M7 17 17 7" /><path d="M8 7h9v9" />
+              </svg>
+              Trending
+            </span>
+          </div>
+          <h4 className="font-display mt-3 text-base font-bold leading-snug text-ink-900">Your Product</h4>
+          <p className="mt-0.5 text-[13px] text-ink-500">Your one-line pitch, in front of AI-tool buyers</p>
+          <div className="mt-3 flex items-center justify-between">
+            <span className="text-[10px] font-semibold uppercase tracking-wide text-ink-400">Your category</span>
+            <span className="flex h-7 w-7 items-center justify-center rounded-full ring-1 ring-inset ring-ink-200 text-ink-600">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                <path d="M5 12h14" /><path d="m13 6 6 6-6 6" />
+              </svg>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <p className="mt-3 flex items-center justify-center gap-1.5 text-[11px] text-ink-500">
+        {check} Seen first by every homepage visitor
+      </p>
+    </div>
+  );
+}
+
 /** Framed real screenshot. */
 function Screenshot({ src, alt, w, h }: { src: string; alt: string; w: number; h: number }) {
   return (
