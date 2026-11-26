@@ -117,9 +117,9 @@ export function DodoInlineCheckout({ payload }: { payload: CheckoutPayload }) {
           Payment received ✓
         </h3>
         <p className="mt-1.5 text-sm text-emerald-700">
-          Thanks! Your listing is confirmed. We&apos;ll review and publish it,
-          then email you the live URL. A receipt is on its way from Dodo
-          Payments.
+          Thanks! Your payment is confirmed. Our team will review your
+          submission and reach out within 24 working hours; once we have your
+          go-ahead, your listing is published.
         </p>
       </div>
     );

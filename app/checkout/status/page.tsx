@@ -20,7 +20,6 @@ export default async function CheckoutStatusPage({
   const sp = await searchParams;
   const status = first(sp.status).toLowerCase();
   const paymentId = first(sp.payment_id);
-  const email = first(sp.email);
 
   const succeeded = status === "succeeded" || status === "active";
   const failed =
@@ -60,7 +59,7 @@ export default async function CheckoutStatusPage({
               Payment received ✓
             </h1>
             <p className="mt-2 text-ink-600">
-              Thank you — your payment is confirmed{email ? <> and a receipt is on its way to <span className="font-medium text-ink-800">{email}</span></> : null}.
+              Thank you — your payment is confirmed.
             </p>
 
             <div className="mt-6 rounded-xl bg-ink-50 p-5">
@@ -70,13 +69,17 @@ export default async function CheckoutStatusPage({
               <ol className="mt-3 space-y-3 text-sm text-ink-700">
                 <li className="flex gap-3">
                   <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-600 text-xs font-bold text-white">1</span>
-                  <span>Our team will reach out to you by email within <span className="font-semibold">24 working hours</span>.</span>
+                  <span>Our team will reach out to you within <span className="font-semibold">24 working hours</span>.</span>
                 </li>
                 <li className="flex gap-3">
                   <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-600 text-xs font-bold text-white">2</span>
-                  <span>Once we get the go-ahead from your end, your product listing will be <span className="font-semibold">published</span> and we&apos;ll send you the live URL.</span>
+                  <span>Once we get the go-ahead from your end, your product listing will be <span className="font-semibold">published</span>.</span>
                 </li>
               </ol>
+              <p className="mt-3 text-xs text-ink-500">
+                You can track this order anytime under{" "}
+                <Link href="/profile" className="font-medium text-brand-600 hover:text-brand-700">your profile → My orders</Link>.
+              </p>
             </div>
 
             {paymentId && (
@@ -137,9 +140,9 @@ export default async function CheckoutStatusPage({
               Confirming your payment…
             </h1>
             <p className="mt-2 text-ink-600">
-              Your payment is being processed. This usually takes a few moments —
-              we&apos;ll email you{email ? <> at <span className="font-medium text-ink-800">{email}</span></> : null} as soon as it&apos;s confirmed. You can safely
-              close this page.
+              Your payment is being processed. This usually takes a few moments.
+              You can check the latest status under{" "}
+              <Link href="/profile" className="font-medium text-brand-600 hover:text-brand-700">your profile → My orders</Link>.
             </p>
             {paymentId && (
               <p className="mt-5 text-xs text-ink-400">

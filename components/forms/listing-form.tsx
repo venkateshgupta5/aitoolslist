@@ -174,7 +174,7 @@ export function ListingForm({ categories }: { categories: Category[] }) {
         <Field id="contactName" label="Contact name" required error={errors.contactName}>
           <input id="contactName" name="contactName" required className={inputClass("contactName")} placeholder="Jane Doe" aria-invalid={!!errors.contactName} />
         </Field>
-        <Field id="email" label="Work email" required helper="We'll send your receipt and review updates here." error={errors.email}>
+        <Field id="email" label="Work email" required helper="The email associated with your order." error={errors.email}>
           <input id="email" name="email" type="email" inputMode="email" required className={inputClass("email")} placeholder="jane@acme.ai" aria-invalid={!!errors.email} />
         </Field>
       </div>

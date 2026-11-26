@@ -1,8 +1,22 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { desc, eq } from "drizzle-orm";
 import { auth } from "@/auth";
+import { db, schema } from "@/lib/db";
+import { siteConfig } from "@/lib/site";
 import { SignOutButton } from "@/components/auth/sign-out-button";
+
+const STATUS_STYLES: Record<string, string> = {
+  paid: "bg-emerald-50 text-emerald-700 ring-emerald-600/20",
+  pending: "bg-amber-50 text-amber-700 ring-amber-600/20",
+  failed: "bg-red-50 text-red-700 ring-red-600/20",
+};
+const STATUS_LABELS: Record<string, string> = {
+  paid: "Paid",
+  pending: "Pending",
+  failed: "Failed",
+};
 
 export const metadata: Metadata = {
   title: "Your profile",
@@ -22,6 +36,23 @@ export default async function ProfilePage() {
   const session = await auth();
   const user = session?.user;
   if (!user) redirect("/login");
+
+  // Orders = this customer's listing submissions, matched by email.
+  const orders =
+    db && user.email
+      ? await db
+          .select({
+            id: schema.listingSubmissions.id,
+            productName: schema.listingSubmissions.productName,
+            companyName: schema.listingSubmissions.companyName,
+            paymentStatus: schema.listingSubmissions.paymentStatus,
+            paymentReference: schema.listingSubmissions.paymentReference,
+            createdAt: schema.listingSubmissions.createdAt,
+          })
+          .from(schema.listingSubmissions)
+          .where(eq(schema.listingSubmissions.email, user.email))
+          .orderBy(desc(schema.listingSubmissions.createdAt))
+      : [];
 
   return (
     <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-20">
@@ -83,6 +114,72 @@ export default async function ProfilePage() {
             <dd className="font-medium text-ink-900">Google</dd>
           </div>
         </dl>
+      </div>
+
+      {/* My orders */}
+      <div className="mt-6 rounded-2xl border border-ink-200/70 bg-white p-6 card-ring">
+        <div className="flex items-center justify-between gap-3">
+          <h2 className="text-sm font-semibold uppercase tracking-wide text-ink-400">
+            My orders
+          </h2>
+          <span className="text-xs text-ink-400">
+            {orders.length} {orders.length === 1 ? "order" : "orders"}
+          </span>
+        </div>
+
+        {orders.length === 0 ? (
+          <p className="mt-4 text-sm text-ink-500">
+            No orders yet.{" "}
+            <Link href="/submit-tool" className="font-medium text-brand-600 hover:text-brand-700">
+              List your product →
+            </Link>
+          </p>
+        ) : (
+          <ul className="mt-4 divide-y divide-ink-100">
+            {orders.map((o) => {
+              const key = (o.paymentStatus ?? "pending").toLowerCase();
+              return (
+                <li key={o.id} className="flex items-start justify-between gap-4 py-4">
+                  <div className="min-w-0">
+                    <p className="truncate text-sm font-semibold text-ink-900">
+                      {o.productName}
+                    </p>
+                    <p className="mt-0.5 truncate text-xs text-ink-500">
+                      {o.companyName}
+                      {o.createdAt ? (
+                        <>
+                          {" · "}
+                          {new Date(o.createdAt).toLocaleDateString("en-US", {
+                            year: "numeric",
+                            month: "short",
+                            day: "numeric",
+                          })}
+                        </>
+                      ) : null}
+                    </p>
+                    {o.paymentReference ? (
+                      <p className="mt-1 font-mono text-[11px] text-ink-400">
+                        {o.paymentReference}
+                      </p>
+                    ) : null}
+                  </div>
+                  <div className="shrink-0 text-right">
+                    <p className="text-sm font-semibold text-ink-900">
+                      {siteConfig.listingPrice}
+                    </p>
+                    <span
+                      className={`mt-1 inline-flex items-center rounded-full px-2.5 py-0.5 text-[11px] font-semibold ring-1 ring-inset ${
+                        STATUS_STYLES[key] ?? STATUS_STYLES.pending
+                      }`}
+                    >
+                      {STATUS_LABELS[key] ?? "Pending"}
+                    </span>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+        )}
       </div>
 
       {/* Quick links */}
